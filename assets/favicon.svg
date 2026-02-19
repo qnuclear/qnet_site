@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 600">
+  <defs>
+    <style>
+      /* ================= BRAND PALETTE ================= */
+      :root {
+        --navy: #002552;
+        --red:  #b90e32;
+        --gold: #fabc0f;
+      }
+
+      /* Shape classes tied to the variables */
+      .navy { stroke: var(--navy); fill: var(--navy); }
+      .red  { stroke: var(--red);  fill: var(--red);  }
+      .gold { stroke: var(--gold); fill: var(--gold); }
+      
+      .orbit { fill: none; stroke-width: 18; stroke-linecap: round; }
+    </style>
+
+    <clipPath id="clip-right" clipPathUnits="userSpaceOnUse">
+      <rect x="0" y="0" width="250" height="400"/>
+    </clipPath>
+
+    <clipPath id="q-red">
+      <polygon points="400,315 600,50 600,0 200,0 200,360" />
+    </clipPath>
+    
+    <clipPath id="q-navy">
+      <polygon points="400,315 200,360 200,600 340,600" />
+    </clipPath>
+    
+    <clipPath id="q-gold">
+      <polygon points="400,315 340,600 600,600 600,50" />
+    </clipPath>
+  </defs>
+
+  <g transform="translate(140,85)">
+    <ellipse class="orbit gold"
+             cx="260" cy="230" rx="240" ry="115"
+             transform="translate(260,230) rotate(60) scale(1,0.7) translate(-260,-230)"/>
+
+    <g transform="translate(260,230) rotate(-10) scale(1,0.5) translate(-260,-230)">
+      <ellipse cx="260" cy="230" rx="210" ry="210"
+               class="orbit navy" stroke-dasharray="660 660" stroke-dashoffset="660"/>
+      <ellipse cx="260" cy="230" rx="210" ry="210"
+               class="orbit red"  stroke-dasharray="660 660" stroke-dashoffset="0"/>
+    </g>
+
+    <circle class="red"  cx="370" cy="50"  r="24"/>
+    <circle class="navy" cx="180" cy="410" r="24"/>
+    <circle class="gold" cx="65"  cy="210" r="24"/>
+    <circle class="gold" cx="455" cy="230" r="24"/>
+
+    <g clip-path="url(#clip-right)">
+      <ellipse class="orbit gold"
+               cx="260" cy="230" rx="240" ry="115"
+               transform="translate(260,230) rotate(60) scale(1,0.7) translate(-260,-230)"/>
+    </g>
+  </g>
+
+  <text x="325" y="375" font-family="'Leelawadee UI', sans-serif" font-size="190" font-weight="800" fill="var(--red)" clip-path="url(#q-red)" letter-spacing="6">Q</text>
+  
+  <text x="325" y="375" font-family="'Leelawadee UI', sans-serif" font-size="190" font-weight="800" fill="var(--navy)" clip-path="url(#q-navy)" letter-spacing="6">Q</text>
+  
+  <text x="325" y="375" font-family="'Leelawadee UI', sans-serif" font-size="190" font-weight="800" fill="var(--gold)" clip-path="url(#q-gold)" letter-spacing="6">Q</text>
+
+
+</svg>
