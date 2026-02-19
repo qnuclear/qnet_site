@@ -5,10 +5,8 @@
     <title>QNET</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" sizes="any" href="assets/favicon.svg">
 
-    <!-- Inter Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
@@ -23,16 +21,23 @@
             background-color: #111;
             color: white;
             text-align: center;
+            /* Prevents horizontal scroll on small screens */
+            overflow-x: hidden; 
         }
 
-        img {
-            width: 220px;
+        /* Updated Image Styles */
+        .logo {
+            width: 100%;
+            max-width: 1000px; /* Caps the size on large screens */
+            padding: 0 20px;   /* Gives it breathing room on mobile */
+            box-sizing: border-box;
             margin-bottom: 30px;
         }
 
         h1 {
             font-weight: 500;
             margin: 0;
+            line-height: 1.4; /* Slight tweak for better readability */
         }
 
         a {
@@ -48,8 +53,7 @@
 </head>
 <body>
 
-    <!-- Logo -->
-    <img src="assets/Full Logo.svg" alt="QNET Logo" style="width: 1000px; display: block; margin: 0 auto 30px;">
+    <img src="assets/Full Logo.svg" alt="QNET Logo" class="logo">
 
     <h1>
         QNET: Coming soon. <br><br>
