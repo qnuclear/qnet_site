@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QNET | About Us</title>
+    <link rel="icon" type="image/svg+xml" href="assets/outlinefavicon.svg">
+    <style>
+        @font-face {
+            font-family: 'Leelawadee UI';
+            src: url('assets/leelawadee.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            overflow: hidden; 
+            background-color: #1e1e1e; 
+            color: #f0f0f0; 
+        }
+
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2.5rem;
+            display: flex;
+            justify-content: center;
+            z-index: 100;
+            pointer-events: none; 
+        }
+
+        .logo-link {
+            pointer-events: auto; 
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 90px; 
+            width: auto;
+            display: block; 
+            filter: drop-shadow(0px 4px 15px rgba(0,0,0,0.3)); 
+        }
+
+        /* 3. The Horizontal Slideshow Container */
+        .slideshow-container {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            overflow-x: auto; 
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+        }
+
+        .slideshow-container::-webkit-scrollbar { display: none; }
+        .slideshow-container { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* 4. The Individual Slides */
+        .slide {
+            flex: 0 0 100vw;
+            height: 100vh;
+            scroll-snap-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .slide-1 { background-color: #1e1e1e; }
+        .slide-2 { background-color: #242424; }
+
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 400;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        p {
+            font-size: 1.25rem;
+            color: #a0a0a0;
+            max-width: 700px;
+            font-weight: 300;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Buttons updated for animated arrow */
+        .btn {
+            display: inline-flex; 
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #f0f0f0;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background-color: transparent;
+            border: 1px solid #555; 
+            border-radius: 50px; 
+            transition: all 0.3s ease;
+        }
+
+        .arrow {
+            display: inline-block;
+            margin-left: 10px;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover .arrow {
+            animation: bounceRight 1s infinite;
+        }
+
+        @keyframes bounceRight {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(8px); }
+        }
+
+        /* Hover states for the two slides */
+        .slide-1 .btn:hover {
+            border-color: #fabc0f; /* Queen's Gold */
+            background-color: rgba(250, 188, 15, 0.2); 
+            color: #fabc0f; 
+        }
+
+        .slide-2 .btn:hover {
+            border-color: #002552; /* Queen's Blue */
+            background-color: rgba(0, 37, 82, 0.4); 
+            color: #ffffff; 
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <a href="index.html" class="logo-link">
+        <img src="assets/QNET outline white.svg" alt="QNET Logo" class="logo-img">
+    </a>
+</header>
+
+<div class="slideshow-container">
+    
+    <section class="slide slide-1">
+        <h1>Our Mission</h1>
+        <p>We strive to bring nuclear engineering to Queen's University,
+            branching the gap between theoretical physics and chemistry to
+            practical engineering logistics. We aim to launch in Fall 2026, and are currently in the process of recruiting our founding members. Help us build the future of nuclear engineering at Queen's.
+        </p>
+        <a href="#" id="next-slide-btn" class="btn">Get involved today <span class="arrow">→</span></a>
+    </section>
+
+    <section class="slide slide-2">
+        <h1>Project Pilot</h1>
+        <p>We are gearing up to launch our inaugural, semester-long engineering project. While the exact scope is still under wraps, this is your chance to get in on the ground floor. Join the team to help us brainstorm, design, and organize our first major build.</p>
+        <a href="join.html" class="btn">Shape the Project</a>
+    </section>
+
+</div>
+
+<script>
+    // --- RANDOM CURSOR INJECTION ---
+    (function setRandomCursor() {
+        const queensColors = ['%23002552', '%23fabc0f', '%23b90e32'];
+        const randomColor = queensColors[Math.floor(Math.random() * queensColors.length)];
+        const cursorStyle = document.createElement('style');
+        cursorStyle.innerHTML = `
+            * {
+                cursor: url('data:image/svg+xml;utf8,<svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5" fill="${randomColor}"/></svg>') 6 6, auto;
+            }
+            a, button, .btn, .logo-link {
+                cursor: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" fill="${randomColor}" opacity="0.4"/><circle cx="8" cy="8" r="4" fill="${randomColor}"/></svg>') 8 8, pointer !important;
+            }
+        `;
+        document.head.appendChild(cursorStyle);
+    })();
+
+    // --- HORIZONTAL SCROLL LOGIC ---
+    const container = document.querySelector('.slideshow-container');
+    let isScrolling = false;
+
+    // 1. Mouse Wheel Scrolling
+    container.addEventListener('wheel', (evt) => {
+        evt.preventDefault();
+        
+        if (isScrolling) return; 
+        isScrolling = true;
+
+        const slideWidth = window.innerWidth;
+        const direction = evt.deltaY > 0 ? 1 : -1;
+        
+        container.scrollBy({ 
+            left: direction * slideWidth, 
+            behavior: 'smooth' 
+        });
+
+        setTimeout(() => {
+            isScrolling = false;
+        }, 700); 
+    }, { passive: false });
+
+    // 2. Button Click Scrolling
+    document.getElementById('next-slide-btn').addEventListener('click', (evt) => {
+        evt.preventDefault(); 
+        
+        if (isScrolling) return; 
+        isScrolling = true;
+
+        const slideWidth = window.innerWidth;
+        
+        container.scrollBy({ 
+            left: slideWidth, 
+            behavior: 'smooth' 
+        });
+
+        setTimeout(() => {
+            isScrolling = false;
+        }, 700); 
+    });
+</script>
+
+</body>
+</html>

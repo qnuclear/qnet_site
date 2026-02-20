@@ -8,11 +8,12 @@
     <style>
 
         @font-face {
-    font-family: 'Leelawadee UI';
-    src: url('assets/leelawadee.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
+            font-family: 'Leelawadee UI';
+            src: url('assets/leelawadee.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         /* 1. Reset & Typography */
         * {
             margin: 0;
@@ -46,11 +47,11 @@
         }
 
         .logo-img {
-    height: 90px; /* Forces the SVG to a specific height */
-    width: auto;
-    display: block; /* Prevents weird inline-spacing bugs */
-    filter: drop-shadow(0px 4px 15px rgba(0,0,0,0.3)); 
-}
+            height: 90px; 
+            width: auto;
+            display: block; 
+            filter: drop-shadow(0px 4px 15px rgba(0,0,0,0.3)); 
+        }
 
         /* 3. The Horizontal Slideshow Container */
         .slideshow-container {
@@ -94,7 +95,7 @@
 
         p {
             font-size: 1.25rem;
-            color: #a0a0a0; /* Slightly lighter gray to match the new background */
+            color: #a0a0a0; 
             max-width: 600px;
             font-weight: 300;
             line-height: 1.6;
@@ -103,7 +104,9 @@
 
         /* 6. Buttons */
         .btn {
-            display: inline-block;
+            display: inline-flex; /* Changed to flex to align the text and arrow perfectly */
+            align-items: center;
+            justify-content: center;
             padding: 1rem 2.5rem;
             font-size: 1rem;
             font-weight: 500;
@@ -115,6 +118,24 @@
             border: 1px solid #555; 
             border-radius: 50px; 
             transition: all 0.3s ease;
+        }
+
+        /* 7. The Animated Arrow */
+        .arrow {
+            display: inline-block;
+            margin-left: 10px;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        /* Makes the arrow bounce horizontally when the button is hovered */
+        .btn:hover .arrow {
+            animation: bounceRight 1s infinite;
+        }
+
+        @keyframes bounceRight {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(8px); }
         }
 
         /* EXACT Hover states: Blue -> Gold -> Red */
@@ -150,19 +171,19 @@
     <section class="slide slide-1">
         <h1>Queen's Nuclear Engineering Team</h1>
         <p>Coming September 2026.</p>
-        <a href="https://forms.gle/KVNfwLB1Kj7JSAoZ9" target="_blank" class="btn">Express Interest</a>
+        <a href="#" id="tell-me-more-btn" class="btn">Tell me more <span class="arrow">→</span></a>
     </section>
 
     <section class="slide slide-2">
-        <h1>About Us</h1>
-        <p>Designing the future of complex nuclear logistics and engineering systems.</p>
-        <a href="about.html" class="btn">Read Our Story</a>
+        <h1>Join our Team</h1>
+        <p>Help us build something revolutionary at Queen's.</p>
+        <a href="join.html" class="btn">Apply Now</a>
     </section>
 
     <section class="slide slide-3">
-        <h1>Meet the Team</h1>
-        <p>The minds behind the machines.</p>
-        <a href="team.html" class="btn">View Roster</a>
+        <h1>About Us</h1>
+        <p>Queen's first and only nuclear engineering team.</p>
+        <a href="about.html" class="btn">Read Our Story</a>
     </section>
 
 </div>
@@ -170,12 +191,9 @@
 <script>
     // --- RANDOM CURSOR INJECTION ---
     (function setRandomCursor() {
-        // Exact Queen's colors with the '#' URL-encoded as '%23' for the SVG
         const queensColors = ['%23002552', '%23fabc0f', '%23b90e32'];
-        // Pick a random color
         const randomColor = queensColors[Math.floor(Math.random() * queensColors.length)];
 
-        // Create a style block to inject the custom cursor
         const cursorStyle = document.createElement('style');
         cursorStyle.innerHTML = `
             * {
@@ -192,6 +210,7 @@
     const container = document.querySelector('.slideshow-container');
     let isScrolling = false;
 
+    // 1. Mouse Wheel Scrolling
     container.addEventListener('wheel', (evt) => {
         evt.preventDefault();
         
@@ -210,6 +229,26 @@
             isScrolling = false;
         }, 700); 
     }, { passive: false });
+
+    // 2. Button Click Scrolling (The Tell Me More Button)
+    document.getElementById('tell-me-more-btn').addEventListener('click', (evt) => {
+        evt.preventDefault(); // Stops the page from jumping or reloading
+        
+        if (isScrolling) return; 
+        isScrolling = true;
+
+        const slideWidth = window.innerWidth;
+        
+        // Push the container exactly one screen to the right
+        container.scrollBy({ 
+            left: slideWidth, 
+            behavior: 'smooth' 
+        });
+
+        setTimeout(() => {
+            isScrolling = false;
+        }, 700); 
+    });
 </script>
 
 </body>

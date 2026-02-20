@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QNET | Join the Team</title>
+    <link rel="icon" type="image/svg+xml" href="assets/outlinefavicon.svg">
+    <style>
+        @font-face {
+            font-family: 'Leelawadee UI';
+            src: url('assets/leelawadee.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            overflow-y: auto; 
+            overflow-x: hidden;
+            background-color: #1e1e1e; 
+            color: #f0f0f0; 
+        }
+
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2.5rem;
+            display: flex;
+            justify-content: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(30,30,30,1) 40%, rgba(30,30,30,0) 100%);
+            pointer-events: none; 
+        }
+
+        .logo-link { pointer-events: auto; text-decoration: none; }
+        .logo-img { height: 90px; width: auto; display: block; filter: drop-shadow(0px 4px 15px rgba(0,0,0,0.3)); }
+
+        .roster-layout {
+            min-height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 180px 2rem 4rem 2rem; 
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 400;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: #a0a0a0;
+            max-width: 600px;
+            font-weight: 300;
+            line-height: 1.6;
+            margin-bottom: 4rem;
+        }
+
+        /* --- THE DRAFT BOARD GRID --- */
+        .roster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            max-width: 1100px;
+            width: 100%;
+            margin-bottom: 4rem;
+        }
+
+        .role-card {
+            background-color: #242424; 
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            text-align: left;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .role-tag {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #888;
+            margin-bottom: 1rem;
+        }
+
+        .tag-founding { color: #fabc0f; font-weight: 600; }
+        .role-card h3 { color: #ffffff; font-size: 1.5rem; font-weight: 400; margin-bottom: 1rem; }
+        .role-card p { font-size: 1rem; color: #a0a0a0; line-height: 1.6; margin-bottom: 0; flex-grow: 1; }
+
+        /* EXACT Hover states: Blue -> Gold -> Red */
+        .role-card:nth-child(1):hover {
+            border-color: #002552; /* Queen's Blue */
+            box-shadow: 0 10px 30px rgba(0, 37, 82, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .role-card:nth-child(2):hover {
+            border-color: #fabc0f; /* Queen's Gold */
+            box-shadow: 0 10px 30px rgba(250, 188, 15, 0.08);
+            transform: translateY(-5px);
+        }
+
+        .role-card:nth-child(3):hover {
+            border-color: #b90e32; /* Queen's Red */
+            box-shadow: 0 10px 30px rgba(185, 14, 50, 0.1);
+            transform: translateY(-5px);
+        }
+
+        /* --- LIGHTBOX MODAL CSS --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+            justify-content: center; align-items: center;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+
+        .modal-content {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 3rem 2.5rem;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transform: translateY(20px); transition: transform 0.3s ease;
+        }
+
+        .close-btn {
+            position: absolute; top: 1.25rem; right: 1.5rem;
+            font-size: 2rem; color: #666; cursor: pointer; line-height: 1; transition: color 0.3s;
+        }
+        .close-btn:hover { color: #fff; }
+
+        .modal-title { font-size: 2rem; margin-bottom: 1.5rem; text-align: left; }
+        .form-group { margin-bottom: 1.25rem; text-align: left; }
+        .form-group label { display: block; font-size: 0.8rem; color: #aaa; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        
+        .form-control {
+            width: 100%; background: #242424; border: 1px solid #444; color: #fff;
+            padding: 0.8rem 1rem; border-radius: 8px; font-size: 1rem;
+            font-family: 'Inter', sans-serif; transition: border-color 0.3s;
+        }
+        .form-control:focus { outline: none; border-color: #fabc0f; }
+        select.form-control { cursor: pointer; appearance: none; }
+
+        .submit-btn {
+            width: 100%; margin-top: 1rem; background: #f0f0f0; color: #111;
+            font-weight: 600; border: none; padding: 1rem; border-radius: 8px;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.3s ease;
+        }
+        .submit-btn:hover { background: #fabc0f; color: #111; transform: translateY(-2px); }
+
+        #success-message {
+            display: none; text-align: center; color: #f0f0f0;
+            font-size: 1.5rem; font-weight: 300; line-height: 1.4; padding: 2rem 0;
+        }
+        .success-accent { color: #fabc0f; font-weight: 500; }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <a href="index.html" class="logo-link">
+        <img src="assets/QNET outline white.svg" alt="QNET Logo" class="logo-img">
+    </a>
+</header>
+
+<main class="roster-layout">
+    <h1>The Draft Board</h1>
+    <p class="subtitle">We are actively recruiting our inaugural strike team. Review the open positions below and help us define the future of nuclear engineering at Queen's.</p>
+    
+    <div class="roster-grid">
+        
+        <div class="role-card" data-role="Executive Level: Founding Team">
+            <span class="role-tag tag-founding">Executive Level</span>
+            <h3>Founding Team</h3>
+            <p>We are looking for visionary leaders to steer QNET from day one. You won't just be joining a team; you'll be building the framework. Your first mission will be collaborating with the board to define our inaugural pilot project, and charting our roadmap for Fall 2026.</p>
+        </div>
+
+        <div class="role-card" data-role="Executive Level: Operations & Outreach">
+            <span class="role-tag tag-founding">Executive Level</span>
+            <h3>Operations & Outreach</h3>
+            <p>Engineering teams run on funding and university backing. This is a day-one founding role. We need a team of driven operators to secure sponsorships, navigate faculty relations, manage the budget. Your mission is to ensure our projects get off the ground, and keep our engineers informed.</p>
+        </div>
+
+        <div class="role-card" data-role="General Member: Technical Roster">
+            <span class="role-tag">General Member</span>
+            <h3>Technical Roster</h3>
+            <p>Don't want to manage the team, just want to build? Join the general engineering roster. Once our pilot project is locked in, we will need a deep bench of talent. Whether your strength is Python plotting, Arduino microcontrollers, fluid mechanics, or complex circuit analysis, bring your hard skills to the table.</p>
+        </div>
+
+    </div>
+</main>
+
+<div class="modal-overlay" id="apply-modal">
+    <div class="modal-content">
+        <span class="close-btn" id="close-modal">&times;</span>
+        
+        <form id="application-form">
+            <input type="hidden" name="access_key" value="7ed0b3b0-b8ea-4d3f-bd16-012b3028b8d0">
+            
+            <input type="hidden" name="subject" value="New QNET Application">
+            <input type="hidden" id="selected-role" name="Applied Role" value="">
+
+            <h2 class="modal-title">Apply to QNET</h2>
+
+            <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" name="Name" class="form-control" required placeholder="J. Robert Oppenheimer">
+            </div>
+
+            <div class="form-group">
+                <label>Queen's Email *</label>
+                <input type="email" name="Email" class="form-control" required placeholder="netid@queensu.ca">
+            </div>
+
+            <div class="form-group">
+                <label>Current Year of Study *</label>
+                <select name="Year of Study" id="year-select" class="form-control" required>
+                    <option value="" disabled selected>Select your year...</option>
+                    <option value="1st Year">1st Year</option>
+                    <option value="2nd Year">2nd Year</option>
+                    <option value="3rd Year">3rd Year</option>
+                    <option value="4th Year">4th Year</option>
+                    <option value="5th Year">5th Year</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Academic Discipline *</label>
+                <select name="Discipline" id="discipline-select" class="form-control" required>
+                    <option value="" disabled selected>Select your discipline...</option>
+                    <option value="Electrical Engineering">Electrical Engineering</option>
+                    <option value="Computer Engineering">Computer Engineering</option>
+                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                    <option value="Civil Engineering">Civil Engineering</option>
+                    <option value="Chemical Engineering">Chemical Engineering</option>
+                    <option value="Apple Math">Apple Math</option>
+                    <option value="Engineering Physics">Engineering Physics</option>
+                    <option value="Engineering Chemistry">Engineering Chemistry</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Commerce">Commerce</option>
+                    <option value="Math">Math</option>
+                    <option value="Physics">Physics</option>
+                    <option value="Other">Other (Please specify below)</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="other-discipline-group" style="display: none;">
+                <label>Specify Discipline *</label>
+                <input type="text" id="other-discipline-input" name="Other Discipline" class="form-control" placeholder="What are you studying?">
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Application</button>
+        </form>
+
+        <div id="success-message">
+            You're one step closer to <br><span class="success-accent">building something great.</span>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // --- CUSTOM CURSOR ---
+    (function setRandomCursor() {
+        const queensColors = ['%23002552', '%23fabc0f', '%23b90e32'];
+        const randomColor = queensColors[Math.floor(Math.random() * queensColors.length)];
+        const cursorStyle = document.createElement('style');
+        cursorStyle.innerHTML = `
+            * { cursor: url('data:image/svg+xml;utf8,<svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5" fill="${randomColor}"/></svg>') 6 6, auto; }
+            a, button, .btn, .logo-link, .role-card, select, input, .close-btn { cursor: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" fill="${randomColor}" opacity="0.4"/><circle cx="8" cy="8" r="4" fill="${randomColor}"/></svg>') 8 8, pointer !important; }
+        `;
+        document.head.appendChild(cursorStyle);
+    })();
+
+    // --- LIGHTBOX & FORM LOGIC ---
+    const modal = document.getElementById('apply-modal');
+    const modalContent = document.querySelector('.modal-content');
+    const closeBtn = document.getElementById('close-modal');
+    const roleCards = document.querySelectorAll('.role-card');
+    const hiddenRoleInput = document.getElementById('selected-role');
+    const disciplineSelect = document.getElementById('discipline-select');
+    const otherDisciplineGroup = document.getElementById('other-discipline-group');
+    const otherDisciplineInput = document.getElementById('other-discipline-input');
+    const form = document.getElementById('application-form');
+    const successMessage = document.getElementById('success-message');
+
+    // 1. Open Modal when a card is clicked
+    roleCards.forEach(card => {
+        card.addEventListener('click', () => {
+            // Grab the specific role they clicked and put it in the hidden form field
+            hiddenRoleInput.value = card.getAttribute('data-role');
+            
+            modal.style.display = 'flex';
+            // Slight delay to allow display block to render before animating opacity
+            setTimeout(() => {
+                modal.style.opacity = '1';
+                modalContent.style.transform = 'translateY(0)';
+            }, 10);
+        });
+    });
+
+    // 2. Close Modal Logic
+    function closeModal() {
+        modal.style.opacity = '0';
+        modalContent.style.transform = 'translateY(20px)';
+        setTimeout(() => { modal.style.display = 'none'; }, 300);
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal(); // Close if they click the dark background
+    });
+
+    // 3. Dropdown 'Other' Logic
+    disciplineSelect.addEventListener('change', (e) => {
+        if (e.target.value === 'Other') {
+            otherDisciplineGroup.style.display = 'block';
+            otherDisciplineInput.setAttribute('required', 'true');
+        } else {
+            otherDisciplineGroup.style.display = 'none';
+            otherDisciplineInput.removeAttribute('required');
+            otherDisciplineInput.value = ''; // Clear it out
+        }
+    });
+
+    // 4. Handle Form Submission via AJAX
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Stop page reload
+
+        const formData = new FormData(form);
+        const submitBtn = document.querySelector('.submit-btn');
+        submitBtn.innerText = 'Sending...';
+
+        fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: formData
+        })
+        .then(async (response) => {
+            if (response.status == 200) {
+                // Hide the form and show the success message
+                form.style.display = 'none';
+                successMessage.style.display = 'block';
+                
+                // Optional: Auto close the modal after a few seconds
+                setTimeout(() => {
+                    closeModal();
+                    // Reset form for next time
+                    setTimeout(() => {
+                        form.reset();
+                        form.style.display = 'block';
+                        successMessage.style.display = 'none';
+                        otherDisciplineGroup.style.display = 'none';
+                        submitBtn.innerText = 'Submit Application';
+                    }, 300);
+                }, 4000);
+            } else {
+                alert("Something went wrong. Please try again.");
+                submitBtn.innerText = 'Submit Application';
+            }
+        })
+        .catch(error => {
+            alert("Something went wrong. Please try again.");
+            submitBtn.innerText = 'Submit Application';
+        });
+    });
+</script>
+
+</body>
+</html>
