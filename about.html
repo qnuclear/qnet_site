@@ -26,17 +26,26 @@
             color: #f0f0f0; 
         }
 
-        .site-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 2.5rem;
-            display: flex;
-            justify-content: center;
-            z-index: 100;
-            pointer-events: none; 
-        }
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem; /* Reduced padding for mobile */
+    display: flex;
+    justify-content: center;
+    z-index: 100;
+    background-color: rgba(30, 30, 30, 0.95); /* Semi-solid charcoal */
+    backdrop-filter: blur(10px); /* Glass effect */
+    pointer-events: none;
+}
+
+/* Shrink the logo on mobile so it doesn't eat the whole screen */
+@media (max-width: 768px) {
+    .logo-img {
+        height: 60px; 
+    }
+}
 
         .logo-link {
             pointer-events: auto; 
