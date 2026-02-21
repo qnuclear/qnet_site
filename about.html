@@ -22,10 +22,11 @@
 
         body {
             overflow: hidden; 
-            background-color: #1e1e1e; 
+            background-color: #1a1a1a; 
             color: #f0f0f0; 
         }
 
+        /* 2. Fixed Header & Logo */
         .site-header {
             position: fixed;
             top: 0;
@@ -35,7 +36,7 @@
             display: flex;
             justify-content: center;
             z-index: 100;
-            background-color: transparent;
+            background-color: transparent; 
             backdrop-filter: blur(10px); 
             pointer-events: none;
         }
@@ -54,38 +55,49 @@
         }
 
         /* 3. The Horizontal Slideshow Container */
-        .slideshow-container {
-            display: flex;
-            width: 100vw;
-            height: 100vh;
-            overflow-x: scroll; 
-            overflow-y: hidden;
-            scroll-snap-type: x mandatory; 
-            -webkit-overflow-scrolling: touch; 
-            scroll-behavior: smooth;
-            -ms-overflow-style: none; 
-            scrollbar-width: none; 
-        }
+/* 3. The Horizontal Slideshow Container */
+.slideshow-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: scroll; /* Changed from auto to scroll to force the interaction */
+    overflow-y: hidden;
+    
+    scroll-snap-type: x mandatory; 
+    -webkit-overflow-scrolling: touch; 
+    
+    /* These ensure the container doesn't 'leak' width */
+    scroll-behavior: smooth;
+    position: relative;
+    
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+}
 
         .slideshow-container::-webkit-scrollbar { display: none; }
+        .slideshow-container { -ms-overflow-style: none; scrollbar-width: none; }
 
         /* 4. The Individual Slides */
-        .slide {
-            flex: 0 0 100vw;
-            width: 100vw;
-            height: 100svh;
-            scroll-snap-align: start; 
-            scroll-snap-stop: always; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center; 
-            align-items: center;
-            text-align: center;
-            padding: 0 2rem;
-        }
+ .slide {
+    flex: 0 0 100vw;
+    width: 100vw; /* Explicitly lock the width */
+    height: 100svh;
+    
+    /* This is the missing piece for mobile snapping */
+    scroll-snap-align: start; 
+    scroll-snap-stop: always; 
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    text-align: center;
+    padding: 0 2rem;
+}
 
+        /* Push the H1 down so it never overlaps the fixed logo */
         .slide h1 {
-            margin-top: 120px; /* Safe zone for the logo */
+            margin-top: 120px; 
             font-size: 4.5rem;
             font-weight: 400;
             letter-spacing: -0.03em;
@@ -93,12 +105,17 @@
             color: #ffffff;
         }
 
+        /* Responsive Mobile Fixes */
         @media (max-width: 768px) {
-            .site-header { padding: 1.5rem; }
-            .logo-img { height: 65px; }
+            .site-header {
+                padding: 1.5rem;
+            }
+            .logo-img {
+                height: 65px; 
+            }
             .slide h1 {
                 margin-top: 100px;
-                font-size: 2.8rem;
+                font-size: 2.8rem; /* Scaled down for mobile */
             }
             p {
                 font-size: 1.1rem;
@@ -106,13 +123,15 @@
             }
         }
 
+        /* Elevated dark mode background shifts */
         .slide-1 { background-color: #1e1e1e; }
         .slide-2 { background-color: #242424; }
+        .slide-3 { background-color: #2a2a2a; }
 
         p {
             font-size: 1.25rem;
-            color: #a0a0a0;
-            max-width: 700px;
+            color: #a0a0a0; 
+            max-width: 600px;
             font-weight: 300;
             line-height: 1.6;
             margin-bottom: 2.5rem;
@@ -152,15 +171,21 @@
         }
 
         .slide-1 .btn:hover {
+            border-color: #002552; 
+            background-color: rgba(0, 37, 82, 0.4); 
+            color: #ffffff;
+        }
+
+        .slide-2 .btn:hover {
             border-color: #fabc0f; 
             background-color: rgba(250, 188, 15, 0.2); 
             color: #fabc0f; 
         }
 
-        .slide-2 .btn:hover {
-            border-color: #002552; 
-            background-color: rgba(0, 37, 82, 0.4); 
-            color: #ffffff; 
+        .slide-3 .btn:hover {
+            border-color: #b90e32; 
+            background-color: rgba(185, 14, 50, 0.2);
+            color: #ffffff;
         }
     </style>
 </head>
