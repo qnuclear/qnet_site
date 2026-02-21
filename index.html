@@ -55,14 +55,24 @@
         }
 
         /* 3. The Horizontal Slideshow Container */
-        .slideshow-container {
-            display: flex;
-            width: 100vw;
-            height: 100vh;
-            overflow-x: auto; 
-            overflow-y: hidden;
-            scroll-snap-type: x mandatory;
-        }
+/* 3. The Horizontal Slideshow Container */
+.slideshow-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: auto; 
+    overflow-y: hidden;
+    
+    /* Forces the snapping behavior */
+    scroll-snap-type: x mandatory; 
+    
+    /* Critical for iOS/Instagram browser snapping */
+    -webkit-overflow-scrolling: touch; 
+    
+    /* Hide scrollbars */
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+}
 
         .slideshow-container::-webkit-scrollbar { display: none; }
         .slideshow-container { -ms-overflow-style: none; scrollbar-width: none; }
