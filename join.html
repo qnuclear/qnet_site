@@ -74,7 +74,7 @@
             min-height: 100vh;
             width: 100vw;
             scroll-snap-align: start;
-            scroll-snap-stop: always;
+            scroll-snap-stop: always; /* Strict snap for desktop */
             display: flex;
             flex-direction: column;
             justify-content: center; 
@@ -125,19 +125,20 @@
             .grid-4 { grid-template-columns: repeat(2, 1fr); max-width: 900px; } 
         }
 
-        /* MOBILE FIXES */
+        /* --- MOBILE FIXES FOR SCROLL SNAPPING --- */
         @media (max-width: 900px) {
             .vertical-slideshow {
-                scroll-snap-type: none; /* Disable aggressive snapping on mobile */
+                scroll-snap-type: y proximity; /* Gentle snap prevents aggressive jumping */
             }
             .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
             .slide { 
                 padding-top: 120px; 
-                padding-bottom: 120px; /* Gives room for the fixed footer/buttons */
+                padding-bottom: 140px; /* Extra room so footer doesn't cover last card */
                 height: auto; 
                 min-height: 100vh; 
                 justify-content: flex-start; 
-                scroll-snap-align: none; /* Removes snap points */
+                scroll-snap-align: start; 
+                scroll-snap-stop: normal; /* Disables the strict stopping on tall mobile screens */
             }
             h1 { font-size: 2.8rem; }
         }
@@ -216,7 +217,7 @@
         }
 
         @media (max-width: 900px) {
-            .scroll-indicator { display: none; } /* Hide on mobile so it doesn't overlap text */
+            .scroll-indicator { display: none; } 
         }
 
         @keyframes bounce {
