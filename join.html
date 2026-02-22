@@ -62,7 +62,7 @@
             width: 100vw;
             overflow-y: scroll;
             overflow-x: hidden;
-            scroll-snap-type: y mandatory; /* STRICT SNAPPING */
+            scroll-snap-type: y mandatory;
             scroll-behavior: smooth;
             -ms-overflow-style: none; 
             scrollbar-width: none; 
@@ -71,33 +71,21 @@
         .vertical-slideshow::-webkit-scrollbar { display: none; }
 
         .slide {
-            height: 100vh; /* STRICT HEIGHT: Prevents two slides from ever sharing the screen */
+            min-height: 100vh;
             width: 100vw;
             scroll-snap-align: start;
-            scroll-snap-stop: always;
-            overflow-y: auto; /* If content is tall (mobile), it scrolls inside the slide */
+            scroll-snap-stop: always; /* Strict snap for desktop */
             display: flex;
             flex-direction: column;
+            justify-content: center; 
+            align-items: center;
+            text-align: center;
+            padding: 100px 2rem 4rem 2rem; 
             position: relative;
-            -ms-overflow-style: none; 
-            scrollbar-width: none; 
         }
-        .slide::-webkit-scrollbar { display: none; }
 
         .slide:nth-child(even) { background-color: #1a1a1a; }
         .slide:nth-child(odd) { background-color: #222222; }
-
-        /* The wrapper inside the slide to manage alignment */
-        .slide-content {
-            margin: auto; /* Magic centering trick: Centers if it fits, aligns top if it overflows */
-            width: 100%;
-            max-width: 1400px;
-            padding: 120px 2rem 100px 2rem; 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
 
         h1 {
             font-size: 4rem;
@@ -137,13 +125,22 @@
             .grid-4 { grid-template-columns: repeat(2, 1fr); max-width: 900px; } 
         }
 
+        /* --- MOBILE FIXES FOR SCROLL SNAPPING --- */
         @media (max-width: 900px) {
-            .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
-            h1 { font-size: 2.8rem; }
-            .slide-content {
-                padding-top: 140px;
-                padding-bottom: 150px; /* High padding so mobile users can scroll past the footer icons */
+            .vertical-slideshow {
+                scroll-snap-type: y proximity; /* Gentle snap prevents aggressive jumping */
             }
+            .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+            .slide { 
+                padding-top: 120px; 
+                padding-bottom: 140px; /* Extra room so footer doesn't cover last card */
+                height: auto; 
+                min-height: 100vh; 
+                justify-content: flex-start; 
+                scroll-snap-align: start; 
+                scroll-snap-stop: normal; /* Disables the strict stopping on tall mobile screens */
+            }
+            h1 { font-size: 2.8rem; }
         }
 
         .role-card {
@@ -352,128 +349,120 @@
 <main class="vertical-slideshow">
     
     <section class="slide">
-        <div class="slide-content">
-            <h1>The Draft Board</h1>
-            <p class="subtitle">
-                We are actively recruiting our inaugural strike team. Review the open positions below and help us define the future of nuclear engineering at Queen's.
-                <span class="hiring-notice">Note: At this stage, we are exclusively looking to fill Team Lead positions to help build the foundation.</span>
-            </p>
-        </div>
+        <h1>The Draft Board</h1>
+        <p class="subtitle">
+            We are actively recruiting our inaugural strike team. Review the open positions below and help us define the future of nuclear engineering at Queen's.
+            <span class="hiring-notice">Note: At this stage, we are exclusively looking to fill Team Lead positions to help build the foundation.</span>
+        </p>
         <div class="scroll-indicator">Scroll Down ↓</div>
     </section>
 
     <section class="slide">
-        <div class="slide-content">
-            <h1>Engineering Sub-Teams</h1>
-            <p class="subtitle">Executing the physical build and architecture of our pilot projects.</p>
-            
-            <div class="roster-grid grid-4">
-                <div class="role-card eng-card" data-role="Mechanical Team Lead">
-                    <span class="role-tag tag-lead">Team Lead</span>
-                    <h3>Mechanical</h3>
-                    <p class="role-intro">As the Mechanical lead, you will manage the physical architecture and are expected to oversee:</p>
-                    <ul>
-                        <li>CAD Design</li>
-                        <li>Manufacturing and Prototyping</li>
-                        <li>Thermal and structural considerations</li>
-                        <li>Integration with electronics</li>
-                    </ul>
-                </div>
+        <h1>Engineering Sub-Teams</h1>
+        <p class="subtitle">Executing the physical build and architecture of our pilot projects.</p>
+        
+        <div class="roster-grid grid-4">
+            <div class="role-card eng-card" data-role="Mechanical Team Lead">
+                <span class="role-tag tag-lead">Team Lead</span>
+                <h3>Mechanical</h3>
+                <p class="role-intro">As the Mechanical lead, you will manage the physical architecture and are expected to oversee:</p>
+                <ul>
+                    <li>CAD Design</li>
+                    <li>Manufacturing and Prototyping</li>
+                    <li>Thermal and structural considerations</li>
+                    <li>Integration with electronics</li>
+                </ul>
+            </div>
 
-                <div class="role-card eng-card" data-role="Electrical Team Lead">
-                    <span class="role-tag tag-lead">Team Lead</span>
-                    <h3>Electrical</h3>
-                    <p class="role-intro">As the Electrical lead, you will drive the hardware development and are expected to oversee:</p>
-                    <ul>
-                        <li>Circuit design and custom PCB development</li>
-                        <li>Sensor integration and calibration</li>
-                        <li>Electronics testing and debugging</li>
-                    </ul>
-                </div>
+            <div class="role-card eng-card" data-role="Electrical Team Lead">
+                <span class="role-tag tag-lead">Team Lead</span>
+                <h3>Electrical</h3>
+                <p class="role-intro">As the Electrical lead, you will drive the hardware development and are expected to oversee:</p>
+                <ul>
+                    <li>Circuit design and custom PCB development</li>
+                    <li>Sensor integration and calibration</li>
+                    <li>Electronics testing and debugging</li>
+                </ul>
+            </div>
 
-                <div class="role-card eng-card" data-role="Computer Team Lead">
-                    <span class="role-tag tag-lead">Team Lead</span>
-                    <h3>Computer</h3>
-                    <p class="role-intro">As the Computer lead, you will guide our software stack and are expected to oversee:</p>
-                    <ul>
-                        <li>Firmware and device communication</li>
-                        <li>Mobile app / UI/UX development</li>
-                        <li>Software architecture</li>
-                        <li>Cross-team integration support</li>
-                    </ul>
-                </div>
+            <div class="role-card eng-card" data-role="Computer Team Lead">
+                <span class="role-tag tag-lead">Team Lead</span>
+                <h3>Computer</h3>
+                <p class="role-intro">As the Computer lead, you will guide our software stack and are expected to oversee:</p>
+                <ul>
+                    <li>Firmware and device communication</li>
+                    <li>Mobile app / UI/UX development</li>
+                    <li>Software architecture</li>
+                    <li>Cross-team integration support</li>
+                </ul>
+            </div>
 
-                <div class="role-card waitlist-card" data-role="Eng General Waitlist">
-                    <span class="role-tag tag-waitlist">Waitlist</span>
-                    <h3>General Member</h3>
-                    <p>We are not taking in general members right now. Join the waitlist for our official launch in Fall 2026 to help build the prototype.</p>
-                </div>
+            <div class="role-card waitlist-card" data-role="Eng General Waitlist">
+                <span class="role-tag tag-waitlist">Waitlist</span>
+                <h3>General Member</h3>
+                <p>We are not taking in general members right now. Join the waitlist for our official launch in Fall 2026 to help build the prototype.</p>
             </div>
         </div>
     </section>
 
     <section class="slide">
-        <div class="slide-content">
-            <h1>Research Sub-Team</h1>
-            <p class="subtitle">Driving the theoretical foundation and pushing the boundaries of our capabilities.</p>
-            
-            <div class="roster-grid grid-2">
-                <div class="role-card res-card" data-role="Research Team Lead">
-                    <span class="role-tag tag-lead">Team Lead</span>
-                    <h3>Research</h3>
-                    <p class="role-intro">As the Research lead, you will guide our scientific direction and are expected to oversee:</p>
-                    <ul>
-                        <li>Nuclear theory and background research</li>
-                        <li>Detector physics and modeling</li>
-                        <li>Simulation and analysis work</li>
-                        <li>Supports engineering decisions with science</li>
-                    </ul>
-                </div>
+        <h1>Research Sub-Team</h1>
+        <p class="subtitle">Driving the theoretical foundation and pushing the boundaries of our capabilities.</p>
+        
+        <div class="roster-grid grid-2">
+            <div class="role-card res-card" data-role="Research Team Lead">
+                <span class="role-tag tag-lead">Team Lead</span>
+                <h3>Research</h3>
+                <p class="role-intro">As the Research lead, you will guide our scientific direction and are expected to oversee:</p>
+                <ul>
+                    <li>Nuclear theory and background research</li>
+                    <li>Detector physics and modeling</li>
+                    <li>Simulation and analysis work</li>
+                    <li>Supports engineering decisions with science</li>
+                </ul>
+            </div>
 
-                <div class="role-card waitlist-card" data-role="Research General Waitlist">
-                    <span class="role-tag tag-waitlist">Waitlist</span>
-                    <h3>General Member</h3>
-                    <p>We are not taking in general members right now. Join the waitlist for our official launch in Fall 2026 to assist with simulations and modeling.</p>
-                </div>
+            <div class="role-card waitlist-card" data-role="Research General Waitlist">
+                <span class="role-tag tag-waitlist">Waitlist</span>
+                <h3>General Member</h3>
+                <p>We are not taking in general members right now. Join the waitlist for our official launch in Fall 2026 to assist with simulations and modeling.</p>
             </div>
         </div>
     </section>
 
     <section class="slide">
-        <div class="slide-content">
-            <h1>Operations Sub-Teams</h1>
-            <p class="subtitle">Securing the funding, brand, and logistical support necessary for our success.</p>
-            
-            <div class="roster-grid grid-3">
-                <div class="role-card ops-card" data-role="Finance Team Lead">
-                    <span class="role-tag tag-lead">Team Lead</span>
-                    <h3>Finance</h3>
-                    <p class="role-intro">As the Finance lead, you will secure our funding runway and are expected to oversee:</p>
-                    <ul>
-                        <li>Budget planning</li>
-                        <li>Grant and sponsorship outreach</li>
-                        <li>Expense tracking</li>
-                        <li>Work with EngSoc for funding</li>
-                    </ul>
-                </div>
+        <h1>Operations Sub-Teams</h1>
+        <p class="subtitle">Securing the funding, brand, and logistical support necessary for our success.</p>
+        
+        <div class="roster-grid grid-3">
+            <div class="role-card ops-card" data-role="Finance Team Lead">
+                <span class="role-tag tag-lead">Team Lead</span>
+                <h3>Finance</h3>
+                <p class="role-intro">As the Finance lead, you will secure our funding runway and are expected to oversee:</p>
+                <ul>
+                    <li>Budget planning</li>
+                    <li>Grant and sponsorship outreach</li>
+                    <li>Expense tracking</li>
+                    <li>Work with EngSoc for funding</li>
+                </ul>
+            </div>
 
-                <div class="role-card ops-card" data-role="Marketing Team Lead">
-                    <span class="role-tag tag-lead">Team Lead</span>
-                    <h3>Marketing</h3>
-                    <p class="role-intro">As the Marketing lead, you will build our public presence and are expected to oversee:</p>
-                    <ul>
-                        <li>Website and Branding</li>
-                        <li>Social Media Content</li>
-                        <li>Recruitment materials</li>
-                        <li>Event promotion</li>
-                    </ul>
-                </div>
+            <div class="role-card ops-card" data-role="Marketing Team Lead">
+                <span class="role-tag tag-lead">Team Lead</span>
+                <h3>Marketing</h3>
+                <p class="role-intro">As the Marketing lead, you will build our public presence and are expected to oversee:</p>
+                <ul>
+                    <li>Website and Branding</li>
+                    <li>Social Media Content</li>
+                    <li>Recruitment materials</li>
+                    <li>Event promotion</li>
+                </ul>
+            </div>
 
-                <div class="role-card waitlist-card" data-role="Operations General Waitlist">
-                    <span class="role-tag tag-waitlist">Waitlist</span>
-                    <h3>General Member</h3>
-                    <p>We are not taking in general members right now. Join the waitlist for our official launch in Fall 2026 to help run logistics and outreach.</p>
-                </div>
+            <div class="role-card waitlist-card" data-role="Operations General Waitlist">
+                <span class="role-tag tag-waitlist">Waitlist</span>
+                <h3>General Member</h3>
+                <p>We are not taking in general members right now. Join the waitlist for our official launch in Fall 2026 to help run logistics and outreach.</p>
             </div>
         </div>
     </section>
