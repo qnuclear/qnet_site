@@ -55,25 +55,52 @@
             color: #f0f0f0; 
         }
 
-        /* 2. Fixed Header & Logo */
+/* --- 2. FIXED NAV & LOGO --- */
         .site-header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 2.5rem;
+            padding: 1.5rem 2.5rem;
             display: flex;
-            justify-content: center;
+            align-items: center;
+            justify-content: space-between;
             z-index: 100;
-            background-color: transparent; 
-            backdrop-filter: blur(10px); 
+            background-color: transparent;
+            backdrop-filter: blur(10px);
+            pointer-events: none; /* Lets you click the background through the header */
+        }
+
+        .header-side {
+            flex: 1;
+            display: flex;
             pointer-events: none;
         }
 
-        .logo-link {
-            pointer-events: auto; 
+        /* Desktop Spacing */
+        .header-side.left { justify-content: flex-end; padding-right: 8rem; }
+        .header-side.right { justify-content: flex-start; padding-left: 8rem; }
+
+        .nav-link {
+            pointer-events: auto;
             text-decoration: none;
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            transition: color 0.3s ease;
         }
+
+        /* Changes to white on hover */
+        .nav-link:hover { color: #ffffff; }
+
+        .logo-container {
+            flex: 0 0 auto;
+            pointer-events: auto;
+        }
+
+        .logo-link { text-decoration: none; }
 
         .logo-img {
             height: 90px; 
@@ -83,6 +110,23 @@
             transition: height 0.3s ease;
         }
 
+        /* --- ELEGANT MOBILE NAV --- */
+        @media (max-width: 768px) {
+            .site-header {
+                padding: 1rem 1.5rem;
+            }
+            /* Pushes links to the far edges of the screen */
+            .header-side.left { padding-right: 0; justify-content: flex-start; }
+            .header-side.right { padding-left: 0; justify-content: flex-end; }
+            
+            .nav-link {
+                font-size: 0.75rem; 
+                letter-spacing: 0.1em;
+            }
+            .logo-img {
+                height: 55px; /* Shrinks logo to balance the row */
+            }
+        }
         /* 3. The Horizontal Slideshow Container */
         .slideshow-container {
             display: flex;
@@ -221,9 +265,19 @@
 <body>
 
 <header class="site-header">
-    <a href="/" class="logo-link">
-        <img src="assets/QNET outline white.svg" alt="QNET Logo" class="logo-img">
-    </a>
+    <div class="header-side left">
+        <a href="/about" class="nav-link">About</a>
+    </div>
+    
+    <div class="logo-container">
+        <a href="/" class="logo-link">
+            <img src="assets/QNET outline white.svg" alt="QNET Logo" class="logo-img">
+        </a>
+    </div>
+
+    <div class="header-side right">
+        <a href="/join" class="nav-link">Join</a>
+    </div>
 </header>
 
 <div class="slideshow-container">
