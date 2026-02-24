@@ -238,6 +238,55 @@
             font-size: 0.75rem;
         }
 
+        /* --- DYNAMIC JOIN BUTTONS --- */
+        .card-join-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1.25rem;
+            padding: 0.8rem 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            color: #ccc;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+        }
+
+        .card-join-btn span {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+
+        /* Hover states tailored to your specific team colors */
+        .stem-card .card-join-btn:hover {
+            background: rgba(0, 37, 82, 0.4);
+            border-color: #004a9f; /* Lighter blue for visibility */
+            color: #ffffff;
+        }
+
+        .res-card .card-join-btn:hover {
+            background: rgba(250, 188, 15, 0.15);
+            border-color: #fabc0f;
+            color: #fabc0f;
+        }
+
+        .ops-card .card-join-btn:hover {
+            background: rgba(185, 14, 50, 0.2);
+            border-color: #b90e32;
+            color: #ffc2cd; /* Lighter red/pink for contrast */
+        }
+
+        .card-join-btn:hover span {
+            transform: translateX(5px);
+        }
+
         /* --- SPECIFIC SHOWCASE HOVER GLOWS (No Jump/Lift) --- */
         .role-card:hover {
             background-color: #2e2e2e;
@@ -384,8 +433,12 @@
                         <strong>Preferred Disciplines</strong>
                         MECH, MREN, ENPH/MTHE (Mech Option), CIVL, GEOE, CHEM
                     </div>
+                    
+                    <a href="/join" class="card-join-btn">
+                        Apply Now <span>&rarr;</span>
+                    </a>
                 </div>
-
+                
                 <div class="role-card stem-card">
                     <span class="role-tag">Circuitry Team</span>
                     <h3>Electrical</h3>
@@ -400,6 +453,9 @@
                         <strong>Preferred Disciplines</strong>
                         ELEC, CMPE, MREN, ENPH/MTHE (Elec Option)
                     </div>
+                    <a href="/join" class="card-join-btn">
+                        Apply Now <span>&rarr;</span>
+                    </a>
                 </div>
 
                 <div class="role-card stem-card">
@@ -416,7 +472,9 @@
                         <strong>Preferred Disciplines</strong>
                         CMPE, CISC, ELEC, MREN, ENPH/MTHE (Comp Option)
                     </div>
-                </div>
+                    <a href="/join" class="card-join-btn">
+                        Apply Now <span>&rarr;</span>
+                    </a>
 
             </div>
         </div>
@@ -429,7 +487,7 @@
             
             <div class="roster-grid grid-1">
                 
-                <div class="role-card res-card">
+               <div class="role-card res-card">
                     <span class="role-tag">Theory & Execution</span>
                     <h3>Research</h3>
                     <p class="role-intro">Establishing the mathematical and theoretical framework required to safely and effectively execute QNET designs.</p>
@@ -443,6 +501,9 @@
                         <strong>Preferred Disciplines</strong>
                         MECH, ENPH/MTHE (Mech Option), CIVL, GEOE, CHEM
                     </div>
+                    <a href="/join" class="card-join-btn">
+                        Apply Now <span>&rarr;</span>
+                    </a>
                 </div>
 
             </div>
@@ -470,6 +531,9 @@
                         <strong>Preferred Disciplines</strong>
                         Commerce/Business, Economics, STEM
                     </div>
+                    <a href="/join" class="card-join-btn">
+                        Apply Now <span>&rarr;</span>
+                    </a>
                 </div>
 
                 <div class="role-card ops-card">
@@ -486,6 +550,9 @@
                         <strong>Preferred Disciplines</strong>
                         Commerce/Business, Economics, STEM, CISC
                     </div>
+                    <a href="/join" class="card-join-btn">
+                        Apply Now <span>&rarr;</span>
+                    </a>
                 </div>
 
             </div>
