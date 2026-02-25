@@ -298,6 +298,112 @@
                 display: flex;
             }
         }
+
+        /* --- RSVP MODAL STYLES --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85); /* Dark transparent backdrop */
+    backdrop-filter: blur(5px);
+    display: flex; /* Centers the modal content */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensures it sits on top of the fixed header/footer */
+}
+
+.modal-content {
+    background: #1e1e1e;
+    padding: 2.5rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid #333;
+    text-align: center;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.8rem;
+    color: #888;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover { 
+    color: #fff; 
+}
+
+.modal-title {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #444;
+    background: #2a2a2a;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #002552; /* Queen's Blue focus ring */
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
+    background: #f0f0f0;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: #ccc;
+    transform: translateY(-2px);
+}
+
+#rsvp-success-message {
+    font-size: 1.25rem;
+    padding: 2rem 0;
+    color: #ccc;
+}
+
+.success-accent {
+    color: #fabc0f; /* Queen's Gold accent */
+    font-weight: 600;
+    display: block;
+    margin-top: 10px;
+}
     </style>
 </head>
 <body>
@@ -318,7 +424,15 @@
     </div>
 </header>
 <div class="slideshow-container">
-    
+
+    <section class="slide slide-info-night">
+    <h1>QNET Information Night</h1>
+    <p>March 5, 2026 &nbsp;|&nbsp; 6:30 PM - 7:30 PM &nbsp;|&nbsp; JDUC 229</p>
+    <a href="#" id="rsvp-btn" class="btn" onclick="gtag('event', 'button_click', {'button_name': 'Index - RSVP Click'});">RSVP Now <span class="arrow">→</span></a>
+    <div class="mobile-swipe-indicator">Swipe <span>→</span></div>
+</section>
+
+
     <section class="slide slide-1">
         <h1>Queen's Nuclear Engineering Team (QNET)</h1>
         <p>Coming September 2026.</p>
@@ -351,7 +465,34 @@
         <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.011-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg>
     </a>
 </div>
+<div class="modal-overlay" id="rsvp-modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-btn" id="close-rsvp-modal" onclick="gtag('event', 'button_click', {'button_name': 'Modal - Close RSVP'});">&times;</span>
+        
+        <form id="rsvp-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="7ed0b3b0-b8ea-4d3f-bd16-012b3028b8d0">
+            <input type="hidden" name="subject" value="New RSVP for QNET Info Night!">
+            <h2 class="modal-title">RSVP for Info Night</h2>
+            <p style="margin-bottom: 20px; color: #ccc;">March 5, 2026 • 6:30 PM - 7:30 PM • JDUC 229</p>
 
+            <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" name="Name" class="form-control" required placeholder="Full Name">
+            </div>
+
+            <div class="form-group">
+                <label>Queen's Email *</label>
+                <input type="email" name="Email" class="form-control" required placeholder="netid@queensu.ca">
+            </div>
+
+            <button type="submit" class="submit-btn" onclick="gtag('event', 'button_click', {'button_name': 'Form - Submit RSVP Click'});">Confirm RSVP</button>
+        </form>
+
+        <div id="rsvp-success-message" style="display: none;">
+            See you there! <br><span class="success-accent">Your spot is saved.</span>
+        </div>
+    </div>
+</div>
 <script>
     (function setRandomCursor() {
         const queensColors = ['%23002552', '%23fabc0f', '%23b90e32'];
@@ -385,6 +526,80 @@
         container.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
         setTimeout(() => { isScrolling = false; }, 700); 
     });
+
+    // --- RSVP Modal Logic ---
+    const rsvpBtn = document.getElementById('rsvp-btn');
+    const rsvpModal = document.getElementById('rsvp-modal');
+    const closeRsvpModal = document.getElementById('close-rsvp-modal');
+
+    // Open the modal
+    rsvpBtn.addEventListener('click', (evt) => {
+        evt.preventDefault(); // Prevents the page from jumping to the top
+        rsvpModal.style.display = 'flex'; // Use 'block' if your CSS doesn't use flex for centering
+    });
+
+    // Close the modal with the 'X' button
+    closeRsvpModal.addEventListener('click', () => {
+        rsvpModal.style.display = 'none';
+    });
+
+    // Close the modal when clicking anywhere outside of it
+    window.addEventListener('click', (evt) => {
+        if (evt.target === rsvpModal) {
+            rsvpModal.style.display = 'none';
+        }
+    });
+
+    // --- Web3Forms AJAX Submission for RSVP ---
+    const rsvpForm = document.getElementById('rsvp-form');
+    const rsvpSuccessMessage = document.getElementById('rsvp-success-message');
+
+    rsvpForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevents the default page redirect
+
+        // Grab the submit button to show a loading state
+        const submitBtn = rsvpForm.querySelector('.submit-btn');
+        const originalBtnText = submitBtn.innerText;
+        submitBtn.innerText = 'Saving...';
+
+        // Prepare the form data
+        const formData = new FormData(rsvpForm);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+
+        // Send the data using Fetch API
+        fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        })
+        .then(async (response) => {
+            let json = await response.json();
+            if (response.status == 200) {
+                // Success! Hide the form and show your custom message
+                rsvpForm.style.display = 'none';
+                rsvpSuccessMessage.style.display = 'block'; // Adjust to 'flex' if your CSS requires it
+            } else {
+                console.log(response);
+                submitBtn.innerText = originalBtnText;
+                alert("Something went wrong. Please try again.");
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            submitBtn.innerText = originalBtnText;
+            alert("Something went wrong. Please check your connection.");
+        })
+        .finally(() => {
+            rsvpForm.reset(); // Clear the inputs
+        });
+    });
+
+    
+    
 </script>
 
 </body>
