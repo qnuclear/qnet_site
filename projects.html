@@ -417,20 +417,34 @@
 <body>
 
 <header class="site-header">
-    <div class="header-side left">
+    <div class="header-side left desktop-only">
         <a href="/about" class="nav-link">About</a>
         <a href="/teams" class="nav-link">Teams</a>
     </div>
+    
     <div class="logo-container">
         <a href="/" class="logo-link">
             <img src="assets/QNET outline white.svg" alt="QNET Logo" class="logo-img">
         </a>
     </div>
-    <div class="header-side right">
-        <a href="/projects" class="nav-link" onclick="gtag('event', 'button_click', {'button_name': 'Header - Projects'});">Projects</a>
+
+    <div class="header-side right desktop-only">
+        <a href="/projects" class="nav-link">Projects</a>
         <a href="/join" class="nav-link">Join</a>
     </div>
+
+    <button class="hamburger-btn" aria-label="Toggle Mobile Menu">
+        <span class="line"></span>
+        <span class="line"></span>
+    </button>
 </header>
+
+<div class="mobile-menu">
+    <a href="/about" class="mobile-nav-link">About</a>
+    <a href="/teams" class="mobile-nav-link">Teams</a>
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+    <a href="/join" class="mobile-nav-link">Join</a>
+</div>
 
 <div class="slideshow-container">
     
