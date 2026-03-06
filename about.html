@@ -161,7 +161,7 @@
         }
 
         .timeline-section h1 {
-            margin-bottom: 2.5rem; 
+            margin-bottom: 0; /* Removed bottom margin so spacing is handled strictly by the track */
         }
 
         .timeline-track {
@@ -172,7 +172,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 4.5rem 0 4.5rem 0;
+            /* Increased margins significantly to completely eliminate overlap */
+            margin: 6.5rem 0 7.5rem 0; 
             padding: 0 5%;
             border-radius: 8px 0 0 8px;
         }
@@ -454,7 +455,7 @@
             
             <div class="timeline-track">
                 <div class="timeline-node active" data-target="foundation" style="--node-color: #002552;">
-                    <span class="node-label top">Foundation<br><small>(Present - April 2026)</small></span>
+                    <span class="node-label top">Foundation<br><small>(Present – April 2026)</small></span>
                 </div>
                 <div class="timeline-node" data-target="buildup" style="--node-color: #fabc0f;">
                     <span class="node-label bottom">Build-Up<br><small>(Summer 2026)</small></span>
@@ -532,59 +533,59 @@
     const timelineData = {
         foundation: {
             title: "Foundation",
-            subtitle: "Present \u2013 April 2026",
+            subtitle: "Present – April 2026",
             goal: "Establish QNET and set the stage for our first project.",
             tasks: [
-                "Build executive team ",
-                "Determine Inaugural Pilot Project ",
-                "Finalize Framework ",
-                "Get ratified ",
-                "<strong>Executive Applications:</strong> Open now until March 12th. <a href='https://forms.gle/yAZuX6MKA87ccZtL7' target='_blank'>Apply here</a>. ",
-                "<strong>General Members:</strong> <a href='https://join.slack.com/t/queensnuclear/shared_invite/zt-3rhgpfjua-sB0H99v~DOmWr7tHC3qpeg' target='_blank'>Join the Slack</a> to stay updated. "
+                "Build executive team",
+                "Determine Inaugural Pilot Project",
+                "Finalize Framework",
+                "Get ratified",
+                "<strong>Executive Applications:</strong> Open now until March 12th. <a href='https://forms.gle/yAZuX6MKA87ccZtL7' target='_blank'>Apply here</a>.",
+                "<strong>General Members:</strong> <a href='https://join.slack.com/t/queensnuclear/shared_invite/zt-3rhgpfjua-sB0H99v~DOmWr7tHC3qpeg' target='_blank'>Join the Slack</a> to stay updated."
             ],
             color: "#002552"
         },
         buildup: {
             title: "Build-Up",
             subtitle: "Summer 2026",
-            goal: "Goal: Prepare everything needed for a successful fall launch. ",
+            goal: "Goal: Prepare everything needed for a successful fall launch.",
             tasks: [
-                "Announce proposed Pilot Project ",
-                "Team leads work on their teams scope and goals ",
-                "Create training materials for general members ",
-                "Build internal infrastructure (Slack, CAD libraries) ",
-                "Prepare marketing and recruitment content ",
-                "Plan fall kickoff events and workshops "
+                "Announce proposed Pilot Project",
+                "Team leads work on their teams scope and goals",
+                "Create training materials for general members",
+                "Build internal infrastructure (Slack, CAD libraries)",
+                "Prepare marketing and recruitment content",
+                "Plan fall kickoff events and workshops"
             ],
             color: "#fabc0f"
         },
         launch: {
             title: "Launch",
             subtitle: "Fall 2026",
-            goal: "Goal: Officially operate as an active engineering design club. ",
+            goal: "Goal: Officially operate as an active engineering design club.",
             tasks: [
-                "Recruit general members ",
-                "Begin full development of inaugural project ",
-                "Weekly sub-team meetings and integration reviews ",
-                "Continue fundraising and sponsorship outreach ",
-                "Build team culture and leadership structure ",
-                "Create social media content showcasing progress (documentation) "
+                "Recruit general members",
+                "Begin full development of inaugural project",
+                "Weekly sub-team meetings and integration reviews",
+                "Continue fundraising and sponsorship outreach",
+                "Build team culture and leadership structure",
+                "Create social media content showcasing progress (documentation)"
             ],
             color: "#b90e32"
         },
         future: {
             title: "The Future",
             subtitle: "2027 and beyond",
-            goal: "Goal: Move on to bigger, higher impact projects. ",
+            goal: "Goal: Move on to bigger, higher impact projects.",
             tasks: [
-                "Establish industry partnerships and sponsorship programs ",
-                "Collaborate with faculty research groups ",
-                "Build a long-term project roadmap ",
-                "Develop advanced nuclear instrumentation projects ",
-                "Develop projects with high-voltages and vacuum systems ",
-                "Pursue flagship projects (IEC fusion, plasma systems) ",
-                "Mentor new leadership and ensure continuity ",
-                "Establish QNET as a recognized nuclear engineering organization "
+                "Establish industry partnerships and sponsorship programs",
+                "Collaborate with faculty research groups",
+                "Build a long-term project roadmap",
+                "Develop advanced nuclear instrumentation projects",
+                "Develop projects with high-voltages and vacuum systems",
+                "Pursue flagship projects (IEC fusion, plasma systems)",
+                "Mentor new leadership and ensure continuity",
+                "Establish QNET as a recognized nuclear engineering organization"
             ],
             color: "#002552"
         }
