@@ -33,6 +33,7 @@
             background-color: #1e1e1e; 
             color: #f0f0f0; 
             overflow: hidden; 
+            scroll-behavior: smooth;
         }
 
         /* --- HEADER --- */
@@ -124,6 +125,8 @@
         .slide:nth-child(even) { background-color: #1a1a1a; }
         .slide:nth-child(odd) { background-color: #222222; }
 
+        .slide.general-track { background-color: #151515; border-top: 1px solid #333; }
+
         .slide-content {
             margin: auto;
             width: 100%;
@@ -142,13 +145,106 @@
             color: #ffffff;
         }
 
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #fabc0f;
+            margin-bottom: 1.5rem;
+        }
+
         .subtitle {
             font-size: 1.25rem;
             color: #a0a0a0;
-            max-width: 750px;
+            max-width: 800px;
             font-weight: 300;
             line-height: 1.6;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .requirements-box {
+            background: rgba(0, 0, 0, 0.2);
+            border-left: 4px solid #fabc0f;
+            padding: 2rem;
+            border-radius: 0 8px 8px 0;
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .requirements-box p {
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .requirements-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .requirements-box li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #fff;
+            font-size: 1.05rem;
+        }
+
+        .requirements-box li::before {
+            content: "•";
+            color: #fabc0f;
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        /* Fixed the yellow bullet issue for general members */
+        .general-track .requirements-box {
+            border-left-color: #002552 !important;
+        }
+
+        .general-track .requirements-box li::before {
+            color: #002552 !important; 
+        }
+
+        /* --- BUTTONS --- */
+        .btn-group {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #f0f0f0;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .action-btn:hover {
+            background-color: #fabc0f;
+            border-color: #fabc0f;
+            color: #111;
+            transform: translateY(-3px);
+        }
+
+        .action-btn.secondary:hover {
+            background-color: #002552;
+            border-color: #002552;
+            color: #fff;
         }
 
         /* --- SHOWCASE GRIDS --- */
@@ -160,11 +256,11 @@
 
         .grid-3 { grid-template-columns: repeat(3, 1fr); max-width: 1200px; }
         .grid-2 { grid-template-columns: repeat(2, 1fr); max-width: 900px; }
-        .grid-1 { grid-template-columns: 1fr; max-width: 600px; }
+        .grid-4 { grid-template-columns: repeat(2, 1fr); max-width: 1000px; }
 
         @media (max-width: 900px) {
             .vertical-slideshow { scroll-snap-type: y proximity; }
-            .grid-3, .grid-2, .grid-1 { grid-template-columns: 1fr; }
+            .grid-3, .grid-2, .grid-4 { grid-template-columns: 1fr; }
             .slide { 
                 padding-top: 120px; 
                 padding-bottom: 140px; 
@@ -175,31 +271,7 @@
                 scroll-snap-stop: normal; 
             }
             h1 { font-size: 2.8rem; }
-        }
-
-                .hiring-notice {
-            font-size: 1rem;
-            max-width: 650px;
-            font-weight: 300;
-            line-height: 1.6;
-            margin-bottom: 3rem;
-            color: #fabc0f;
-            font-weight: 500;
-            margin-top: 1rem;
-            display: block;
-        }
-
-        .hiring-notice a {
-            color: #fabc0f;
-            text-decoration: none;
-            border-bottom: 1px dashed #fabc0f;
-            transition: all 0.3s ease;
-            pointer-events: auto;
-        }
-
-        .hiring-notice a:hover {
-            color: #ffffff;
-            border-bottom-color: #ffffff;
+            .btn-group { flex-direction: column; }
         }
 
         /* --- SHOWCASE CARDS --- */
@@ -224,9 +296,8 @@
             font-weight: 700;
         }
 
-        /* Dynamic Tag Colors */
         .stem-card .role-tag { color: #002552; } 
-        .res-card .role-tag { color: #fabc0f; }
+        .res-card .role-tag { color: #002552; } 
         .ops-card .role-tag { color: #b90e32; }
         
         .role-card h3 { color: #ffffff; font-size: 1.6rem; font-weight: 400; margin-bottom: 0.75rem; }
@@ -243,7 +314,6 @@
         .role-card ul { font-size: 0.95rem; color: #ccc; line-height: 1.6; flex-grow: 1; padding-left: 1.2rem; margin-bottom: 1.5rem; }
         .role-card li { margin-bottom: 0.4rem; }
 
-        /* New Discipline Tags for Showcase */
         .disciplines {
             font-size: 0.8rem;
             color: #888;
@@ -289,17 +359,10 @@
             line-height: 1;
         }
 
-        /* Hover states tailored to your specific team colors */
-        .stem-card .card-join-btn:hover {
+        .stem-card .card-join-btn:hover, .res-card .card-join-btn:hover {
             background: rgba(0, 37, 82, 0.4);
-            border-color: #004a9f; 
+            border-color: #002552; 
             color: #ffffff;
-        }
-
-        .res-card .card-join-btn:hover {
-            background: rgba(250, 188, 15, 0.15);
-            border-color: #fabc0f;
-            color: #fabc0f;
         }
 
         .ops-card .card-join-btn:hover {
@@ -308,54 +371,11 @@
             color: #ffc2cd; 
         }
 
-        .card-join-btn:hover span {
-            transform: translateX(5px);
-        }
-
-        /* --- SPECIFIC SHOWCASE HOVER GLOWS (No Jump/Lift) --- */
-        .role-card:hover {
-            background-color: #2e2e2e;
-        }
+        .card-join-btn:hover span { transform: translateX(5px); }
+        .role-card:hover { background-color: #2e2e2e; }
         
-        .stem-card:hover {
-            border-color: #002552; 
-            box-shadow: 0 0 25px rgba(0, 37, 82, 0.6);
-        }
-
-        .res-card:hover {
-            border-color: #fabc0f; 
-            box-shadow: 0 0 25px rgba(250, 188, 15, 0.15);
-        }
-
-        .ops-card:hover {
-            border-color: #b90e32; 
-            box-shadow: 0 0 25px rgba(185, 14, 50, 0.25);
-        }
-
-        /* --- UI ELEMENTS --- */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #666;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            animation: bounce 2s infinite;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .scroll-indicator:hover { color: #fff; }
-
-        @media (max-width: 900px) { .scroll-indicator { display: none; } }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
-            40% { transform: translateY(-10px) translateX(-50%); }
-            60% { transform: translateY(-5px) translateX(-50%); }
-        }
+        .stem-card:hover, .res-card:hover { border-color: #002552; box-shadow: 0 0 25px rgba(0, 37, 82, 0.6); }
+        .ops-card:hover { border-color: #b90e32; box-shadow: 0 0 25px rgba(185, 14, 50, 0.25); }
 
         /* --- FIXED FOOTER & BACK TO TOP --- */
         .site-footer {
@@ -431,193 +451,165 @@
         <div class="slide-content">
             <h1>The Teams</h1>
             <p class="subtitle">
-                Discover the interdisciplinary sub-teams driving the future of nuclear engineering at Queen's.
+                Discover the interdisciplinary sub-teams driving the future of nuclear engineering at Queen's. Select your path below to explore open positions.
             </p>
+            <div class="btn-group">
+                <button class="action-btn" onclick="document.getElementById('exec-track').scrollIntoView({behavior: 'smooth'})">Executive Leadership</button>
+                <button class="action-btn secondary" onclick="document.getElementById('general-track').scrollIntoView({behavior: 'smooth'})">General Members</button>
+            </div>
         </div>
-        <div class="scroll-indicator" id="scroll-down-btn" onclick="gtag('event', 'button_click', {'button_name': 'Scroll Down'});">Scroll Down ↓</div>
+    </section>
+
+    <section class="slide" id="exec-track">
+        <div class="slide-content">
+            <h2>Executive Leadership</h2>
+            <div class="requirements-box">
+                <p>Being an executive is a core responsibility. We are looking for individuals who are highly committed and dedicated to building QNET from the ground up. You will need to put in work during the remainder of this term and over the summer to focus on our foundation and build-up phase.</p>
+                <p><strong>Executive Expectations:</strong></p>
+                <ul>
+                    <li>Be dedicated to QNET and your specific sub-team. </li>
+                    <li>Willing to organize and run your team in Slack during the summer. </li>
+                    <li>Obviously required attendance at all general meetings and executive meetings. </li>
+                </ul>
+            </div>
+            <p class="subtitle" style="font-size: 1rem;">Scroll down to view specific STEM and Operations executive roles.</p>
+        </div>
     </section>
 
     <section class="slide">
         <div class="slide-content">
-            <h1>Engineering Division</h1>
-            <p class="subtitle">Tasked with executing the physical build and architecture of QNET's projects, beginning with the Keychain Geiger Counter and Cloud Chamber.</p>
+            <h1>STEM Executives</h1>
+            <p class="subtitle">Direct the technical execution and theoretical framework of QNET's first physical projects.</p>
             
-            <div class="roster-grid grid-3">
-                
+            <div class="roster-grid grid-4">
                 <div class="role-card stem-card">
-                    <span class="role-tag">Hardware Team</span>
+                    <span class="role-tag">Engineering Lead</span>
                     <h3>Mechanical</h3>
-                    <p class="role-intro">Responsible for physical architecture, structural integrity, and hardware housing.</p>
+                    <p class="role-intro">Oversee physical architecture and hardware housing.</p>
                     <ul>
-                        <li>CAD Design</li>
+                        <li>CAD Design & 3D Modeling</li>
                         <li>Manufacturing and Prototyping</li>
                         <li>Thermal and structural considerations</li>
                         <li>Integration with electronics</li>
                     </ul>
-                    <div class="disciplines">
-                        <strong>Preferred Disciplines</strong>
-                        MECH, MREN, ENPH/MTHE (Mech Option), CIVL, GEOE, CHEM
-                    </div>
-                    
-                    <a href="/join" class="card-join-btn" onclick="gtag('event', 'button_click', {'button_name': 'Apply - Mechanical'});">
-                        Apply Now <span>&rarr;</span>
-                    </a>
+                    <a href="/join" class="card-join-btn">Apply Now <span>&rarr;</span></a>
                 </div>
                 
                 <div class="role-card stem-card">
-                    <span class="role-tag">Circuitry Team</span>
+                    <span class="role-tag">Engineering Lead</span>
                     <h3>Electrical</h3>
-                    <p class="role-intro">Driving the internal power, sensing, and circuitry development.</p>
+                    <p class="role-intro">Oversee internal power, sensing, and circuitry development.</p>
                     <ul>
                         <li>Circuit design and custom PCB development</li>
                         <li>Sensor integration and calibration</li>
                         <li>Electronics testing and debugging</li>
                     </ul>
-                    <div class="disciplines">
-                        <strong>Preferred Disciplines</strong>
-                        ELEC, CMPE, MREN, ENPH/MTHE (Elec Option)
-                    </div>
-                    <a href="/join" class="card-join-btn" onclick="gtag('event', 'button_click', {'button_name': 'Apply - Electrical'});">
-                        Apply Now <span>&rarr;</span>
-                    </a>
+                    <a href="/join" class="card-join-btn">Apply Now <span>&rarr;</span></a>
                 </div>
 
                 <div class="role-card stem-card">
-                    <span class="role-tag">Software Team</span>
+                    <span class="role-tag">Engineering Lead</span>
                     <h3>Computer</h3>
-                    <p class="role-intro">Handling the code stack, device communication, and user interface.</p>
+                    <p class="role-intro">Oversee the code stack and device communication.</p>
                     <ul>
                         <li>Firmware and device communication</li>
                         <li>Mobile app / UI/UX development</li>
-                        <li>Software architecture</li>
-                        <li>Cross-team integration support</li>
+                        <li>Software architecture & IoT support</li>
                     </ul>
-                    <div class="disciplines">
-                        <strong>Preferred Disciplines</strong>
-                        CMPE, CISC, ELEC, MREN, ENPH/MTHE (Comp Option)
-                    </div>
-                    <a href="/join" class="card-join-btn" onclick="gtag('event', 'button_click', {'button_name': 'Apply - Computer'});">
-                        Apply Now <span>&rarr;</span>
-                    </a>
+                    <a href="/join" class="card-join-btn">Apply Now <span>&rarr;</span></a>
+                </div>
 
-            </div>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div class="slide-content">
-            <h1>Research Wing</h1>
-            <p class="subtitle">The scientific engine driving our capabilities. Focused on theoretical modeling, next-generation R&D, and projects like the Cloud Chamber and IEC devices.</p>
-            
-            <div class="roster-grid grid-1">
-                
-               <div class="role-card res-card">
-                    <span class="role-tag">Theory & Execution</span>
+                <div class="role-card res-card">
+                    <span class="role-tag">Research Lead</span>
                     <h3>Research</h3>
-                    <p class="role-intro">Establishing the mathematical and theoretical framework required to safely and effectively execute QNET designs.</p>
+                    <p class="role-intro">Establish the scientific and theoretical framework.</p>
                     <ul>
                         <li>Nuclear theory and background research</li>
                         <li>Detector physics and modeling</li>
                         <li>Simulation and analysis work</li>
-                        <li>Supports engineering decisions with science</li>
                     </ul>
-                    <div class="disciplines">
-                        <strong>Preferred Disciplines</strong>
-                        MECH, ENPH/MTHE (Mech Option), CIVL, GEOE, CHEM
-                    </div>
-                    <a href="/join" class="card-join-btn" onclick="gtag('event', 'button_click', {'button_name': 'Apply - Research'});">
-                        Apply Now <span>&rarr;</span>
-                    </a>
+                    <a href="/join" class="card-join-btn">Apply Now <span>&rarr;</span></a>
                 </div>
-
             </div>
         </div>
     </section>
 
     <section class="slide">
         <div class="slide-content">
-            <h1>Operations & Outreach</h1>
-            <p class="subtitle">The backbone of the team. Securing the necessary funding runway, managing logistics, and building the public brand of Queen's first nuclear design club.
-            </p>
-            <p class="hiring-notice">Note all these roles are exective positions with significant responsibility and impact on the direction of the club.</p>
+            <h1>Operations Executives</h1>
+            <p class="subtitle">The organizational backbone. Manage the runway, establish industry presence, and run the day-to-day logistics.</p>
             
-            <div class="roster-grid grid-2">
-                
+            <div class="roster-grid grid-4">
                 <div class="role-card ops-card">
-                    <span class="role-tag">Director of</span>
+                    <span class="role-tag">Director</span>
                     <h3>Finance</h3>
-                    <p class="role-intro">Ensuring the engineering and research wings have the capital required to build ambitious prototypes.</p>
+                    <p class="role-intro">Ensure the engineering wings have the necessary capital.</p>
                     <ul>
                         <li>Budget planning and financial oversight</li>
                         <li>Expense tracking and reimbursements</li>
                         <li>Managing club bank accounts</li>
-                        <li>Working with EngSoc for funding approvals</li>
+                        <li>Working with EngSoc for funding</li>
                     </ul>
-                    <div class="disciplines">
-                        <strong>Preferred Disciplines</strong>
-                        Commerce/Business, Economics, STEM
-                    </div>
-                    <a href="/join" class="card-join-btn" onclick="gtag('event', 'button_click', {'button_name': 'Apply - Finance'});">
-                        Apply Now <span>&rarr;</span>
-                    </a>
+                    <a href="/join" class="card-join-btn">Apply Now <span>&rarr;</span></a>
                 </div>
 
                 <div class="role-card ops-card">
-                    <span class="role-tag">Director of</span>
+                    <span class="role-tag">Director</span>
                     <h3>Sponsorship</h3>
-                    <p class="role-intro">Bridging the gap between students and the broader nuclear industry through funding and collaboration.</p>
+                    <p class="role-intro">Bridge the gap between students and the industry.</p>
                     <ul>
                         <li>Corporate outreach and partnerships</li>
                         <li>Grant applications</li>
                         <li>Sponsorship packages and proposals</li>
                         <li>Maintaining sponsor relationships</li>
                     </ul>
-                    <div class="disciplines">
-                        <strong>Preferred Disciplines</strong>
-                        Commerce/Business, Economics, Communications, STEM
-                    </div>
-                    <a href="/join" class="card-join-btn" onclick="gtag('event', 'button_click', {'button_name': 'Apply - Sponsorship'});">
-                        Apply Now <span>&rarr;</span>
-                    </a>
+                    <a href="/join" class="card-join-btn">Apply Now <span>&rarr;</span></a>
                 </div>
 
                 <div class="role-card ops-card">
-                    <span class="role-tag">Director of</span>
+                    <span class="role-tag">Director</span>
                     <h3>Marketing</h3>
-                    <p class="role-intro">Controlling the narrative, establishing industry presence, and recruiting top talent.</p>
+                    <p class="role-intro">Control the narrative and recruit top talent.</p>
                     <ul>
                         <li>Branding and social media content</li>
                         <li>Recruitment materials</li>
                         <li>Merch coordination</li>
                     </ul>
-                    <div class="disciplines">
-                        <strong>Preferred Disciplines</strong>
-                        Commerce/Business, Design, Communications, STEM
-                    </div>
-                    <a href="/join" class="card-join-btn" onclick="gtag('event', 'button_click', {'button_name': 'Apply - Marketing'});">
-                        Apply Now <span>&rarr;</span>
-                    </a>
+                    <a href="/join" class="card-join-btn">Apply Now <span>&rarr;</span></a>
                 </div>
 
                 <div class="role-card ops-card">
-                    <span class="role-tag">Director of</span>
+                    <span class="role-tag">Director</span>
                     <h3>Events</h3>
-                    <p class="role-intro">Bringing the Queen's nuclear community together through networking, workshops, and info nights.</p>
+                    <p class="role-intro">Bring the Queen's nuclear community together.</p>
                     <ul>
                         <li>Event planning and logistics</li>
                         <li>Managing event timelines</li>
                         <li>Work with other clubs and organizations</li>
                     </ul>
-                    <div class="disciplines">
-                        <strong>Preferred Disciplines</strong>
-                        Commerce/Business, Communications, STEM
-                    </div>
-                    <a href="/join" class="card-join-btn" onclick="gtag('event', 'button_click', {'button_name': 'Apply - Events'});">
-                        Apply Now <span>&rarr;</span>
-                    </a>
+                    <a href="/join" class="card-join-btn">Apply Now <span>&rarr;</span></a>
                 </div>
-
             </div>
+        </div>
+    </section>
+
+    <section class="slide general-track" id="general-track">
+        <div class="slide-content">
+            <h2>General Membership</h2>
+            <div class="requirements-box">
+                <p>Not ready for a heavy executive commitment right now? No problem. Joining the general roster allows you to stay connected, learn, and prepare to help build our prototypes when we officially launch.</p>
+                <p><strong>What to expect right now:</strong></p>
+                <ul>
+                    <li>Watch for any updates on Slack, notably listen to your team lead. </li>
+                    <li>You will not have much to do during the summer or for the rest of the term. </li>
+                    <li>Get rested up and ready to lock in this Fall. </li>
+                </ul>
+            </div>
+            
+            <a href="https://join.slack.com/t/queensnuclear/shared_invite/zt-3rhgpfjua-sB0H99v~DOmWr7tHC3qpeg" target="_blank" class="action-btn secondary" style="background: #002552; border-color: #002552; padding: 1.25rem 2.5rem; font-size: 1.1rem;">
+                Join the Slack Workspace
+            </a>
+            <p style="margin-top: 1rem; color: #888; font-size: 0.9rem;">Once inside, go to #start_here to select your sub-team.</p>
         </div>
     </section>
 
@@ -642,7 +634,6 @@
 </button>
 
 <script>
-    // Safe Base64 Cursor Generator
     try {
         const queensColors = ['#002552', '#fabc0f', '#b90e32'];
         const randomColor = queensColors[Math.floor(Math.random() * queensColors.length)];
@@ -653,17 +644,15 @@
         const cursorStyle = document.createElement('style');
         cursorStyle.innerHTML = `
             * { cursor: url('data:image/svg+xml;base64,${btoa(svg1)}') 6 6, auto !important; }
-            a, button, .btn, .logo-link, .scroll-indicator { cursor: url('data:image/svg+xml;base64,${btoa(svg2)}') 8 8, pointer !important; }
+            a, button, .btn, .logo-link, .action-btn { cursor: url('data:image/svg+xml;base64,${btoa(svg2)}') 8 8, pointer !important; }
         `;
         document.head.appendChild(cursorStyle);
     } catch (e) {
         console.error("Custom cursor failed to load.", e);
     }
 
-    // Scroll Logic
     const slideshowContainer = document.querySelector('.vertical-slideshow');
     const backToTopBtn = document.getElementById('back-to-top');
-    const scrollDownBtn = document.getElementById('scroll-down-btn');
 
     slideshowContainer.addEventListener('scroll', () => {
         if (slideshowContainer.scrollTop > window.innerHeight * 0.5) {
@@ -677,11 +666,6 @@
         slideshowContainer.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    if (scrollDownBtn) {
-        scrollDownBtn.addEventListener('click', () => {
-            slideshowContainer.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
-        });
-    }
 </script>
 </body>
 </html>
