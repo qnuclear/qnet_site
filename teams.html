@@ -56,7 +56,7 @@
             display: flex; 
             align-items: center;
             pointer-events: none; 
-            gap: 2.5rem; /* Perfectly spaces multiple links */
+            gap: 2.5rem; 
         }
         .header-side.left { justify-content: flex-end; padding-right: 8rem; }
         .header-side.right { justify-content: flex-start; padding-left: 8rem; }
@@ -86,7 +86,7 @@
 
         @media (max-width: 768px) {
             .site-header { padding: 1rem 1.5rem; }
-            .header-side { gap: 1.25rem; } /* Tighter spacing on mobile */
+            .header-side { gap: 1.25rem; } 
             .header-side.left { padding-right: 0; justify-content: flex-start; }
             .header-side.right { padding-left: 0; justify-content: flex-end; }
             .nav-link { font-size: 0.75rem; letter-spacing: 0.1em; }
@@ -175,6 +175,31 @@
                 scroll-snap-stop: normal; 
             }
             h1 { font-size: 2.8rem; }
+        }
+
+                .hiring-notice {
+            font-size: 1rem;
+            max-width: 650px;
+            font-weight: 300;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            color: #fabc0f;
+            font-weight: 500;
+            margin-top: 1rem;
+            display: block;
+        }
+
+        .hiring-notice a {
+            color: #fabc0f;
+            text-decoration: none;
+            border-bottom: 1px dashed #fabc0f;
+            transition: all 0.3s ease;
+            pointer-events: auto;
+        }
+
+        .hiring-notice a:hover {
+            color: #ffffff;
+            border-bottom-color: #ffffff;
         }
 
         /* --- SHOWCASE CARDS --- */
@@ -267,7 +292,7 @@
         /* Hover states tailored to your specific team colors */
         .stem-card .card-join-btn:hover {
             background: rgba(0, 37, 82, 0.4);
-            border-color: #004a9f; /* Lighter blue for visibility */
+            border-color: #004a9f; 
             color: #ffffff;
         }
 
@@ -280,7 +305,7 @@
         .ops-card .card-join-btn:hover {
             background: rgba(185, 14, 50, 0.2);
             border-color: #b90e32;
-            color: #ffc2cd; /* Lighter red/pink for contrast */
+            color: #ffc2cd; 
         }
 
         .card-join-btn:hover span {
@@ -415,7 +440,7 @@
     <section class="slide">
         <div class="slide-content">
             <h1>Engineering Division</h1>
-            <p class="subtitle">Tasked with executing the physical build and architecture of QNET's projects, beginning with the Smart Handheld Geiger Counter (Geiger 2.0).</p>
+            <p class="subtitle">Tasked with executing the physical build and architecture of QNET's projects, beginning with the Keychain Geiger Counter and Cloud Chamber.</p>
             
             <div class="roster-grid grid-3">
                 
@@ -424,7 +449,7 @@
                     <h3>Mechanical</h3>
                     <p class="role-intro">Responsible for physical architecture, structural integrity, and hardware housing.</p>
                     <ul>
-                        <li>CAD Design & 3D Modeling</li>
+                        <li>CAD Design</li>
                         <li>Manufacturing and Prototyping</li>
                         <li>Thermal and structural considerations</li>
                         <li>Integration with electronics</li>
@@ -447,7 +472,6 @@
                         <li>Circuit design and custom PCB development</li>
                         <li>Sensor integration and calibration</li>
                         <li>Electronics testing and debugging</li>
-                        <li>Power management systems</li>
                     </ul>
                     <div class="disciplines">
                         <strong>Preferred Disciplines</strong>
@@ -466,7 +490,7 @@
                         <li>Firmware and device communication</li>
                         <li>Mobile app / UI/UX development</li>
                         <li>Software architecture</li>
-                        <li>Cross-team IoT integration support</li>
+                        <li>Cross-team integration support</li>
                     </ul>
                     <div class="disciplines">
                         <strong>Preferred Disciplines</strong>
@@ -513,7 +537,9 @@
     <section class="slide">
         <div class="slide-content">
             <h1>Operations & Outreach</h1>
-            <p class="subtitle">The backbone of the team. Securing the necessary funding runway, managing logistics, and building the public brand of Queen's premier nuclear team.</p>
+            <p class="subtitle">The backbone of the team. Securing the necessary funding runway, managing logistics, and building the public brand of Queen's first nuclear design club.
+            </p>
+            <p class="hiring-notice">Note all these roles are exective positions with significant responsibility and impact on the direction of the club.</p>
             
             <div class="roster-grid grid-2">
                 
@@ -522,10 +548,10 @@
                     <h3>Finance</h3>
                     <p class="role-intro">Ensuring the engineering and research wings have the capital required to build ambitious prototypes.</p>
                     <ul>
-                        <li>Budget planning and financial forecasting</li>
-                        <li>Grant and corporate sponsorship outreach</li>
-                        <li>Expense tracking and hardware procurement</li>
-                        <li>Work with EngSoc for team funding</li>
+                        <li>Budget planning and financial oversight</li>
+                        <li>Expense tracking and reimbursements</li>
+                        <li>Managing club bank accounts</li>
+                        <li>Working with EngSoc for funding approvals</li>
                     </ul>
                     <div class="disciplines">
                         <strong>Preferred Disciplines</strong>
@@ -537,20 +563,56 @@
                 </div>
 
                 <div class="role-card ops-card">
+                    <span class="role-tag">Partnerships Team</span>
+                    <h3>Sponsorship</h3>
+                    <p class="role-intro">Bridging the gap between students and the broader nuclear industry through funding and collaboration.</p>
+                    <ul>
+                        <li>Corporate outreach and partnerships</li>
+                        <li>Grant applications</li>
+                        <li>Sponsorship packages and proposals</li>
+                        <li>Maintaining sponsor relationships</li>
+                    </ul>
+                    <div class="disciplines">
+                        <strong>Preferred Disciplines</strong>
+                        Commerce/Business, Economics, Communications, STEM
+                    </div>
+                    <a href="/join" class="card-join-btn" onclick="gtag('event', 'button_click', {'button_name': 'Apply - Sponsorship'});">
+                        Apply Now <span>&rarr;</span>
+                    </a>
+                </div>
+
+                <div class="role-card ops-card">
                     <span class="role-tag">Brand Team</span>
                     <h3>Marketing</h3>
                     <p class="role-intro">Controlling the narrative, establishing industry presence, and recruiting top talent.</p>
                     <ul>
-                        <li>Website and Branding</li>
-                        <li>Social Media Content</li>
+                        <li>Branding and social media content</li>
                         <li>Recruitment materials</li>
-                        <li>Event promotion</li>
+                        <li>Merch coordination</li>
                     </ul>
                     <div class="disciplines">
                         <strong>Preferred Disciplines</strong>
-                        Commerce/Business, Economics, STEM, CISC
+                        Commerce/Business, Design, Communications, STEM
                     </div>
                     <a href="/join" class="card-join-btn" onclick="gtag('event', 'button_click', {'button_name': 'Apply - Marketing'});">
+                        Apply Now <span>&rarr;</span>
+                    </a>
+                </div>
+
+                <div class="role-card ops-card">
+                    <span class="role-tag">Logistics Team</span>
+                    <h3>Events</h3>
+                    <p class="role-intro">Bringing the Queen's nuclear community together through networking, workshops, and info nights.</p>
+                    <ul>
+                        <li>Event planning and logistics</li>
+                        <li>Managing event timelines</li>
+                        <li>Work with other clubs and organizations</li>
+                    </ul>
+                    <div class="disciplines">
+                        <strong>Preferred Disciplines</strong>
+                        Commerce/Business, Communications, STEM
+                    </div>
+                    <a href="/join" class="card-join-btn" onclick="gtag('event', 'button_click', {'button_name': 'Apply - Events'});">
                         Apply Now <span>&rarr;</span>
                     </a>
                 </div>
