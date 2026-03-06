@@ -34,7 +34,6 @@
         }
     </script>
     <style>
-        
         @font-face {
             font-family: 'Leelawadee UI';
             src: url('assets/leelawadee.ttf') format('truetype');
@@ -79,7 +78,6 @@
             gap: 2.5rem; 
         }
 
-        /* Desktop Spacing */
         .header-side.left { justify-content: flex-end; padding-right: 8rem; }
         .header-side.right { justify-content: flex-start; padding-left: 8rem; }
 
@@ -111,24 +109,6 @@
             transition: height 0.3s ease;
         }
 
-        /* --- ELEGANT MOBILE NAV --- */
-        @media (max-width: 768px) {
-            .site-header {
-                padding: 1rem 1.5rem;
-            }
-            .header-side.left { padding-right: 0; justify-content: flex-start; }
-            .header-side.right { padding-left: 0; justify-content: flex-end; }
-            .header-side { gap: 1.25rem; } 
-            
-            .nav-link {
-                font-size: 0.75rem; 
-                letter-spacing: 0.1em;
-            }
-            .logo-img {
-                height: 55px; 
-            }
-        }
-
         /* The Horizontal Slideshow Container */
         .slideshow-container {
             display: flex;
@@ -146,7 +126,6 @@
 
         .slideshow-container::-webkit-scrollbar { display: none; }
 
-        /* The Individual Slides */
         .slide {
             flex: 0 0 100vw;
             width: 100vw; 
@@ -171,11 +150,9 @@
             color: #ffffff;
         }
 
-        /* Elevated dark mode background shifts */
         .slide-1 { background-color: #1e1e1e; }
-        .slide-2 { background-color: #242424; }
-        .slide-3 { background-color: #2a2a2a; }
-        .slide-4 { background-color: #1e1e1e; }
+        .slide-2 { background-color: #2a2a2a; } /* Updated indices */
+        .slide-3 { background-color: #1e1e1e; }
 
         p {
             font-size: 1.25rem;
@@ -203,24 +180,10 @@
             transition: all 0.3s ease;
         }
 
-        .arrow {
-            display: inline-block;
-            margin-left: 10px;
-            font-size: 1.2rem;
-            transition: transform 0.3s ease;
-        }
-
-        .btn:hover .arrow { animation: bounceRight 1s infinite; }
-
-        @keyframes bounceRight {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(8px); }
-        }
-
-        .slide-1 .btn:hover { border-color: #002552; background-color: rgba(0, 37, 82, 0.4); color: #ffffff; }
-        .slide-2 .btn:hover { border-color: #fabc0f; background-color: rgba(250, 188, 15, 0.2); color: #fabc0f; }
-        .slide-3 .btn:hover { border-color: #b90e32; background-color: rgba(185, 14, 50, 0.2); color: #ffffff; }
-        .slide-4 .btn:hover { border-color: #002552; background-color: rgba(0, 37, 82, 0.4); color: #ffffff; }
+        /* Hover colors for the new slide order */
+        .slide-1 .btn:hover { border-color: #fabc0f; background-color: rgba(250, 188, 15, 0.2); color: #fabc0f; }
+        .slide-2 .btn:hover { border-color: #b90e32; background-color: rgba(185, 14, 50, 0.2); color: #ffffff; }
+        .slide-3 .btn:hover { border-color: #002552; background-color: rgba(0, 37, 82, 0.4); color: #ffffff; }
 
         /* --- FIXED BOTTOM LEFT FOOTER --- */
         .fixed-footer {
@@ -246,30 +209,106 @@
             transition: all 0.3s ease;
         }
 
-        /* Queen's Hover Colors */
         .social-link:nth-child(1):hover .social-icon { fill: #002552; transform: translateY(-3px); } 
         .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; transform: translateY(-3px); } 
         .social-link:nth-child(3):hover .social-icon { fill: #b90e32; transform: translateY(-3px); } 
 
-        /* Responsive Mobile Fixes */
-        @media (max-width: 768px) {
-            .site-header { padding: 1.5rem; }
-            .logo-img { height: 65px; }
-            .slide h1 { margin-top: 100px; font-size: 2.8rem; }
-            p { font-size: 1.1rem; margin-bottom: 2rem; }
-            
-            .fixed-footer {
-                left: 50%;
-                transform: translateX(-50%);
-                bottom: 1.5rem;
-            }
+        /* --- CAROUSEL DOTS --- */
+        .carousel-dots {
+            position: fixed;
+            bottom: 2.5rem;
+            right: 2.5rem;
+            display: flex;
+            gap: 12px;
+            z-index: 100;
         }
 
-        /* --- MOBILE SWIPE INDICATOR --- */
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot:hover { background-color: rgba(255, 255, 255, 0.6); }
+
+        .dot.active {
+            background-color: #fabc0f;
+            transform: scale(1.3);
+        }
+
+        /* --- MOBILE MENU --- */
+        .hamburger-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 6px;
+            pointer-events: auto;
+            z-index: 102; 
+            padding: 10px;
+        }
+
+        .hamburger-btn .line {
+            width: 26px;
+            height: 2px;
+            background-color: #f0f0f0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger-btn.open .line:nth-child(1) { transform: translateY(4px) rotate(45deg); }
+        .hamburger-btn.open .line:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(26, 26, 26, 0.95); 
+            backdrop-filter: blur(15px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 101;
+        }
+
+        .mobile-menu.open { opacity: 1; pointer-events: auto; }
+
+        .mobile-nav-link {
+            color: #a0a0a0;
+            font-size: 1.5rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .site-header { padding: 1.5rem; justify-content: center; }
+            .desktop-only { display: none !important; }
+            .hamburger-btn { display: flex; position: absolute; right: 1.5rem; }
+            .logo-img { height: 55px; }
+            .slide h1 { margin-top: 100px; font-size: 2.8rem; }
+            p { font-size: 1.1rem; margin-bottom: 2rem; }
+            .fixed-footer { left: 1.5rem; bottom: 1.5rem; }
+            .carousel-dots { right: 1.5rem; bottom: 1.5rem; }
+        }
+
         .mobile-swipe-indicator {
             display: none; 
             position: absolute;
-            bottom: 3.5rem; 
+            bottom: 4rem; 
             left: 50%;
             transform: translateX(-50%);
             color: #888;
@@ -292,101 +331,7 @@
             50% { transform: translateX(8px); opacity: 1; }
         }
 
-        @media (max-width: 768px) {
-            .mobile-swipe-indicator {
-                display: flex;
-            }
-        }
-
-                /* --- MOBILE MENU STYLES --- */
-        .hamburger-btn {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            flex-direction: column;
-            gap: 6px;
-            pointer-events: auto;
-            z-index: 102; /* Stays above the mobile menu */
-            padding: 10px;
-        }
-
-        .hamburger-btn .line {
-            width: 26px;
-            height: 2px;
-            background-color: #f0f0f0;
-            transition: all 0.3s ease;
-            border-radius: 2px;
-        }
-
-        /* Transforms the two lines into an X when open */
-        .hamburger-btn.open .line:nth-child(1) {
-            transform: translateY(4px) rotate(45deg);
-        }
-        .hamburger-btn.open .line:nth-child(2) {
-            transform: translateY(-4px) rotate(-45deg);
-        }
-
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: rgba(26, 26, 26, 0.95); /* Matches your dark theme */
-            backdrop-filter: blur(15px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2.5rem;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            z-index: 101;
-        }
-
-        .mobile-menu.open {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .mobile-nav-link {
-            color: #a0a0a0;
-            font-size: 1.5rem;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .mobile-nav-link:hover, .mobile-nav-link:active {
-            color: #ffffff;
-        }
-
-        /* Mobile Breakpoint Overrides */
-        @media (max-width: 768px) {
-            .site-header { 
-                padding: 1.5rem; 
-                justify-content: center; /* Centers the logo */
-            }
-            .desktop-only { 
-                display: none !important; /* Hides desktop links */
-            }
-            .hamburger-btn { 
-                display: flex; 
-                position: absolute; 
-                right: 1.5rem; /* Puts the menu exactly in the corner */
-            }
-            .logo-container {
-                position: relative;
-                z-index: 102; /* Keeps logo above the overlay menu */
-            }
-            .logo-img { 
-                height: 55px; 
-            }
-}
+        @media (max-width: 768px) { .mobile-swipe-indicator { display: flex; } }
     </style>
 </head>
 <body>
@@ -419,39 +364,38 @@
     <a href="/projects" class="mobile-nav-link">Projects</a>
     <a href="/join" class="mobile-nav-link">Join</a>
 </div>
-<div class="slideshow-container">
 
+<div class="slideshow-container">
     <section class="slide slide-1">
         <h1>Queen's Nuclear Engineering Team (QNET)</h1>
-        <p>Exec applications are open now until March 12, 11:59PM. <br>Builds start September 2026.</p>
-        <a href="#" id="tell-me-more-btn" class="btn" onclick="gtag('event', 'button_click', {'button_name': 'Index - Tell Me More'});">Tell me more <span class="arrow">→</span></a>
-        
+        <p>We are recruiting our inaugural executive team until March 12, 11:59PM. Help us build something revolutionary.</p>
+        <a href="/join" class="btn" onclick="gtag('event', 'button_click', {'button_name': 'Index - Apply Now'});">Apply Now</a>
         <div class="mobile-swipe-indicator">Swipe <span>→</span></div>
     </section>
 
-
-    <section class="slide slide-3">
+    <section class="slide slide-2">
         <h1>About Us</h1>
         <p>Queen's first and only nuclear engineering team.</p>
         <a href="/about" class="btn" onclick="gtag('event', 'button_click', {'button_name': 'Index - Read Our Story'});">Read Our Story</a>
     </section>
 
-    <section class="slide slide-4">
+    <section class="slide slide-3">
         <h1>Engineering the Future</h1>
         <p>Learn about what types of projects we want to build after our launch!</p>
         <a href="/projects" class="btn" onclick="gtag('event', 'button_click', {'button_name': 'Index - View Projects'});">View Projects</a>
     </section>
-
 </div>
 
+<div class="carousel-dots" id="carousel-dots"></div>
+
 <div class="fixed-footer">
-    <a href="https://www.linkedin.com/company/queensnuclear/" target="_blank" class="social-link" onclick="gtag('event', 'button_click', {'button_name': 'Social - LinkedIn'});">
+    <a href="https://www.linkedin.com/company/queensnuclear/" target="_blank" class="social-link">
         <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
     </a>
-    <a href="https://www.instagram.com/queensnuclear/" target="_blank" class="social-link" onclick="gtag('event', 'button_click', {'button_name': 'Social - Instagram'});">
+    <a href="https://www.instagram.com/queensnuclear/" target="_blank" class="social-link">
         <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
     </a>
-    <a href="https://github.com/qnuclear" target="_blank" class="social-link" onclick="gtag('event', 'button_click', {'button_name': 'Social - GitHub'});">
+    <a href="https://github.com/qnuclear" target="_blank" class="social-link">
         <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.011-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg>
     </a>
 </div>
@@ -460,11 +404,10 @@
     (function setRandomCursor() {
         const queensColors = ['%23002552', '%23fabc0f', '%23b90e32'];
         const randomColor = queensColors[Math.floor(Math.random() * queensColors.length)];
-
         const cursorStyle = document.createElement('style');
         cursorStyle.innerHTML = `
             * { cursor: url('data:image/svg+xml;utf8,<svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5" fill="${randomColor}"/></svg>') 6 6, auto; }
-            a, button, .btn, .logo-link { cursor: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" fill="${randomColor}" opacity="0.4"/><circle cx="8" cy="8" r="4" fill="${randomColor}"/></svg>') 8 8, pointer !important; }
+            a, button, .btn, .logo-link, .dot { cursor: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" fill="${randomColor}" opacity="0.4"/><circle cx="8" cy="8" r="4" fill="${randomColor}"/></svg>') 8 8, pointer !important; }
         `;
         document.head.appendChild(cursorStyle);
     })();
@@ -482,32 +425,36 @@
         setTimeout(() => { isScrolling = false; }, 700); 
     }, { passive: false });
 
-    document.getElementById('tell-me-more-btn').addEventListener('click', (evt) => {
-        evt.preventDefault(); 
-        if (isScrolling) return; 
-        isScrolling = true;
-        container.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
-        setTimeout(() => { isScrolling = false; }, 700); 
-    });
-        // Mobile Menu Toggle Logic
+    // Mobile Menu Toggle Logic
     const hamburgerBtn = document.querySelector('.hamburger-btn');
     const mobileMenu = document.querySelector('.mobile-menu');
-
-    hamburgerBtn.addEventListener('click', (evt) => {
-        evt.preventDefault();
+    hamburgerBtn.addEventListener('click', () => {
         hamburgerBtn.classList.toggle('open');
         mobileMenu.classList.toggle('open');
     });
 
-    // Optional: Close menu when clicking a link (helpful for in-page anchors)
-    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            hamburgerBtn.classList.remove('open');
-            mobileMenu.classList.remove('open');
+    // Dynamic Dots Logic
+    const slides = document.querySelectorAll('.slide');
+    const dotsContainer = document.getElementById('carousel-dots');
+    const dots = [];
+
+    slides.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => {
+            container.scrollTo({ left: window.innerWidth * index, behavior: 'smooth' });
+        });
+        dotsContainer.appendChild(dot);
+        dots.push(dot);
+    });
+
+    container.addEventListener('scroll', () => {
+        const slideIndex = Math.round(container.scrollLeft / window.innerWidth);
+        dots.forEach((dot, index) => {
+            index === slideIndex ? dot.classList.add('active') : dot.classList.remove('active');
         });
     });
 </script>
-
 </body>
 </html>
