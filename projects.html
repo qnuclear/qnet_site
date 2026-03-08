@@ -398,15 +398,22 @@
             .team-label { font-size: 0.8rem; }
         }
         /* Responsive Fixes */
+/* Responsive Fixes */
         @media (max-width: 768px) {
-            /* Allow the slide to grow beyond the screen height if needed, preventing overlap */
+            /* 1. Turn off the aggressive scroll snapping on mobile */
+            .slideshow-container {
+                scroll-snap-type: none; 
+            }
+
+            /* 2. Allow the slide to grow and remove snap points */
             .slide { 
+                scroll-snap-align: none; 
                 flex: 0 0 auto; 
                 height: auto; 
                 min-height: 100svh; 
                 padding-top: 100px; 
                 padding-bottom: 120px; 
-                justify-content: flex-start; /* Prevents content from being pushed off the top */
+                justify-content: flex-start; 
             }
 
             .slide h1 { margin-top: 20px; font-size: 2.8rem; }
@@ -419,7 +426,6 @@
                 gap: 1.25rem;
             }
             
-            /* Shrink the image so it doesn't take up half the screen */
             .project-static img { margin: 0 auto 1rem auto; max-width: 200px; }
             .project-static { text-align: center; }
             .project-static h3 { font-size: 1.4rem; }
@@ -436,9 +442,7 @@
                 padding: 0;
             }
             .node-line {
-                top: 17px; left: 15px; right: 15px; bottom: auto;
-                height: 4px; width: auto;
-                display: none; /* Hiding the line on mobile often looks cleaner */
+                display: none; 
             }
             .team-node-btn { flex-direction: column; gap: 0.25rem; }
             .team-label { font-size: 0.75rem; }
