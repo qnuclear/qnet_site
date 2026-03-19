@@ -352,6 +352,25 @@
             padding: 10px;
         }
 
+                .btn {
+            display: inline-flex; 
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #f0f0f0;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background-color: transparent;
+            border: 1px solid #555; 
+            border-radius: 50px; 
+            transition: all 0.3s ease;
+        }
+        .btn:hover { border-color: #fabc0f; background-color: rgba(250, 188, 15, 0.2); color: #fabc0f; }
+
+
         .hamburger-btn .line {
             width: 26px;
             height: 2px;
@@ -470,54 +489,15 @@
             We are actively recruiting our inaugural strike team. Review the open positions below and help us define the future of nuclear engineering at Queen's.
         </p>
         
-        <div class="update-notice">
-            <strong>System Update:</strong> We have recently streamlined our application categories. If you have already applied through a previous form or via email, we have safely received your application. <strong>There is no need to re-apply.</strong>
-        </div>
+
 
         <div class="scroll-indicator" id="scroll-down-btn">Scroll Down ↓</div>
     </section>
 
     <section class="slide">
-        <h1>Executive Positions</h1>
-        <p class="subtitle">We are looking for dedicated directors and team leads to guide QNET's first generation. Team information can be found at <a href="/teams" target="_blank">our teams page</a>.</p>
-        <p class="hiring-notice">
-            Executive postions are now open until March 12th at 11:59 PM.<br>
-            <span style="color: #ccc; font-weight: 300;">All applicants must also join the <a href="https://join.slack.com/t/queensnuclear/shared_invite/zt-3rhgpfjua-sB0H99v~DOmWr7tHC3qpeg" target="_blank">QNET Slack</a> workspace.</span>
-        </p>
-        
-        <div class="roster-grid grid-2">
-            
-            <div class="role-card stem-card" onclick="window.open('https://forms.gle/NvkW5mgVAQr9cuC2A', '_blank'); gtag('event', 'button_click', {'button_name': 'Role Card - STEM Lead'});">
-                <span class="role-tag tag-lead">Engineering Leads</span>
-                <h3>STEM Directors</h3>
-                <p class="role-intro">Guide the technical execution of QNET. We are hiring leads for:</p>
-                <ul>
-                    <li>Mechanical Engineering (2 Leads)</li>
-                    <li>Electrical Engineering (2 Leads)</li>
-                    <li>Computer Engineering / Software (2 Leads)</li>
-                    <li>Research (2 Leads)</li>
-                </ul>
-            </div>
-
-            <div class="role-card ops-card" onclick="window.open('https://forms.gle/NvkW5mgVAQr9cuC2A', '_blank'); gtag('event', 'button_click', {'button_name': 'Role Card - Ops Lead'});">
-                <span class="role-tag tag-lead">Operations Leads</span>
-                <h3>Operations Directors</h3>
-                <p class="role-intro">Secure our funding runway and build the public presence. We are hiring:</p>
-                <ul>
-                    <li>Director of Marketing</li>
-                    <li>Director of Finance</li>
-                    <li>Director of Events</li>
-                    <li>Director of Sponsorship</li>
-                </ul>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="slide">
         <h1>General Members</h1>
-        <p class="subtitle">Not looking for an executive role right now? Join the technical or operational roster.</p>
-        <p class="hiring-notice">Click below to join our Slack workspace. Once inside, navigate to the <strong>#start_here</strong> channel to fill out a form and choose your sub-team.</p>
+        <p class="subtitle">As the Team Leads and Directors are hard at work building QNET's inital framework for this Fall, we are looking for dedicated general members to join our team.</p>
+        <p class="hiring-notice">Click below to join our Slack workspace. Once inside, navigate to the <strong>#start_here</strong> channel and follow the instructions.</p>
         
         <div class="roster-grid" style="display: flex; justify-content: center; max-width: 500px; margin: 0 auto;">
             
@@ -525,9 +505,13 @@
                 <span class="role-tag tag-waitlist">Join the Workspace</span>
                 <h3>General Member</h3>
                 <p class="role-intro">Join the official QNET Slack and get integrated into the team.</p>
-                <p class="bottom-text"><strong>Important:</strong> You must complete the form in the #start_here channel to be officially placed on a team.</p>
-            </div>
+                
+                
+            </div>    
 
+        </div>
+        <div style="margin-top: 2rem;">
+            <a href="/about" class="btn" onclick="gtag('event', 'button_click', {'button_name': 'What to expect'});">What to expect?</a>
         </div>
     </section>
 
