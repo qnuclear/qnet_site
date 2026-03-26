@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QNET | The Teams</title>
+    <title>QNET | Meet the Team</title>
     <link rel="icon" type="image/svg+xml" href="assets/outlinefavicon.svg">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8J80X6N4DV"></script>
     <script>
@@ -86,12 +86,10 @@
         }
 
         @media (max-width: 768px) {
-            .site-header { padding: 1rem 1.5rem; }
-            .header-side { gap: 1.25rem; } 
-            .header-side.left { padding-right: 0; justify-content: flex-start; }
-            .header-side.right { padding-left: 0; justify-content: flex-end; }
-            .nav-link { font-size: 0.75rem; letter-spacing: 0.1em; }
+            .site-header { padding: 1rem 1.5rem; justify-content: center; }
+            .header-side { display: none !important; } 
             .logo-img { height: 55px; }
+            .logo-container { position: relative; z-index: 102; }
         }
 
         /* --- VERTICAL SLIDESHOW --- */
@@ -118,14 +116,12 @@
             justify-content: center; 
             align-items: center;
             text-align: center;
-            padding: 100px 2rem 4rem 2rem; 
+            padding: 120px 2rem 4rem 2rem; 
             position: relative;
         }
 
         .slide:nth-child(even) { background-color: #1a1a1a; }
         .slide:nth-child(odd) { background-color: #222222; }
-
-        .slide.general-track { background-color: #151515; border-top: 1px solid #333; }
 
         .slide-content {
             margin: auto;
@@ -138,244 +134,106 @@
         }
 
         h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 400;
             letter-spacing: -0.03em;
             margin-bottom: 0.5rem;
             color: #ffffff;
         }
 
-        h2 {
-            font-size: 2.5rem;
-            font-weight: 300;
-            color: #fabc0f;
-            margin-bottom: 1.5rem;
-        }
-
         .subtitle {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             color: #a0a0a0;
             max-width: 800px;
             font-weight: 300;
             line-height: 1.6;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
         }
 
-        .requirements-box {
-            background: rgba(0, 0, 0, 0.2);
-            border-left: 4px solid #fabc0f;
-            padding: 2rem;
-            border-radius: 0 8px 8px 0;
-            text-align: left;
-            max-width: 800px;
-            margin: 0 auto 3rem auto;
-        }
-
-        .requirements-box p {
-            font-size: 1.1rem;
-            color: #ccc;
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .requirements-box ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .requirements-box li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.75rem;
-            color: #fff;
-            font-size: 1.05rem;
-        }
-
-        .requirements-box li::before {
-            content: "•";
-            color: #fabc0f;
-            position: absolute;
-            left: 0;
-            font-size: 1.5rem;
-            line-height: 1;
-        }
-
-        /* Fixed the yellow bullet issue for general members */
-        .general-track .requirements-box {
-            border-left-color: #002552 !important;
-        }
-
-        .general-track .requirements-box li::before {
-            color: #002552 !important; 
-        }
-
-        /* --- BUTTONS --- */
-        .btn-group {
+        /* --- STAFF CARDS --- */
+        .staff-grid {
             display: flex;
-            gap: 1.5rem;
-            margin-top: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            width: 100%;
+            max-width: 1100px;
         }
 
-        .action-btn {
-            display: inline-flex;
+        .staff-card {
+            background-color: #2a2a2a; 
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 1rem 2rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #f0f0f0;
-            text-decoration: none;
+            width: 240px;
+        }
+
+        .staff-photo {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background-color: #444; 
+            background-image: url('assets/QNET outline white.svg'); 
+            background-size: 55%;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin-bottom: 1.25rem;
+            border: 3px solid #555;
+            transition: all 0.4s ease;
+        }
+
+        .staff-name { 
+            color: #ffffff; 
+            font-size: 1.25rem; 
+            font-weight: 500; 
+            margin-bottom: 0.5rem; 
+        }
+
+        .staff-role {
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            background-color: #2a2a2a;
-            border: 1px solid #444;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            cursor: pointer;
+            font-weight: 700;
+            color: #a0a0a0;
         }
 
-        .action-btn:hover {
-            background-color: #fabc0f;
-            border-color: #fabc0f;
-            color: #111;
-            transform: translateY(-3px);
-        }
+        /* Hover & Track Coloring */
+        .staff-card:hover { background-color: #2e2e2e; transform: translateY(-5px); }
 
-        .action-btn.secondary:hover {
-            background-color: #002552;
-            border-color: #002552;
-            color: #fff;
-        }
+        .stem-card .staff-role { color: #fabc0f; } 
+        .stem-card:hover { border-color: #fabc0f; box-shadow: 0 0 25px rgba(0, 37, 82, 0.5); }
+        .stem-card:hover .staff-photo { border-color: #fabc0f; }
 
-        /* --- SHOWCASE GRIDS --- */
-        .roster-grid {
-            display: grid;
-            gap: 1.5rem;
-            width: 100%;
-        }
+        .ops-card .staff-role { color: #b90e32; }
+        .ops-card:hover { border-color: #b90e32; box-shadow: 0 0 25px rgba(185, 14, 50, 0.4); }
+        .ops-card:hover .staff-photo { border-color: #b90e32; }
 
-        .grid-3 { grid-template-columns: repeat(3, 1fr); max-width: 1200px; }
-        .grid-2 { grid-template-columns: repeat(2, 1fr); max-width: 900px; }
-        .grid-4 { grid-template-columns: repeat(2, 1fr); max-width: 1000px; }
+        .exec-card .staff-role { color: #002552; }
+        .exec-card:hover { border-color: #002552; box-shadow: 0 0 25px rgba(250, 188, 15, 0.3); }
+        .exec-card:hover .staff-photo { border-color: #002552; }
 
         @media (max-width: 900px) {
             .vertical-slideshow { scroll-snap-type: y proximity; }
-            .grid-3, .grid-2, .grid-4 { grid-template-columns: 1fr; }
             .slide { 
-                padding-top: 120px; 
-                padding-bottom: 140px; 
+                padding-top: 100px; 
+                padding-bottom: 100px; 
                 height: auto; 
                 min-height: 100vh; 
                 justify-content: flex-start; 
                 scroll-snap-align: start; 
-                scroll-snap-stop: normal; 
             }
             h1 { font-size: 2.8rem; }
-            .btn-group { flex-direction: column; }
+            .staff-grid { gap: 1.5rem; }
+            .staff-card { width: calc(50% - 0.75rem); min-width: 160px; padding: 1.5rem 1rem; }
+            .staff-photo { width: 100px; height: 100px; }
+            .staff-name { font-size: 1.1rem; }
+            .staff-role { font-size: 0.75rem; }
         }
-
-        /* --- SHOWCASE CARDS --- */
-        .role-card {
-            background-color: #2a2a2a; 
-            border: 1px solid #333;
-            border-radius: 12px;
-            padding: 2.5rem 2rem;
-            text-align: left;
-            transition: all 0.4s ease;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .role-tag {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.75rem;
-            font-weight: 700;
-        }
-
-        .stem-card .role-tag { color: #002552; } 
-        .res-card .role-tag { color: #002552; } 
-        .ops-card .role-tag { color: #b90e32; }
-        
-        .role-card h3 { color: #ffffff; font-size: 1.6rem; font-weight: 400; margin-bottom: 0.75rem; }
-        
-        .role-intro { 
-            font-size: 0.95rem; 
-            color: #e0e0e0; 
-            line-height: 1.5; 
-            margin-bottom: 1.25rem; 
-            padding-bottom: 1.25rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .role-card ul { font-size: 0.95rem; color: #ccc; line-height: 1.6; flex-grow: 1; padding-left: 1.2rem; margin-bottom: 1.5rem; }
-        .role-card li { margin-bottom: 0.4rem; }
-
-        .disciplines {
-            font-size: 0.8rem;
-            color: #888;
-            background: rgba(0,0,0,0.3);
-            padding: 0.75rem 1rem;
-            border-radius: 6px;
-            line-height: 1.4;
-            margin-top: auto;
-        }
-
-        .disciplines strong {
-            color: #aaa;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            display: block;
-            margin-bottom: 0.2rem;
-            font-size: 0.75rem;
-        }
-
-        /* --- DYNAMIC JOIN BUTTONS --- */
-        .card-join-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 1.25rem;
-            padding: 0.8rem 1rem;
-            background: rgba(0, 0, 0, 0.2);
-            color: #ccc;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            transition: all 0.3s ease;
-        }
-
-        .card-join-btn span {
-            margin-left: 8px;
-            transition: transform 0.3s ease;
-            font-size: 1.1rem;
-            line-height: 1;
-        }
-
-        .stem-card .card-join-btn:hover, .res-card .card-join-btn:hover {
-            background: rgba(0, 37, 82, 0.4);
-            border-color: #002552; 
-            color: #ffffff;
-        }
-
-        .ops-card .card-join-btn:hover {
-            background: rgba(185, 14, 50, 0.2);
-            border-color: #b90e32;
-            color: #ffc2cd; 
-        }
-
-        .card-join-btn:hover span { transform: translateX(5px); }
-        .role-card:hover { background-color: #2e2e2e; }
-        
-        .stem-card:hover, .res-card:hover { border-color: #002552; box-shadow: 0 0 25px rgba(0, 37, 82, 0.6); }
-        .ops-card:hover { border-color: #b90e32; box-shadow: 0 0 25px rgba(185, 14, 50, 0.25); }
 
         /* --- FIXED FOOTER & BACK TO TOP --- */
         .site-footer {
@@ -424,7 +282,8 @@
             .site-footer { left: 50%; transform: translateX(-50%); bottom: 1.5rem; }
             #back-to-top { bottom: 1.5rem; right: 1.5rem; width: 45px; height: 45px; }
         }
-                        /* --- MOBILE MENU STYLES --- */
+
+        /* --- MOBILE MENU STYLES --- */
         .hamburger-btn {
             display: none;
             background: none;
@@ -433,7 +292,7 @@
             flex-direction: column;
             gap: 6px;
             pointer-events: auto;
-            z-index: 102; /* Stays above the mobile menu */
+            z-index: 102; 
             padding: 10px;
         }
 
@@ -445,13 +304,8 @@
             border-radius: 2px;
         }
 
-        /* Transforms the two lines into an X when open */
-        .hamburger-btn.open .line:nth-child(1) {
-            transform: translateY(4px) rotate(45deg);
-        }
-        .hamburger-btn.open .line:nth-child(2) {
-            transform: translateY(-4px) rotate(-45deg);
-        }
+        .hamburger-btn.open .line:nth-child(1) { transform: translateY(4px) rotate(45deg); }
+        .hamburger-btn.open .line:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
 
         .mobile-menu {
             position: fixed;
@@ -459,7 +313,7 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background-color: rgba(26, 26, 26, 0.95); /* Matches your dark theme */
+            background-color: rgba(26, 26, 26, 0.95);
             backdrop-filter: blur(15px);
             display: flex;
             flex-direction: column;
@@ -472,10 +326,7 @@
             z-index: 101;
         }
 
-        .mobile-menu.open {
-            opacity: 1;
-            pointer-events: auto;
-        }
+        .mobile-menu.open { opacity: 1; pointer-events: auto; }
 
         .mobile-nav-link {
             color: #a0a0a0;
@@ -486,44 +337,12 @@
             font-weight: 500;
             transition: color 0.3s ease;
         }
-        .hiring-notice {
-            font-size: 1rem;
-            max-width: 650px;
-            font-weight: 300;
-            line-height: 1.6;
-            margin-bottom: 3rem;
-            color: #fabc0f;
-            font-weight: 500;
-            margin-top: 1rem;
-            display: block;
-        }
 
-        .mobile-nav-link:hover, .mobile-nav-link:active {
-            color: #ffffff;
-        }
+        .mobile-nav-link:hover, .mobile-nav-link:active { color: #ffffff; }
 
-        /* Mobile Breakpoint Overrides */
         @media (max-width: 768px) {
-            .site-header { 
-                padding: 1.5rem; 
-                justify-content: center; /* Centers the logo */
-            }
-            .desktop-only { 
-                display: none !important; /* Hides desktop links */
-            }
-            .hamburger-btn { 
-                display: flex; 
-                position: absolute; 
-                right: 1.5rem; /* Puts the menu exactly in the corner */
-            }
-            .logo-container {
-                position: relative;
-                z-index: 102; /* Keeps logo above the overlay menu */
-            }
-            .logo-img { 
-                height: 55px; 
-            }
-}
+            .hamburger-btn { display: flex; position: absolute; right: 1.5rem; }
+        }
     </style>
 </head>
 <body>
@@ -560,157 +379,142 @@
 
 <main class="vertical-slideshow">
     
+    <!-- Intro Slide -->
     <section class="slide">
         <div class="slide-content">
-            <h1>The Teams</h1>
+            <h1>Meet the Team</h1>
             <p class="subtitle">
-                Discover the interdisciplinary sub-teams driving the future of nuclear engineering at Queen's. Select your path below to explore open positions.
+                The interdisciplinary minds driving the future of nuclear engineering at Queen's University. Scroll down to see our official 2026-2027 roster.
             </p>
-            <p class="hiring-notice">
-                Stay tuned as we will be announcing our inaugural Executive Team for the 2026-2027 Year shortly!
-            </p>
-            <div class="btn-group">
-                <button class="action-btn" onclick="document.getElementById('exec-track').scrollIntoView({behavior: 'smooth'})">Executive Leadership</button>
-                <button class="action-btn secondary" onclick="document.getElementById('general-track').scrollIntoView({behavior: 'smooth'})">General Members</button>
+        </div>
+    </section>
+
+    <!-- Mechanical Team Slide -->
+    <section class="slide">
+        <div class="slide-content">
+            <h1>Mechanical Team</h1>
+            <p class="subtitle">Overseeing physical architecture and hardware housing.</p>
+            
+            <div class="staff-grid">
+                <div class="staff-card stem-card">
+                    <div class="staff-photo"></div>
+                    <h3 class="staff-name">Tochukwu Odiwa</h3>
+                    <span class="staff-role">Team Lead</span>
+                </div>
+                <div class="staff-card stem-card">
+                    <div class="staff-photo"></div>
+                    <h3 class="staff-name">Aidan Woods</h3>
+                    <span class="staff-role">Team Lead</span>
+                </div>
             </div>
         </div>
     </section>
 
-
-
+    <!-- Electrical Team Slide -->
     <section class="slide">
         <div class="slide-content">
-            <h1>STEM Executives</h1>
-            <p class="subtitle">Direct the technical execution and theoretical framework of QNET's first physical projects.</p>
+            <h1>Electrical Team</h1>
+            <p class="subtitle">Overseeing internal power, sensing, and circuitry development.</p>
             
-            <div class="roster-grid grid-4">
-                <div class="role-card stem-card">
-                    <span class="role-tag">Engineering Lead</span>
-                    <h3>Mechanical</h3>
-                    <p class="role-intro">Oversee physical architecture and hardware housing.</p>
-                    <ul>
-                        <li>CAD Design & 3D Modeling</li>
-                        <li>Manufacturing and Prototyping</li>
-                        <li>Thermal and structural considerations</li>
-                        <li>Integration with electronics</li>
-                    </ul>
-      
+            <div class="staff-grid">
+                <div class="staff-card stem-card">
+                    <div class="staff-photo"></div>
+                    <h3 class="staff-name">Arsalan Vahidi</h3>
+                    <span class="staff-role">Team Lead</span>
+                </div>
+                <div class="staff-card stem-card">
+                    <div class="staff-photo"></div>
+                    <h3 class="staff-name">Boden Parent</h3>
+                    <span class="staff-role">Team Lead</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Software Team Slide -->
+    <section class="slide">
+        <div class="slide-content">
+            <h1>Software Team</h1>
+            <p class="subtitle">Overseeing the code stack and device communication.</p>
+            
+            <div class="staff-grid">
+                <div class="staff-card stem-card">
+                    <div class="staff-photo"></div>
+                    <h3 class="staff-name">Gabriel Brannon</h3>
+                    <span class="staff-role">Team Lead</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Team Slide -->
+    <section class="slide">
+        <div class="slide-content">
+            <h1>Research Team</h1>
+            <p class="subtitle">Establishing the scientific and theoretical framework.</p>
+            
+            <div class="staff-grid">
+                <div class="staff-card stem-card">
+                    <div class="staff-photo"></div>
+                    <h3 class="staff-name">Justin Hooey</h3>
+                    <span class="staff-role">Team Lead</span>
+                </div>
+                <div class="staff-card stem-card">
+                    <div class="staff-photo"></div>
+                    <h3 class="staff-name">Ella Adair</h3>
+                    <span class="staff-role">Team Lead</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Operations Team Slide -->
+    <section class="slide">
+        <div class="slide-content">
+            <h1>Our Directors</h1>
+            <p class="subtitle">The organizational backbone managing our runway, industry presence, and logistics.</p>
+            
+            <div class="staff-grid">
+                <div class="staff-card ops-card">
+                    <div class="staff-photo"></div>
+                    <h3 class="staff-name">Alex Hayes</h3>
+                    <span class="staff-role">Director of Finance</span>
                 </div>
                 
-                <div class="role-card stem-card">
-                    <span class="role-tag">Engineering Lead</span>
-                    <h3>Electrical</h3>
-                    <p class="role-intro">Oversee internal power, sensing, and circuitry development.</p>
-                    <ul>
-                        <li>Circuit design and custom PCB development</li>
-                        <li>Sensor integration and calibration</li>
-                        <li>Electronics testing and debugging</li>
-                    </ul>
-                    
+                <div class="staff-card ops-card">
+                    <div class="staff-photo"></div>
+                    <h3 class="staff-name">Alyssa Maticka</h3>
+                    <span class="staff-role">Director of Sponsorship</span>
                 </div>
 
-                <div class="role-card stem-card">
-                    <span class="role-tag">Engineering Lead</span>
-                    <h3>Computer</h3>
-                    <p class="role-intro">Oversee the code stack and device communication.</p>
-                    <ul>
-                        <li>Firmware and device communication</li>
-                        <li>Mobile app / UI/UX development</li>
-                        <li>Software architecture & IoT support</li>
-                    </ul>
-            
+                <div class="staff-card ops-card">
+                    <div class="staff-photo"></div>
+                    <h3 class="staff-name">Regan Lane</h3>
+                    <span class="staff-role">Director of Marketing</span>
                 </div>
 
-                <div class="role-card res-card">
-                    <span class="role-tag">Research Lead</span>
-                    <h3>Research</h3>
-                    <p class="role-intro">Establish the scientific and theoretical framework.</p>
-                    <ul>
-                        <li>Nuclear theory and background research</li>
-                        <li>Detector physics and modeling</li>
-                        <li>Simulation and analysis work</li>
-                    </ul>
-               
+                <div class="staff-card ops-card">
+                    <div class="staff-photo"></div>
+                    <h3 class="staff-name">Naomi Cain</h3>
+                    <span class="staff-role">Director of Events</span>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Leadership Slide (Ryan) -->
     <section class="slide">
         <div class="slide-content">
-            <h1>Operations Executives</h1>
-            <p class="subtitle">The organizational backbone. Manage the runway, establish industry presence, and run the day-to-day logistics.</p>
-            
-            <div class="roster-grid grid-4">
-                <div class="role-card ops-card">
-                    <span class="role-tag">Director</span>
-                    <h3>Finance</h3>
-                    <p class="role-intro">Ensure the engineering wings have the necessary capital.</p>
-                    <ul>
-                        <li>Budget planning and financial oversight</li>
-                        <li>Expense tracking and reimbursements</li>
-                        <li>Managing club bank accounts</li>
-                        <li>Working with EngSoc for funding</li>
-                    </ul>
-            
-                </div>
+            <h1>Leadership</h1>
+            <p class="subtitle">Founder & Visionary behind the Queen's Nuclear Engineering Team.</p>
 
-                <div class="role-card ops-card">
-                    <span class="role-tag">Director</span>
-                    <h3>Sponsorship</h3>
-                    <p class="role-intro">Bridge the gap between students and the industry.</p>
-                    <ul>
-                        <li>Corporate outreach and partnerships</li>
-                        <li>Grant applications</li>
-                        <li>Sponsorship packages and proposals</li>
-                        <li>Maintaining sponsor relationships</li>
-                    </ul>
-               
-                </div>
-
-                <div class="role-card ops-card">
-                    <span class="role-tag">Director</span>
-                    <h3>Marketing</h3>
-                    <p class="role-intro">Control the narrative and recruit top talent.</p>
-                    <ul>
-                        <li>Branding and social media content</li>
-                        <li>Recruitment materials</li>
-                        <li>Merch coordination</li>
-                    </ul>
-             
-                </div>
-
-                <div class="role-card ops-card">
-                    <span class="role-tag">Director</span>
-                    <h3>Events</h3>
-                    <p class="role-intro">Bring the Queen's nuclear community together.</p>
-                    <ul>
-                        <li>Event planning and logistics</li>
-                        <li>Managing event timelines</li>
-                        <li>Work with other clubs and organizations</li>
-                    </ul>
+            <div class="staff-grid">
+                <div class="staff-card exec-card">
+                    <div class="staff-photo"></div>
+                    <h3 class="staff-name">Ryan Haghi</h3>
+                    <span class="staff-role">Founder and President</span>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="slide general-track" id="general-track">
-        <div class="slide-content">
-            <h2 style="color:#002552">General Membership</h2>
-            <div class="requirements-box">
-                <p>Joining the general roster allows you to stay connected, learn, and prepare your team leads to help build our prototypes when we officially launch.</p>
-                <p><strong>What to expect right now:</strong></p>
-                <ul>
-                    <li>Watch for any updates on Slack, notably listen to your team lead. </li>
-                    <li>You will not have much to do during the summer or for the rest of the term. </li>
-                    <li>Get rested up and ready to lock in this Fall. </li>
-                </ul>
-            </div>
-            
-            <a href="https://join.slack.com/t/queensnuclear/shared_invite/zt-3rhgpfjua-sB0H99v~DOmWr7tHC3qpeg" target="_blank" class="action-btn secondary" style="background: #002552; border-color: #002552; padding: 1.25rem 2.5rem; font-size: 1.1rem;">
-                Join the Slack Workspace
-            </a>
-            <p style="margin-top: 1rem; color: #888; font-size: 0.9rem;">Once inside, go to #start_here to select your sub-team.</p>
         </div>
     </section>
 
@@ -723,7 +527,7 @@
     <a href="https://www.instagram.com/queensnuclear/" target="_blank" class="social-link" onclick="gtag('event', 'button_click', {'button_name': 'Social - Instagram'});">
         <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
     </a>
-    <a href="https://github.com/qnuclear" target="_blank" class="social-link" onclick="gtag('event', 'button_click', {'button_name': 'Social - GitHub'});">
+        <a href="https://github.com/qnuclear" target="_blank" class="social-link" onclick="gtag('event', 'button_click', {'button_name': 'Social - GitHub'});">
         <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.011-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg>
     </a>
 </footer>
@@ -766,7 +570,8 @@
     backToTopBtn.addEventListener('click', () => {
         slideshowContainer.scrollTo({ top: 0, behavior: 'smooth' });
     });
-        // Mobile Menu Toggle Logic
+
+    // Mobile Menu Toggle Logic
     const hamburgerBtn = document.querySelector('.hamburger-btn');
     const mobileMenu = document.querySelector('.mobile-menu');
 
@@ -776,7 +581,6 @@
         mobileMenu.classList.toggle('open');
     });
 
-    // Optional: Close menu when clicking a link (helpful for in-page anchors)
     const mobileLinks = document.querySelectorAll('.mobile-nav-link');
     mobileLinks.forEach(link => {
         link.addEventListener('click', () => {
