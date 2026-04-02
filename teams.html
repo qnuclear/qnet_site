@@ -217,6 +217,57 @@
         .exec-card:hover { border-color: #002552; box-shadow: 0 0 25px rgba(250, 188, 15, 0.3); }
         .exec-card:hover .staff-photo { border-color: #002552; }
 
+        .faculty-card {
+            flex-direction: row;
+            align-items: center;
+            width: 680px;
+            max-width: 90vw;
+            gap: 2.5rem;
+            padding: 2.5rem 3rem;
+            text-align: left;
+            border-color: #fabc0f44;
+        }
+        .faculty-card .staff-photo {
+            width: 160px;
+            height: 160px;
+            flex-shrink: 0;
+            border-color: #fabc0f;
+            margin-bottom: 0;
+        }
+        .faculty-card .faculty-info { display: flex; flex-direction: column; gap: 0.5rem; }
+        .faculty-card .staff-name { font-size: 1.5rem; margin-bottom: 0.25rem; }
+        .faculty-card .staff-role { color: #fabc0f; font-size: 0.9rem; }
+        .faculty-card .staff-bio {
+            margin-top: 0.75rem;
+            font-size: 0.92rem;
+            color: #c0c0c0;
+            line-height: 1.65;
+        }
+        .faculty-card .faculty-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.9rem;
+        }
+        .faculty-card .badge {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            font-weight: 700;
+            padding: 0.25rem 0.65rem;
+            border-radius: 20px;
+            background-color: #1a1a1a;
+            border: 1px solid #fabc0f55;
+            color: #fabc0f;
+        }
+        .faculty-card:hover { border-color: #fabc0f; box-shadow: 0 0 35px rgba(250, 188, 15, 0.2); }
+        .faculty-card:hover .staff-photo { border-color: #fabc0fcc; }
+        @media (max-width: 700px) {
+            .faculty-card { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+            .faculty-card .faculty-badges { justify-content: center; }
+            .faculty-card .staff-photo { width: 120px; height: 120px; margin-bottom: 0; }
+        }
+
         @media (max-width: 900px) {
             .vertical-slideshow { scroll-snap-type: y proximity; }
             .slide { 
@@ -418,12 +469,12 @@
             
             <div class="staff-grid">
                 <div class="staff-card stem-card">
-                    <div class="staff-photo"></div>
+                    <div class="staff-photo" style="background-image: url('teamphoto/arsalan.jpg'); background-size: cover;  "></div>
                     <h3 class="staff-name">Arsalan Vahidi</h3>
                     <span class="staff-role">Team Lead</span>
                 </div>
                 <div class="staff-card stem-card">
-                    <div class="staff-photo"></div>
+                    <div class="staff-photo" style="background-image: url('teamphoto/boden.jpg'); background-size: cover;  "></div>
                     <h3 class="staff-name">Boden Parent</h3>
                     <span class="staff-role">Team Lead</span>
                 </div>
@@ -460,7 +511,7 @@
             
             <div class="staff-grid">
                 <div class="staff-card stem-card">
-                    <div class="staff-photo"></div>
+                    <div class="staff-photo" style="background-image: url('teamphoto/justin.jpg'); background-size: cover;  "></div>
                     <h3 class="staff-name">Justin Hooey</h3>
                     <span class="staff-role">Team Lead</span>
                 </div>
@@ -507,13 +558,13 @@
                 </div>
 
                 <div class="staff-card ops-card">
-                    <div class="staff-photo"></div>
+                    <div class="staff-photo" style="background-image: url('teamphoto/regan.jpg'); background-size: cover;  "></div>
                     <h3 class="staff-name">Regan Lane</h3>
                     <span class="staff-role">Director of Marketing</span>
                 </div>
 
                 <div class="staff-card ops-card">
-                    <div class="staff-photo"></div>
+                    <div class="staff-photo" style="background-image: url('teamphoto/naomi.jpg'); background-size: cover;  "></div>
                     <h3 class="staff-name">Naomi Cain</h3>
                     <span class="staff-role">Director of Events</span>
                 </div>
@@ -529,13 +580,44 @@
 
             <div class="staff-grid">
                 <div class="staff-card exec-card">
-                    <div class="staff-photo"></div>
+                    <div class="staff-photo" style="background-image: url('teamphoto/ryanheadshot.png'); background-size: cover;  "></div>
                     <h3 class="staff-name">Ryan Haghi</h3>
                     <span class="staff-role">Founder and President</span>
                 </div>
             </div>
         </div>
     </section>
+
+        <section class="slide">
+        <div class="slide-content">
+            <h1>Faculty Advisor</h1>
+            <p class="subtitle">The academic backbone guiding QNET with world-class expertise in engineering and research.</p>
+
+            <div class="staff-grid">
+                <div class="staff-card faculty-card">
+                    <div class="staff-photo" style="background-image: url('teamphoto/francesco.png'); background-size: cover;"></div>
+                    <div class="faculty-info">
+                        <h3 class="staff-name">Francesco Ambrogi, Ph.D.</h3>
+                        <span class="staff-role">Faculty Advisor | Assistant Professor, Mechanical &amp; Materials Engineering</span>
+                        <p class="staff-bio">
+                            Dr. Ambrogi is a world-class fluid dynamicist and one of Queen's most celebrated educators. 
+                            He leads the <strong>FEBUS Lab</strong> at Smith Engineering, where he pushes the boundaries of turbulence simulation 
+                            using large-eddy and direct numerical simulations. His research, published in the
+                             <em>Journal of Fluid Mechanics</em> and <em>AIAA Journal</em>, tackles the physics of unsteady separation, pressure-gradient-driven boundary layers, and biomimetic flow control. A three-time winner of the <strong>Silver Wrench Award</strong> and recipient of EngSoc's <strong>Golden Apple Award</strong>, Dr. Ambrogi is as exceptional in the classroom as he is at the cutting edge of research.
+                        </p>
+                        <div class="faculty-badges">
+                            <span class="badge">Turbulence &amp; CFD</span>
+                            <span class="badge">LES &amp; DNS</span>
+                            <span class="badge">Journal of Fluid Mechanics</span>
+                            <span class="badge">Silver Wrench &times;3</span>
+                            <span class="badge">Golden Apple Award</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
 </main>
 
