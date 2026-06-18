@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QNET | School</title>
+    <link rel="icon" type="image/svg+xml" href="assets/outlinefavicon.svg">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8J80X6N4DV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-8J80X6N4DV');
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body, html {
+            background-color: #050505; 
+            color: #f0f0f0; 
+            overflow: hidden; 
+        }
+
+        /* --- DYNAMIC NOTCH NAVIGATION --- */
+        .notch-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 90px;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 15px;
+            pointer-events: none; /* Let clicks pass through empty areas */
+        }
+
+        /* Invisible hover trigger area */
+        .notch-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 90px;
+            pointer-events: auto; /* Catch mouse events */
+        }
+
+        .notch-container {
+            position: relative;
+            width: 140px;
+            height: 35px;
+            background: #000000;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.1);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: auto; /* Allow clicking inside the notch */
+            overflow: hidden;
+        }
+
+        .notch-indicator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 6px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            transition: opacity 0.3s ease;
+        }
+
+        .notch-links {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 2.5rem;
+            opacity: 0;
+            white-space: nowrap;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .notch-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.3s ease;
+        }
+
+        .notch-links a:hover { color: #fff; }
+
+        /* Notch Expansion Triggered by Wrapper Hover */
+        .notch-wrapper:hover .notch-container {
+            width: 750px;
+            height: 65px;
+            border-radius: 35px;
+            background: rgba(15, 15, 15, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .notch-wrapper:hover .notch-indicator { opacity: 0; }
+
+        .notch-wrapper:hover .notch-links {
+            opacity: 1;
+            pointer-events: auto;
+            transition-delay: 0.15s;
+        }
+
+        /* --- VERTICAL SLIDESHOW (SNAP SCROLL) --- */
+        .vertical-slideshow {
+            height: 100vh;
+            width: 100vw;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+            -ms-overflow-style: none; 
+            scrollbar-width: none; 
+        }
+
+        .vertical-slideshow::-webkit-scrollbar { display: none; }
+
+        .slide {
+            height: 100vh; 
+            width: 100vw;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem; 
+            position: relative;
+        }
+
+        .slide-content-wrapper {
+            max-width: 1400px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- HERO SECTION WITH TWINKLING STARS --- */
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #050505;
+            overflow: hidden;
+            z-index: -2;
+        }
+
+        /* Star Layers */
+        .star-layer {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: transparent;
+        }
+
+        .stars-1 {
+            background-image: 
+                radial-gradient(1.5px 1.5px at 10% 10%, #fff, transparent),
+                radial-gradient(1px 1px at 20% 30%, #fff, transparent),
+                radial-gradient(2px 2px at 40% 70%, #fff, transparent),
+                radial-gradient(1px 1px at 60% 20%, #fff, transparent),
+                radial-gradient(1.5px 1.5px at 80% 80%, #fff, transparent);
+            background-size: 150px 150px;
+            animation: starDrift 100s linear infinite, twinkle 4s ease-in-out infinite alternate;
+        }
+
+        .stars-2 {
+            background-image: 
+                radial-gradient(1px 1px at 15% 85%, #fff, transparent),
+                radial-gradient(2px 2px at 35% 15%, #fff, transparent),
+                radial-gradient(1.5px 1.5px at 55% 55%, #fff, transparent),
+                radial-gradient(1px 1px at 75% 35%, #fff, transparent),
+                radial-gradient(2px 2px at 95% 65%, #fff, transparent);
+            background-size: 200px 200px;
+            animation: starDrift 140s linear infinite reverse, twinkle 5s ease-in-out infinite alternate-reverse;
+        }
+
+        .stars-3 {
+            background-image: 
+                radial-gradient(2px 2px at 5% 5%, #fff, transparent),
+                radial-gradient(1px 1px at 25% 75%, #fff, transparent),
+                radial-gradient(1.5px 1.5px at 50% 25%, #fff, transparent),
+                radial-gradient(1px 1px at 70% 90%, #fff, transparent),
+                radial-gradient(2px 2px at 90% 40%, #fff, transparent);
+            background-size: 300px 300px;
+            animation: starDrift 180s linear infinite, twinkle 6s ease-in-out infinite alternate;
+        }
+
+        .hero-vignette {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, transparent 10%, #050505 80%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes starDrift {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.2; }
+            100% { opacity: 1; }
+        }
+
+        .hero-logo-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .hero-logo {
+            height: 380px; 
+            opacity: 0;
+            transform: scale(0.85) translateY(30px);
+            animation: cinematicReveal 2.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            filter: drop-shadow(0 0 50px rgba(250, 188, 15, 0.2));
+        }
+
+        .hero-subtitle {
+            margin-top: 1rem;
+            font-size: 1.6rem;
+            font-weight: 500;
+            letter-spacing: 0.25em;
+            color: #fabc0f;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+        }
+
+        /* --- DUAL PILLAR SECTION --- */
+        .pillars-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .pillar-text {
+            text-align: left;
+        }
+
+        .pillar-text h2 {
+            font-size: 3rem;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .pillar-text p {
+            font-size: 1.15rem;
+            color: #aaa;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .pillar-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .pillar-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+            transition: transform 0.4s ease, background 0.4s ease;
+        }
+
+        .pillar-card:hover {
+            transform: translateX(-10px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .pillar-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--accent);
+        }
+
+        .pillar-card h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 0.75rem;
+        }
+        
+        .pillar-card p {
+            color: #bbb;
+            line-height: 1.6;
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        /* --- BENTO BOX CURRICULUM --- */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-header h2 {
+            font-size: 3.5rem;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            color: #fff;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 350px; 
+            gap: 1.5rem;
+            width: 100%;
+        }
+
+        .bento-item {
+            background: #151515;
+            border-radius: 24px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            text-align: left;
+            transition: transform 0.4s ease, border-color 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .bento-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .bento-bg-image {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            z-index: 0;
+        }
+
+        .bento-item:hover .bento-bg-image {
+            opacity: 0.5;
+            transform: scale(1.05);
+        }
+
+        .bento-gradient {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 100%);
+            z-index: 1;
+        }
+
+        .bento-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .bento-item h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+        }
+
+        .bento-item p {
+            color: #ccc;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .bento-item ul {
+            color: #ccc;
+            margin-left: 1.2rem;
+            line-height: 1.5;
+            font-size: 0.95rem; 
+        }
+
+        .bento-item li {
+            margin-bottom: 0.35rem;
+        }
+
+        .span-2-col { grid-column: span 2; }
+        .span-2-row { grid-row: span 2; }
+
+        .prize-text {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #fabc0f;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 30px rgba(250, 188, 15, 0.4);
+        }
+
+        /* --- GUEST SPEAKERS --- */
+        .speakers-grid {
+            display: flex;
+            gap: 2.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .speaker-node {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 320px;
+            transition: all 0.4s ease;
+        }
+
+        .speaker-node:hover {
+            background: rgba(255,255,255,0.06);
+            transform: translateY(-10px);
+            border-color: #fabc0f;
+            box-shadow: 0 15px 40px rgba(250, 188, 15, 0.15);
+        }
+
+        .speaker-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            border: 3px solid #002552;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            transition: border-color 0.4s ease;
+        }
+
+        .speaker-node:hover .speaker-avatar {
+            border-color: #fabc0f;
+        }
+
+        .speaker-node h4 { font-size: 1.5rem; color: #fff; margin-bottom: 0.35rem; }
+        
+        .speaker-node span { 
+            color: #fabc0f; 
+            font-weight: 600; 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            letter-spacing: 0.05em; 
+            margin-bottom: 1rem; 
+        }
+        
+        .speaker-node p { color: #888; font-size: 0.95rem; line-height: 1.4; }
+
+        /* --- CERTIFICATIONS & RESOURCES --- */
+        .resources-grid {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .resource-card {
+            background: #151515;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 3rem 2.5rem;
+            text-align: left;
+            flex: 1;
+            transition: transform 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .resource-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(250, 188, 15, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .resource-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: #fabc0f;
+        }
+
+        .resource-card h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .resource-card p {
+            font-size: 1.05rem;
+            color: #bbb;
+            line-height: 1.6;
+        }
+
+        /* --- CTA SECTION --- */
+        .cta-container {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .cta-container h2 {
+            font-size: 4rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .cta-container p {
+            font-size: 1.25rem;
+            color: #aaa;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .btn-large {
+            display: inline-flex; 
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem 3.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #111;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background-color: #fabc0f;
+            border-radius: 50px; 
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(250, 188, 15, 0.3);
+        }
+
+        .btn-large:hover {
+            background-color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Animations */
+        @keyframes cinematicReveal {
+            0% { opacity: 0; transform: scale(0.85) translateY(30px); filter: blur(10px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+        }
+
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 320px; }
+            .span-2-col { grid-column: span 1; }
+            .pillars-section { grid-template-columns: 1fr; gap: 2rem; }
+            .resources-grid { flex-direction: column; }
+        }
+
+        @media (max-width: 768px) {
+            .vertical-slideshow { scroll-snap-type: none; }
+            .slide { 
+                height: auto; 
+                min-height: 100vh; 
+                padding: 100px 1.5rem; 
+                scroll-snap-align: none; 
+            }
+            .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
+            .bento-item { min-height: 320px; }
+            .span-2-row { grid-row: span 1; }
+            .notch-hitbox, .notch-container { display: none; }
+            .hero-logo { height: 180px; }
+            .prize-text { font-size: 3rem; }
+            .cta-container h2 { font-size: 2.8rem; }
+        }
+
+        /* --- FIXED FOOTER & BACK TO TOP --- */
+        .site-footer {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            display: flex;
+            gap: 1.25rem;
+            z-index: 100;
+        }
+
+        .social-link { display: flex; align-items: center; justify-content: center; }
+        .social-icon { width: 20px; height: 20px; fill: #ffffff; transition: all 0.3s ease; }
+        .social-link:nth-child(1):hover .social-icon { fill: #002552; transform: translateY(-3px); } 
+        .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; transform: translateY(-3px); } 
+        .social-link:nth-child(3):hover .social-icon { fill: #b90e32; transform: translateY(-3px); } 
+
+        #back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 50%;
+            color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        #back-to-top svg { width: 24px; height: 24px; }
+        #back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+        #back-to-top:hover { border-color: #fabc0f; color: #fabc0f; transform: translateY(-3px); }
+
+        @media (max-width: 768px) {
+            .site-footer { left: 50%; transform: translateX(-50%); bottom: 1.5rem; }
+            #back-to-top { bottom: 1.5rem; right: 1.5rem; width: 45px; height: 45px; }
+        }
+
+        /* --- MOBILE MENU STYLES --- */
+        .mobile-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            z-index: 102;
+            pointer-events: none;
+        }
+
+        .hamburger-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 6px;
+            pointer-events: auto;
+            padding: 10px;
+        }
+
+        .hamburger-btn .line {
+            width: 26px;
+            height: 2px;
+            background-color: #f0f0f0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger-btn.open .line:nth-child(1) { transform: translateY(4px) rotate(45deg); }
+        .hamburger-btn.open .line:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(15px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 101;
+        }
+
+        .mobile-menu.open { opacity: 1; pointer-events: auto; }
+
+        .mobile-nav-link {
+            color: #a0a0a0;
+            font-size: 1.5rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav-link:hover, .mobile-nav-link:active { color: #ffffff; }
+
+        @media (max-width: 768px) {
+            .hamburger-btn { display: flex; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Dynamic Island Notch Navigation -->
+<div class="notch-wrapper">
+    <nav class="notch-container">
+        <div class="notch-indicator"></div>
+        <div class="notch-links">
+            <a href="/about">About</a>
+            <a href="/teams">Teams</a>
+            <a href="/school" style="color: #fff;">QNET School</a>
+            <a href="/projects">Projects</a>
+            <a href="/sponsors">Sponsors</a>
+            <a href="/join">Join</a>
+        </div>
+    </nav>
+</div>
+
+<!-- Mobile Hamburger -->
+<div class="mobile-header">
+    <button class="hamburger-btn" aria-label="Toggle Mobile Menu">
+        <span class="line"></span>
+        <span class="line"></span>
+    </button>
+</div>
+<div class="mobile-menu">
+    <a href="/about" class="mobile-nav-link">About</a>
+    <a href="/teams" class="mobile-nav-link">Teams</a>
+    <a href="/school" class="mobile-nav-link" style="color: #fff;">QNET School</a>
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+    <a href="/sponsors" class="mobile-nav-link">Sponsors</a>
+    <a href="/join" class="mobile-nav-link">Join</a>
+</div>
+
+<main class="vertical-slideshow">
+
+    <!-- Cinematic Hero -->
+    <section class="slide">
+        <div class="hero-bg">
+            <div class="star-layer stars-1"></div>
+            <div class="star-layer stars-2"></div>
+            <div class="star-layer stars-3"></div>
+            <div class="hero-vignette"></div>
+        </div>
+        <div class="hero-logo-wrapper">
+            <img src="assets/vectorized qnet school white.svg" alt="QNET School Logo" class="hero-logo">
+            <div class="hero-subtitle">Coming September 2026</div>
+        </div>
+    </section>
+
+    <!-- Section 1: The Philosophy -->
+    <section class="slide">
+        <div class="slide-content-wrapper pillars-section">
+            <div class="pillar-text">
+                <h2>Bridging the Gap in Nuclear Education</h2>
+                <p>Developed by our dedicated Research Team, QNET School operates before any physical builds commence, teaching students the fundamentals of nuclear engineering.</p>
+                <p>We believe in decoupling optional general nuclear theory lessons from team-specific software training. This two-pillar approach prevents academic overload while providing a baseline level of knowledge for all members.</p>
+            </div>
+            <div class="pillar-cards">
+                <div class="pillar-card" style="--accent: #fabc0f;">
+                    <h3>General School</h3>
+                    <p>Applicable to all members, featuring fun and highly interactive activities. Members are encouraged, but not required, to attend all sessions. It provides a baseline of knowledge and supports critical industry networking.</p>
+                </div>
+                <div class="pillar-card" style="--accent: #002552;">
+                    <h3>Sub-Team Training</h3>
+                    <p>Focused software and skill training required for executing specific projects. For example, the Mechanical team runs lessons on Fusion 360, while the Software team runs lessons on Python.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Bento Box Curriculum -->
+    <section class="slide">
+        <div class="slide-content-wrapper">
+            <div class="section-header">
+                <h2>The Curriculum</h2>
+            </div>
+            <div class="bento-grid">
+                
+                <!-- Large Card: Capstone -->
+                <div class="bento-item span-2-col span-2-row" style="background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);">
+                    <div class="bento-content" style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                        <div class="prize-text">Up to $500</div>
+                        <h3 style="font-size: 2.2rem; margin-bottom: 1rem;">Capstone Design Contest</h3>
+                        <p style="font-size: 1.15rem; color: #bbb; margin-bottom: 1.5rem;">At the end of their studies, students will join groups of 3-5 to conceptualize and defend a real-world nuclear facility project of their choosing.</p>
+                        <p style="font-size: 1.05rem; color: #aaa;">The groups will present their pitch to a panel of judges for potential incentives and cash prizes. The winning pitch will be featured on our website and pitched to relevant companies.</p>
+                    </div>
+                </div>
+
+                <!-- Card: Radiation -->
+                <div class="bento-item">
+                    <div class="bento-bg-image" style="background-image: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="bento-gradient"></div>
+                    <div class="bento-content">
+                        <h3>Radiation & Detection</h3>
+                        <ul>
+                            <li>Build your own Cloud Chamber.</li>
+                            <li>Demonstrate mapping with Geiger counters.</li>
+                            <li>Nuclear myths trivia night at Clark Hall.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card: Reactor Basics -->
+                <div class="bento-item">
+                    <div class="bento-bg-image" style="background-image: url('https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="bento-gradient"></div>
+                    <div class="bento-content">
+                        <h3>Reactor Basics & Physics</h3>
+                        <ul>
+                            <li>Broad overview of reactor types in Canada.</li>
+                            <li>Neutron physics, critical states, and thermal dynamics.</li>
+                            <li>Introduction to MCNP simulation software.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card: Tours -->
+                <div class="bento-item span-2-col" style="border-color: rgba(250, 188, 15, 0.3);">
+                    <div class="bento-content">
+                        <h3 style="color: #fabc0f;">Experiential Assets</h3>
+                        <p style="margin-bottom: 0.75rem;">QNET School prioritizes high-impact experiential education over traditional lectures. Members will participate in hands-on tours and real-world exposure:</p>
+                        <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                            <li>Tour the SLOWPOKE-2 Reactor.</li>
+                            <li>Tour the Reactor Materials Testing Lab (RMTL).</li>
+                            <li>Port Hope legacy waste trips.</li>
+                            <li>Escape-room style disaster simulators.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Certifications & Resources -->
+    <section class="slide">
+        <div class="slide-content-wrapper">
+            <div class="section-header">
+                <h2>Certifications & Resources</h2>
+                <p style="color: #aaa; max-width: 700px; margin: 1rem auto; font-size: 1.15rem;">We provide a comprehensive bank of resources to ensure members finish QNET School with actual, industry-recognized credentials.</p>
+            </div>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-2.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.01-5-2.01v-4.6l5 2.71 5-2.71v4.6z"/></svg>
+                    </div>
+                    <h3>Coursera & IAEA Modules</h3>
+                    <p>Access to weeks or month-long online courses through Coursera and IAEA Open Learning. Complete modules to earn free certifications with financial aid available for students.</p>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.22.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    </div>
+                    <h3>Direct Educational Value</h3>
+                    <p>Sponsorship funding is strictly directed towards high-impact experiential education. This covers safety, travel, and access fees to various facilities, and sponsors the components for QNET School projects.</p>
+                </div>
+
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                    </div>
+                    <h3>Organized Study Sessions</h3>
+                    <p>We leverage the vast information available through the CNSC website and set up dedicated, organized study sessions for interested members to collaborate and complete their modules together.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Guest Speakers -->
+    <section class="slide">
+        <div class="slide-content-wrapper">
+            <div class="section-header">
+                <h2>Guest Speakers</h2>
+                <p style="color: #aaa; max-width: 600px; margin: 1rem auto; font-size: 1.1rem;">Facilitating hosting logistics to bring in active nuclear professionals and Queen's Alumni from the CNSC, OPG, and CNL.</p>
+            </div>
+            
+            <div class="speakers-grid">
+                <div class="speaker-node">
+                    <div class="speaker-avatar" style="background-image: url('teamphoto/john.jpg');"></div>
+                    <h4>John Thelen</h4>
+                    <span>Acting WDD Director</span>
+                    <p>CNSC | Queen's Alum</p>
+                </div>
+                <div class="speaker-node">
+                    <div class="speaker-avatar" style="background-image: url('teamphoto/pavel.jpg');"></div>
+                    <h4>Pavel Samuleev</h4>
+                    <span>SLOWPOKE-2 Director</span>
+                    <p>RMC / RCMP</p>
+                </div>
+                <div class="speaker-node">
+                    <div class="speaker-avatar" style="background-image: url('teamphoto/dean.jpg');"></div>
+                    <h4>Dean Haslip</h4>
+                    <span>VP & CSO</span>
+                    <p>CNSC | Queen's Alum</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: CTA -->
+    <section class="slide" style="background-color: #000;">
+        <div class="slide-content-wrapper cta-container">
+            <h2>Ready to shape the future of nuclear?</h2>
+            <p>Join QNET School and build the foundation you need to excel in the nuclear engineering industry. Whether you're interested in policy, software, or advanced materials—there is a place for you here.</p>
+            <a href="/join" class="btn-large">Join Now</a>
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <a href="https://www.linkedin.com/company/queensnuclear/" target="_blank" class="social-link" onclick="gtag('event', 'button_click', {'button_name': 'Social - LinkedIn'});">
+        <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/queensnuclear/" target="_blank" class="social-link" onclick="gtag('event', 'button_click', {'button_name': 'Social - Instagram'});">
+        <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+    <a href="https://github.com/qnuclear" target="_blank" class="social-link" onclick="gtag('event', 'button_click', {'button_name': 'Social - GitHub'});">
+        <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.011-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+</footer>
+
+<button id="back-to-top" aria-label="Back to Top" onclick="gtag('event', 'button_click', {'button_name': 'Back to Top'});">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+</button>
+
+<script>
+    // Custom Cursor
+    try {
+        const queensColors = ['#002552', '#fabc0f', '#b90e32'];
+        const randomColor = queensColors[Math.floor(Math.random() * queensColors.length)];
+        const svg1 = '<svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5" fill="' + randomColor + '"/></svg>';
+        const svg2 = '<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" fill="' + randomColor + '" opacity="0.4"/><circle cx="8" cy="8" r="4" fill="' + randomColor + '"/></svg>';
+        
+        const cursorStyle = document.createElement('style');
+        cursorStyle.innerHTML = `
+            * { cursor: url('data:image/svg+xml;base64,${btoa(svg1)}') 6 6, auto !important; }
+            a, button, .notch-hitbox, .notch-container, .btn-large { cursor: url('data:image/svg+xml;base64,${btoa(svg2)}') 8 8, pointer !important; }
+        `;
+        document.head.appendChild(cursorStyle);
+    } catch (e) {
+        console.error("Custom cursor failed to load.", e);
+    }
+
+    // Scroll-to-Top Button
+    const slideshowContainer = document.querySelector('.vertical-slideshow');
+    const backToTopBtn = document.getElementById('back-to-top');
+
+    slideshowContainer.addEventListener('scroll', () => {
+        if (slideshowContainer.scrollTop > window.innerHeight * 0.5) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+        slideshowContainer.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Mobile Hamburger
+    const hamburgerBtn = document.querySelector('.hamburger-btn');
+    const mobileMenu = document.querySelector('.mobile-menu');
+
+    hamburgerBtn.addEventListener('click', (evt) => {
+        evt.preventDefault();
+        hamburgerBtn.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+    });
+
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburgerBtn.classList.remove('open');
+            mobileMenu.classList.remove('open');
+        });
+    });
+</script>
+</body>
+</html>

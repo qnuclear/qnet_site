@@ -101,7 +101,6 @@
             overflow-y: scroll; 
             overflow-x: hidden;
             
-            /* Native CSS Snapping */
             scroll-snap-type: y mandatory; 
             scroll-behavior: smooth;
             position: relative;
@@ -226,53 +225,83 @@
             align-items: stretch;
             justify-content: center;
             width: 100%;
-            max-width: 1100px;
+            max-width: 1300px;
+            height: 75vh; 
             gap: 3rem;
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.02);
             padding: 2.5rem;
             border-radius: 20px;
             border: 1px solid #333;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
         }
 
-        /* Left Side: Image & Static Info */
+        /* Left Side: Static Info */
         .project-static {
-            flex: 1;
+            flex: 1.2;
             text-align: left;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
+            overflow-y: auto; 
+            padding-right: 1.5rem;
         }
 
-        .project-static img {
-            width: 100%;
-            max-width: 350px;
-            border-radius: 10px;
-            border: 1px solid #444;
-            display: block;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
+        .project-static::-webkit-scrollbar { width: 6px; }
+        .project-static::-webkit-scrollbar-thumb { background: #444; border-radius: 3px; }
 
         .project-static h3 {
-            font-size: 1.6rem;
+            font-size: 2rem;
             color: #ffffff;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
             font-weight: 500;
         }
 
         .project-static p {
-            font-size: 1rem;
+            font-size: 1.05rem;
             color: #aaa;
             margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+        /* Inline Member Linking Styles */
+        .inline-member-link {
+            color: #ffffff;
+            text-decoration: none;
+            position: relative;
+            transition: color 0.2s ease;
+            cursor: pointer;
+            border-bottom: 1px dotted rgba(255,255,255,0.5);
+        }
+
+        .inline-member-link:hover {
+            color: #fabc0f;
+            border-bottom-color: #fabc0f;
+        }
+
+        .project-specs {
+            font-size: 0.95rem;
+            color: #bbb;
             line-height: 1.5;
+            margin-top: 1rem;
+        }
+        .project-specs ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .project-specs li {
+            margin-bottom: 0.25rem;
+        }
+        .project-specs strong {
+            color: #fff;
         }
 
         /* Right Side: Interactive Teams */
         .project-interactive {
-            flex: 1.2;
+            flex: 1.6;
             display: flex;
             gap: 2rem;
-            align-items: center;
+            align-items: stretch;
         }
 
         .vertical-nodes {
@@ -281,13 +310,14 @@
             flex-direction: column;
             gap: 1.5rem;
             padding: 1rem 0;
+            justify-content: center;
         }
 
         .node-line {
             position: absolute;
-            top: 15px;
-            bottom: 15px;
-            left: 17px; /* Centers the 4px line behind the 38px nodes */
+            top: 30px;
+            bottom: 30px;
+            left: 17px; 
             width: 4px;
             background: #444;
             z-index: 1;
@@ -316,9 +346,10 @@
             width: 38px;
             height: 38px;
             border-radius: 50%;
-            border: 6px solid #1a1a1a; /* Matches background to create gap effect */
-            box-shadow: 0 0 0 3px #555; /* The outer grey ring */
+            border: 6px solid #1a1a1a; 
+            box-shadow: 0 0 0 3px #555; 
             transition: all 0.3s ease;
+            flex-shrink: 0;
         }
 
         .team-node-btn.active .node-circle {
@@ -334,78 +365,137 @@
             letter-spacing: 0.05em;
         }
 
-        /* The Changing Text Box */
+        /* The Changing Text Box & Member Photos */
         .team-details {
             flex: 1;
-            background: #1e1e1e;
-            padding: 2rem;
+            background: #191919;
+            padding: 2.5rem;
             border-radius: 12px;
             border-left: 5px solid var(--theme-color, #002552);
             transition: all 0.3s ease;
             text-align: left;
+            overflow-y: auto; 
+            position: relative;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+        .team-details::-webkit-scrollbar { width: 6px; }
+        .team-details::-webkit-scrollbar-thumb { background: #444; border-radius: 3px; }
+
+        .team-header-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #777;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .team-details h4 {
-            font-size: 1.4rem;
+            font-size: 1.8rem;
             color: var(--theme-color, #002552);
-            margin-bottom: 0.75rem;
+            margin-bottom: 1.5rem;
             font-weight: 600;
+        }
+
+        /* Member Avatars inside Content Box */
+        .team-members-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .member-avatar {
+            position: relative;
+            width: 55px; 
+            height: 55px;
+            border-radius: 50%;
+            background-size: cover; 
+            background-position: center;
+            border: 2px solid var(--theme-color, #002552);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            display: block;
+        }
+
+        .member-avatar:hover {
+            transform: scale(1.1);
         }
 
         .team-details p {
             font-size: 1.05rem;
-            color: #ccc;
+            color: #ddd;
             margin-bottom: 0;
+            line-height: 1.6;
         }
 
-        .project-note p {
-            font-size: 0.75rem; 
-            color: #888;       /* Dimmed white/grey */
-            margin-top: -.25rem; 
-            margin-bottom: 1rem;
-            font-style: italic;
-            line-height: 1.2;
+        /* --- GLOBAL FIXED TOOLTIP --- */
+        #global-tooltip {
+            position: fixed;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            padding: 1rem;
+            border-radius: 8px;
+            width: 250px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none; /* Prevents hovering directly on the tooltip */
+            transition: opacity 0.2s ease;
+            z-index: 9999;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        #global-tooltip.visible {
+            opacity: 1;
+        }
+
+        .tooltip-header {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .tooltip-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            border: 2px solid;
+            flex-shrink: 0;
+        }
+
+        .tooltip-info strong {
+            color: #fff;
+            font-size: 1.05rem;
+            display: block;
+            margin-bottom: 0.1rem;
+        }
+
+        .tooltip-info em {
+            font-style: normal;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: block;
+        }
+
+        .tooltip-bio {
+            color: #ccc;
+            font-size: 0.85rem;
+            line-height: 1.4;
         }
 
         /* Responsive Fixes */
         @media (max-width: 768px) {
-            .slide h1 { margin-top: 100px; font-size: 2.8rem; }
-            p { font-size: 1.1rem; margin-bottom: 2rem; }
-            
-            .project-showcase {
-                flex-direction: column;
-                padding: 1.5rem;
-                gap: 2rem;
-            }
-            .project-static img { margin: 0 auto 1.5rem auto; max-width: 100%; }
-            .project-static { text-align: center; }
-            
-            .project-interactive {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-            .vertical-nodes {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
-            }
-            .node-line {
-                top: 17px; left: 15px; right: 15px; bottom: auto;
-                height: 4px; width: auto;
-            }
-            .team-node-btn { flex-direction: column; gap: 0.5rem; }
-            .team-label { font-size: 0.8rem; }
-        }
-        /* Responsive Fixes */
-/* Responsive Fixes */
-        @media (max-width: 768px) {
-            /* 1. Turn off the aggressive scroll snapping on mobile */
-            .slideshow-container {
-                scroll-snap-type: none; 
-            }
-
-            /* 2. Allow the slide to grow and remove snap points */
+            .slideshow-container { scroll-snap-type: none; }
             .slide { 
                 scroll-snap-align: none; 
                 flex: 0 0 auto; 
@@ -415,24 +505,25 @@
                 padding-bottom: 120px; 
                 justify-content: flex-start; 
             }
-
             .slide h1 { margin-top: 20px; font-size: 2.8rem; }
             .slide h2 { font-size: 2rem; margin-bottom: 1rem; margin-top: 20px;}
             p { font-size: 1rem; margin-bottom: 1.5rem; }
             
             .project-showcase {
                 flex-direction: column;
-                padding: 1.25rem;
-                gap: 1.25rem;
+                padding: 1.5rem;
+                gap: 2rem;
+                height: auto;
+                max-height: none;
             }
             
-            .project-static img { margin: 0 auto 1rem auto; max-width: 200px; }
-            .project-static { text-align: center; }
-            .project-static h3 { font-size: 1.4rem; }
+            .project-static { padding-right: 0; text-align: center; overflow-y: visible; }
+            .project-static h3 { font-size: 1.8rem; }
+            .project-specs { text-align: left; }
             
             .project-interactive {
                 flex-direction: column;
-                gap: 1.25rem;
+                gap: 1.5rem;
             }
             .vertical-nodes {
                 flex-direction: row;
@@ -441,17 +532,12 @@
                 gap: 0.75rem;
                 padding: 0;
             }
-            .node-line {
-                display: none; 
-            }
+            .node-line { display: none; }
             .team-node-btn { flex-direction: column; gap: 0.25rem; }
             .team-label { font-size: 0.75rem; }
             
-            .team-details {
-                padding: 1.25rem;
-            }
-            .team-details h4 { font-size: 1.2rem; }
-            .team-details p { font-size: 0.95rem; }
+            .team-details { padding: 1.5rem; overflow-y: visible; }
+            .team-details h4 { font-size: 1.3rem; }
         }
 
         /* FIXED BOTTOM LEFT FOOTER */
@@ -468,7 +554,8 @@
         @media (max-width: 768px) {
             .fixed-footer { left: 50%; transform: translateX(-50%); bottom: 1.5rem; }
         }
-                        /* --- MOBILE MENU STYLES --- */
+
+        /* --- MOBILE MENU STYLES --- */
         .hamburger-btn {
             display: none;
             background: none;
@@ -477,7 +564,7 @@
             flex-direction: column;
             gap: 6px;
             pointer-events: auto;
-            z-index: 102; /* Stays above the mobile menu */
+            z-index: 102; 
             padding: 10px;
         }
 
@@ -489,13 +576,8 @@
             border-radius: 2px;
         }
 
-        /* Transforms the two lines into an X when open */
-        .hamburger-btn.open .line:nth-child(1) {
-            transform: translateY(4px) rotate(45deg);
-        }
-        .hamburger-btn.open .line:nth-child(2) {
-            transform: translateY(-4px) rotate(-45deg);
-        }
+        .hamburger-btn.open .line:nth-child(1) { transform: translateY(4px) rotate(45deg); }
+        .hamburger-btn.open .line:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
 
         .mobile-menu {
             position: fixed;
@@ -503,7 +585,7 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background-color: rgba(26, 26, 26, 0.95); /* Matches your dark theme */
+            background-color: rgba(26, 26, 26, 0.95); 
             backdrop-filter: blur(15px);
             display: flex;
             flex-direction: column;
@@ -535,36 +617,25 @@
             color: #ffffff;
         }
 
-        /* Mobile Breakpoint Overrides */
         @media (max-width: 768px) {
-            .site-header { 
-                padding: 1.5rem; 
-                justify-content: center; /* Centers the logo */
-            }
-            .desktop-only { 
-                display: none !important; /* Hides desktop links */
-            }
-            .hamburger-btn { 
-                display: flex; 
-                position: absolute; 
-                right: 1.5rem; /* Puts the menu exactly in the corner */
-            }
-            .logo-container {
-                position: relative;
-                z-index: 102; /* Keeps logo above the overlay menu */
-            }
-            .logo-img { 
-                height: 55px; 
-            }
-}
+            .site-header { padding: 1.5rem; justify-content: center; }
+            .desktop-only { display: none !important; }
+            .hamburger-btn { display: flex; position: absolute; right: 1.5rem; }
+            .logo-container { position: relative; z-index: 102; }
+            .logo-img { height: 55px; }
+        }
     </style>
 </head>
 <body>
+
+<!-- Global Tooltip Container -->
+<div id="global-tooltip"></div>
 
 <header class="site-header">
     <div class="header-side left desktop-only">
         <a href="/about" class="nav-link">About</a>
         <a href="/teams" class="nav-link">Teams</a>
+        <a href="/school" class="nav-link">QNET School</a>
     </div>
     
     <div class="logo-container">
@@ -575,6 +646,7 @@
 
     <div class="header-side right desktop-only">
         <a href="/projects" class="nav-link">Projects</a>
+        <a href="/sponsors" class="nav-link">Sponsors</a>
         <a href="/join" class="nav-link">Join</a>
     </div>
 
@@ -587,7 +659,9 @@
 <div class="mobile-menu">
     <a href="/about" class="mobile-nav-link">About</a>
     <a href="/teams" class="mobile-nav-link">Teams</a>
+    <a href="/school" class="mobile-nav-link">QNET School</a>
     <a href="/projects" class="mobile-nav-link">Projects</a>
+    <a href="/sponsors" class="mobile-nav-link">Sponsors</a>
     <a href="/join" class="mobile-nav-link">Join</a>
 </div>
 
@@ -595,8 +669,8 @@
     
     <section class="slide slide-1">
         <h1>Projects</h1>
-        <p>As we are currently in the <a href="/about" class="highlight-link">Foundation Phase</a>, there is no set project yet. We are hiring executives to help conceptualize and architect our first major build this summer, with physical assembly starting in September.</p>
-        <a href="/join" class="btn">Join the Exec Team to shape QNET's first project</a>
+        <p>Our executives are currently preparing the framework of three (3) different projects, including comprehensive feasibility reports, technical risk assessments and the establishment of strict milestones and checkpoints for their respective teams. We believe general member contribution is crucial, and will let general members vote on which project out of the three will be QNET's build for the 2026-2027 school year.</p>
+        <a href="/join" class="btn">Join the team to vote on QNET's first project</a>
         
         <div id="next-slide-btn" class="down-indicator">
             What to expect <span>↓</span>
@@ -605,8 +679,8 @@
 
     <section class="slide slide-2">
         <h2>Project Philosophy</h2>
-        <p>Before a build is approved, every QNET project must satisfy three core pillars to ensure it meets our standard.</p>
-        <div style="text-align: left; max-width: 650px; margin: 0 auto;">
+        <p>Before introducing the projects we are actively developing, we've created a Project Charter that all potential QNET projects must follow.</p>
+        <div style="text-align: left; max-width: 750px; margin: 0 auto;">
             <p><strong>1. Teaches nuclear engineering concepts:</strong> Providing members with tangible, hands-on experience with nuclear physics.</p>
             <p><strong>2. Involves multiple disciplines:</strong> Nuclear engineering is a vastly interdisciplinary field, therefore our projects must reflect that.</p>
             <p><strong>3. Achievable within timeline and resources:</strong> Scoped appropriately to be completed safely and effectively by a student team.</p>
@@ -614,93 +688,164 @@
     </section>
 
     <section class="slide slide-3">
-        <h2>Example Project 1</h2>
         <div class="project-showcase">
             <div class="project-static">
-                <img src="assets/geiger.png" alt="QNET Geiger Counter Prototype">
-                <div class="project-note">
-                    <p>Note: The image is generated with Nano Banana 2 for visualization purposes.</p>
+                <h3>Project A: Remotely Operated Rover</h3>
+                <p>Developed and idealized with Software Team Leads <a href="/teams#GabrielBrannon" class="inline-member-link has-tooltip" data-name="Gabriel Brannon" data-role="Team Lead" data-bio="Co-conceptualized the Remotely Operated Rover. Oversees the code stack." data-img="teamphoto/Gabe.png" data-color="#b90e32"><strong>Gabriel Brannon</strong></a> and <a href="/teams#TejasMarwaha" class="inline-member-link has-tooltip" data-name="Tejas Marwaha" data-role="Team Lead" data-bio="Co-conceptualized the Remotely Operated Rover. Oversees device communication." data-img="teamphoto/TJ.JPG" data-color="#b90e32"><strong>Tejas Marwaha</strong></a>, the remotely operated rover serves as a remote-control handling platform explicitly designed to replace human intervention during hazardous nuclear operations.</p>
+                <div class="project-specs">
+                    <strong>Objective:</strong> To design, model, and assemble a highly functional mobile chassis carrying a multi-jointed robotic arm capable of traversing a restricted zone, retrieving localized material, and securing it into storage.<br><br>
+                    <strong>Technical Specifications:</strong>
+                    <ul>
+                        <li>Must feature a 360-degree horizontal rotation shoulder base with vertical and horizontal elbow and wrist tracking joints.</li>
+                        <li>Must stably lift and transport targeted objects weighing between 0.25 to 1.0 kg without failure.</li>
+                        <li>Must be fully operated from a safe distance using a remote controller or dedicated web application.</li>
+                    </ul>
+                    <br>
+                    <strong>By developing this project, students actively:</strong>
+                    <ul>
+                        <li>Gain an understanding of how reactor control rods are handled, inspected and moved within automated reactor systems.</li>
+                        <li>Learn the safe transportation and storage constraints required to move nuclear fuel components.</li>
+                        <li>Develop a clear understanding of radiation detection.</li>
+                    </ul>
                 </div>
-                <h3>Geiger Counter Prototype</h3>
-                <p>A compact, portable radiation detection system designed for real-time environmental monitoring.</p>
             </div>
             <div class="project-interactive">
                 <div class="vertical-nodes">
                     <div class="node-line"></div>
-                    <button class="team-node-btn active" data-project="geiger" data-team="mech" data-color="#002552">
+                    <button class="team-node-btn active" data-project="rover" data-team="mech" data-color="#002552">
                         <div class="node-circle" style="background-color: #002552;"></div>
                         <span class="team-label">Mech</span>
                     </button>
-                    <button class="team-node-btn" data-project="geiger" data-team="elec" data-color="#fabc0f">
+                    <button class="team-node-btn" data-project="rover" data-team="elec" data-color="#fabc0f">
                         <div class="node-circle" style="background-color: #fabc0f;"></div>
                         <span class="team-label">Elec</span>
                     </button>
-                    <button class="team-node-btn" data-project="geiger" data-team="comp" data-color="#b90e32">
+                    <button class="team-node-btn" data-project="rover" data-team="software" data-color="#b90e32">
                         <div class="node-circle" style="background-color: #b90e32;"></div>
-                        <span class="team-label">Comp</span>
+                        <span class="team-label">Software</span>
                     </button>
-                    <button class="team-node-btn" data-project="geiger" data-team="research" data-color="#ffffff">
+                    <button class="team-node-btn" data-project="rover" data-team="research" data-color="#ffffff">
                         <div class="node-circle" style="background-color: #ffffff;"></div>
                         <span class="team-label">Research</span>
                     </button>
+                    <button class="team-node-btn" data-project="rover" data-team="materials" data-color="#32a852">
+                        <div class="node-circle" style="background-color: #32a852;"></div>
+                        <span class="team-label">Materials</span>
+                    </button>
                 </div>
-                <div class="team-details" id="details-geiger" style="--theme-color: #002552;">
-                    <h4 id="title-geiger">Mechanical</h4>
-                    <p id="desc-geiger">Designing the ergonomic chassis and lead-shielding components using advanced CAD modeling and stress simulation.</p>
+                <div class="team-details" id="details-rover" style="--theme-color: #002552;">
+                    <div class="team-header-label">
+                        <span>Team Tasks & Learning Outcomes</span>
+                    </div>
+                    <h4 id="title-rover">Mechanical</h4>
+                    <div id="members-rover" class="team-members-container">
+                        <!-- Default loaded members for Mech -->
+                        <a href="/teams#TochukwuOdiwa" class="member-avatar has-tooltip" style="background-image: url('teamphoto/Tochi.jpeg'); border-color: #002552;" data-name="Tochukwu Odiwa" data-role="Team Lead" data-bio="Co-conceptualized the Gamma Ray Imaging project. Oversees physical architecture." data-img="teamphoto/Tochi.jpeg" data-color="#002552"></a>
+                        <a href="/teams#AidanWoods" class="member-avatar has-tooltip" style="background-image: url('teamphoto/Aidan.png'); border-color: #002552;" data-name="Aidan Woods" data-role="Team Lead" data-bio="Co-conceptualized the SMR Cooling System project. Oversees hardware housing." data-img="teamphoto/Aidan.png" data-color="#002552"></a>
+                    </div>
+                    <div id="desc-rover">
+                        <ul style="margin-left: 1.2rem; line-height: 1.5;">
+                            <li>Develop advanced proficiency in CAD and additive 3D printing.</li>
+                            <li>Learn how to run computation stress, strain and load-distribution simulations.</li>
+                            <li>Gain practical experience in structural tolerance design, mechanical joint design, and end-effector gripper mechanics.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="slide slide-4">
-        <h2>Example Project 2</h2>
         <div class="project-showcase">
             <div class="project-static">
-                <img src="assets/cc.png" alt="QNET Cloud Chamber Prototype">
-                <div class="project-note">
-                    <p>Note: The image is generated with Nano Banana 2 for visualization purposes.</p>
+                <h3>Project B: SMR Cooling System</h3>
+                <p>Developed and idealized by <a href="/teams#AidanWoods" class="inline-member-link has-tooltip" data-name="Aidan Woods" data-role="Team Lead" data-bio="Co-conceptualized the SMR Cooling System project. Oversees hardware housing." data-img="teamphoto/Aidan.png" data-color="#002552"><strong>Aidan Woods</strong></a> and <a href="/teams#JustinHooey" class="inline-member-link has-tooltip" data-name="Justin Hooey" data-role="Team Lead" data-bio="Co-conceptualized the SMR Cooling System project. Establishes the scientific framework." data-img="teamphoto/justin.jpg" data-color="#ffffff"><strong>Justin Hooey</strong></a>, this is designed to simulate a real-world SMR cooling system, equipped with a Cooling Tower.</p>
+                <div class="project-specs">
+                    <strong>Objective:</strong> To design, model, and assemble a highly functional cooling system modeled after Small Modular Reactor (SMR) cycles to evaluate heat rejection and to test the cooling system's effectiveness in simulated disasters.<br><br>
+                    <strong>Technical Specifications:</strong>
+                    <ul>
+                        <li>Must feature four main focus systems: a mock reactor core that generates heat, a primary convection cycle, a secondary steam cycle, and integrated control systems.</li>
+                        <li>Must operate with working fluid temperatures of 90-120 degree Celsius.</li>
+                        <li>Working fluid will be non-toxic and non-flammable.</li>
+                        <li>Loop must possess proper calculations for pressure vessel limits and safety thresholds to manage potential vacuum or over-pressure safety hazards.</li>
+                    </ul>
+                    <br>
+                    <strong>By developing this project, students actively:</strong>
+                    <ul>
+                        <li>Develop an understanding of real-world reactor operations.</li>
+                        <li>Gain an understanding of power generation cycles.</li>
+                        <li>Learn real-world reactor operational anomalies and power-less accident scenarios.</li>
+                    </ul>
                 </div>
-                <h3>Cloud Chamber</h3>
-                <p>A continuously active Peltier-cooled cloud chamber that makes background ionizing radiation visible to the naked eye.</p>
             </div>
             <div class="project-interactive">
                 <div class="vertical-nodes">
                     <div class="node-line"></div>
-                    <button class="team-node-btn active" data-project="cloud" data-team="mech" data-color="#002552">
+                    <button class="team-node-btn active" data-project="smr" data-team="mech" data-color="#002552">
                         <div class="node-circle" style="background-color: #002552;"></div>
                         <span class="team-label">Mech</span>
                     </button>
-                    <button class="team-node-btn" data-project="cloud" data-team="elec" data-color="#fabc0f">
+                    <button class="team-node-btn" data-project="smr" data-team="elec" data-color="#fabc0f">
                         <div class="node-circle" style="background-color: #fabc0f;"></div>
                         <span class="team-label">Elec</span>
                     </button>
-                    <button class="team-node-btn" data-project="cloud" data-team="comp" data-color="#b90e32">
+                    <button class="team-node-btn" data-project="smr" data-team="software" data-color="#b90e32">
                         <div class="node-circle" style="background-color: #b90e32;"></div>
-                        <span class="team-label">Comp</span>
+                        <span class="team-label">Software</span>
                     </button>
-                    <button class="team-node-btn" data-project="cloud" data-team="research" data-color="#ffffff">
+                    <button class="team-node-btn" data-project="smr" data-team="research" data-color="#ffffff">
                         <div class="node-circle" style="background-color: #ffffff;"></div>
                         <span class="team-label">Research</span>
                     </button>
+                    <button class="team-node-btn" data-project="smr" data-team="materials" data-color="#32a852">
+                        <div class="node-circle" style="background-color: #32a852;"></div>
+                        <span class="team-label">Materials</span>
+                    </button>
                 </div>
-                <div class="team-details" id="details-cloud" style="--theme-color: #002552;">
-                    <h4 id="title-cloud">Mechanical</h4>
-                    <p id="desc-cloud">Precision casing, thermal insulation, and fluid housing to ensure an optimal viewing window for the chamber.</p>
+                <div class="team-details" id="details-smr" style="--theme-color: #002552;">
+                    <div class="team-header-label">
+                        <span>Team Tasks & Learning Outcomes</span>
+                    </div>
+                    <h4 id="title-smr">Mechanical</h4>
+                    <div id="members-smr" class="team-members-container">
+                        <!-- Default loaded members for Mech -->
+                        <a href="/teams#TochukwuOdiwa" class="member-avatar has-tooltip" style="background-image: url('teamphoto/Tochi.jpeg'); border-color: #002552;" data-name="Tochukwu Odiwa" data-role="Team Lead" data-bio="Co-conceptualized the Gamma Ray Imaging project. Oversees physical architecture." data-img="teamphoto/Tochi.jpeg" data-color="#002552"></a>
+                        <a href="/teams#AidanWoods" class="member-avatar has-tooltip" style="background-image: url('teamphoto/Aidan.png'); border-color: #002552;" data-name="Aidan Woods" data-role="Team Lead" data-bio="Co-conceptualized the SMR Cooling System project. Oversees hardware housing." data-img="teamphoto/Aidan.png" data-color="#002552"></a>
+                    </div>
+                    <div id="desc-smr">
+                        <ul style="margin-left: 1.2rem; line-height: 1.5;">
+                            <li>Develop advanced proficiency in CAD, parametric assemblies, and technical drawings.</li>
+                            <li>Learn how to calculate safety thresholds, pressure vessel limits, and structural geometries for high-temperature piping systems.</li>
+                            <li>Gain practical experience in scaling multi-loop fluid convection geometries using lightweight rapid-prototyping materials.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="slide slide-5">
-        <h2>Example Project 3</h2>
         <div class="project-showcase">
             <div class="project-static">
-                <img src="assets/gamma.png" alt="QNET Gamma Spectrometer Prototype">
-                <div class="project-note">
-                    <p>Note: The image is generated with Nano Banana 2 for visualization purposes.</p>
+                <h3>Project C: Gamma Ray Imaging</h3>
+                <p>Developed and idealized by <a href="/teams#TochukwuOdiwa" class="inline-member-link has-tooltip" data-name="Tochukwu Odiwa" data-role="Team Lead" data-bio="Co-conceptualized the Gamma Ray Imaging project. Oversees physical architecture." data-img="teamphoto/Tochi.jpeg" data-color="#002552"><strong>Tochukwu Odiwa</strong></a> and <a href="/teams#ArsalanVahidi" class="inline-member-link has-tooltip" data-name="Arsalan Vahidi" data-role="Team Lead" data-bio="Co-conceptualized the Gamma Ray Imaging project. Oversees circuitry development." data-img="teamphoto/arsalan.jpg" data-color="#fabc0f"><strong>Arsalan Vahidi</strong></a>, this aims to build a scaled down, low-cost medical imaging prototype based on the mechanisms of a PET scan.</p>
+                <div class="project-specs">
+                    <strong>Objective:</strong> To design, model, and assemble a Gamma Ray Imaging system that is able to pinpoint the exact location where radiation originated from in 3D space.<br><br>
+                    <strong>Technical Specifications:</strong>
+                    <ul>
+                        <li>Utilizes two identical detector sets with a crystal array made out of BGO to convert incoming invisible gamma rays from a decaying thoriated tungsten rod to a faint spark of light, and semiconductors to convert the light into an electrical pulse.</li>
+                        <li>The system must be enclosed in a box to prevent light leaking in.</li>
+                        <li>The system must precisely map out the coordinates of the detectors to calculate and draw intersecting vectors (lines of response) between the two sets, generating a reconstructed 3D image of the object.</li>
+                    </ul>
+                    <br>
+                    <strong>By developing this project, students actively:</strong>
+                    <ul>
+                        <li>Gain an understanding of the physics behind positron decay (how an unstable isotope sheds a proton emitting a positron, and how the collision converts mass into EM energy).</li>
+                        <li>Learn how the nuclear industry is able to map radiation outside of basic Geiger counter.</li>
+                        <li>Study quantum mechanisms such as the photoelectric effect and Compton scattering.</li>
+                        <li>By using thoriated tungsten welding rods, students will gain experience with natural decay chains and basic radiation safety.</li>
+                    </ul>
                 </div>
-                <h3>Gamma Spectrometer</h3>
-                <p>A scintillation detector setup utilizing a photomultiplier tube to identify specific radioactive isotopes.</p>
             </div>
             <div class="project-interactive">
                 <div class="vertical-nodes">
@@ -713,18 +858,36 @@
                         <div class="node-circle" style="background-color: #fabc0f;"></div>
                         <span class="team-label">Elec</span>
                     </button>
-                    <button class="team-node-btn" data-project="gamma" data-team="comp" data-color="#b90e32">
+                    <button class="team-node-btn" data-project="gamma" data-team="software" data-color="#b90e32">
                         <div class="node-circle" style="background-color: #b90e32;"></div>
-                        <span class="team-label">Comp</span>
+                        <span class="team-label">Software</span>
                     </button>
                     <button class="team-node-btn" data-project="gamma" data-team="research" data-color="#ffffff">
                         <div class="node-circle" style="background-color: #ffffff;"></div>
                         <span class="team-label">Research</span>
                     </button>
+                    <button class="team-node-btn" data-project="gamma" data-team="materials" data-color="#32a852">
+                        <div class="node-circle" style="background-color: #32a852;"></div>
+                        <span class="team-label">Materials</span>
+                    </button>
                 </div>
                 <div class="team-details" id="details-gamma" style="--theme-color: #002552;">
+                    <div class="team-header-label">
+                        <span>Team Tasks & Learning Outcomes</span>
+                    </div>
                     <h4 id="title-gamma">Mechanical</h4>
-                    <p id="desc-gamma">Engineering a completely light-tight enclosure for the sensitive photomultiplier tube and structural mounts for lead shielding.</p>
+                    <div id="members-gamma" class="team-members-container">
+                        <!-- Default loaded members for Mech -->
+                        <a href="/teams#TochukwuOdiwa" class="member-avatar has-tooltip" style="background-image: url('teamphoto/Tochi.jpeg'); border-color: #002552;" data-name="Tochukwu Odiwa" data-role="Team Lead" data-bio="Co-conceptualized the Gamma Ray Imaging project. Oversees physical architecture." data-img="teamphoto/Tochi.jpeg" data-color="#002552"></a>
+                        <a href="/teams#AidanWoods" class="member-avatar has-tooltip" style="background-image: url('teamphoto/Aidan.png'); border-color: #002552;" data-name="Aidan Woods" data-role="Team Lead" data-bio="Co-conceptualized the SMR Cooling System project. Oversees hardware housing." data-img="teamphoto/Aidan.png" data-color="#002552"></a>
+                    </div>
+                    <div id="desc-gamma">
+                        <ul style="margin-left: 1.2rem; line-height: 1.5;">
+                            <li>Develop advanced proficiency in CAD in developing a light-tight enclosure.</li>
+                            <li>Learn how to run computation stress, strain and load-distribution simulations.</li>
+                            <li>Gain practical experience in structural tolerance design and mechanical joint design.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -752,7 +915,7 @@
         const cursorStyle = document.createElement('style');
         cursorStyle.innerHTML = `
             * { cursor: url('data:image/svg+xml;utf8,<svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5" fill="${randomColor}"/></svg>') 6 6, auto; }
-            a, button, .btn, .logo-link, .down-indicator { cursor: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" fill="${randomColor}" opacity="0.4"/><circle cx="8" cy="8" r="4" fill="${randomColor}"/></svg>') 8 8, pointer !important; }
+            a, button, .btn, .logo-link, .down-indicator, .inline-member-link { cursor: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" fill="${randomColor}" opacity="0.4"/><circle cx="8" cy="8" r="4" fill="${randomColor}"/></svg>') 8 8, pointer !important; }
         `;
         document.head.appendChild(cursorStyle);
     })();
@@ -764,25 +927,110 @@
         container.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
     });
 
+    // Staff Data containing member info from the teams structure and PDF
+    const staffData = {
+        mech: [
+            { name: "Tochukwu Odiwa", role: "Team Lead", img: "teamphoto/Tochi.jpeg", bio: "Co-conceptualized the Gamma Ray Imaging project. Oversees physical architecture.", anchor: "TochukwuOdiwa" },
+            { name: "Aidan Woods", role: "Team Lead", img: "teamphoto/Aidan.png", bio: "Co-conceptualized the SMR Cooling System project. Oversees hardware housing.", anchor: "AidanWoods" }
+        ],
+        elec: [
+            { name: "Arsalan Vahidi", role: "Team Lead", img: "teamphoto/arsalan.jpg", bio: "Co-conceptualized the Gamma Ray Imaging project. Oversees circuitry development.", anchor: "ArsalanVahidi" },
+            { name: "Boden Parent", role: "Team Lead", img: "teamphoto/boden.jpg", bio: "Oversees internal power, sensing, and circuitry development.", anchor: "BodenParent" }
+        ],
+        software: [
+            { name: "Gabriel Brannon", role: "Team Lead", img: "teamphoto/Gabe.png", bio: "Co-conceptualized the Remotely Operated Rover. Oversees the code stack.", anchor: "GabrielBrannon" },
+            { name: "Tejas Marwaha", role: "Team Lead", img: "teamphoto/TJ.JPG", bio: "Co-conceptualized the Remotely Operated Rover. Oversees device communication.", anchor: "TejasMarwaha" }
+        ],
+        research: [
+            { name: "Justin Hooey", role: "Team Lead", img: "teamphoto/justin.jpg", bio: "Co-conceptualized the SMR Cooling System project. Establishes the scientific framework.", anchor: "JustinHooey" },
+            { name: "Ella Adair", role: "Team Lead", img: "teamphoto/ella.jpg", bio: "Establishing the scientific and theoretical framework for QNET projects.", anchor: "EllaAdair" }
+        ],
+        materials: [
+            { name: "Noah Miggiani", role: "Team Lead", img: "teamphoto/noah.png", bio: "Working on the research of nuclear materials and structural degradation profiles.", anchor: "NoahMiggiani" }
+        ]
+    };
+
+    // Helper to generate the HTML for the avatar and link it directly
+    function getMembersHTML(teamKey, color) {
+        const members = staffData[teamKey];
+        if (!members) return '';
+        let html = '';
+        members.forEach(m => {
+            html += `
+                <a href="/teams#${m.anchor}" class="member-avatar has-tooltip" style="background-image: url('${m.img}'); border-color: ${color};" data-name="${m.name}" data-role="${m.role}" data-bio="${m.bio}" data-img="${m.img}" data-color="${color}">
+                </a>
+            `;
+        });
+        return html;
+    }
+
     // Interactive Team Timeline Logic
     const teamContent = {
-        geiger: {
-            mech: { title: "Mechanical", desc: "Designing the ergonomic chassis and lead-shielding components using advanced CAD modeling and stress simulation." },
-            elec: { title: "Electrical", desc: "Developing the custom PCB and high-voltage circuitry required to power the Geiger-Müller tube and integrate power management." },
-            comp: { title: "Software & Comp", desc: "App development and IoT integration. Your phone will sync with the device to display real-time radiation exposure and map high-activity zones via GPS." },
-            research: { title: "Research", desc: "Sourcing safe isotopes for testing, calibrating sensor accuracy, and drafting rigorous safety documentation to meet protocols." }
+        rover: {
+            mech: { 
+                title: "Mechanical", 
+                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Develop advanced proficiency in CAD and additive 3D printing.</li><li>Learn how to run computation stress, strain and load-distribution simulations.</li><li>Gain practical experience in structural tolerance design, mechanical joint design, and end-effector gripper mechanics.</li></ul>" 
+            },
+            elec: { 
+                title: "Electrical", 
+                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Learn how to map custom schematics into PCBs.</li><li>Understand voltage regulation and basic power architecture.</li><li>Gain experience in electrical safety, noise isolation and emergency power cutoffs.</li></ul>" 
+            },
+            software: { 
+                title: "Software & Comp", 
+                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Write low-latency control logic in either C (microcontrollers) or Python (microprocessors).</li><li>Learn and implement advanced forward and inverse kinematics math equations.</li><li>Design off-site UI via software apps or web platforms (IoT).</li></ul>" 
+            },
+            research: { 
+                title: "Research", 
+                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Draft formal roadmaps to evaluate the rover's scalability.</li><li>Create engineering reviews that compare our rover's design and metrics against real-world nuclear robotics.</li><li>Write case studies on how automated logic vs manual control is utilized during containment failures.</li></ul>" 
+            },
+            materials: { 
+                title: "Materials", 
+                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Model the mechanical stress, wear and thermal degradation profiles of different structural mediums over long-term operations.</li><li>Research and analyze safe substitute materials to predict how the physical arm would react if it were handling real structural reactor components.</li></ul>" 
+            }
         },
-        cloud: {
-            mech: { title: "Mechanical", desc: "Precision casing, thermal insulation, and fluid housing to ensure an optimal viewing window for the chamber." },
-            elec: { title: "Electrical", desc: "Power delivery systems for the Peltier coolers and high-visibility LED arrays to illuminate radiation tracks." },
-            comp: { title: "Software & Comp", desc: "Integrating camera vision software to automatically detect, classify, and log specific types of particle tracks in real-time." },
-            research: { title: "Research", desc: "Sourcing optimal alpha and beta emitting samples and researching the fluid dynamics of isopropyl alcohol vapor." }
+        smr: {
+            mech: { 
+                title: "Mechanical", 
+                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Develop advanced proficiency in CAD, parametric assemblies, and technical drawings.</li><li>Learn how to calculate safety thresholds, pressure vessel limits, and structural geometries for high-temperature piping systems.</li><li>Gain practical experience in scaling multi-loop fluid convection geometries using lightweight rapid-prototyping materials.</li></ul>" 
+            },
+            elec: { 
+                title: "Electrical", 
+                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Learn how to map complex power layouts and custom hardware schematics into prototypes.</li><li>Understand voltage regulation and basic power architecture.</li><li>Gain experience in sensor wiring and safe electrical practices.</li></ul>" 
+            },
+            software: { 
+                title: "Software & Comp", 
+                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Write control software to track real-time system temperatures, pressures, and other parameters.</li><li>Learn and implement automated safety logic to handle simulated operational anomalies.</li><li>Design UI and sensor integration to monitor the system.</li></ul>" 
+            },
+            research: { 
+                title: "Research", 
+                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Draft formal proposals evaluating the effectiveness of the design.</li><li>Create engineering reviews that compare our student-scale loop against active SMR cycles.</li><li>Write case studies analyzing real-world incidents and how it could have been handled better.</li></ul>" 
+            },
+            materials: { 
+                title: "Materials", 
+                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Model the structural integrity of scaled pressure vessel mockups.</li><li>Research non-toxic, non-flammable working fluids to find the most optimal profile.</li><li>Predict material degradation profiles under operating conditions.</li></ul>" 
+            }
         },
         gamma: {
-            mech: { title: "Mechanical", desc: "Engineering a completely light-tight enclosure for the sensitive photomultiplier tube and structural mounts for lead shielding." },
-            elec: { title: "Electrical", desc: "Designing low-noise signal amplification circuitry to capture the minuscule electrical pulses from the scintillation crystal." },
-            comp: { title: "Software & Comp", desc: "Creating custom signal processing algorithms and a user interface to accurately plot the energy spectrum of detected radiation." },
-            research: { title: "Research", desc: "Mapping energy spectrums of various safe sources to allow the software to instantly identify specific radioactive isotopes." }
+            mech: { 
+                title: "Mechanical", 
+                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Develop advanced proficiency in CAD in developing a light-tight enclosure.</li><li>Learn how to run computation stress, strain and load-distribution simulations.</li><li>Gain practical experience in structural tolerance design and mechanical joint design.</li></ul>" 
+            },
+            elec: { 
+                title: "Electrical", 
+                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Master Transimpedance Amplifier circuits to convert small signals into readable voltages from the semiconductors.</li><li>How to build a circuit that actively filters out noise.</li><li>Learn how to design, lay out and order a custom PCB that integrates the sensors, amplifiers and power sources.</li></ul>" 
+            },
+            software: { 
+                title: "Software & Comp", 
+                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Understand and utilize Field-Programmable Gate Arrays (FPGA) instead of basic Arduino.</li><li>Learn and implement high-speed clocks to time-stamp incoming pulses at the nanosecond.</li><li>Write scripts to handle spatial data processing, using linear algebra and trigonometry to calculate the LOR and convert them to a rendered 3D Image.</li></ul>" 
+            },
+            research: { 
+                title: "Research", 
+                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Compare the differences between a BGO crystal and a LYSO crystal.</li><li>Investigate the mathematical scalability of the project to create a circular ring assembly similar to real-world PET scans.</li></ul>" 
+            },
+            materials: { 
+                title: "Materials", 
+                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Explore how prolonged exposure to gamma radiation causes the semiconductors to misbehave (bit flips).</li><li>Investigate how to use thermal healing principles to reverse these effects caused by radiation.</li></ul>" 
+            }
         }
     };
 
@@ -797,21 +1045,80 @@
             container.querySelectorAll('.team-node-btn').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
 
-            // Update content
+            // Find Elements
             const detailsBox = document.getElementById(`details-${project}`);
             const titleEl = document.getElementById(`title-${project}`);
+            const membersEl = document.getElementById(`members-${project}`);
             const descEl = document.getElementById(`desc-${project}`);
             
+            // Inject content
             const content = teamContent[project][team];
-            titleEl.textContent = content.title;
-            descEl.textContent = content.desc;
+            titleEl.innerHTML = content.title;
+            membersEl.innerHTML = getMembersHTML(team, color);
+            descEl.innerHTML = content.desc;
             
             // Update color accents
             detailsBox.style.setProperty('--theme-color', color);
             titleEl.style.color = color === '#ffffff' ? '#ffffff' : color;
         });
     });
-            // Mobile Menu Toggle Logic
+
+    // --- GLOBAL TOOLTIP LOGIC ---
+    const tooltip = document.getElementById('global-tooltip');
+
+    document.addEventListener('mouseover', (e) => {
+        const target = e.target.closest('.has-tooltip');
+        if (target) {
+            const name = target.getAttribute('data-name');
+            const role = target.getAttribute('data-role');
+            const bio = target.getAttribute('data-bio');
+            const img = target.getAttribute('data-img');
+            const color = target.getAttribute('data-color') || '#fabc0f';
+            const labelColor = color === '#ffffff' ? '#aaa' : color;
+            
+            tooltip.innerHTML = `
+                <div class="tooltip-header">
+                    <div class="tooltip-img" style="background-image: url('${img}'); border-color: ${color}"></div>
+                    <div class="tooltip-info">
+                        <strong>${name}</strong>
+                        <em style="color: ${labelColor}">${role}</em>
+                    </div>
+                </div>
+                <div class="tooltip-bio">${bio}</div>
+            `;
+            
+            tooltip.classList.add('visible');
+        }
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (tooltip.classList.contains('visible')) {
+            let x = e.clientX + 15;
+            let y = e.clientY + 15;
+            
+            const rect = tooltip.getBoundingClientRect();
+            // Prevent clipping on the right edge
+            if (x + rect.width > window.innerWidth) {
+                x = e.clientX - rect.width - 15;
+            }
+            // Prevent clipping on the bottom edge
+            if (y + rect.height > window.innerHeight) {
+                y = e.clientY - rect.height - 15;
+            }
+            
+            tooltip.style.left = `${x}px`;
+            tooltip.style.top = `${y}px`;
+        }
+    });
+
+    document.addEventListener('mouseout', (e) => {
+        const target = e.target.closest('.has-tooltip');
+        if (target) {
+            tooltip.classList.remove('visible');
+        }
+    });
+
+    // Mobile Menu Toggle Logic
     const hamburgerBtn = document.querySelector('.hamburger-btn');
     const mobileMenu = document.querySelector('.mobile-menu');
 
@@ -821,7 +1128,7 @@
         mobileMenu.classList.toggle('open');
     });
 
-    // Optional: Close menu when clicking a link (helpful for in-page anchors)
+    // Close menu when clicking a link (helpful for in-page anchors)
     const mobileLinks = document.querySelectorAll('.mobile-nav-link');
     mobileLinks.forEach(link => {
         link.addEventListener('click', () => {
@@ -832,4 +1139,5 @@
 </script>
 
 </body>
+<!--[cite: 1] -->
 </html>

@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QNET | Sponsors</title>
+    <link rel="icon" type="image/svg+xml" href="assets/outlinefavicon.svg">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8J80X6N4DV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-8J80X6N4DV');
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body, html {
+            background-color: #050505; 
+            color: #f0f0f0; 
+            overflow: hidden; 
+        }
+
+        /* --- DYNAMIC NOTCH NAVIGATION --- */
+        .notch-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 90px;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 15px;
+            pointer-events: none; 
+        }
+
+        .notch-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 90px;
+            pointer-events: auto; 
+        }
+
+        .notch-container {
+            position: relative;
+            width: 140px;
+            height: 35px;
+            background: #000000;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.1);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: auto; 
+            overflow: hidden;
+        }
+
+        .notch-indicator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 6px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            transition: opacity 0.3s ease;
+        }
+
+        .notch-links {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 2.5rem;
+            opacity: 0;
+            white-space: nowrap;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .notch-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: color 0.3s ease;
+        }
+
+        .notch-links a:hover { color: #fff; }
+
+        .notch-wrapper:hover .notch-container {
+            width: 750px;
+            height: 65px;
+            border-radius: 35px;
+            background: rgba(15, 15, 15, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .notch-wrapper:hover .notch-indicator { opacity: 0; }
+
+        .notch-wrapper:hover .notch-links {
+            opacity: 1;
+            pointer-events: auto;
+            transition-delay: 0.15s;
+        }
+
+        /* --- VERTICAL SLIDESHOW (SNAP SCROLL) --- */
+        .vertical-slideshow {
+            height: 100vh;
+            width: 100vw;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+            -ms-overflow-style: none; 
+            scrollbar-width: none; 
+        }
+
+        .vertical-slideshow::-webkit-scrollbar { display: none; }
+
+        .slide {
+            height: 100vh; 
+            width: 100vw;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem; 
+            position: relative;
+        }
+
+        .slide-content-wrapper {
+            max-width: 1400px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        /* --- HERO SECTION WITH GEOMETRIC GRID --- */
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #050505;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: center center;
+            z-index: -2;
+            transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 50px; }
+        }
+
+        .hero-vignette {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 30%, transparent 0%, #050505 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 600;
+            letter-spacing: -0.04em;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #aaa;
+            max-width: 700px;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+        }
+
+        /* Hero Action Buttons */
+        .hero-actions {
+            display: flex;
+            gap: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+        }
+
+        .btn-download {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            min-width: 280px;
+        }
+
+        .btn-download span.title {
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            transition: color 0.3s ease;
+        }
+
+        .btn-download span.sub {
+            color: #fabc0f;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+        }
+
+        .btn-download:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        }
+
+        /* --- SECTION HEADERS --- */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+        
+        .section-header h2 {
+            font-size: 3.5rem;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: #aaa;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* --- WHY SPONSOR GRID --- */
+        .pitch-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
+            max-width: 1300px;
+        }
+
+        .pitch-card {
+            background: #111;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 3rem 2.5rem;
+            text-align: left;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .pitch-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--card-color, #444);
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            transition: height 0.4s ease;
+        }
+
+        .pitch-card:hover {
+            transform: translateY(-10px);
+            background: #151515;
+            border-color: rgba(255,255,255,0.2);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .pitch-card:hover::before {
+            height: 6px;
+        }
+
+        .pitch-card h3 {
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .pitch-card p {
+            color: #bbb;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        /* --- EXPERIENTIAL IMPACT SECTION --- */
+        .impact-container {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            width: 100%;
+            max-width: 1300px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 24px;
+            padding: 4rem;
+            text-align: left;
+        }
+
+        .impact-left {
+            flex: 1;
+        }
+
+        .impact-left h3 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .impact-left p {
+            font-size: 1.15rem;
+            color: #aaa;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .impact-right {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .impact-bullet {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            background: #111;
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .impact-bullet:hover {
+            border-color: #fabc0f;
+            background: rgba(250, 188, 15, 0.05);
+            transform: translateX(10px);
+        }
+
+        .impact-bullet svg {
+            width: 24px;
+            height: 24px;
+            fill: #fabc0f;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .impact-bullet p {
+            font-size: 1.05rem;
+            color: #ddd;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* --- SPONSORSHIP TIERS --- */
+        .tiers-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 1400px;
+        }
+
+        .tier-card {
+            background: #0f0f0f;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: left;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s ease;
+        }
+
+        .tier-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            border-color: var(--tier-color);
+        }
+
+        .tier-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .tier-name {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--tier-color);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tier-price {
+            font-size: 1.25rem;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .tier-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            flex-grow: 1;
+        }
+
+        .tier-features li {
+            font-size: 0.95rem;
+            color: #bbb;
+            line-height: 1.4;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .tier-features li::before {
+            content: '✓';
+            color: var(--tier-color);
+            font-weight: bold;
+        }
+
+        .tier-card.kinetic { --tier-color: #888888; }
+        .tier-card.thermal { --tier-color: #002552; }
+        .tier-card.fission { --tier-color: #fabc0f; }
+        .tier-card.fusion { --tier-color: #b90e32; border: 2px solid #b90e32; background: rgba(185, 14, 50, 0.05); }
+
+        .fusion-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #b90e32;
+            color: #fff;
+            padding: 0.25rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* --- SCROLL REVEAL ANIMATIONS --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .pitch-grid { grid-template-columns: 1fr; }
+            .impact-container { flex-direction: column; padding: 3rem; }
+            .tiers-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .vertical-slideshow { scroll-snap-type: none; }
+            .slide { 
+                height: auto; 
+                min-height: 100vh; 
+                padding: 120px 1.5rem 60px 1.5rem; 
+                scroll-snap-align: none; 
+            }
+            .notch-hitbox, .notch-wrapper { display: none; }
+            .hero-title { font-size: 3.5rem; }
+            .hero-actions { flex-direction: column; width: 100%; }
+            .btn-download { width: 100%; }
+            .section-header h2 { font-size: 2.8rem; }
+            .tiers-grid { grid-template-columns: 1fr; }
+            .impact-container { padding: 2rem 1.5rem; }
+        }
+
+        /* --- FIXED FOOTER & BACK TO TOP --- */
+        .site-footer {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            display: flex;
+            gap: 1.25rem;
+            z-index: 100;
+        }
+
+        .social-link { display: flex; align-items: center; justify-content: center; pointer-events: auto; }
+        .social-icon { width: 20px; height: 20px; fill: #ffffff; transition: all 0.3s ease; }
+        .social-link:nth-child(1):hover .social-icon { fill: #002552; transform: translateY(-3px); } 
+        .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; transform: translateY(-3px); } 
+        .social-link:nth-child(3):hover .social-icon { fill: #b90e32; transform: translateY(-3px); } 
+
+        #back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 50%;
+            color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        #back-to-top svg { width: 24px; height: 24px; }
+        #back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+        #back-to-top:hover { border-color: #fabc0f; color: #fabc0f; transform: translateY(-3px); }
+
+        @media (max-width: 768px) {
+            .site-footer { left: 50%; transform: translateX(-50%); bottom: 1.5rem; }
+            #back-to-top { bottom: 1.5rem; right: 1.5rem; width: 45px; height: 45px; }
+        }
+
+        /* --- MOBILE MENU STYLES --- */
+        .mobile-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            z-index: 102;
+            pointer-events: none;
+        }
+
+        .hamburger-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 6px;
+            pointer-events: auto;
+            padding: 10px;
+        }
+
+        .hamburger-btn .line {
+            width: 26px;
+            height: 2px;
+            background-color: #f0f0f0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger-btn.open .line:nth-child(1) { transform: translateY(4px) rotate(45deg); }
+        .hamburger-btn.open .line:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(15px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 101;
+        }
+
+        .mobile-menu.open { opacity: 1; pointer-events: auto; }
+
+        .mobile-nav-link {
+            color: #a0a0a0;
+            font-size: 1.5rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav-link:hover, .mobile-nav-link:active { color: #ffffff; }
+
+        @media (max-width: 768px) {
+            .hamburger-btn { display: flex; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="notch-wrapper">
+    <nav class="notch-container">
+        <div class="notch-indicator"></div>
+        <div class="notch-links">
+            <a href="/about">About</a>
+            <a href="/teams">Teams</a>
+            <a href="/school">QNET School</a>
+            <a href="/projects">Projects</a>
+            <a href="/sponsors" style="color: #fff;">Sponsors</a>
+            <a href="/join">Join</a>
+        </div>
+    </nav>
+</div>
+
+<div class="mobile-header">
+    <button class="hamburger-btn" aria-label="Toggle Mobile Menu">
+        <span class="line"></span>
+        <span class="line"></span>
+    </button>
+</div>
+<div class="mobile-menu">
+    <a href="/about" class="mobile-nav-link">About</a>
+    <a href="/teams" class="mobile-nav-link">Teams</a>
+    <a href="/school" class="mobile-nav-link">QNET School</a>
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+    <a href="/sponsors" class="mobile-nav-link" style="color: #fff;">Sponsors</a>
+    <a href="/join" class="mobile-nav-link">Join</a>
+</div>
+
+<main class="vertical-slideshow">
+
+    <section class="slide">
+        <div class="hero-bg"></div>
+        <div class="hero-vignette"></div>
+        <div class="slide-content-wrapper">
+            <h1 class="hero-title">Fuel Our Future.</h1>
+            <p class="hero-subtitle">As a brand-new design club, QNET relies on industry partners to fund our projects, educate our members, and build the next generation of nuclear engineers.</p>
+            
+            <div class="hero-actions">
+                <a href="#" class="btn-download" style="pointer-events: none;">
+                    <span class="title">Sponsorship Package</span>
+                    <span class="sub">Coming Soon</span>
+                </a>
+                <a href="#" class="btn-download" style="pointer-events: none;">
+                    <span class="title">Information Package</span>
+                    <span class="sub">Coming Soon</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content-wrapper">
+            <div class="section-header reveal">
+                <h2>Why Sponsor Us?</h2>
+                <p>QNET is entirely student-driven. By sponsoring our 2026-2027 year, you directly support hands-on learning while gaining exclusive access to the university's top engineering talent.</p>
+            </div>
+
+            <div class="pitch-grid">
+                <div class="pitch-card reveal stagger-1" style="--card-color: #002552;">
+                    <h3>Invest in the Future</h3>
+                    <p>You are investing in a club that aims to educate aspiring undergraduates about nuclear concepts and the industry. By providing early, direct exposure, we are building a more accessible path into the field—increasing the supply of skilled, industry-ready nuclear engineers.</p>
+                </div>
+                <div class="pitch-card reveal stagger-2" style="--card-color: #fabc0f;">
+                    <h3>Inaugural Partner Status</h3>
+                    <p>As an inaugural partner, you have unique, early opportunities to shape our club's direction, host recruiting events, and gain direct access to member resumes before they hit the open job market.</p>
+                </div>
+                <div class="pitch-card reveal stagger-3" style="--card-color: #b90e32;">
+                    <h3>Fund QNET School</h3>
+                    <p>You fund QNET School, a specialized onboarding program where your brand gains exclusive early exposure to high-potential students through integrated curriculum, site tours, and industry guest lectures.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content-wrapper">
+            <div class="impact-container reveal">
+                <div class="impact-left">
+                    <h3>Direct Educational Value</h3>
+                    <p>QNET isn't qualified to receive direct funding from Queen's University until one year after club ratification. Therefore, sponsorship funding is directed <strong>fully towards high-impact experiential education</strong> for our members.</p>
+                </div>
+                <div class="impact-right">
+                    
+                    <div class="impact-bullet reveal stagger-1">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                        <p>Funding the $100 - $500 cash prize for the Capstone Design Contest to secure student commitment.</p>
+                    </div>
+
+                    <div class="impact-bullet reveal stagger-2">
+                        <svg viewBox="0 0 24 24"><path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/></svg>
+                        <p>Covers safety, travel, and access fees to various off-campus facilities including Port Hope and the RMTL.</p>
+                    </div>
+
+                    <div class="impact-bullet reveal stagger-3">
+                        <svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-2.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9z"/></svg>
+                        <p>Provides Coursera certifications, allowing students to finish QNET School with actual, resume-ready credentials.</p>
+                    </div>
+
+                    <div class="impact-bullet reveal stagger-4">
+                        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                        <p>Facilitates hosting logistics to bring in active nuclear professionals and Queen's Alumni from the CNSC, OPG, and CNL.</p>
+                    </div>
+
+                    <div class="impact-bullet reveal stagger-4">
+                        <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
+                        <p>Sponsors components for QNET School projects such as cloud chambers and Geiger counters for real-time radiation mapping.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content-wrapper">
+            <div class="section-header reveal">
+                <h2>2026-2027 Sponsorship Tiers</h2>
+            </div>
+
+            <div class="tiers-grid">
+                
+                <div class="tier-card kinetic reveal stagger-1">
+                    <div class="tier-header">
+                        <div class="tier-name">Kinetic</div>
+                        <div class="tier-price">$50 - $199</div>
+                    </div>
+                    <ul class="tier-features">
+                        <li>Logo and Name on our Website</li>
+                    </ul>
+                </div>
+
+                <div class="tier-card thermal reveal stagger-2">
+                    <div class="tier-header">
+                        <div class="tier-name">Thermal</div>
+                        <div class="tier-price">$200 - $499</div>
+                    </div>
+                    <ul class="tier-features">
+                        <li>Logo and Name on our Website</li>
+                        <li>Brand Recognition at End of Year Event</li>
+                    </ul>
+                </div>
+
+                <div class="tier-card fission reveal stagger-3">
+                    <div class="tier-header">
+                        <div class="tier-name">Fission</div>
+                        <div class="tier-price">$500 - $999</div>
+                    </div>
+                    <ul class="tier-features">
+                        <li>Logo and Name on our Website</li>
+                        <li>Brand Recognition at End of Year Event</li>
+                        <li>Logo prominently displayed on Team Apparel</li>
+                        <li>Name acknowledgment in project documentation and presentations</li>
+                        <li>Invitation to demo and showcase events</li>
+                    </ul>
+                </div>
+
+                <div class="tier-card fusion reveal stagger-4">
+                    <div class="fusion-badge">Inaugural Partner</div>
+                    <div class="tier-header">
+                        <div class="tier-name">Fusion</div>
+                        <div class="tier-price">$1000+</div>
+                    </div>
+                    <ul class="tier-features">
+                        <li>All Fission Tier Benefits</li>
+                        <li>Dedication slide in all sponsorship decks and project proposals</li>
+                        <li>First right of refusal to present at QNET recruiting events</li>
+                        <li>Named co-sponsor of a specific project (e.g. "The Cooling System, supported by [Company]")</li>
+                        <li>Direct meeting with executive members to discuss project direction</li>
+                        <li>Direct access to member resumes and contribution to project design</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="slide" style="background-color: #000;">
+        <div class="slide-content-wrapper" style="max-width: 800px;">
+            <h2 style="font-size: 3.5rem; font-weight: 600; color: #fff; margin-bottom: 1.5rem;">End of Year Demonstration</h2>
+            <p style="font-size: 1.15rem; color: #aaa; margin-bottom: 2rem; line-height: 1.6;">
+                At the end of March 2027, all sponsors will be invited to attend our final project demonstration at Mitchell Hall (69 Union St), where teams will present the project builds, research papers, and technical work developed throughout the school year. This allows sponsors to connect with students and see their support come to life.
+            </p>
+            <a href="mailto:r.haghi@queensnuclear.ca" class="btn-download" style="border-color: #fabc0f; background: rgba(250, 188, 15, 0.1);">
+                <span class="title" style="color: #fabc0f;">Contact Us to Sponsor</span>
+                <span class="sub" style="color: #fff;">Become an Inaugural Partner</span>
+            </a>
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <a href="https://www.linkedin.com/company/queensnuclear/" target="_blank" class="social-link" onclick="gtag('event', 'button_click', {'button_name': 'Social - LinkedIn'});">
+        <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/queensnuclear/" target="_blank" class="social-link" onclick="gtag('event', 'button_click', {'button_name': 'Social - Instagram'});">
+        <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+    <a href="https://github.com/qnuclear" target="_blank" class="social-link" onclick="gtag('event', 'button_click', {'button_name': 'Social - GitHub'});">
+        <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.011-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+</footer>
+
+<button id="back-to-top" aria-label="Back to Top" onclick="gtag('event', 'button_click', {'button_name': 'Back to Top'});">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+</button>
+
+<script>
+    // Custom Cursor
+    try {
+        const queensColors = ['#002552', '#fabc0f', '#b90e32'];
+        const randomColor = queensColors[Math.floor(Math.random() * queensColors.length)];
+        const svg1 = '<svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5" fill="' + randomColor + '"/></svg>';
+        const svg2 = '<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" fill="' + randomColor + '" opacity="0.4"/><circle cx="8" cy="8" r="4" fill="' + randomColor + '"/></svg>';
+        
+        const cursorStyle = document.createElement('style');
+        cursorStyle.innerHTML = `
+            * { cursor: url('data:image/svg+xml;base64,${btoa(svg1)}') 6 6, auto !important; }
+            a, button, .notch-hitbox, .notch-container, .btn-download { cursor: url('data:image/svg+xml;base64,${btoa(svg2)}') 8 8, pointer !important; }
+        `;
+        document.head.appendChild(cursorStyle);
+    } catch (e) {
+        console.error("Custom cursor failed to load.", e);
+    }
+
+    // Scroll Reveal Animation
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+
+    const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+        });
+    }, revealOptions);
+
+    revealElements.forEach(el => revealOnScroll.observe(el));
+
+    // Scroll-to-Top Button
+    const slideshowContainer = document.querySelector('.vertical-slideshow');
+    const backToTopBtn = document.getElementById('back-to-top');
+
+    slideshowContainer.addEventListener('scroll', () => {
+        if (slideshowContainer.scrollTop > window.innerHeight * 0.5) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+        slideshowContainer.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Mobile Hamburger
+    const hamburgerBtn = document.querySelector('.hamburger-btn');
+    const mobileMenu = document.querySelector('.mobile-menu');
+
+    hamburgerBtn.addEventListener('click', (evt) => {
+        evt.preventDefault();
+        hamburgerBtn.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+    });
+
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburgerBtn.classList.remove('open');
+            mobileMenu.classList.remove('open');
+        });
+    });
+</script>
+</body>
+</html>
