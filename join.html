@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QNET | Join the Team</title>
     <meta name="description" content="Join QNET and help build the future of nuclear engineering at Queen's University. General member positions are open now.">
+    <meta property="og:title" content="Join QNET | Apply to Queen's Nuclear Engineering Team">
+    <meta property="og:description" content="Applications are open for QNET, Queen's University's nuclear engineering design team. Explore roles across STEM, operations, and more.">
+    <meta property="og:image" content="https://queensnuclear.ca/assets/White%20NET%20Full%20Logo.png">
+    <meta property="og:url" content="https://queensnuclear.ca/join">
+    <meta property="og:type" content="website">
     <link rel="icon" type="image/svg+xml" href="assets/outlinefavicon.svg">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8J80X6N4DV"></script>
     <script>
@@ -431,7 +436,7 @@
     const revealEls = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); revealObserver.unobserve(e.target); } });
-    }, { threshold: 0.15, root: slideshowEl });
+    }, { threshold: 0.01, root: slideshowEl });
     revealEls.forEach(el => revealObserver.observe(el));
 
     // Mobile menu

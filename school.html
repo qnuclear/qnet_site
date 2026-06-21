@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QNET | School</title>
+    <title>QNET School | Nuclear Education for High School Students</title>
+    <meta name="description" content="QNET School brings nuclear science education to high school students across Canada through interactive workshops, demonstrations, and mentorship from Queen's University engineers.">
+    <meta property="og:title" content="QNET School | Nuclear Education Outreach Program">
+    <meta property="og:description" content="QNET's outreach program brings nuclear engineering education to high school students through interactive workshops and mentorship at Queen's University.">
+    <meta property="og:image" content="https://queensnuclear.ca/assets/White%20NET%20Full%20Logo.png">
+    <meta property="og:url" content="https://queensnuclear.ca/school">
+    <meta property="og:type" content="website">
     <link rel="icon" type="image/svg+xml" href="assets/outlinefavicon.svg">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8J80X6N4DV"></script>
     <script>
@@ -556,7 +562,7 @@
             letter-spacing: 0.1em;
             background-color: #fabc0f;
             border-radius: 50px; 
-            transition: all 0.45s ease;
+            transition: all 0.6s ease;
             box-shadow: 0 10px 30px rgba(250, 188, 15, 0.3);
         }
 
@@ -583,7 +589,7 @@
             text-decoration-thickness: 1px;
             text-underline-offset: 3px;
             font-weight: 600;
-            transition: color 0.45s ease;
+            transition: color 0.6s ease;
         }
 
         .disclaimer-link:hover {
@@ -611,18 +617,19 @@
 
         @media (max-width: 768px) {
             .vertical-slideshow { scroll-snap-type: none; }
-            .slide { 
-                height: auto; 
-                min-height: 100vh; 
-                padding: 100px 1.5rem; 
-                scroll-snap-align: none; 
+            body { overflow: auto; }
+            .slide {
+                height: auto;
+                min-height: 100svh;
+                padding: 100px 1.5rem 140px;
+                scroll-snap-align: none;
             }
             .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
             .bento-item { min-height: 320px; }
             .span-2-row { grid-row: span 1; }
             .notch-wrapper, .notch-hitbox { display: none; }
             .mobile-header { display: flex !important; }
-            .hero-logo { height: 180px; }
+            .hero-logo { height: 110px; }
             .prize-text { font-size: 3rem; }
             .cta-container h2 { font-size: 2.8rem; }
         }
@@ -638,7 +645,7 @@
         }
 
         .social-link { display: flex; align-items: center; justify-content: center; }
-        .social-icon { width: 20px; height: 20px; fill: #ffffff; transition: all 0.45s ease; }
+        .social-icon { width: 20px; height: 20px; fill: #ffffff; transition: all 0.6s ease; }
         .social-link:nth-child(1):hover .social-icon { fill: #002552; transform: translateY(-3px); } 
         .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; transform: translateY(-3px); } 
         .social-link:nth-child(3):hover .social-icon { fill: #b90e32; transform: translateY(-3px); } 
@@ -661,7 +668,7 @@
             opacity: 0;
             pointer-events: none;
             transform: translateY(20px);
-            transition: all 0.45s ease;
+            transition: all 0.6s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
@@ -674,38 +681,21 @@
             #back-to-top { bottom: 1.5rem; right: 1.5rem; width: 45px; height: 45px; }
         }
 
-        /* --- MOBILE MENU STYLES --- */
+        /* ── Mobile Header ── */
         .mobile-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1.5rem 2.5rem;
-            display: none; /* Hidden on desktop */
-            align-items: center;
-            justify-content: flex-end;
-            z-index: 102;
-            pointer-events: none;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 70px;
+            background: rgba(5,5,5,0.9); backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            align-items: center; justify-content: center; z-index: 1000;
         }
-
+        .mobile-logo-link { display: flex; align-items: center; text-decoration: none; }
+        .mobile-logo { height: 36px; width: auto; }
         .hamburger-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            flex-direction: column;
-            gap: 6px;
-            pointer-events: auto;
-            padding: 10px;
+            display: flex; position: absolute; right: 1.25rem;
+            background: none; border: none; cursor: pointer;
+            flex-direction: column; gap: 6px; padding: 8px; z-index: 1001;
         }
-
-        .hamburger-btn .line {
-            width: 26px;
-            height: 2px;
-            background-color: #f0f0f0;
-            transition: all 0.45s ease;
-            border-radius: 2px;
-        }
-
+        .hamburger-btn .line { width: 24px; height: 2px; background: #f0f0f0; border-radius: 2px; transition: all 0.3s ease; }
         .hamburger-btn.open .line:nth-child(1) { transform: translateY(4px) rotate(45deg); }
         .hamburger-btn.open .line:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
 
@@ -724,7 +714,7 @@
             gap: 2.5rem;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.45s ease;
+            transition: opacity 0.6s ease;
             z-index: 101;
         }
 
@@ -737,7 +727,7 @@
             text-transform: uppercase;
             letter-spacing: 0.15em;
             font-weight: 500;
-            transition: color 0.45s ease;
+            transition: color 0.6s ease;
         }
 
         .mobile-nav-link:hover, .mobile-nav-link:active { color: #ffffff; }
@@ -778,8 +768,11 @@
     </nav>
 </div>
 
-<!-- Mobile Hamburger (Fallback for Notch) -->
+<!-- Mobile Header -->
 <div class="mobile-header">
+    <a href="/" class="mobile-logo-link">
+        <img src="assets/White NET Full Logo.svg" alt="QNET" class="mobile-logo">
+    </a>
     <button class="hamburger-btn" aria-label="Toggle Mobile Menu">
         <span class="line"></span>
         <span class="line"></span>

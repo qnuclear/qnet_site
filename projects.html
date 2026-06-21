@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QNET | Projects</title>
     <meta name="description" content="Explore QNET's three inaugural nuclear engineering projects: a remotely operated rover, an SMR cooling system, and a gamma ray imaging system.">
+    <meta property="og:title" content="QNET Projects | Nuclear Engineering at Queen's University">
+    <meta property="og:description" content="See the nuclear engineering projects built by QNET students at Queen's University — from reactor design to radiation detection systems.">
+    <meta property="og:image" content="https://queensnuclear.ca/assets/White%20NET%20Full%20Logo.png">
+    <meta property="og:url" content="https://queensnuclear.ca/projects">
+    <meta property="og:type" content="website">
     <link rel="icon" type="image/svg+xml" href="assets/outlinefavicon.svg">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8J80X6N4DV"></script>
     <script>
@@ -677,7 +682,7 @@
     const revealEls = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); revealObserver.unobserve(e.target); } });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.01 });
     revealEls.forEach(el => revealObserver.observe(el));
 
     // Staff Data
