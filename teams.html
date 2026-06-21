@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -734,13 +734,13 @@
         }
 
         @media (max-width: 768px) {
-            body { overflow: auto; }
+            html, body { overflow: auto; height: auto; }
             .vertical-slideshow { scroll-snap-type: none; height: auto; overflow-y: visible; }
             .slide { padding-bottom: 140px; }
             .notch-wrapper { display: none; }
             .mobile-header { display: flex !important; }
-            .site-footer { left: 50%; transform: translateX(-50%); bottom: 1.5rem; }
-            #back-to-top { bottom: 1.5rem; right: 1.5rem; width: 45px; height: 45px; }
+            .site-footer { display: none; }
+            #back-to-top { display: none; }
         }
     </style>
 </head>

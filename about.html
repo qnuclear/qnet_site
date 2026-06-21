@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -296,9 +296,9 @@
 
         /* ── Responsive ── */
         @media (max-width: 768px) {
-            body { overflow: auto; }
+            html, body { overflow: auto; height: auto; }
             .vertical-slideshow { scroll-snap-type: none; height: auto; overflow: visible; }
-            body { overflow: auto; }
+            html, body { overflow: auto; height: auto; }
             .slide { scroll-snap-align: none; height: auto; min-height: 100svh; padding-top: 90px; padding-bottom: 140px; }
             .hero-title { font-size: 2.8rem; }
             .values-grid { grid-template-columns: 1fr; gap: 1rem; }
@@ -313,8 +313,8 @@
             .node-label small { display: none; }
             .timeline-content-box { padding: 1.5rem; min-height: auto; }
             .timeline-content-box ul { grid-template-columns: 1fr; }
-            .site-footer { left: 50%; transform: translateX(-50%); bottom: 1.5rem; }
-            #back-to-top { bottom: 1.5rem; right: 1.5rem; width: 44px; height: 44px; }
+            .site-footer { display: none; }
+            #back-to-top { display: none; }
         }
     </style>
 </head>
@@ -351,7 +351,7 @@
 
 <div class="mobile-header">
     <a href="/" class="mobile-logo-link">
-        <img src="assets/Atom Logo.png" alt="QNET" class="mobile-logo">
+        <img src="assets/White NET Full Logo.svg" alt="QNET" class="mobile-logo">
     </a>
     <button class="hamburger-btn" aria-label="Toggle Mobile Menu">
         <span class="line"></span>

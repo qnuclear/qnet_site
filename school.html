@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -617,7 +617,7 @@
 
         @media (max-width: 768px) {
             .vertical-slideshow { scroll-snap-type: none; }
-            body { overflow: auto; }
+            html, body { overflow: auto; height: auto; }
             .slide {
                 height: auto;
                 min-height: 100svh;
@@ -677,8 +677,8 @@
         #back-to-top:hover { border-color: #fabc0f; color: #fabc0f; transform: translateY(-3px); }
 
         @media (max-width: 768px) {
-            .site-footer { left: 50%; transform: translateX(-50%); bottom: 1.5rem; }
-            #back-to-top { bottom: 1.5rem; right: 1.5rem; width: 45px; height: 45px; }
+            .site-footer { display: none; }
+            #back-to-top { display: none; }
         }
 
         /* ── Mobile Header ── */
