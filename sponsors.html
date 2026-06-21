@@ -23,12 +23,29 @@
         }
 
         body, html {
-            background-color: #050505; 
-            color: #f0f0f0; 
-            overflow: hidden; 
+            background-color: #050505;
+            color: #f0f0f0;
+            overflow: hidden;
         }
 
-        /* --- DYNAMIC NOTCH NAVIGATION --- */
+        .global-bg {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: #050505; overflow: hidden; z-index: 0; pointer-events: none;
+        }
+        .nebula-blob { position: absolute; border-radius: 50%; filter: blur(110px); pointer-events: none; }
+        .nebula-1 { width: 700px; height: 700px; background: radial-gradient(circle, rgba(0,37,82,0.45), transparent 70%); top: -180px; left: -180px; animation: nebulaDrift 18s ease-in-out infinite alternate; }
+        .nebula-2 { width: 550px; height: 550px; background: radial-gradient(circle, rgba(250,188,15,0.1), transparent 70%); bottom: -100px; right: 5%; animation: nebulaDrift 22s ease-in-out infinite alternate-reverse; }
+        .nebula-3 { width: 600px; height: 350px; background: radial-gradient(circle, rgba(185,14,50,0.12), transparent 70%); top: 25%; right: -120px; animation: nebulaDrift 26s ease-in-out infinite alternate; }
+        .nebula-4 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,37,82,0.2), transparent 70%); bottom: 10%; left: 10%; animation: nebulaDrift 20s ease-in-out infinite alternate-reverse; }
+        @keyframes nebulaDrift { 0% { opacity: 0.5; transform: scale(0.9) translate(0,0); } 100% { opacity: 1; transform: scale(1.2) translate(30px,-20px); } }
+        .star-layer { position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: transparent; }
+        .stars-1 { background-image: radial-gradient(1.5px 1.5px at 10% 10%, rgba(255,255,255,0.7), transparent), radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.5), transparent), radial-gradient(2px 2px at 40% 70%, rgba(255,255,255,0.7), transparent), radial-gradient(1px 1px at 60% 20%, rgba(255,255,255,0.6), transparent), radial-gradient(1.5px 1.5px at 80% 80%, rgba(255,255,255,0.7), transparent); background-size: 150px 150px; animation: starDrift 150s linear infinite, twinkle 6s ease-in-out infinite alternate; }
+        .stars-2 { background-image: radial-gradient(1px 1px at 15% 85%, rgba(255,255,255,0.6), transparent), radial-gradient(2px 2px at 35% 15%, rgba(255,255,255,0.7), transparent), radial-gradient(1.5px 1.5px at 55% 55%, rgba(255,255,255,0.5), transparent), radial-gradient(1px 1px at 75% 35%, rgba(255,255,255,0.7), transparent), radial-gradient(2px 2px at 95% 65%, rgba(255,255,255,0.6), transparent); background-size: 200px 200px; animation: starDrift 210s linear infinite reverse, twinkle 7.5s ease-in-out infinite alternate-reverse; }
+        .stars-3 { background-image: radial-gradient(2px 2px at 5% 5%, rgba(255,255,255,0.7), transparent), radial-gradient(1px 1px at 25% 75%, rgba(255,255,255,0.6), transparent), radial-gradient(1.5px 1.5px at 50% 25%, rgba(255,255,255,0.7), transparent), radial-gradient(1px 1px at 70% 90%, rgba(255,255,255,0.5), transparent), radial-gradient(2px 2px at 90% 40%, rgba(255,255,255,0.7), transparent); background-size: 300px 300px; animation: starDrift 270s linear infinite, twinkle 9s ease-in-out infinite alternate; }
+        @keyframes starDrift { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes twinkle { 0% { opacity: 0.25; } 100% { opacity: 0.85; } }
+
+        /* --- DYNAMIC NOTCH NAVIGATION (matches QNET School page) --- */
         .notch-wrapper {
             position: fixed;
             top: 0;
@@ -43,85 +60,39 @@
             pointer-events: none; 
         }
 
-        .notch-wrapper::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 800px;
-            height: 90px;
-            pointer-events: auto; 
-        }
-
         .notch-container {
-            position: relative;
-            width: 140px;
-            height: 35px;
-            background: #000000;
-            border-radius: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.1);
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            pointer-events: auto; 
-            overflow: hidden;
+            width: 720px; height: 56px;
+            background: rgba(15,15,15,0.85); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 35px;
+            display: flex; align-items: center; justify-content: center; gap: 2rem;
+            padding: 0 2rem; pointer-events: auto;
+            transition: width 0.65s cubic-bezier(0.16,1,0.3,1), height 0.65s cubic-bezier(0.16,1,0.3,1);
         }
-
-        .notch-indicator {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40px;
-            height: 6px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 10px;
-            transition: opacity 0.3s ease;
+        .notch-wrapper:hover .notch-container { width: 900px; height: 72px; }
+        .nav-logo-link { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+        .nav-logo-wrap {
+            position: relative; overflow: hidden; flex-shrink: 0;
+            width: 32px; height: 32px;
+            transition: width 0.65s cubic-bezier(0.16,1,0.3,1), height 0.65s cubic-bezier(0.16,1,0.3,1);
         }
-
-        .notch-links {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: flex;
-            gap: 2.5rem;
-            opacity: 0;
-            white-space: nowrap;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
+        .notch-wrapper:hover .nav-logo-wrap { width: 145px; height: 40px; }
+        .nav-logo-atom, .nav-logo-full {
+            position: absolute; top: 50%; left: 0; transform: translateY(-50%);
+            height: 32px; width: auto; transition: opacity 0.25s ease;
         }
-
-        .notch-links a {
-            color: #aaa;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+        .notch-wrapper:hover .nav-logo-atom, .notch-wrapper:hover .nav-logo-full { height: 40px; }
+        .nav-logo-atom { opacity: 1; }
+        .nav-logo-full { opacity: 0; }
+        .notch-wrapper:hover .nav-logo-atom { opacity: 0; }
+        .notch-wrapper:hover .nav-logo-full { opacity: 1; }
+        .notch-links { display: flex; align-items: center; gap: 1.75rem; }
+        .notch-container a:not(.nav-logo-link) {
+            text-decoration: none; color: rgba(255,255,255,0.5);
+            font-size: 0.85rem; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.12em;
             transition: color 0.3s ease;
         }
-
-        .notch-links a:hover { color: #fff; }
-
-        .notch-wrapper:hover .notch-container {
-            width: 750px;
-            height: 65px;
-            border-radius: 35px;
-            background: rgba(15, 15, 15, 0.85);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .notch-wrapper:hover .notch-indicator { opacity: 0; }
-
-        .notch-wrapper:hover .notch-links {
-            opacity: 1;
-            pointer-events: auto;
-            transition-delay: 0.15s;
-        }
+        .notch-container a:not(.nav-logo-link):hover { color: rgba(255,255,255,0.9); }
 
         /* --- VERTICAL SLIDESHOW (SNAP SCROLL) --- */
         .vertical-slideshow {
@@ -173,7 +144,7 @@
             background-position: center center;
             z-index: -2;
             transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
-            animation: gridMove 20s linear infinite;
+            animation: gridMove 30s linear infinite;
         }
 
         @keyframes gridMove {
@@ -197,7 +168,7 @@
             margin-bottom: 1rem;
             opacity: 0;
             transform: translateY(30px);
-            animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+            animation: fadeUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
         }
 
         .hero-subtitle {
@@ -208,7 +179,7 @@
             margin-bottom: 3rem;
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+            animation: fadeUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
         }
 
         /* Hero Action Buttons */
@@ -217,7 +188,7 @@
             gap: 1.5rem;
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+            animation: fadeUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
         }
 
         .btn-download {
@@ -230,7 +201,7 @@
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 12px;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.45s ease;
             position: relative;
             overflow: hidden;
             min-width: 280px;
@@ -241,7 +212,7 @@
             font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 0.25rem;
-            transition: color 0.3s ease;
+            transition: color 0.45s ease;
         }
 
         .btn-download span.sub {
@@ -297,7 +268,7 @@
             padding: 3rem 2.5rem;
             text-align: left;
             position: relative;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .pitch-card::before {
@@ -307,7 +278,7 @@
             background: var(--card-color, #444);
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
-            transition: height 0.4s ease;
+            transition: height 0.6s ease;
         }
 
         .pitch-card:hover {
@@ -352,6 +323,16 @@
             flex: 1;
         }
 
+        .impact-left .impact-eyebrow {
+            display: inline-block;
+            color: #fabc0f;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 1rem;
+        }
+
         .impact-left h3 {
             font-size: 2.5rem;
             font-weight: 600;
@@ -365,6 +346,23 @@
             color: #aaa;
             line-height: 1.6;
             margin-bottom: 2rem;
+        }
+
+        .impact-left .impact-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #fabc0f;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: gap 0.45s ease;
+        }
+
+        .impact-left .impact-cta:hover {
+            gap: 0.9rem;
         }
 
         .impact-right {
@@ -382,7 +380,7 @@
             padding: 1.5rem;
             border-radius: 16px;
             border: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.3s ease;
+            transition: all 0.45s ease;
         }
 
         .impact-bullet:hover {
@@ -424,7 +422,7 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            transition: all 0.4s ease;
+            transition: all 0.6s ease;
         }
 
         .tier-card:hover {
@@ -503,7 +501,7 @@
         .reveal {
             opacity: 0;
             transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .reveal.active {
@@ -511,10 +509,10 @@
             transform: translateY(0);
         }
 
-        .stagger-1 { transition-delay: 0.1s; }
-        .stagger-2 { transition-delay: 0.2s; }
-        .stagger-3 { transition-delay: 0.3s; }
-        .stagger-4 { transition-delay: 0.4s; }
+        .stagger-1 { transition-delay: 0.15s; }
+        .stagger-2 { transition-delay: 0.3s; }
+        .stagger-3 { transition-delay: 0.45s; }
+        .stagger-4 { transition-delay: 0.6s; }
 
         @keyframes fadeUp {
             0% { opacity: 0; transform: translateY(30px); }
@@ -536,7 +534,8 @@
                 padding: 120px 1.5rem 60px 1.5rem; 
                 scroll-snap-align: none; 
             }
-            .notch-hitbox, .notch-wrapper { display: none; }
+            .notch-wrapper { display: none; }
+            .mobile-header { display: flex !important; }
             .hero-title { font-size: 3.5rem; }
             .hero-actions { flex-direction: column; width: 100%; }
             .btn-download { width: 100%; }
@@ -556,7 +555,7 @@
         }
 
         .social-link { display: flex; align-items: center; justify-content: center; pointer-events: auto; }
-        .social-icon { width: 20px; height: 20px; fill: #ffffff; transition: all 0.3s ease; }
+        .social-icon { width: 20px; height: 20px; fill: #ffffff; transition: all 0.45s ease; }
         .social-link:nth-child(1):hover .social-icon { fill: #002552; transform: translateY(-3px); } 
         .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; transform: translateY(-3px); } 
         .social-link:nth-child(3):hover .social-icon { fill: #b90e32; transform: translateY(-3px); } 
@@ -579,7 +578,7 @@
             opacity: 0;
             pointer-events: none;
             transform: translateY(20px);
-            transition: all 0.3s ease;
+            transition: all 0.45s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
@@ -599,7 +598,7 @@
             left: 0;
             width: 100%;
             padding: 1.5rem 2.5rem;
-            display: flex;
+            display: none;
             align-items: center;
             justify-content: flex-end;
             z-index: 102;
@@ -607,7 +606,6 @@
         }
 
         .hamburger-btn {
-            display: none;
             background: none;
             border: none;
             cursor: pointer;
@@ -621,7 +619,7 @@
             width: 26px;
             height: 2px;
             background-color: #f0f0f0;
-            transition: all 0.3s ease;
+            transition: all 0.45s ease;
             border-radius: 2px;
         }
 
@@ -643,7 +641,7 @@
             gap: 2.5rem;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.45s ease;
             z-index: 101;
         }
 
@@ -656,27 +654,39 @@
             text-transform: uppercase;
             letter-spacing: 0.15em;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: color 0.45s ease;
         }
 
         .mobile-nav-link:hover, .mobile-nav-link:active { color: #ffffff; }
-
-        @media (max-width: 768px) {
-            .hamburger-btn { display: flex; }
-        }
     </style>
 </head>
 <body>
 
+<div class="global-bg">
+    <div class="nebula-blob nebula-1"></div>
+    <div class="nebula-blob nebula-2"></div>
+    <div class="nebula-blob nebula-3"></div>
+    <div class="nebula-blob nebula-4"></div>
+    <div class="star-layer stars-1"></div>
+    <div class="star-layer stars-2"></div>
+    <div class="star-layer stars-3"></div>
+</div>
+
+<!-- Dynamic Island Mini-Header Notch (matches QNET School page) -->
 <div class="notch-wrapper">
     <nav class="notch-container">
-        <div class="notch-indicator"></div>
+        <a href="/" class="nav-logo-link">
+            <div class="nav-logo-wrap">
+                <img src="assets/Atom Logo.png" alt="QNET" class="nav-logo-atom">
+                <img src="assets/White NET Full Logo.svg" alt="QNET" class="nav-logo-full">
+            </div>
+        </a>
         <div class="notch-links">
             <a href="/about">About</a>
             <a href="/teams">Teams</a>
             <a href="/school">QNET School</a>
             <a href="/projects">Projects</a>
-            <a href="/sponsors" style="color: #fff;">Sponsors</a>
+            <a href="/sponsors" style="color:#fff;">Sponsors</a>
             <a href="/join">Join</a>
         </div>
     </nav>
@@ -747,29 +757,31 @@
         <div class="slide-content-wrapper">
             <div class="impact-container reveal">
                 <div class="impact-left">
-                    <h3>Direct Educational Value</h3>
-                    <p>QNET isn't qualified to receive direct funding from Queen's University until one year after club ratification. Therefore, sponsorship funding is directed <strong>fully towards high-impact experiential education</strong> for our members.</p>
+                    <span class="impact-eyebrow">Where Your Sponsorship Goes</span>
+                    <h3>By funding us, you fund QNET School.</h3>
+                    <p>QNET isn't qualified to receive direct funding from Queen's University until one year after club ratification. So every dollar of sponsorship goes <strong>directly into QNET School</strong>—our hands-on nuclear engineering education program for new members. Here's what that looks like in practice:</p>
+                    <a href="/school" class="impact-cta">Explore QNET School →</a>
                 </div>
                 <div class="impact-right">
                     
                     <div class="impact-bullet reveal stagger-1">
                         <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-                        <p>Funding the $100 - $500 cash prize for the Capstone Design Contest to secure student commitment.</p>
+                        <p>Funding the $100 - $500 cash prize for QNET School's Capstone Design Contest to secure student commitment.</p>
                     </div>
 
                     <div class="impact-bullet reveal stagger-2">
                         <svg viewBox="0 0 24 24"><path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/></svg>
-                        <p>Covers safety, travel, and access fees to various off-campus facilities including Port Hope and the RMTL.</p>
+                        <p>Covers QNET School's safety, travel, and access fees to off-campus facilities including Port Hope and the RMTL.</p>
                     </div>
 
                     <div class="impact-bullet reveal stagger-3">
                         <svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-2.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9z"/></svg>
-                        <p>Provides Coursera certifications, allowing students to finish QNET School with actual, resume-ready credentials.</p>
+                        <p>Provides Coursera certifications through QNET School, so students finish with actual, resume-ready credentials.</p>
                     </div>
 
                     <div class="impact-bullet reveal stagger-4">
                         <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-                        <p>Facilitates hosting logistics to bring in active nuclear professionals and Queen's Alumni from the CNSC, OPG, and CNL.</p>
+                        <p>Facilitates QNET School's guest lecture logistics, bringing in active nuclear professionals and Queen's Alumni from the CNSC, OPG, and CNL.</p>
                     </div>
 
                     <div class="impact-bullet reveal stagger-4">

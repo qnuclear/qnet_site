@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QNET | Projects</title>
+    <meta name="description" content="Explore QNET's three inaugural nuclear engineering projects: a remotely operated rover, an SMR cooling system, and a gamma ray imaging system.">
     <link rel="icon" type="image/svg+xml" href="assets/outlinefavicon.svg">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8J80X6N4DV"></script>
     <script>
@@ -13,685 +14,430 @@
         gtag('config', 'G-8J80X6N4DV');
     </script>
     <style>
-        @font-face {
-            font-family: 'Leelawadee UI';
-            src: url('assets/leelawadee.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+
+        body { background-color: #050505; color: #f0f0f0; overflow: hidden; }
+
+        /* ── Global Background ── */
+        .global-bg {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: #050505; z-index: 0; pointer-events: none; overflow: hidden;
         }
+        .nebula-blob { position: absolute; border-radius: 50%; filter: blur(110px); }
+        .nebula-1 { width: 700px; height: 700px; background: radial-gradient(circle, rgba(0,37,82,0.45), transparent 70%); top: -180px; left: -180px; animation: nebulaDrift 18s ease-in-out infinite alternate; }
+        .nebula-2 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(185,14,50,0.18), transparent 70%); top: 30%; right: -150px; animation: nebulaDrift 22s ease-in-out infinite alternate-reverse; }
+        .nebula-3 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(250,188,15,0.12), transparent 70%); bottom: -100px; left: 30%; animation: nebulaDrift 20s ease-in-out infinite alternate; }
+        .nebula-4 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,37,82,0.25), transparent 70%); bottom: 10%; right: 10%; animation: nebulaDrift 25s ease-in-out infinite alternate-reverse; }
+        @keyframes nebulaDrift { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(40px,30px) scale(1.08); } }
+        .star-layer { position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; }
+        .stars-1 { background-image: radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.6) 0%, transparent 100%), radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,0.5) 0%, transparent 100%), radial-gradient(1px 1px at 55% 15%, rgba(255,255,255,0.7) 0%, transparent 100%), radial-gradient(1px 1px at 75% 45%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(1px 1px at 90% 80%, rgba(255,255,255,0.6) 0%, transparent 100%), radial-gradient(1px 1px at 45% 90%, rgba(255,255,255,0.5) 0%, transparent 100%), radial-gradient(1px 1px at 20% 55%, rgba(255,255,255,0.3) 0%, transparent 100%), radial-gradient(1px 1px at 65% 60%, rgba(255,255,255,0.6) 0%, transparent 100%); animation: starDrift1 60s linear infinite; }
+        .stars-2 { background-image: radial-gradient(1.5px 1.5px at 15% 35%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 40% 10%, rgba(255,255,255,0.5) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 70% 75%, rgba(255,255,255,0.3) 0%, transparent 100%), radial-gradient(1px 1px at 85% 25%, rgba(255,255,255,0.6) 0%, transparent 100%), radial-gradient(1px 1px at 25% 85%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 50% 50%, rgba(255,255,255,0.5) 0%, transparent 100%); animation: starDrift2 80s linear infinite; }
+        .stars-3 { background-image: radial-gradient(2px 2px at 5% 60%, rgba(255,255,255,0.3) 0%, transparent 100%), radial-gradient(2px 2px at 35% 30%, rgba(255,255,255,0.2) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 60% 85%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(2px 2px at 80% 10%, rgba(255,255,255,0.3) 0%, transparent 100%), radial-gradient(1px 1px at 95% 50%, rgba(255,255,255,0.5) 0%, transparent 100%); animation: starDrift3 100s linear infinite; }
+        @keyframes starDrift1 { from { transform: translate(0,0); } to { transform: translate(-20px,-15px); } }
+        @keyframes starDrift2 { from { transform: translate(0,0); } to { transform: translate(15px,-20px); } }
+        @keyframes starDrift3 { from { transform: translate(0,0); } to { transform: translate(-10px,10px); } }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        /* ── Notch Nav ── */
+        .notch-wrapper {
+            position: fixed; top: 0; width: 100%; height: 90px; z-index: 1000;
+            display: flex; justify-content: center; align-items: flex-start;
+            padding-top: 15px; pointer-events: none;
         }
-
-        body {
-            overflow: hidden; 
-            background-color: #1a1a1a; 
-            color: #f0f0f0; 
+        .notch-container {
+            width: 720px; height: 56px;
+            background: rgba(15,15,15,0.85); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 35px;
+            display: flex; align-items: center; justify-content: center; gap: 2rem;
+            padding: 0 2rem; pointer-events: auto;
+            transition: width 0.65s cubic-bezier(0.16,1,0.3,1), height 0.65s cubic-bezier(0.16,1,0.3,1);
         }
-
-        /* Fixed Header & Logo */
-        .site-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1.5rem 2.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            z-index: 110;
-            background-color: transparent;
-            backdrop-filter: blur(10px);
-            pointer-events: none; 
+        .notch-wrapper:hover .notch-container { width: 900px; height: 72px; }
+        .nav-logo-link { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+        .nav-logo-wrap {
+            position: relative; overflow: hidden; flex-shrink: 0;
+            width: 32px; height: 32px;
+            transition: width 0.65s cubic-bezier(0.16,1,0.3,1), height 0.65s cubic-bezier(0.16,1,0.3,1);
         }
-
-        .header-side { 
-            flex: 1; 
-            display: flex; 
-            align-items: center;
-            pointer-events: none; 
-            gap: 2.5rem; 
+        .notch-wrapper:hover .nav-logo-wrap { width: 145px; height: 40px; }
+        .nav-logo-atom, .nav-logo-full {
+            position: absolute; top: 50%; left: 0; transform: translateY(-50%);
+            height: 32px; width: auto; transition: opacity 0.25s ease;
         }
-
-        .header-side.left { justify-content: flex-end; padding-right: 8rem; }
-        .header-side.right { justify-content: flex-start; padding-left: 8rem; }
-
-        .nav-link {
-            pointer-events: auto;
-            text-decoration: none;
-            color: #a0a0a0;
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
+        .notch-wrapper:hover .nav-logo-atom, .notch-wrapper:hover .nav-logo-full { height: 40px; }
+        .nav-logo-atom { opacity: 1; }
+        .nav-logo-full { opacity: 0; }
+        .notch-wrapper:hover .nav-logo-atom { opacity: 0; }
+        .notch-wrapper:hover .nav-logo-full { opacity: 1; }
+        .notch-links { display: flex; align-items: center; gap: 1.75rem; }
+        .notch-container a:not(.nav-logo-link) {
+            text-decoration: none; color: rgba(255,255,255,0.5);
+            font-size: 0.85rem; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.12em;
             transition: color 0.3s ease;
         }
+        .notch-container a:not(.nav-logo-link):hover { color: rgba(255,255,255,0.9); }
+        @media (max-width: 768px) { .notch-wrapper { display: none; } }
 
-        .nav-link:hover { color: #ffffff; }
-        .logo-container { flex: 0 0 auto; pointer-events: auto; }
-        .logo-link { text-decoration: none; }
-        
-        .logo-img {
-            height: 90px; 
-            width: auto;
-            display: block; 
-            filter: drop-shadow(0px 4px 15px rgba(0,0,0,0.3)); 
-            transition: height 0.3s ease;
+        /* ── Mobile Header ── */
+        .mobile-header {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 70px;
+            background: rgba(5,5,5,0.9); backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            align-items: center; justify-content: center; z-index: 1000;
         }
-
-        @media (max-width: 768px) {
-            .site-header { padding: 1rem 1.5rem; }
-            .header-side.left { padding-right: 0; justify-content: flex-start; }
-            .header-side.right { padding-left: 0; justify-content: flex-end; }
-            .header-side { gap: 1.25rem; } 
-            .nav-link { font-size: 0.75rem; letter-spacing: 0.1em; }
-            .logo-img { height: 55px; }
+        .mobile-logo-link { display: flex; align-items: center; text-decoration: none; }
+        .mobile-logo { height: 36px; width: auto; }
+        .hamburger-btn {
+            display: flex; position: absolute; right: 1.25rem;
+            background: none; border: none; cursor: pointer;
+            flex-direction: column; gap: 6px; padding: 8px; z-index: 1001;
         }
+        .hamburger-btn .line { width: 24px; height: 2px; background: #f0f0f0; border-radius: 2px; transition: all 0.3s ease; }
+        .hamburger-btn.open .line:nth-child(1) { transform: translateY(4px) rotate(45deg); }
+        .hamburger-btn.open .line:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
+        @media (max-width: 768px) { .mobile-header { display: flex !important; } }
 
-        /* VERTICAL Slideshow Container */
-        .slideshow-container {
-            display: flex;
-            flex-direction: column; 
-            width: 100vw;
-            height: 100vh;
-            overflow-y: scroll; 
-            overflow-x: hidden;
-            
-            scroll-snap-type: y mandatory; 
-            scroll-behavior: smooth;
-            position: relative;
-            
-            -ms-overflow-style: none; 
-            scrollbar-width: none; 
+        /* ── Mobile Menu ── */
+        .mobile-menu {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: rgba(5,5,5,0.96); backdrop-filter: blur(20px);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 2.5rem; opacity: 0; pointer-events: none;
+            transition: opacity 0.3s ease; z-index: 999;
         }
+        .mobile-menu.open { opacity: 1; pointer-events: auto; }
+        .mobile-nav-link {
+            color: rgba(255,255,255,0.5); font-size: 1.5rem; text-decoration: none;
+            text-transform: uppercase; letter-spacing: 0.15em; font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .mobile-nav-link:hover, .mobile-nav-link:active { color: #fff; }
 
-        .slideshow-container::-webkit-scrollbar { display: none; }
+        /* ── Slideshow ── */
+        .vertical-slideshow {
+            position: relative; z-index: 1;
+            height: 100vh; width: 100vw;
+            overflow-y: scroll; overflow-x: hidden;
+            scroll-snap-type: y mandatory; scroll-behavior: smooth;
+            -ms-overflow-style: none; scrollbar-width: none;
+        }
+        .vertical-slideshow::-webkit-scrollbar { display: none; }
 
-        /* The Individual Slides */
         .slide {
-            flex: 0 0 100vh; 
-            width: 100vw; 
-            height: 100svh;
-            scroll-snap-align: start; 
-            scroll-snap-stop: always; 
-            
-            display: flex;
-            flex-direction: column;
-            justify-content: center; 
-            align-items: center;
-            text-align: center;
-            padding: 0 2rem;
-            position: relative;
+            min-height: 100vh; width: 100vw;
+            scroll-snap-align: start; scroll-snap-stop: always;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center; padding: 100px 2rem 4rem 2rem;
+            position: relative; background: transparent;
         }
 
-        .slide h1 {
-            margin-top: 120px; 
-            font-size: 4.5rem;
-            font-weight: 400;
-            letter-spacing: -0.03em;
-            margin-bottom: 0.5rem;
-            color: #ffffff;
+        /* ── Typography ── */
+        .section-eyebrow {
+            display: inline-block;
+            font-size: 0.72rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.2em;
+            color: #fabc0f; margin-bottom: 1rem;
         }
-
-        .slide h2 {
-            font-size: 2.5rem;
-            color: #ffffff;
-            margin-bottom: 2rem;
-            font-weight: 400;
+        .hero-title {
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 300; letter-spacing: -0.03em;
+            color: #fff; line-height: 1.05; margin-bottom: 1.5rem;
         }
-
-        p {
-            font-size: 1.25rem;
-            color: #a0a0a0; 
-            max-width: 700px;
-            font-weight: 300;
-            line-height: 1.6;
+        .hero-title span { color: #fabc0f; }
+        .hero-sub {
+            font-size: 1.1rem; color: rgba(255,255,255,0.55);
+            max-width: 640px; font-weight: 300; line-height: 1.7;
             margin-bottom: 2.5rem;
         }
 
-        .highlight-link {
-            color: #fabc0f;
-            text-decoration: underline;
-            text-decoration-thickness: 1px;
-            text-underline-offset: 4px;
-            transition: color 0.3s ease;
-        }
-
-        .highlight-link:hover { color: #ffffff; }
-
-        .slide-1 { background-color: #1e1e1e; }
-        .slide-2 { background-color: #242424; }
-        .slide-3 { background-color: #2a2a2a; }
-        .slide-4 { background-color: #1e1e1e; }
-        .slide-5 { background-color: #242424; }
-
+        /* ── Buttons ── */
         .btn {
-            display: inline-flex; 
-            align-items: center;
-            justify-content: center;
-            padding: 1rem 2.5rem;
-            font-size: 1rem;
-            font-weight: 500;
-            color: #f0f0f0;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            background-color: transparent;
-            border: 1px solid #555; 
-            border-radius: 50px; 
-            transition: all 0.3s ease;
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 0.85rem 2.25rem; font-size: 0.9rem; font-weight: 500;
+            color: #f0f0f0; text-decoration: none; text-transform: uppercase;
+            letter-spacing: 0.1em; background: transparent;
+            border: 1px solid rgba(255,255,255,0.25); border-radius: 50px;
+            transition: all 0.6s ease;
         }
+        .btn:hover { border-color: #fabc0f; color: #fabc0f; background: rgba(250,188,15,0.08); }
 
-        .btn:hover {
-            border-color: #b90e32; 
-            background-color: rgba(185, 14, 50, 0.2);
-            color: #ffffff;
+        /* ── Philosophy Cards ── */
+        .philosophy-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem; max-width: 1100px; width: 100%; margin-top: 1.5rem;
         }
-
-        /* Down Arrow Indicator */
-        .down-indicator {
-            position: absolute;
-            bottom: 3.5rem;
-            color: #888;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            transition: color 0.3s ease;
+        .phil-card {
+            background: rgba(18,18,18,0.85); backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.07); border-radius: 20px;
+            padding: 2.5rem 2rem; text-align: left;
+            transition: border-color 0.6s ease, box-shadow 0.6s ease;
         }
-
-        .down-indicator:hover { color: #ffffff; }
-        .down-indicator span {
-            font-size: 1.5rem;
-            animation: bounceDown 1.5s infinite ease-in-out;
+        .phil-card:hover { border-color: rgba(250,188,15,0.35); box-shadow: 0 16px 40px rgba(250,188,15,0.08); }
+        .phil-number {
+            font-size: 2.5rem; font-weight: 700; color: rgba(250,188,15,0.2);
+            letter-spacing: -0.05em; line-height: 1; margin-bottom: 1rem;
         }
+        .phil-card h3 { font-size: 1.15rem; font-weight: 600; color: #fff; margin-bottom: 0.75rem; }
+        .phil-card p { font-size: 0.95rem; color: rgba(255,255,255,0.5); line-height: 1.6; margin: 0; }
 
-        @keyframes bounceDown {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(8px); }
-        }
-
-        /* --- PROJECT SHOWCASE & INTERACTIVE TIMELINE --- */
+        /* ── Project Showcase ── */
         .project-showcase {
-            display: flex;
-            align-items: stretch;
-            justify-content: center;
-            width: 100%;
-            max-width: 1300px;
-            height: 75vh; 
-            gap: 3rem;
-            background: rgba(255, 255, 255, 0.02);
-            padding: 2.5rem;
-            border-radius: 20px;
-            border: 1px solid #333;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            display: flex; align-items: stretch; justify-content: center;
+            width: 100%; max-width: 1300px; height: 75vh; gap: 2.5rem;
+            background: rgba(18,18,18,0.75); backdrop-filter: blur(20px);
+            padding: 2.5rem; border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.07);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
         }
-
-        /* Left Side: Static Info */
         .project-static {
-            flex: 1.2;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            overflow-y: auto; 
-            padding-right: 1.5rem;
+            flex: 1.2; text-align: left; display: flex; flex-direction: column;
+            justify-content: flex-start; overflow-y: auto; padding-right: 1.5rem;
         }
+        .project-static::-webkit-scrollbar { width: 4px; }
+        .project-static::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+        .project-static h3 { font-size: 1.8rem; color: #fff; margin-bottom: 0.75rem; font-weight: 500; }
+        .project-static > p { font-size: 1rem; color: rgba(255,255,255,0.6); margin-bottom: 0; line-height: 1.65; }
+        .project-specs { font-size: 0.92rem; color: rgba(255,255,255,0.6); line-height: 1.5; margin-top: 1rem; }
+        .project-specs ul { margin-left: 1.5rem; margin-top: 0.5rem; margin-bottom: 0.5rem; }
+        .project-specs li { margin-bottom: 0.25rem; }
+        .project-specs strong { color: #fff; }
 
-        .project-static::-webkit-scrollbar { width: 6px; }
-        .project-static::-webkit-scrollbar-thumb { background: #444; border-radius: 3px; }
-
-        .project-static h3 {
-            font-size: 2rem;
-            color: #ffffff;
-            margin-bottom: 0.75rem;
-            font-weight: 500;
-        }
-
-        .project-static p {
-            font-size: 1.05rem;
-            color: #aaa;
-            margin-bottom: 0;
-            line-height: 1.6;
-        }
-
-        /* Inline Member Linking Styles */
         .inline-member-link {
-            color: #ffffff;
-            text-decoration: none;
-            position: relative;
-            transition: color 0.2s ease;
-            cursor: pointer;
-            border-bottom: 1px dotted rgba(255,255,255,0.5);
+            color: #fff; text-decoration: none; position: relative;
+            transition: color 0.6s ease, border-bottom-color 0.6s ease; cursor: pointer;
+            border-bottom: 1px dotted rgba(255,255,255,0.4);
         }
+        .inline-member-link:hover { color: #fabc0f; border-bottom-color: #fabc0f; }
 
-        .inline-member-link:hover {
-            color: #fabc0f;
-            border-bottom-color: #fabc0f;
-        }
-
-        .project-specs {
-            font-size: 0.95rem;
-            color: #bbb;
-            line-height: 1.5;
-            margin-top: 1rem;
-        }
-        .project-specs ul {
-            margin-left: 1.5rem;
-            margin-top: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-        .project-specs li {
-            margin-bottom: 0.25rem;
-        }
-        .project-specs strong {
-            color: #fff;
-        }
-
-        /* Right Side: Interactive Teams */
-        .project-interactive {
-            flex: 1.6;
-            display: flex;
-            gap: 2rem;
-            align-items: stretch;
-        }
-
+        /* ── Team Interactive Panel ── */
+        .project-interactive { flex: 1.6; display: flex; gap: 2rem; align-items: stretch; }
         .vertical-nodes {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            padding: 1rem 0;
-            justify-content: center;
+            position: relative; display: flex; flex-direction: column;
+            gap: 1.5rem; padding: 1rem 0; justify-content: center;
         }
-
         .node-line {
-            position: absolute;
-            top: 30px;
-            bottom: 30px;
-            left: 17px; 
-            width: 4px;
-            background: #444;
-            z-index: 1;
-            border-radius: 2px;
+            position: absolute; top: 30px; bottom: 30px; left: 17px;
+            width: 3px; background: rgba(255,255,255,0.1); z-index: 1; border-radius: 2px;
         }
-
         .team-node-btn {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            text-align: left;
-            opacity: 0.5;
-            transition: all 0.3s ease;
+            position: relative; z-index: 2; display: flex; align-items: center;
+            gap: 1rem; background: none; border: none; cursor: pointer;
+            text-align: left; opacity: 0.4; transition: all 0.3s ease;
         }
-
-        .team-node-btn.active, .team-node-btn:hover {
-            opacity: 1;
-        }
-
+        .team-node-btn.active, .team-node-btn:hover { opacity: 1; }
         .node-circle {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            border: 6px solid #1a1a1a; 
-            box-shadow: 0 0 0 3px #555; 
-            transition: all 0.3s ease;
-            flex-shrink: 0;
+            width: 36px; height: 36px; border-radius: 50%;
+            border: 5px solid #050505; box-shadow: 0 0 0 2px rgba(255,255,255,0.3);
+            transition: all 0.3s ease; flex-shrink: 0;
         }
+        .team-node-btn.active .node-circle { transform: scale(1.2); box-shadow: 0 0 0 3px #fff; }
+        .team-label { font-size: 1rem; font-weight: 500; color: #fff; text-transform: uppercase; letter-spacing: 0.05em; }
 
-        .team-node-btn.active .node-circle {
-            transform: scale(1.15);
-            box-shadow: 0 0 0 3px #fff;
-        }
-
-        .team-label {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: #fff;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* The Changing Text Box & Member Photos */
         .team-details {
-            flex: 1;
-            background: #191919;
-            padding: 2.5rem;
-            border-radius: 12px;
-            border-left: 5px solid var(--theme-color, #002552);
-            transition: all 0.3s ease;
-            text-align: left;
-            overflow-y: auto; 
-            position: relative;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+            flex: 1; background: rgba(10,10,10,0.8); backdrop-filter: blur(16px);
+            padding: 2rem 2.5rem; border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.07);
+            border-left: 4px solid var(--theme-color, #002552);
+            transition: border-color 0.3s ease; text-align: left;
+            overflow-y: auto; position: relative;
         }
-        .team-details::-webkit-scrollbar { width: 6px; }
-        .team-details::-webkit-scrollbar-thumb { background: #444; border-radius: 3px; }
-
+        .team-details::-webkit-scrollbar { width: 4px; }
+        .team-details::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
         .team-header-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: #777;
-            margin-bottom: 1rem;
-            border-bottom: 1px solid #333;
-            padding-bottom: 0.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.15em;
+            color: rgba(255,255,255,0.35); margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem;
         }
-
-        .team-details h4 {
-            font-size: 1.8rem;
-            color: var(--theme-color, #002552);
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-
-        /* Member Avatars inside Content Box */
-        .team-members-container {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
+        .team-details h4 { font-size: 1.6rem; color: var(--theme-color, #002552); margin-bottom: 1.25rem; font-weight: 600; }
+        .team-members-container { display: flex; gap: 0.75rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
         .member-avatar {
-            position: relative;
-            width: 55px; 
-            height: 55px;
-            border-radius: 50%;
-            background-size: cover; 
-            background-position: center;
-            border: 2px solid var(--theme-color, #002552);
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            display: block;
+            width: 50px; height: 50px; border-radius: 50%;
+            background-size: cover; background-position: center;
+            border: 2px solid var(--theme-color, #002552); cursor: pointer;
+            transition: transform 0.3s ease; display: block;
         }
+        .member-avatar:hover { transform: scale(1.12); }
+        .team-details p { font-size: 1rem; color: rgba(255,255,255,0.8); margin-bottom: 0; line-height: 1.6; }
+        .team-details ul { margin-left: 1.2rem; }
+        .team-details li { margin-bottom: 0.35rem; color: rgba(255,255,255,0.75); font-size: 0.95rem; line-height: 1.55; }
 
-        .member-avatar:hover {
-            transform: scale(1.1);
-        }
-
-        .team-details p {
-            font-size: 1.05rem;
-            color: #ddd;
-            margin-bottom: 0;
-            line-height: 1.6;
-        }
-
-        /* --- GLOBAL FIXED TOOLTIP --- */
+        /* ── Tooltip ── */
         #global-tooltip {
-            position: fixed;
-            background: #2a2a2a;
-            border: 1px solid #444;
-            padding: 1rem;
-            border-radius: 8px;
-            width: 250px;
-            text-align: left;
-            opacity: 0;
-            pointer-events: none; /* Prevents hovering directly on the tooltip */
-            transition: opacity 0.2s ease;
-            z-index: 9999;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.7);
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+            position: fixed; background: rgba(20,20,20,0.95); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1); padding: 1rem;
+            border-radius: 12px; width: 250px; text-align: left;
+            opacity: 0; pointer-events: none; transition: opacity 0.2s ease;
+            z-index: 9999; box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            display: flex; flex-direction: column; gap: 0.75rem;
         }
+        #global-tooltip.visible { opacity: 1; }
+        .tooltip-header { display: flex; gap: 1rem; align-items: center; }
+        .tooltip-img { width: 44px; height: 44px; border-radius: 50%; background-size: cover; background-position: center; border: 2px solid; flex-shrink: 0; }
+        .tooltip-info strong { color: #fff; font-size: 1rem; display: block; margin-bottom: 0.1rem; }
+        .tooltip-info em { font-style: normal; font-weight: 600; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; display: block; }
+        .tooltip-bio { color: rgba(255,255,255,0.65); font-size: 0.84rem; line-height: 1.4; }
 
-        #global-tooltip.visible {
-            opacity: 1;
+        /* ── Down Indicator ── */
+        .down-indicator {
+            position: absolute; bottom: 3rem; color: rgba(255,255,255,0.35);
+            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.15em;
+            cursor: pointer; display: flex; flex-direction: column;
+            align-items: center; gap: 0.4rem; transition: color 0.3s ease;
         }
+        .down-indicator:hover { color: rgba(255,255,255,0.8); }
+        .down-indicator span { font-size: 1.25rem; animation: bounceDown 1.5s infinite ease-in-out; }
+        @keyframes bounceDown { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(7px); } }
 
-        .tooltip-header {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
+        /* ── Scroll Reveal ── */
+        .reveal { opacity: 0; transform: translateY(36px); }
+        .reveal.active { animation: revealUp 1.2s cubic-bezier(0.16,1,0.3,1) both; }
+        .stagger-1.reveal.active { animation-delay: 0.15s; }
+        .stagger-2.reveal.active { animation-delay: 0.3s; }
+        .stagger-3.reveal.active { animation-delay: 0.45s; }
+        .stagger-4.reveal.active { animation-delay: 0.6s; }
+        @keyframes revealUp { from { opacity: 0; transform: translateY(36px); } to { opacity: 1; transform: translateY(0); } }
 
-        .tooltip-img {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background-size: cover;
-            background-position: center;
-            border: 2px solid;
-            flex-shrink: 0;
-        }
-
-        .tooltip-info strong {
-            color: #fff;
-            font-size: 1.05rem;
-            display: block;
-            margin-bottom: 0.1rem;
-        }
-
-        .tooltip-info em {
-            font-style: normal;
-            font-weight: 600;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            display: block;
-        }
-
-        .tooltip-bio {
-            color: #ccc;
-            font-size: 0.85rem;
-            line-height: 1.4;
-        }
-
-        /* Responsive Fixes */
-        @media (max-width: 768px) {
-            .slideshow-container { scroll-snap-type: none; }
-            .slide { 
-                scroll-snap-align: none; 
-                flex: 0 0 auto; 
-                height: auto; 
-                min-height: 100svh; 
-                padding-top: 100px; 
-                padding-bottom: 120px; 
-                justify-content: flex-start; 
-            }
-            .slide h1 { margin-top: 20px; font-size: 2.8rem; }
-            .slide h2 { font-size: 2rem; margin-bottom: 1rem; margin-top: 20px;}
-            p { font-size: 1rem; margin-bottom: 1.5rem; }
-            
-            .project-showcase {
-                flex-direction: column;
-                padding: 1.5rem;
-                gap: 2rem;
-                height: auto;
-                max-height: none;
-            }
-            
-            .project-static { padding-right: 0; text-align: center; overflow-y: visible; }
-            .project-static h3 { font-size: 1.8rem; }
-            .project-specs { text-align: left; }
-            
-            .project-interactive {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-            .vertical-nodes {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 0.75rem;
-                padding: 0;
-            }
-            .node-line { display: none; }
-            .team-node-btn { flex-direction: column; gap: 0.25rem; }
-            .team-label { font-size: 0.75rem; }
-            
-            .team-details { padding: 1.5rem; overflow-y: visible; }
-            .team-details h4 { font-size: 1.3rem; }
-        }
-
-        /* FIXED BOTTOM LEFT FOOTER */
+        /* ── Footer ── */
         .fixed-footer {
             position: fixed; bottom: 2.5rem; left: 2.5rem;
             display: flex; align-items: center; gap: 1.25rem; z-index: 100;
         }
         .social-link { display: flex; align-items: center; justify-content: center; }
-        .social-icon { width: 20px; height: 20px; fill: #ffffff; transition: all 0.3s ease; }
-        .social-link:nth-child(1):hover .social-icon { fill: #002552; transform: translateY(-3px); } 
-        .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; transform: translateY(-3px); } 
-        .social-link:nth-child(3):hover .social-icon { fill: #b90e32; transform: translateY(-3px); } 
+        .social-icon { width: 20px; height: 20px; fill: rgba(255,255,255,0.5); transition: all 0.6s ease; }
+        .social-link:nth-child(1):hover .social-icon { fill: #5b8cc8; transform: translateY(-3px); }
+        .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; transform: translateY(-3px); }
+        .social-link:nth-child(3):hover .social-icon { fill: #b90e32; transform: translateY(-3px); }
 
-        @media (max-width: 768px) {
-            .fixed-footer { left: 50%; transform: translateX(-50%); bottom: 1.5rem; }
-        }
-
-        /* --- MOBILE MENU STYLES --- */
-        .hamburger-btn {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            flex-direction: column;
-            gap: 6px;
-            pointer-events: auto;
-            z-index: 102; 
-            padding: 10px;
-        }
-
-        .hamburger-btn .line {
-            width: 26px;
-            height: 2px;
-            background-color: #f0f0f0;
+        /* ── Back to Top ── */
+        #back-to-top {
+            position: fixed; bottom: 2rem; right: 2rem; width: 48px; height: 48px;
+            background: rgba(18,18,18,0.85); backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 50%;
+            color: rgba(255,255,255,0.6); display: flex; justify-content: center;
+            align-items: center; cursor: pointer; z-index: 100;
+            opacity: 0; pointer-events: none; transform: translateY(20px);
             transition: all 0.3s ease;
-            border-radius: 2px;
         }
+        #back-to-top svg { width: 22px; height: 22px; }
+        #back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+        #back-to-top { transition: all 0.6s ease; }
+        #back-to-top:hover { border-color: #fabc0f; color: #fabc0f; transform: translateY(-3px); }
 
-        .hamburger-btn.open .line:nth-child(1) { transform: translateY(4px) rotate(45deg); }
-        .hamburger-btn.open .line:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
-
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: rgba(26, 26, 26, 0.95); 
-            backdrop-filter: blur(15px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2.5rem;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            z-index: 101;
-        }
-
-        .mobile-menu.open {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .mobile-nav-link {
-            color: #a0a0a0;
-            font-size: 1.5rem;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .mobile-nav-link:hover, .mobile-nav-link:active {
-            color: #ffffff;
-        }
-
+        /* ── Responsive ── */
         @media (max-width: 768px) {
-            .site-header { padding: 1.5rem; justify-content: center; }
-            .desktop-only { display: none !important; }
-            .hamburger-btn { display: flex; position: absolute; right: 1.5rem; }
-            .logo-container { position: relative; z-index: 102; }
-            .logo-img { height: 55px; }
+            body { overflow: auto; }
+            .vertical-slideshow { scroll-snap-type: none; height: auto; overflow: visible; }
+            .slide { scroll-snap-align: none; height: auto; min-height: 100svh; padding-top: 90px; padding-bottom: 100px; }
+            .hero-title { font-size: 2.8rem; }
+            .philosophy-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .project-showcase { flex-direction: column; height: auto; padding: 1.5rem; gap: 1.5rem; }
+            .project-static { padding-right: 0; overflow-y: visible; }
+            .project-interactive { flex-direction: column; gap: 1rem; }
+            .vertical-nodes { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 0.75rem; padding: 0; }
+            .node-line { display: none; }
+            .team-node-btn { flex-direction: column; gap: 0.25rem; }
+            .team-label { font-size: 0.72rem; }
+            .team-details { padding: 1.25rem; overflow-y: visible; }
+            .fixed-footer { left: 50%; transform: translateX(-50%); bottom: 1.5rem; }
+            #back-to-top { bottom: 1.5rem; right: 1.5rem; width: 44px; height: 44px; }
         }
     </style>
 </head>
 <body>
 
-<!-- Global Tooltip Container -->
+<div class="global-bg">
+    <div class="nebula-blob nebula-1"></div>
+    <div class="nebula-blob nebula-2"></div>
+    <div class="nebula-blob nebula-3"></div>
+    <div class="nebula-blob nebula-4"></div>
+    <div class="star-layer stars-1"></div>
+    <div class="star-layer stars-2"></div>
+    <div class="star-layer stars-3"></div>
+</div>
+
 <div id="global-tooltip"></div>
 
-<header class="site-header">
-    <div class="header-side left desktop-only">
-        <a href="/about" class="nav-link">About</a>
-        <a href="/teams" class="nav-link">Teams</a>
-        <a href="/school" class="nav-link">QNET School</a>
-    </div>
-    
-    <div class="logo-container">
-        <a href="/" class="logo-link">
-            <img src="assets/QNET outline white.svg" alt="QNET Logo" class="logo-img">
+<div class="notch-wrapper">
+    <nav class="notch-container">
+        <a href="/" class="nav-logo-link">
+            <div class="nav-logo-wrap">
+                <img src="assets/Atom Logo.png" alt="QNET" class="nav-logo-atom">
+                <img src="assets/White NET Full Logo.svg" alt="QNET" class="nav-logo-full">
+            </div>
         </a>
-    </div>
+        <div class="notch-links">
+            <a href="/about">About</a>
+            <a href="/teams">Teams</a>
+            <a href="/school">QNET School</a>
+            <a href="/projects" style="color:#fff;">Projects</a>
+            <a href="/sponsors">Sponsors</a>
+            <a href="/join">Join</a>
+        </div>
+    </nav>
+</div>
 
-    <div class="header-side right desktop-only">
-        <a href="/projects" class="nav-link">Projects</a>
-        <a href="/sponsors" class="nav-link">Sponsors</a>
-        <a href="/join" class="nav-link">Join</a>
-    </div>
-
+<div class="mobile-header">
+    <a href="/" class="mobile-logo-link">
+        <img src="assets/Atom Logo.png" alt="QNET" class="mobile-logo">
+    </a>
     <button class="hamburger-btn" aria-label="Toggle Mobile Menu">
         <span class="line"></span>
         <span class="line"></span>
     </button>
-</header>
+</div>
 
 <div class="mobile-menu">
     <a href="/about" class="mobile-nav-link">About</a>
     <a href="/teams" class="mobile-nav-link">Teams</a>
     <a href="/school" class="mobile-nav-link">QNET School</a>
-    <a href="/projects" class="mobile-nav-link">Projects</a>
+    <a href="/projects" class="mobile-nav-link" style="color:#fff;">Projects</a>
     <a href="/sponsors" class="mobile-nav-link">Sponsors</a>
     <a href="/join" class="mobile-nav-link">Join</a>
 </div>
 
-<div class="slideshow-container">
-    
-    <section class="slide slide-1">
-        <h1>Projects</h1>
-        <p>Our executives are currently preparing the framework of three (3) different projects, including comprehensive feasibility reports, technical risk assessments and the establishment of strict milestones and checkpoints for their respective teams. We believe general member contribution is crucial, and will let general members vote on which project out of the three will be QNET's build for the 2026-2027 school year.</p>
-        <a href="/join" class="btn">Join the team to vote on QNET's first project</a>
-        
-        <div id="next-slide-btn" class="down-indicator">
-            What to expect <span>↓</span>
+<div class="vertical-slideshow">
+
+    <!-- Slide 1: Hero -->
+    <section class="slide">
+        <span class="section-eyebrow reveal">2026–2027 Build Year</span>
+        <h1 class="hero-title reveal stagger-1">Our <span>Projects</span></h1>
+        <p class="hero-sub reveal stagger-2">Our executives are currently preparing the framework of three different projects, including comprehensive feasibility reports, technical risk assessments, and strict milestones for their teams. General members will vote on which project becomes QNET's inaugural build.</p>
+        <a href="/join" class="btn reveal stagger-3" onclick="gtag('event','button_click',{'button_name':'Projects - Join to Vote'});">Join the team to vote</a>
+        <div id="next-slide-btn" class="down-indicator">Project Charter <span>↓</span></div>
+    </section>
+
+    <!-- Slide 2: Philosophy -->
+    <section class="slide">
+        <span class="section-eyebrow reveal">The Framework</span>
+        <h1 class="hero-title reveal stagger-1">Project <span>Philosophy</span></h1>
+        <p class="hero-sub reveal stagger-2">All potential QNET projects must satisfy our three-pillar Project Charter before moving forward.</p>
+        <div class="philosophy-grid">
+            <div class="phil-card reveal stagger-1">
+                <div class="phil-number">01</div>
+                <h3>Teaches Nuclear Concepts</h3>
+                <p>Providing members with tangible, hands-on experience with nuclear physics and engineering principles.</p>
+            </div>
+            <div class="phil-card reveal stagger-2">
+                <div class="phil-number">02</div>
+                <h3>Involves Multiple Disciplines</h3>
+                <p>Nuclear engineering is vastly interdisciplinary — our projects must reflect that breadth across teams.</p>
+            </div>
+            <div class="phil-card reveal stagger-3">
+                <div class="phil-number">03</div>
+                <h3>Achievable Within Scope</h3>
+                <p>Scoped appropriately to be completed safely and effectively within timeline and resources by a student team.</p>
+            </div>
         </div>
     </section>
 
-    <section class="slide slide-2">
-        <h2>Project Philosophy</h2>
-        <p>Before introducing the projects we are actively developing, we've created a Project Charter that all potential QNET projects must follow.</p>
-        <div style="text-align: left; max-width: 750px; margin: 0 auto;">
-            <p><strong>1. Teaches nuclear engineering concepts:</strong> Providing members with tangible, hands-on experience with nuclear physics.</p>
-            <p><strong>2. Involves multiple disciplines:</strong> Nuclear engineering is a vastly interdisciplinary field, therefore our projects must reflect that.</p>
-            <p><strong>3. Achievable within timeline and resources:</strong> Scoped appropriately to be completed safely and effectively by a student team.</p>
-        </div>
-    </section>
-
-    <section class="slide slide-3">
+    <!-- Slide 3: Project A — Rover -->
+    <section class="slide">
         <div class="project-showcase">
             <div class="project-static">
-                <h3>Project A: Remotely Operated Rover</h3>
-                <p>Developed and idealized with Software Team Leads <a href="/teams#GabrielBrannon" class="inline-member-link has-tooltip" data-name="Gabriel Brannon" data-role="Team Lead" data-bio="Co-conceptualized the Remotely Operated Rover. Oversees the code stack." data-img="teamphoto/Gabe.png" data-color="#b90e32"><strong>Gabriel Brannon</strong></a> and <a href="/teams#TejasMarwaha" class="inline-member-link has-tooltip" data-name="Tejas Marwaha" data-role="Team Lead" data-bio="Co-conceptualized the Remotely Operated Rover. Oversees device communication." data-img="teamphoto/TJ.JPG" data-color="#b90e32"><strong>Tejas Marwaha</strong></a>, the remotely operated rover serves as a remote-control handling platform explicitly designed to replace human intervention during hazardous nuclear operations.</p>
+                <span class="section-eyebrow">Project A</span>
+                <h3>Remotely Operated Rover</h3>
+                <p>Developed and idealized with Software Team Leads <a href="/teams#GabrielBrannon" class="inline-member-link has-tooltip" data-name="Gabriel Brannon" data-role="Software Team Lead" data-bio="Co-conceptualized the Remotely Operated Rover. Oversees the code stack." data-img="teamphoto/Gabe.png" data-color="#b90e32"><strong>Gabriel Brannon</strong></a> and <a href="/teams#TejasMarwaha" class="inline-member-link has-tooltip" data-name="Tejas Marwaha" data-role="Software Team Lead" data-bio="Co-conceptualized the Remotely Operated Rover. Oversees device communication." data-img="teamphoto/TJ.JPG" data-color="#b90e32"><strong>Tejas Marwaha</strong></a>, the remotely operated rover is a remote-control handling platform designed to replace human intervention during hazardous nuclear operations.</p>
                 <div class="project-specs">
                     <strong>Objective:</strong> To design, model, and assemble a highly functional mobile chassis carrying a multi-jointed robotic arm capable of traversing a restricted zone, retrieving localized material, and securing it into storage.<br><br>
                     <strong>Technical Specifications:</strong>
@@ -713,38 +459,35 @@
                 <div class="vertical-nodes">
                     <div class="node-line"></div>
                     <button class="team-node-btn active" data-project="rover" data-team="mech" data-color="#002552">
-                        <div class="node-circle" style="background-color: #002552;"></div>
+                        <div class="node-circle" style="background-color:#002552;"></div>
                         <span class="team-label">Mech</span>
                     </button>
                     <button class="team-node-btn" data-project="rover" data-team="elec" data-color="#fabc0f">
-                        <div class="node-circle" style="background-color: #fabc0f;"></div>
+                        <div class="node-circle" style="background-color:#fabc0f;"></div>
                         <span class="team-label">Elec</span>
                     </button>
                     <button class="team-node-btn" data-project="rover" data-team="software" data-color="#b90e32">
-                        <div class="node-circle" style="background-color: #b90e32;"></div>
+                        <div class="node-circle" style="background-color:#b90e32;"></div>
                         <span class="team-label">Software</span>
                     </button>
                     <button class="team-node-btn" data-project="rover" data-team="research" data-color="#ffffff">
-                        <div class="node-circle" style="background-color: #ffffff;"></div>
+                        <div class="node-circle" style="background-color:#ffffff;"></div>
                         <span class="team-label">Research</span>
                     </button>
                     <button class="team-node-btn" data-project="rover" data-team="materials" data-color="#32a852">
-                        <div class="node-circle" style="background-color: #32a852;"></div>
+                        <div class="node-circle" style="background-color:#32a852;"></div>
                         <span class="team-label">Materials</span>
                     </button>
                 </div>
-                <div class="team-details" id="details-rover" style="--theme-color: #002552;">
-                    <div class="team-header-label">
-                        <span>Team Tasks & Learning Outcomes</span>
-                    </div>
+                <div class="team-details" id="details-rover" style="--theme-color:#002552;">
+                    <div class="team-header-label"><span>Team Tasks &amp; Learning Outcomes</span></div>
                     <h4 id="title-rover">Mechanical</h4>
                     <div id="members-rover" class="team-members-container">
-                        <!-- Default loaded members for Mech -->
-                        <a href="/teams#TochukwuOdiwa" class="member-avatar has-tooltip" style="background-image: url('teamphoto/Tochi.jpeg'); border-color: #002552;" data-name="Tochukwu Odiwa" data-role="Team Lead" data-bio="Co-conceptualized the Gamma Ray Imaging project. Oversees physical architecture." data-img="teamphoto/Tochi.jpeg" data-color="#002552"></a>
-                        <a href="/teams#AidanWoods" class="member-avatar has-tooltip" style="background-image: url('teamphoto/Aidan.png'); border-color: #002552;" data-name="Aidan Woods" data-role="Team Lead" data-bio="Co-conceptualized the SMR Cooling System project. Oversees hardware housing." data-img="teamphoto/Aidan.png" data-color="#002552"></a>
+                        <a href="/teams#TochukwuOdiwa" class="member-avatar has-tooltip" style="background-image:url('teamphoto/Tochi.jpeg');border-color:#002552;" data-name="Tochukwu Odiwa" data-role="Team Lead" data-bio="Co-conceptualized the Gamma Ray Imaging project. Oversees physical architecture." data-img="teamphoto/Tochi.jpeg" data-color="#002552"></a>
+                        <a href="/teams#AidanWoods" class="member-avatar has-tooltip" style="background-image:url('teamphoto/Aidan.png');border-color:#002552;" data-name="Aidan Woods" data-role="Team Lead" data-bio="Co-conceptualized the SMR Cooling System project. Oversees hardware housing." data-img="teamphoto/Aidan.png" data-color="#002552"></a>
                     </div>
                     <div id="desc-rover">
-                        <ul style="margin-left: 1.2rem; line-height: 1.5;">
+                        <ul>
                             <li>Develop advanced proficiency in CAD and additive 3D printing.</li>
                             <li>Learn how to run computation stress, strain and load-distribution simulations.</li>
                             <li>Gain practical experience in structural tolerance design, mechanical joint design, and end-effector gripper mechanics.</li>
@@ -755,17 +498,19 @@
         </div>
     </section>
 
-    <section class="slide slide-4">
+    <!-- Slide 4: Project B — SMR -->
+    <section class="slide">
         <div class="project-showcase">
             <div class="project-static">
-                <h3>Project B: SMR Cooling System</h3>
-                <p>Developed and idealized by <a href="/teams#AidanWoods" class="inline-member-link has-tooltip" data-name="Aidan Woods" data-role="Team Lead" data-bio="Co-conceptualized the SMR Cooling System project. Oversees hardware housing." data-img="teamphoto/Aidan.png" data-color="#002552"><strong>Aidan Woods</strong></a> and <a href="/teams#JustinHooey" class="inline-member-link has-tooltip" data-name="Justin Hooey" data-role="Team Lead" data-bio="Co-conceptualized the SMR Cooling System project. Establishes the scientific framework." data-img="teamphoto/justin.jpg" data-color="#ffffff"><strong>Justin Hooey</strong></a>, this is designed to simulate a real-world SMR cooling system, equipped with a Cooling Tower.</p>
+                <span class="section-eyebrow">Project B</span>
+                <h3>SMR Cooling System</h3>
+                <p>Developed and idealized by <a href="/teams#AidanWoods" class="inline-member-link has-tooltip" data-name="Aidan Woods" data-role="Mechanical Team Lead" data-bio="Co-conceptualized the SMR Cooling System project. Oversees hardware housing." data-img="teamphoto/Aidan.png" data-color="#002552"><strong>Aidan Woods</strong></a> and <a href="/teams#JustinHooey" class="inline-member-link has-tooltip" data-name="Justin Hooey" data-role="Research Team Lead" data-bio="Co-conceptualized the SMR Cooling System project. Establishes the scientific framework." data-img="teamphoto/justin.jpg" data-color="#ffffff"><strong>Justin Hooey</strong></a>, this simulates a real-world SMR cooling system equipped with a Cooling Tower.</p>
                 <div class="project-specs">
-                    <strong>Objective:</strong> To design, model, and assemble a highly functional cooling system modeled after Small Modular Reactor (SMR) cycles to evaluate heat rejection and to test the cooling system's effectiveness in simulated disasters.<br><br>
+                    <strong>Objective:</strong> To design, model, and assemble a highly functional cooling system modeled after Small Modular Reactor (SMR) cycles to evaluate heat rejection and test the cooling system's effectiveness in simulated disasters.<br><br>
                     <strong>Technical Specifications:</strong>
                     <ul>
                         <li>Must feature four main focus systems: a mock reactor core that generates heat, a primary convection cycle, a secondary steam cycle, and integrated control systems.</li>
-                        <li>Must operate with working fluid temperatures of 90-120 degree Celsius.</li>
+                        <li>Must operate with working fluid temperatures of 90–120°C.</li>
                         <li>Working fluid will be non-toxic and non-flammable.</li>
                         <li>Loop must possess proper calculations for pressure vessel limits and safety thresholds to manage potential vacuum or over-pressure safety hazards.</li>
                     </ul>
@@ -782,38 +527,35 @@
                 <div class="vertical-nodes">
                     <div class="node-line"></div>
                     <button class="team-node-btn active" data-project="smr" data-team="mech" data-color="#002552">
-                        <div class="node-circle" style="background-color: #002552;"></div>
+                        <div class="node-circle" style="background-color:#002552;"></div>
                         <span class="team-label">Mech</span>
                     </button>
                     <button class="team-node-btn" data-project="smr" data-team="elec" data-color="#fabc0f">
-                        <div class="node-circle" style="background-color: #fabc0f;"></div>
+                        <div class="node-circle" style="background-color:#fabc0f;"></div>
                         <span class="team-label">Elec</span>
                     </button>
                     <button class="team-node-btn" data-project="smr" data-team="software" data-color="#b90e32">
-                        <div class="node-circle" style="background-color: #b90e32;"></div>
+                        <div class="node-circle" style="background-color:#b90e32;"></div>
                         <span class="team-label">Software</span>
                     </button>
                     <button class="team-node-btn" data-project="smr" data-team="research" data-color="#ffffff">
-                        <div class="node-circle" style="background-color: #ffffff;"></div>
+                        <div class="node-circle" style="background-color:#ffffff;"></div>
                         <span class="team-label">Research</span>
                     </button>
                     <button class="team-node-btn" data-project="smr" data-team="materials" data-color="#32a852">
-                        <div class="node-circle" style="background-color: #32a852;"></div>
+                        <div class="node-circle" style="background-color:#32a852;"></div>
                         <span class="team-label">Materials</span>
                     </button>
                 </div>
-                <div class="team-details" id="details-smr" style="--theme-color: #002552;">
-                    <div class="team-header-label">
-                        <span>Team Tasks & Learning Outcomes</span>
-                    </div>
+                <div class="team-details" id="details-smr" style="--theme-color:#002552;">
+                    <div class="team-header-label"><span>Team Tasks &amp; Learning Outcomes</span></div>
                     <h4 id="title-smr">Mechanical</h4>
                     <div id="members-smr" class="team-members-container">
-                        <!-- Default loaded members for Mech -->
-                        <a href="/teams#TochukwuOdiwa" class="member-avatar has-tooltip" style="background-image: url('teamphoto/Tochi.jpeg'); border-color: #002552;" data-name="Tochukwu Odiwa" data-role="Team Lead" data-bio="Co-conceptualized the Gamma Ray Imaging project. Oversees physical architecture." data-img="teamphoto/Tochi.jpeg" data-color="#002552"></a>
-                        <a href="/teams#AidanWoods" class="member-avatar has-tooltip" style="background-image: url('teamphoto/Aidan.png'); border-color: #002552;" data-name="Aidan Woods" data-role="Team Lead" data-bio="Co-conceptualized the SMR Cooling System project. Oversees hardware housing." data-img="teamphoto/Aidan.png" data-color="#002552"></a>
+                        <a href="/teams#TochukwuOdiwa" class="member-avatar has-tooltip" style="background-image:url('teamphoto/Tochi.jpeg');border-color:#002552;" data-name="Tochukwu Odiwa" data-role="Team Lead" data-bio="Co-conceptualized the Gamma Ray Imaging project. Oversees physical architecture." data-img="teamphoto/Tochi.jpeg" data-color="#002552"></a>
+                        <a href="/teams#AidanWoods" class="member-avatar has-tooltip" style="background-image:url('teamphoto/Aidan.png');border-color:#002552;" data-name="Aidan Woods" data-role="Team Lead" data-bio="Co-conceptualized the SMR Cooling System project. Oversees hardware housing." data-img="teamphoto/Aidan.png" data-color="#002552"></a>
                     </div>
                     <div id="desc-smr">
-                        <ul style="margin-left: 1.2rem; line-height: 1.5;">
+                        <ul>
                             <li>Develop advanced proficiency in CAD, parametric assemblies, and technical drawings.</li>
                             <li>Learn how to calculate safety thresholds, pressure vessel limits, and structural geometries for high-temperature piping systems.</li>
                             <li>Gain practical experience in scaling multi-loop fluid convection geometries using lightweight rapid-prototyping materials.</li>
@@ -824,26 +566,28 @@
         </div>
     </section>
 
-    <section class="slide slide-5">
+    <!-- Slide 5: Project C — Gamma -->
+    <section class="slide">
         <div class="project-showcase">
             <div class="project-static">
-                <h3>Project C: Gamma Ray Imaging</h3>
-                <p>Developed and idealized by <a href="/teams#TochukwuOdiwa" class="inline-member-link has-tooltip" data-name="Tochukwu Odiwa" data-role="Team Lead" data-bio="Co-conceptualized the Gamma Ray Imaging project. Oversees physical architecture." data-img="teamphoto/Tochi.jpeg" data-color="#002552"><strong>Tochukwu Odiwa</strong></a> and <a href="/teams#ArsalanVahidi" class="inline-member-link has-tooltip" data-name="Arsalan Vahidi" data-role="Team Lead" data-bio="Co-conceptualized the Gamma Ray Imaging project. Oversees circuitry development." data-img="teamphoto/arsalan.jpg" data-color="#fabc0f"><strong>Arsalan Vahidi</strong></a>, this aims to build a scaled down, low-cost medical imaging prototype based on the mechanisms of a PET scan.</p>
+                <span class="section-eyebrow">Project C</span>
+                <h3>Gamma Ray Imaging</h3>
+                <p>Developed and idealized by <a href="/teams#TochukwuOdiwa" class="inline-member-link has-tooltip" data-name="Tochukwu Odiwa" data-role="Mechanical Team Lead" data-bio="Co-conceptualized the Gamma Ray Imaging project. Oversees physical architecture." data-img="teamphoto/Tochi.jpeg" data-color="#002552"><strong>Tochukwu Odiwa</strong></a> and <a href="/teams#ArsalanVahidi" class="inline-member-link has-tooltip" data-name="Arsalan Vahidi" data-role="Electrical Team Lead" data-bio="Co-conceptualized the Gamma Ray Imaging project. Oversees circuitry development." data-img="teamphoto/arsalan.jpg" data-color="#fabc0f"><strong>Arsalan Vahidi</strong></a>, this aims to build a scaled-down, low-cost medical imaging prototype based on the mechanisms of a PET scan.</p>
                 <div class="project-specs">
-                    <strong>Objective:</strong> To design, model, and assemble a Gamma Ray Imaging system that is able to pinpoint the exact location where radiation originated from in 3D space.<br><br>
+                    <strong>Objective:</strong> To design, model, and assemble a Gamma Ray Imaging system able to pinpoint the exact location where radiation originated from in 3D space.<br><br>
                     <strong>Technical Specifications:</strong>
                     <ul>
-                        <li>Utilizes two identical detector sets with a crystal array made out of BGO to convert incoming invisible gamma rays from a decaying thoriated tungsten rod to a faint spark of light, and semiconductors to convert the light into an electrical pulse.</li>
+                        <li>Utilizes two identical detector sets with a BGO crystal array to convert incoming gamma rays from a decaying thoriated tungsten rod to a faint spark of light, and semiconductors to convert the light into an electrical pulse.</li>
                         <li>The system must be enclosed in a box to prevent light leaking in.</li>
-                        <li>The system must precisely map out the coordinates of the detectors to calculate and draw intersecting vectors (lines of response) between the two sets, generating a reconstructed 3D image of the object.</li>
+                        <li>The system must precisely map out detector coordinates to calculate and draw intersecting vectors (lines of response), generating a reconstructed 3D image.</li>
                     </ul>
                     <br>
                     <strong>By developing this project, students actively:</strong>
                     <ul>
-                        <li>Gain an understanding of the physics behind positron decay (how an unstable isotope sheds a proton emitting a positron, and how the collision converts mass into EM energy).</li>
-                        <li>Learn how the nuclear industry is able to map radiation outside of basic Geiger counter.</li>
+                        <li>Gain an understanding of the physics behind positron decay.</li>
+                        <li>Learn how the nuclear industry maps radiation beyond basic Geiger counters.</li>
                         <li>Study quantum mechanisms such as the photoelectric effect and Compton scattering.</li>
-                        <li>By using thoriated tungsten welding rods, students will gain experience with natural decay chains and basic radiation safety.</li>
+                        <li>Gain experience with natural decay chains and basic radiation safety using thoriated tungsten welding rods.</li>
                     </ul>
                 </div>
             </div>
@@ -851,38 +595,35 @@
                 <div class="vertical-nodes">
                     <div class="node-line"></div>
                     <button class="team-node-btn active" data-project="gamma" data-team="mech" data-color="#002552">
-                        <div class="node-circle" style="background-color: #002552;"></div>
+                        <div class="node-circle" style="background-color:#002552;"></div>
                         <span class="team-label">Mech</span>
                     </button>
                     <button class="team-node-btn" data-project="gamma" data-team="elec" data-color="#fabc0f">
-                        <div class="node-circle" style="background-color: #fabc0f;"></div>
+                        <div class="node-circle" style="background-color:#fabc0f;"></div>
                         <span class="team-label">Elec</span>
                     </button>
                     <button class="team-node-btn" data-project="gamma" data-team="software" data-color="#b90e32">
-                        <div class="node-circle" style="background-color: #b90e32;"></div>
+                        <div class="node-circle" style="background-color:#b90e32;"></div>
                         <span class="team-label">Software</span>
                     </button>
                     <button class="team-node-btn" data-project="gamma" data-team="research" data-color="#ffffff">
-                        <div class="node-circle" style="background-color: #ffffff;"></div>
+                        <div class="node-circle" style="background-color:#ffffff;"></div>
                         <span class="team-label">Research</span>
                     </button>
                     <button class="team-node-btn" data-project="gamma" data-team="materials" data-color="#32a852">
-                        <div class="node-circle" style="background-color: #32a852;"></div>
+                        <div class="node-circle" style="background-color:#32a852;"></div>
                         <span class="team-label">Materials</span>
                     </button>
                 </div>
-                <div class="team-details" id="details-gamma" style="--theme-color: #002552;">
-                    <div class="team-header-label">
-                        <span>Team Tasks & Learning Outcomes</span>
-                    </div>
+                <div class="team-details" id="details-gamma" style="--theme-color:#002552;">
+                    <div class="team-header-label"><span>Team Tasks &amp; Learning Outcomes</span></div>
                     <h4 id="title-gamma">Mechanical</h4>
                     <div id="members-gamma" class="team-members-container">
-                        <!-- Default loaded members for Mech -->
-                        <a href="/teams#TochukwuOdiwa" class="member-avatar has-tooltip" style="background-image: url('teamphoto/Tochi.jpeg'); border-color: #002552;" data-name="Tochukwu Odiwa" data-role="Team Lead" data-bio="Co-conceptualized the Gamma Ray Imaging project. Oversees physical architecture." data-img="teamphoto/Tochi.jpeg" data-color="#002552"></a>
-                        <a href="/teams#AidanWoods" class="member-avatar has-tooltip" style="background-image: url('teamphoto/Aidan.png'); border-color: #002552;" data-name="Aidan Woods" data-role="Team Lead" data-bio="Co-conceptualized the SMR Cooling System project. Oversees hardware housing." data-img="teamphoto/Aidan.png" data-color="#002552"></a>
+                        <a href="/teams#TochukwuOdiwa" class="member-avatar has-tooltip" style="background-image:url('teamphoto/Tochi.jpeg');border-color:#002552;" data-name="Tochukwu Odiwa" data-role="Team Lead" data-bio="Co-conceptualized the Gamma Ray Imaging project. Oversees physical architecture." data-img="teamphoto/Tochi.jpeg" data-color="#002552"></a>
+                        <a href="/teams#AidanWoods" class="member-avatar has-tooltip" style="background-image:url('teamphoto/Aidan.png');border-color:#002552;" data-name="Aidan Woods" data-role="Team Lead" data-bio="Co-conceptualized the SMR Cooling System project. Oversees hardware housing." data-img="teamphoto/Aidan.png" data-color="#002552"></a>
                     </div>
                     <div id="desc-gamma">
-                        <ul style="margin-left: 1.2rem; line-height: 1.5;">
+                        <ul>
                             <li>Develop advanced proficiency in CAD in developing a light-tight enclosure.</li>
                             <li>Learn how to run computation stress, strain and load-distribution simulations.</li>
                             <li>Gain practical experience in structural tolerance design and mechanical joint design.</li>
@@ -896,38 +637,50 @@
 </div>
 
 <div class="fixed-footer">
-    <a href="https://www.linkedin.com/company/queensnuclear/" target="_blank" class="social-link">
-        <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+    <a href="https://www.linkedin.com/company/queensnuclear/" target="_blank" class="social-link" onclick="gtag('event','button_click',{'button_name':'Social - LinkedIn'});">
+        <svg class="social-icon" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
     </a>
-    <a href="https://www.instagram.com/queensnuclear/" target="_blank" class="social-link">
-        <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    <a href="https://www.instagram.com/queensnuclear/" target="_blank" class="social-link" onclick="gtag('event','button_click',{'button_name':'Social - Instagram'});">
+        <svg class="social-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
     </a>
-    <a href="https://github.com/qnuclear" target="_blank" class="social-link">
-        <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.011-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg>
+    <a href="https://github.com/qnuclear" target="_blank" class="social-link" onclick="gtag('event','button_click',{'button_name':'Social - GitHub'});">
+        <svg class="social-icon" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.011-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg>
     </a>
 </div>
 
+<button id="back-to-top" aria-label="Back to Top" onclick="gtag('event','button_click',{'button_name':'Back to Top'});">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
 <script>
-    // Random Custom Cursor Script
-    (function setRandomCursor() {
-        const queensColors = ['%23002552', '%23fabc0f', '%23b90e32'];
-        const randomColor = queensColors[Math.floor(Math.random() * queensColors.length)];
-        const cursorStyle = document.createElement('style');
-        cursorStyle.innerHTML = `
-            * { cursor: url('data:image/svg+xml;utf8,<svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5" fill="${randomColor}"/></svg>') 6 6, auto; }
-            a, button, .btn, .logo-link, .down-indicator, .inline-member-link { cursor: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" fill="${randomColor}" opacity="0.4"/><circle cx="8" cy="8" r="4" fill="${randomColor}"/></svg>') 8 8, pointer !important; }
-        `;
-        document.head.appendChild(cursorStyle);
+    // Custom cursor
+    (function() {
+        const c = ['%23002552','%23fabc0f','%23b90e32'];
+        const r = c[Math.floor(Math.random()*c.length)];
+        const s = document.createElement('style');
+        s.innerHTML = `* { cursor: url('data:image/svg+xml;utf8,<svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5" fill="${r}"/></svg>') 6 6, auto; } a, button, .btn, .team-node-btn, .member-avatar, .down-indicator, .inline-member-link { cursor: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" fill="${r}" opacity="0.4"/><circle cx="8" cy="8" r="4" fill="${r}"/></svg>') 8 8, pointer !important; }`;
+        document.head.appendChild(s);
     })();
 
-    // "What to expect" down arrow logic
-    document.getElementById('next-slide-btn').addEventListener('click', (evt) => {
-        evt.preventDefault(); 
-        const container = document.querySelector('.slideshow-container');
-        container.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+    // Scroll + Back to Top
+    const slideshow = document.querySelector('.vertical-slideshow');
+    const backToTop = document.getElementById('back-to-top');
+    slideshow.addEventListener('scroll', () => {
+        backToTop.classList.toggle('show', slideshow.scrollTop > window.innerHeight * 0.5);
+    });
+    backToTop.addEventListener('click', () => slideshow.scrollTo({ top: 0, behavior: 'smooth' }));
+    document.getElementById('next-slide-btn').addEventListener('click', () => {
+        slideshow.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
     });
 
-    // Staff Data containing member info from the teams structure and PDF
+    // Scroll Reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); revealObserver.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // Staff Data
     const staffData = {
         mech: [
             { name: "Tochukwu Odiwa", role: "Team Lead", img: "teamphoto/Tochi.jpeg", bio: "Co-conceptualized the Gamma Ray Imaging project. Oversees physical architecture.", anchor: "TochukwuOdiwa" },
@@ -950,194 +703,93 @@
         ]
     };
 
-    // Helper to generate the HTML for the avatar and link it directly
     function getMembersHTML(teamKey, color) {
         const members = staffData[teamKey];
         if (!members) return '';
-        let html = '';
-        members.forEach(m => {
-            html += `
-                <a href="/teams#${m.anchor}" class="member-avatar has-tooltip" style="background-image: url('${m.img}'); border-color: ${color};" data-name="${m.name}" data-role="${m.role}" data-bio="${m.bio}" data-img="${m.img}" data-color="${color}">
-                </a>
-            `;
-        });
-        return html;
+        return members.map(m => `<a href="/teams#${m.anchor}" class="member-avatar has-tooltip" style="background-image:url('${m.img}');border-color:${color};" data-name="${m.name}" data-role="${m.role}" data-bio="${m.bio}" data-img="${m.img}" data-color="${color}"></a>`).join('');
     }
 
-    // Interactive Team Timeline Logic
     const teamContent = {
         rover: {
-            mech: { 
-                title: "Mechanical", 
-                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Develop advanced proficiency in CAD and additive 3D printing.</li><li>Learn how to run computation stress, strain and load-distribution simulations.</li><li>Gain practical experience in structural tolerance design, mechanical joint design, and end-effector gripper mechanics.</li></ul>" 
-            },
-            elec: { 
-                title: "Electrical", 
-                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Learn how to map custom schematics into PCBs.</li><li>Understand voltage regulation and basic power architecture.</li><li>Gain experience in electrical safety, noise isolation and emergency power cutoffs.</li></ul>" 
-            },
-            software: { 
-                title: "Software & Comp", 
-                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Write low-latency control logic in either C (microcontrollers) or Python (microprocessors).</li><li>Learn and implement advanced forward and inverse kinematics math equations.</li><li>Design off-site UI via software apps or web platforms (IoT).</li></ul>" 
-            },
-            research: { 
-                title: "Research", 
-                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Draft formal roadmaps to evaluate the rover's scalability.</li><li>Create engineering reviews that compare our rover's design and metrics against real-world nuclear robotics.</li><li>Write case studies on how automated logic vs manual control is utilized during containment failures.</li></ul>" 
-            },
-            materials: { 
-                title: "Materials", 
-                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Model the mechanical stress, wear and thermal degradation profiles of different structural mediums over long-term operations.</li><li>Research and analyze safe substitute materials to predict how the physical arm would react if it were handling real structural reactor components.</li></ul>" 
-            }
+            mech: { title: "Mechanical", desc: "<ul><li>Develop advanced proficiency in CAD and additive 3D printing.</li><li>Learn how to run computation stress, strain and load-distribution simulations.</li><li>Gain practical experience in structural tolerance design, mechanical joint design, and end-effector gripper mechanics.</li></ul>" },
+            elec: { title: "Electrical", desc: "<ul><li>Learn how to map custom schematics into PCBs.</li><li>Understand voltage regulation and basic power architecture.</li><li>Gain experience in electrical safety, noise isolation and emergency power cutoffs.</li></ul>" },
+            software: { title: "Software & Comp", desc: "<ul><li>Write low-latency control logic in either C (microcontrollers) or Python (microprocessors).</li><li>Learn and implement advanced forward and inverse kinematics math equations.</li><li>Design off-site UI via software apps or web platforms (IoT).</li></ul>" },
+            research: { title: "Research", desc: "<ul><li>Draft formal roadmaps to evaluate the rover's scalability.</li><li>Create engineering reviews that compare our rover's design and metrics against real-world nuclear robotics.</li><li>Write case studies on how automated logic vs manual control is utilized during containment failures.</li></ul>" },
+            materials: { title: "Materials", desc: "<ul><li>Model the mechanical stress, wear and thermal degradation profiles of different structural mediums over long-term operations.</li><li>Research and analyze safe substitute materials to predict how the physical arm would react if it were handling real structural reactor components.</li></ul>" }
         },
         smr: {
-            mech: { 
-                title: "Mechanical", 
-                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Develop advanced proficiency in CAD, parametric assemblies, and technical drawings.</li><li>Learn how to calculate safety thresholds, pressure vessel limits, and structural geometries for high-temperature piping systems.</li><li>Gain practical experience in scaling multi-loop fluid convection geometries using lightweight rapid-prototyping materials.</li></ul>" 
-            },
-            elec: { 
-                title: "Electrical", 
-                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Learn how to map complex power layouts and custom hardware schematics into prototypes.</li><li>Understand voltage regulation and basic power architecture.</li><li>Gain experience in sensor wiring and safe electrical practices.</li></ul>" 
-            },
-            software: { 
-                title: "Software & Comp", 
-                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Write control software to track real-time system temperatures, pressures, and other parameters.</li><li>Learn and implement automated safety logic to handle simulated operational anomalies.</li><li>Design UI and sensor integration to monitor the system.</li></ul>" 
-            },
-            research: { 
-                title: "Research", 
-                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Draft formal proposals evaluating the effectiveness of the design.</li><li>Create engineering reviews that compare our student-scale loop against active SMR cycles.</li><li>Write case studies analyzing real-world incidents and how it could have been handled better.</li></ul>" 
-            },
-            materials: { 
-                title: "Materials", 
-                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Model the structural integrity of scaled pressure vessel mockups.</li><li>Research non-toxic, non-flammable working fluids to find the most optimal profile.</li><li>Predict material degradation profiles under operating conditions.</li></ul>" 
-            }
+            mech: { title: "Mechanical", desc: "<ul><li>Develop advanced proficiency in CAD, parametric assemblies, and technical drawings.</li><li>Learn how to calculate safety thresholds, pressure vessel limits, and structural geometries for high-temperature piping systems.</li><li>Gain practical experience in scaling multi-loop fluid convection geometries using lightweight rapid-prototyping materials.</li></ul>" },
+            elec: { title: "Electrical", desc: "<ul><li>Learn how to map complex power layouts and custom hardware schematics into prototypes.</li><li>Understand voltage regulation and basic power architecture.</li><li>Gain experience in sensor wiring and safe electrical practices.</li></ul>" },
+            software: { title: "Software & Comp", desc: "<ul><li>Write control software to track real-time system temperatures, pressures, and other parameters.</li><li>Learn and implement automated safety logic to handle simulated operational anomalies.</li><li>Design UI and sensor integration to monitor the system.</li></ul>" },
+            research: { title: "Research", desc: "<ul><li>Draft formal proposals evaluating the effectiveness of the design.</li><li>Create engineering reviews that compare our student-scale loop against active SMR cycles.</li><li>Write case studies analyzing real-world incidents and how they could have been handled better.</li></ul>" },
+            materials: { title: "Materials", desc: "<ul><li>Model the structural integrity of scaled pressure vessel mockups.</li><li>Research non-toxic, non-flammable working fluids to find the most optimal profile.</li><li>Predict material degradation profiles under operating conditions.</li></ul>" }
         },
         gamma: {
-            mech: { 
-                title: "Mechanical", 
-                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Develop advanced proficiency in CAD in developing a light-tight enclosure.</li><li>Learn how to run computation stress, strain and load-distribution simulations.</li><li>Gain practical experience in structural tolerance design and mechanical joint design.</li></ul>" 
-            },
-            elec: { 
-                title: "Electrical", 
-                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Master Transimpedance Amplifier circuits to convert small signals into readable voltages from the semiconductors.</li><li>How to build a circuit that actively filters out noise.</li><li>Learn how to design, lay out and order a custom PCB that integrates the sensors, amplifiers and power sources.</li></ul>" 
-            },
-            software: { 
-                title: "Software & Comp", 
-                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Understand and utilize Field-Programmable Gate Arrays (FPGA) instead of basic Arduino.</li><li>Learn and implement high-speed clocks to time-stamp incoming pulses at the nanosecond.</li><li>Write scripts to handle spatial data processing, using linear algebra and trigonometry to calculate the LOR and convert them to a rendered 3D Image.</li></ul>" 
-            },
-            research: { 
-                title: "Research", 
-                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Compare the differences between a BGO crystal and a LYSO crystal.</li><li>Investigate the mathematical scalability of the project to create a circular ring assembly similar to real-world PET scans.</li></ul>" 
-            },
-            materials: { 
-                title: "Materials", 
-                desc: "<ul style='margin-left: 1.2rem; line-height: 1.5;'><li>Explore how prolonged exposure to gamma radiation causes the semiconductors to misbehave (bit flips).</li><li>Investigate how to use thermal healing principles to reverse these effects caused by radiation.</li></ul>" 
-            }
+            mech: { title: "Mechanical", desc: "<ul><li>Develop advanced proficiency in CAD in developing a light-tight enclosure.</li><li>Learn how to run computation stress, strain and load-distribution simulations.</li><li>Gain practical experience in structural tolerance design and mechanical joint design.</li></ul>" },
+            elec: { title: "Electrical", desc: "<ul><li>Master Transimpedance Amplifier circuits to convert small signals into readable voltages from the semiconductors.</li><li>Learn how to build a circuit that actively filters out noise.</li><li>Learn how to design, lay out and order a custom PCB that integrates the sensors, amplifiers and power sources.</li></ul>" },
+            software: { title: "Software & Comp", desc: "<ul><li>Understand and utilize Field-Programmable Gate Arrays (FPGA) instead of basic Arduino.</li><li>Learn and implement high-speed clocks to time-stamp incoming pulses at the nanosecond.</li><li>Write scripts to handle spatial data processing, using linear algebra and trigonometry to calculate the LOR and convert them to a rendered 3D Image.</li></ul>" },
+            research: { title: "Research", desc: "<ul><li>Compare the differences between a BGO crystal and a LYSO crystal.</li><li>Investigate the mathematical scalability of the project to create a circular ring assembly similar to real-world PET scans.</li></ul>" },
+            materials: { title: "Materials", desc: "<ul><li>Explore how prolonged exposure to gamma radiation causes the semiconductors to misbehave (bit flips).</li><li>Investigate how to use thermal healing principles to reverse these effects caused by radiation.</li></ul>" }
         }
     };
 
     document.querySelectorAll('.team-node-btn').forEach(btn => {
         btn.addEventListener('click', function() {
-            const project = this.getAttribute('data-project');
-            const team = this.getAttribute('data-team');
-            const color = this.getAttribute('data-color');
-            
-            // Remove active from peers in the same project
-            const container = this.closest('.vertical-nodes');
-            container.querySelectorAll('.team-node-btn').forEach(b => b.classList.remove('active'));
+            const project = this.dataset.project;
+            const team = this.dataset.team;
+            const color = this.dataset.color;
+            this.closest('.vertical-nodes').querySelectorAll('.team-node-btn').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
-
-            // Find Elements
             const detailsBox = document.getElementById(`details-${project}`);
             const titleEl = document.getElementById(`title-${project}`);
             const membersEl = document.getElementById(`members-${project}`);
             const descEl = document.getElementById(`desc-${project}`);
-            
-            // Inject content
             const content = teamContent[project][team];
             titleEl.innerHTML = content.title;
             membersEl.innerHTML = getMembersHTML(team, color);
             descEl.innerHTML = content.desc;
-            
-            // Update color accents
             detailsBox.style.setProperty('--theme-color', color);
-            titleEl.style.color = color === '#ffffff' ? '#ffffff' : color;
+            titleEl.style.color = color;
         });
     });
 
-    // --- GLOBAL TOOLTIP LOGIC ---
+    // Tooltip
     const tooltip = document.getElementById('global-tooltip');
-
     document.addEventListener('mouseover', (e) => {
         const target = e.target.closest('.has-tooltip');
         if (target) {
-            const name = target.getAttribute('data-name');
-            const role = target.getAttribute('data-role');
-            const bio = target.getAttribute('data-bio');
-            const img = target.getAttribute('data-img');
-            const color = target.getAttribute('data-color') || '#fabc0f';
+            const color = target.dataset.color || '#fabc0f';
             const labelColor = color === '#ffffff' ? '#aaa' : color;
-            
-            tooltip.innerHTML = `
-                <div class="tooltip-header">
-                    <div class="tooltip-img" style="background-image: url('${img}'); border-color: ${color}"></div>
-                    <div class="tooltip-info">
-                        <strong>${name}</strong>
-                        <em style="color: ${labelColor}">${role}</em>
-                    </div>
-                </div>
-                <div class="tooltip-bio">${bio}</div>
-            `;
-            
+            tooltip.innerHTML = `<div class="tooltip-header"><div class="tooltip-img" style="background-image:url('${target.dataset.img}');border-color:${color}"></div><div class="tooltip-info"><strong>${target.dataset.name}</strong><em style="color:${labelColor}">${target.dataset.role}</em></div></div><div class="tooltip-bio">${target.dataset.bio}</div>`;
             tooltip.classList.add('visible');
         }
     });
-
     document.addEventListener('mousemove', (e) => {
-        if (tooltip.classList.contains('visible')) {
-            let x = e.clientX + 15;
-            let y = e.clientY + 15;
-            
-            const rect = tooltip.getBoundingClientRect();
-            // Prevent clipping on the right edge
-            if (x + rect.width > window.innerWidth) {
-                x = e.clientX - rect.width - 15;
-            }
-            // Prevent clipping on the bottom edge
-            if (y + rect.height > window.innerHeight) {
-                y = e.clientY - rect.height - 15;
-            }
-            
-            tooltip.style.left = `${x}px`;
-            tooltip.style.top = `${y}px`;
-        }
+        if (!tooltip.classList.contains('visible')) return;
+        let x = e.clientX + 15, y = e.clientY + 15;
+        const rect = tooltip.getBoundingClientRect();
+        if (x + rect.width > window.innerWidth) x = e.clientX - rect.width - 15;
+        if (y + rect.height > window.innerHeight) y = e.clientY - rect.height - 15;
+        tooltip.style.left = x + 'px';
+        tooltip.style.top = y + 'px';
     });
-
     document.addEventListener('mouseout', (e) => {
-        const target = e.target.closest('.has-tooltip');
-        if (target) {
-            tooltip.classList.remove('visible');
-        }
+        if (e.target.closest('.has-tooltip')) tooltip.classList.remove('visible');
     });
 
-    // Mobile Menu Toggle Logic
-    const hamburgerBtn = document.querySelector('.hamburger-btn');
+    // Mobile menu
+    const hamburger = document.querySelector('.hamburger-btn');
     const mobileMenu = document.querySelector('.mobile-menu');
-
-    hamburgerBtn.addEventListener('click', (evt) => {
-        evt.preventDefault();
-        hamburgerBtn.classList.toggle('open');
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
         mobileMenu.classList.toggle('open');
     });
-
-    // Close menu when clicking a link (helpful for in-page anchors)
-    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-    mobileLinks.forEach(link => {
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
         link.addEventListener('click', () => {
-            hamburgerBtn.classList.remove('open');
+            hamburger.classList.remove('open');
             mobileMenu.classList.remove('open');
         });
     });
 </script>
-
 </body>
-<!--[cite: 1] -->
 </html>

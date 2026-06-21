@@ -28,7 +28,84 @@
             overflow: hidden; 
         }
 
-        /* --- DYNAMIC NOTCH NAVIGATION --- */
+        /* --- GLOBAL STARRY BACKGROUND --- */
+        .global-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: #050505;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .nebula-blob { position: absolute; border-radius: 50%; filter: blur(110px); pointer-events: none; }
+        .nebula-1 { width: 700px; height: 700px; background: radial-gradient(circle, rgba(0,37,82,0.45), transparent 70%); top: -180px; left: -180px; animation: nebulaDrift 18s ease-in-out infinite alternate; }
+        .nebula-2 { width: 550px; height: 550px; background: radial-gradient(circle, rgba(250,188,15,0.1), transparent 70%); bottom: -100px; right: 5%; animation: nebulaDrift 22s ease-in-out infinite alternate-reverse; }
+        .nebula-3 { width: 600px; height: 350px; background: radial-gradient(circle, rgba(185,14,50,0.12), transparent 70%); top: 25%; right: -120px; animation: nebulaDrift 26s ease-in-out infinite alternate; }
+        .nebula-4 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,37,82,0.2), transparent 70%); bottom: 10%; left: 10%; animation: nebulaDrift 20s ease-in-out infinite alternate-reverse; }
+        @keyframes nebulaDrift { 0% { opacity: 0.5; transform: scale(0.9) translate(0,0); } 100% { opacity: 1; transform: scale(1.2) translate(30px,-20px); } }
+
+        .star-layer {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: transparent;
+        }
+
+        /* Brightened stars for global visibility */
+        .stars-1 {
+            background-image: 
+                radial-gradient(2px 2px at 10% 10%, rgba(255,255,255,0.9), transparent),
+                radial-gradient(1.5px 1.5px at 20% 30%, rgba(255,255,255,0.7), transparent),
+                radial-gradient(2.5px 2.5px at 40% 70%, rgba(255,255,255,0.9), transparent),
+                radial-gradient(1.5px 1.5px at 60% 20%, rgba(255,255,255,0.8), transparent),
+                radial-gradient(2px 2px at 80% 80%, rgba(255,255,255,0.9), transparent);
+            background-size: 150px 150px;
+            animation: starDrift 150s linear infinite, twinkle 6s ease-in-out infinite alternate;
+        }
+
+        .stars-2 {
+            background-image: 
+                radial-gradient(1.5px 1.5px at 15% 85%, rgba(255,255,255,0.8), transparent),
+                radial-gradient(2.5px 2.5px at 35% 15%, rgba(255,255,255,0.9), transparent),
+                radial-gradient(2px 2px at 55% 55%, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1.5px 1.5px at 75% 35%, rgba(255,255,255,0.9), transparent),
+                radial-gradient(2.5px 2.5px at 95% 65%, rgba(255,255,255,0.8), transparent);
+            background-size: 200px 200px;
+            animation: starDrift 210s linear infinite reverse, twinkle 7.5s ease-in-out infinite alternate-reverse;
+        }
+
+        .stars-3 {
+            background-image: 
+                radial-gradient(2.5px 2.5px at 5% 5%, rgba(255,255,255,0.9), transparent),
+                radial-gradient(1.5px 1.5px at 25% 75%, rgba(255,255,255,0.8), transparent),
+                radial-gradient(2px 2px at 50% 25%, rgba(255,255,255,0.9), transparent),
+                radial-gradient(1.5px 1.5px at 70% 90%, rgba(255,255,255,0.7), transparent),
+                radial-gradient(2.5px 2.5px at 90% 40%, rgba(255,255,255,0.9), transparent);
+            background-size: 300px 300px;
+            animation: starDrift 270s linear infinite, twinkle 9s ease-in-out infinite alternate;
+        }
+
+        .hero-vignette {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, transparent 10%, #050505 90%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @keyframes starDrift {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        /* --- DYNAMIC MINI-HEADER NOTCH --- */
         .notch-wrapper {
             position: fixed;
             top: 0;
@@ -40,90 +117,43 @@
             justify-content: center;
             align-items: flex-start;
             padding-top: 15px;
-            pointer-events: none; /* Let clicks pass through empty areas */
+            pointer-events: none; 
         }
 
         /* Invisible hover trigger area */
-        .notch-wrapper::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 800px;
-            height: 90px;
-            pointer-events: auto; /* Catch mouse events */
-        }
-
         .notch-container {
-            position: relative;
-            width: 140px;
-            height: 35px;
-            background: #000000;
-            border-radius: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.1);
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            pointer-events: auto; /* Allow clicking inside the notch */
-            overflow: hidden;
+            width: 720px; height: 56px;
+            background: rgba(15,15,15,0.85); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 35px;
+            display: flex; align-items: center; justify-content: center; gap: 2rem;
+            padding: 0 2rem; pointer-events: auto;
+            transition: width 0.65s cubic-bezier(0.16,1,0.3,1), height 0.65s cubic-bezier(0.16,1,0.3,1);
         }
-
-        .notch-indicator {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40px;
-            height: 6px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 10px;
-            transition: opacity 0.3s ease;
+        .notch-wrapper:hover .notch-container { width: 900px; height: 72px; }
+        .nav-logo-link { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+        .nav-logo-wrap {
+            position: relative; overflow: hidden; flex-shrink: 0;
+            width: 32px; height: 32px;
+            transition: width 0.65s cubic-bezier(0.16,1,0.3,1), height 0.65s cubic-bezier(0.16,1,0.3,1);
         }
-
-        .notch-links {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: flex;
-            gap: 2.5rem;
-            opacity: 0;
-            white-space: nowrap;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
+        .notch-wrapper:hover .nav-logo-wrap { width: 145px; height: 40px; }
+        .nav-logo-atom, .nav-logo-full {
+            position: absolute; top: 50%; left: 0; transform: translateY(-50%);
+            height: 32px; width: auto; transition: opacity 0.25s ease;
         }
-
-        .notch-links a {
-            color: #aaa;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+        .notch-wrapper:hover .nav-logo-atom, .notch-wrapper:hover .nav-logo-full { height: 40px; }
+        .nav-logo-atom { opacity: 1; }
+        .nav-logo-full { opacity: 0; }
+        .notch-wrapper:hover .nav-logo-atom { opacity: 0; }
+        .notch-wrapper:hover .nav-logo-full { opacity: 1; }
+        .notch-links { display: flex; align-items: center; gap: 1.75rem; }
+        .notch-container a:not(.nav-logo-link) {
+            text-decoration: none; color: rgba(255,255,255,0.5);
+            font-size: 0.85rem; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.12em;
             transition: color 0.3s ease;
         }
-
-        .notch-links a:hover { color: #fff; }
-
-        /* Notch Expansion Triggered by Wrapper Hover */
-        .notch-wrapper:hover .notch-container {
-            width: 750px;
-            height: 65px;
-            border-radius: 35px;
-            background: rgba(15, 15, 15, 0.85);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .notch-wrapper:hover .notch-indicator { opacity: 0; }
-
-        .notch-wrapper:hover .notch-links {
-            opacity: 1;
-            pointer-events: auto;
-            transition-delay: 0.15s;
-        }
+        .notch-container a:not(.nav-logo-link):hover { color: rgba(255,255,255,0.9); }
 
         /* --- VERTICAL SLIDESHOW (SNAP SCROLL) --- */
         .vertical-slideshow {
@@ -135,6 +165,8 @@
             scroll-behavior: smooth;
             -ms-overflow-style: none; 
             scrollbar-width: none; 
+            position: relative;
+            z-index: 1;
         }
 
         .vertical-slideshow::-webkit-scrollbar { display: none; }
@@ -151,6 +183,7 @@
             text-align: center;
             padding: 0 2rem; 
             position: relative;
+            background: transparent !important; 
         }
 
         .slide-content-wrapper {
@@ -162,76 +195,7 @@
             justify-content: center;
         }
 
-        /* --- HERO SECTION WITH TWINKLING STARS --- */
-        .hero-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: #050505;
-            overflow: hidden;
-            z-index: -2;
-        }
-
-        /* Star Layers */
-        .star-layer {
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: transparent;
-        }
-
-        .stars-1 {
-            background-image: 
-                radial-gradient(1.5px 1.5px at 10% 10%, #fff, transparent),
-                radial-gradient(1px 1px at 20% 30%, #fff, transparent),
-                radial-gradient(2px 2px at 40% 70%, #fff, transparent),
-                radial-gradient(1px 1px at 60% 20%, #fff, transparent),
-                radial-gradient(1.5px 1.5px at 80% 80%, #fff, transparent);
-            background-size: 150px 150px;
-            animation: starDrift 100s linear infinite, twinkle 4s ease-in-out infinite alternate;
-        }
-
-        .stars-2 {
-            background-image: 
-                radial-gradient(1px 1px at 15% 85%, #fff, transparent),
-                radial-gradient(2px 2px at 35% 15%, #fff, transparent),
-                radial-gradient(1.5px 1.5px at 55% 55%, #fff, transparent),
-                radial-gradient(1px 1px at 75% 35%, #fff, transparent),
-                radial-gradient(2px 2px at 95% 65%, #fff, transparent);
-            background-size: 200px 200px;
-            animation: starDrift 140s linear infinite reverse, twinkle 5s ease-in-out infinite alternate-reverse;
-        }
-
-        .stars-3 {
-            background-image: 
-                radial-gradient(2px 2px at 5% 5%, #fff, transparent),
-                radial-gradient(1px 1px at 25% 75%, #fff, transparent),
-                radial-gradient(1.5px 1.5px at 50% 25%, #fff, transparent),
-                radial-gradient(1px 1px at 70% 90%, #fff, transparent),
-                radial-gradient(2px 2px at 90% 40%, #fff, transparent);
-            background-size: 300px 300px;
-            animation: starDrift 180s linear infinite, twinkle 6s ease-in-out infinite alternate;
-        }
-
-        .hero-vignette {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, transparent 10%, #050505 80%);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        @keyframes starDrift {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes twinkle {
-            0% { opacity: 0.2; }
-            100% { opacity: 1; }
-        }
-
+        /* --- HERO SECTION --- */
         .hero-logo-wrapper {
             display: flex;
             flex-direction: column;
@@ -240,10 +204,10 @@
         }
 
         .hero-logo {
-            height: 380px; 
+            height: 450px; 
             opacity: 0;
             transform: scale(0.85) translateY(30px);
-            animation: cinematicReveal 2.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: cinematicReveal 3.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             filter: drop-shadow(0 0 50px rgba(250, 188, 15, 0.2));
         }
 
@@ -256,7 +220,7 @@
             text-transform: uppercase;
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+            animation: fadeUp 2.25s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
         }
 
         /* --- DUAL PILLAR SECTION --- */
@@ -297,20 +261,20 @@
         }
 
         .pillar-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(20, 20, 20, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 20px;
             padding: 2.5rem;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             position: relative;
             overflow: hidden;
             text-align: left;
-            transition: transform 0.4s ease, background 0.4s ease;
+            transition: transform 0.6s ease, background 0.6s ease;
         }
 
         .pillar-card:hover {
             transform: translateX(-10px);
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(30, 30, 30, 0.8);
         }
 
         .pillar-card::before {
@@ -358,7 +322,8 @@
         }
 
         .bento-item {
-            background: #151515;
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(15px);
             border-radius: 24px;
             padding: 2.5rem;
             position: relative;
@@ -368,8 +333,13 @@
             flex-direction: column;
             justify-content: flex-end;
             text-align: left;
-            transition: transform 0.4s ease, border-color 0.4s ease;
+            transition: transform 0.6s ease, border-color 0.6s ease;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        .experiential-card {
+            justify-content: flex-start;
+            padding-top: 3.5rem;
         }
 
         .bento-item:hover {
@@ -383,7 +353,7 @@
             background-size: cover;
             background-position: center;
             opacity: 0.3;
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            transition: opacity 0.75s ease, transform 0.75s ease;
             z-index: 0;
         }
 
@@ -441,65 +411,6 @@
             text-shadow: 0 0 30px rgba(250, 188, 15, 0.4);
         }
 
-        /* --- GUEST SPEAKERS --- */
-        .speakers-grid {
-            display: flex;
-            gap: 2.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            width: 100%;
-            max-width: 1200px;
-        }
-
-        .speaker-node {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 20px;
-            padding: 3rem 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            width: 320px;
-            transition: all 0.4s ease;
-        }
-
-        .speaker-node:hover {
-            background: rgba(255,255,255,0.06);
-            transform: translateY(-10px);
-            border-color: #fabc0f;
-            box-shadow: 0 15px 40px rgba(250, 188, 15, 0.15);
-        }
-
-        .speaker-avatar {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background-size: cover;
-            background-position: center;
-            border: 3px solid #002552;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-            transition: border-color 0.4s ease;
-        }
-
-        .speaker-node:hover .speaker-avatar {
-            border-color: #fabc0f;
-        }
-
-        .speaker-node h4 { font-size: 1.5rem; color: #fff; margin-bottom: 0.35rem; }
-        
-        .speaker-node span { 
-            color: #fabc0f; 
-            font-weight: 600; 
-            font-size: 0.9rem; 
-            text-transform: uppercase; 
-            letter-spacing: 0.05em; 
-            margin-bottom: 1rem; 
-        }
-        
-        .speaker-node p { color: #888; font-size: 0.95rem; line-height: 1.4; }
-
         /* --- CERTIFICATIONS & RESOURCES --- */
         .resources-grid {
             display: flex;
@@ -510,13 +421,14 @@
         }
 
         .resource-card {
-            background: #151515;
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(15px);
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: 20px;
             padding: 3rem 2.5rem;
             text-align: left;
             flex: 1;
-            transition: transform 0.4s ease;
+            transition: transform 0.6s ease;
             position: relative;
             overflow: hidden;
         }
@@ -555,6 +467,61 @@
             line-height: 1.6;
         }
 
+        /* --- GUEST SPEAKERS --- */
+        .speakers-grid {
+            display: flex;
+            gap: 2.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .speaker-node {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 320px;
+            transition: all 0.6s ease;
+        }
+
+        .speaker-node:hover {
+            background: rgba(30, 30, 30, 0.8);
+            transform: translateY(-10px);
+            border-color: #fabc0f;
+            box-shadow: 0 15px 40px rgba(250, 188, 15, 0.15);
+        }
+
+        .speaker-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            border: none; 
+        }
+
+        .speaker-node h4 { font-size: 1.5rem; color: #fff; margin-bottom: 0.35rem; }
+        
+        .speaker-node span { 
+            color: #fabc0f; 
+            font-weight: 600; 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            letter-spacing: 0.05em; 
+            margin-bottom: 1rem; 
+        }
+        
+        .speaker-node p { color: #888; font-size: 0.95rem; line-height: 1.4; }
+
         /* --- CTA SECTION --- */
         .cta-container {
             text-align: center;
@@ -589,7 +556,7 @@
             letter-spacing: 0.1em;
             background-color: #fabc0f;
             border-radius: 50px; 
-            transition: all 0.3s ease;
+            transition: all 0.45s ease;
             box-shadow: 0 10px 30px rgba(250, 188, 15, 0.3);
         }
 
@@ -597,6 +564,30 @@
             background-color: #fff;
             transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(255, 255, 255, 0.4);
+        }
+
+        .disclaimer-text {
+            font-size: 1.1rem;
+            color: #aaa;
+            margin-top: 2.5rem;
+            font-style: italic;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .disclaimer-link {
+            color: #fabc0f;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+            font-weight: 600;
+            transition: color 0.45s ease;
+        }
+
+        .disclaimer-link:hover {
+            color: #fff;
         }
 
         /* Animations */
@@ -629,7 +620,8 @@
             .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
             .bento-item { min-height: 320px; }
             .span-2-row { grid-row: span 1; }
-            .notch-hitbox, .notch-container { display: none; }
+            .notch-wrapper, .notch-hitbox { display: none; }
+            .mobile-header { display: flex !important; }
             .hero-logo { height: 180px; }
             .prize-text { font-size: 3rem; }
             .cta-container h2 { font-size: 2.8rem; }
@@ -646,7 +638,7 @@
         }
 
         .social-link { display: flex; align-items: center; justify-content: center; }
-        .social-icon { width: 20px; height: 20px; fill: #ffffff; transition: all 0.3s ease; }
+        .social-icon { width: 20px; height: 20px; fill: #ffffff; transition: all 0.45s ease; }
         .social-link:nth-child(1):hover .social-icon { fill: #002552; transform: translateY(-3px); } 
         .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; transform: translateY(-3px); } 
         .social-link:nth-child(3):hover .social-icon { fill: #b90e32; transform: translateY(-3px); } 
@@ -669,7 +661,7 @@
             opacity: 0;
             pointer-events: none;
             transform: translateY(20px);
-            transition: all 0.3s ease;
+            transition: all 0.45s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
@@ -689,7 +681,7 @@
             left: 0;
             width: 100%;
             padding: 1.5rem 2.5rem;
-            display: flex;
+            display: none; /* Hidden on desktop */
             align-items: center;
             justify-content: flex-end;
             z-index: 102;
@@ -697,7 +689,6 @@
         }
 
         .hamburger-btn {
-            display: none;
             background: none;
             border: none;
             cursor: pointer;
@@ -711,7 +702,7 @@
             width: 26px;
             height: 2px;
             background-color: #f0f0f0;
-            transition: all 0.3s ease;
+            transition: all 0.45s ease;
             border-radius: 2px;
         }
 
@@ -733,7 +724,7 @@
             gap: 2.5rem;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.45s ease;
             z-index: 101;
         }
 
@@ -746,26 +737,40 @@
             text-transform: uppercase;
             letter-spacing: 0.15em;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: color 0.45s ease;
         }
 
         .mobile-nav-link:hover, .mobile-nav-link:active { color: #ffffff; }
 
-        @media (max-width: 768px) {
-            .hamburger-btn { display: flex; }
-        }
     </style>
 </head>
 <body>
 
-<!-- Dynamic Island Notch Navigation -->
+<!-- GLOBAL BACKGROUND (Twinkling Stars) -->
+<div class="global-bg">
+    <div class="nebula-blob nebula-1"></div>
+    <div class="nebula-blob nebula-2"></div>
+    <div class="nebula-blob nebula-3"></div>
+    <div class="nebula-blob nebula-4"></div>
+    <div class="star-layer stars-1"></div>
+    <div class="star-layer stars-2"></div>
+    <div class="star-layer stars-3"></div>
+    <div class="hero-vignette"></div>
+</div>
+
+<!-- Dynamic Island Mini-Header Notch -->
 <div class="notch-wrapper">
     <nav class="notch-container">
-        <div class="notch-indicator"></div>
+        <a href="/" class="nav-logo-link">
+            <div class="nav-logo-wrap">
+                <img src="assets/Atom Logo.png" alt="QNET" class="nav-logo-atom">
+                <img src="assets/White NET Full Logo.svg" alt="QNET" class="nav-logo-full">
+            </div>
+        </a>
         <div class="notch-links">
             <a href="/about">About</a>
             <a href="/teams">Teams</a>
-            <a href="/school" style="color: #fff;">QNET School</a>
+            <a href="/school" style="color:#fff;">QNET School</a>
             <a href="/projects">Projects</a>
             <a href="/sponsors">Sponsors</a>
             <a href="/join">Join</a>
@@ -773,7 +778,7 @@
     </nav>
 </div>
 
-<!-- Mobile Hamburger -->
+<!-- Mobile Hamburger (Fallback for Notch) -->
 <div class="mobile-header">
     <button class="hamburger-btn" aria-label="Toggle Mobile Menu">
         <span class="line"></span>
@@ -793,12 +798,6 @@
 
     <!-- Cinematic Hero -->
     <section class="slide">
-        <div class="hero-bg">
-            <div class="star-layer stars-1"></div>
-            <div class="star-layer stars-2"></div>
-            <div class="star-layer stars-3"></div>
-            <div class="hero-vignette"></div>
-        </div>
         <div class="hero-logo-wrapper">
             <img src="assets/vectorized qnet school white.svg" alt="QNET School Logo" class="hero-logo">
             <div class="hero-subtitle">Coming September 2026</div>
@@ -872,8 +871,8 @@
                     </div>
                 </div>
 
-                <!-- Card: Tours -->
-                <div class="bento-item span-2-col" style="border-color: rgba(250, 188, 15, 0.3);">
+                <!-- Card: Tours (Experiential Assets) -->
+                <div class="bento-item span-2-col experiential-card" style="border-color: rgba(250, 188, 15, 0.3);">
                     <div class="bento-content">
                         <h3 style="color: #fabc0f;">Experiential Assets</h3>
                         <p style="margin-bottom: 0.75rem;">QNET School prioritizes high-impact experiential education over traditional lectures. Members will participate in hands-on tours and real-world exposure:</p>
@@ -926,29 +925,29 @@
         </div>
     </section>
 
-    <!-- Section 4: Guest Speakers -->
+    <!-- Section 4: Potential Guest Speakers -->
     <section class="slide">
         <div class="slide-content-wrapper">
             <div class="section-header">
-                <h2>Guest Speakers</h2>
+                <h2>Potential Guest Speakers</h2>
                 <p style="color: #aaa; max-width: 600px; margin: 1rem auto; font-size: 1.1rem;">Facilitating hosting logistics to bring in active nuclear professionals and Queen's Alumni from the CNSC, OPG, and CNL.</p>
             </div>
             
             <div class="speakers-grid">
                 <div class="speaker-node">
-                    <div class="speaker-avatar" style="background-image: url('teamphoto/john.jpg');"></div>
+                    <div class="speaker-avatar" style="background-image: url('teamphoto/john.jpg'); border: none;"></div>
                     <h4>John Thelen</h4>
                     <span>Acting WDD Director</span>
                     <p>CNSC | Queen's Alum</p>
                 </div>
                 <div class="speaker-node">
-                    <div class="speaker-avatar" style="background-image: url('teamphoto/pavel.jpg');"></div>
+                    <div class="speaker-avatar" style="background-image: url('teamphoto/pavel.jpg'); border: none;"></div>
                     <h4>Pavel Samuleev</h4>
                     <span>SLOWPOKE-2 Director</span>
                     <p>RMC / RCMP</p>
                 </div>
                 <div class="speaker-node">
-                    <div class="speaker-avatar" style="background-image: url('teamphoto/dean.jpg');"></div>
+                    <div class="speaker-avatar" style="background-image: url('teamphoto/dean.jpg'); border: none;"></div>
                     <h4>Dean Haslip</h4>
                     <span>VP & CSO</span>
                     <p>CNSC | Queen's Alum</p>
@@ -957,12 +956,17 @@
         </div>
     </section>
 
-    <!-- Section 5: CTA -->
-    <section class="slide" style="background-color: #000;">
+    <!-- Section 5: CTA & Disclaimer -->
+    <section class="slide">
         <div class="slide-content-wrapper cta-container">
             <h2>Ready to shape the future of nuclear?</h2>
             <p>Join QNET School and build the foundation you need to excel in the nuclear engineering industry. Whether you're interested in policy, software, or advanced materials—there is a place for you here.</p>
             <a href="/join" class="btn-large">Join Now</a>
+            
+            <!-- Highly visible disclaimer targeting funding/sponsors -->
+            <p class="disclaimer-text">
+                Please note: The curriculum, activities, and structures outlined above are all tentative. These are just ideas that heavily rely on the <a href="/sponsors" class="disclaimer-link">funding</a> we receive for the 2026-2027 academic year.
+            </p>
         </div>
     </section>
 

@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Queen’s Nuclear Engineering Team (QNET) | Queen’s University</title>
-    <meta name="description" content="Queen’s Nuclear Engineering Team (QNET) is a student design team at Queen’s University focused on hands-on nuclear technology projects, research, and innovation. Join our founding team.">
-    <meta property="og:title" content="Queen’s Nuclear Engineering Team (QNET)">
-    <meta property="og:description" content="Queen’s University’s nuclear engineering design team focused on hands-on projects and innovation.">
+    <title>Queen's Nuclear Engineering Team (QNET) | Queen's University</title>
+    <meta name="description" content="Queen's Nuclear Engineering Team (QNET) is a student design team at Queen's University focused on hands-on nuclear technology projects, research, and innovation. Join our founding team.">
+    <meta property="og:title" content="Queen's Nuclear Engineering Team (QNET)">
+    <meta property="og:description" content="Queen's University's nuclear engineering design team focused on hands-on projects and innovation.">
     <meta property="og:image" content="https://queensnuclear.ca/assets/White%20NET%20Full%20Logo.png">
     <meta property="og:url" content="https://queensnuclear.ca">
     <meta property="og:type" content="website">
@@ -15,15 +15,14 @@
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
-         gtag('js', new Date());
-
+        gtag('js', new Date());
         gtag('config', 'G-8J80X6N4DV');
     </script>
     <script type="application/ld+json">
         {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "Queen’s Nuclear Engineering Team",
+        "name": "Queen's Nuclear Engineering Team",
         "alternateName": "QNET",
         "url": "https://queensnuclear.ca",
         "logo": "https://queensnuclear.ca/assets/Full%20Logo.png",
@@ -34,221 +33,198 @@
         }
     </script>
     <style>
-        @font-face {
-            font-family: 'Leelawadee UI';
-            src: url('assets/leelawadee.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
-        body {
-            overflow: hidden; 
-            background-color: #1a1a1a; 
-            color: #f0f0f0; 
+        html, body {
+            background-color: #050505;
+            color: #f0f0f0;
+            overflow: hidden;
         }
 
-        /* --- FIXED NAV & LOGO --- */
-        .site-header {
+        /* --- GLOBAL BACKGROUND: NEBULA + STARS --- */
+        .global-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: #050505;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Nebula glow blobs — distinct from school.html's pure-star look */
+        .nebula-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(110px);
+            pointer-events: none;
+        }
+
+        .nebula-1 {
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(0, 37, 82, 0.45), transparent 70%);
+            top: -180px; left: -180px;
+            animation: nebulaDrift 18s ease-in-out infinite alternate;
+        }
+
+        .nebula-2 {
+            width: 550px; height: 550px;
+            background: radial-gradient(circle, rgba(250, 188, 15, 0.1), transparent 70%);
+            bottom: -100px; right: 5%;
+            animation: nebulaDrift 22s ease-in-out infinite alternate-reverse;
+        }
+
+        .nebula-3 {
+            width: 600px; height: 350px;
+            background: radial-gradient(circle, rgba(185, 14, 50, 0.12), transparent 70%);
+            top: 25%; right: -120px;
+            animation: nebulaDrift 26s ease-in-out infinite alternate;
+        }
+
+        .nebula-4 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(0, 37, 82, 0.2), transparent 70%);
+            bottom: 10%; left: 10%;
+            animation: nebulaDrift 20s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes nebulaDrift {
+            0%   { opacity: 0.5; transform: scale(0.9) translate(0px, 0px); }
+            100% { opacity: 1;   transform: scale(1.2) translate(30px, -20px); }
+        }
+
+        .star-layer {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: transparent;
+        }
+
+        .stars-1 {
+            background-image:
+                radial-gradient(1.5px 1.5px at 10% 10%, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.5), transparent),
+                radial-gradient(2px 2px at 40% 70%, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1px 1px at 60% 20%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(1.5px 1.5px at 80% 80%, rgba(255,255,255,0.7), transparent);
+            background-size: 150px 150px;
+            animation: starDrift 150s linear infinite, twinkle 6s ease-in-out infinite alternate;
+        }
+
+        .stars-2 {
+            background-image:
+                radial-gradient(1px 1px at 15% 85%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(2px 2px at 35% 15%, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1.5px 1.5px at 55% 55%, rgba(255,255,255,0.5), transparent),
+                radial-gradient(1px 1px at 75% 35%, rgba(255,255,255,0.7), transparent),
+                radial-gradient(2px 2px at 95% 65%, rgba(255,255,255,0.6), transparent);
+            background-size: 200px 200px;
+            animation: starDrift 210s linear infinite reverse, twinkle 7.5s ease-in-out infinite alternate-reverse;
+        }
+
+        .stars-3 {
+            background-image:
+                radial-gradient(2px 2px at 5% 5%, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1px 1px at 25% 75%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(1.5px 1.5px at 50% 25%, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1px 1px at 70% 90%, rgba(255,255,255,0.5), transparent),
+                radial-gradient(2px 2px at 90% 40%, rgba(255,255,255,0.7), transparent);
+            background-size: 300px 300px;
+            animation: starDrift 270s linear infinite, twinkle 9s ease-in-out infinite alternate;
+        }
+
+        @keyframes starDrift {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.25; }
+            100% { opacity: 0.85; }
+        }
+
+        /* --- NOTCH NAVIGATION --- */
+        .notch-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 90px;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 15px;
+            pointer-events: none;
+        }
+
+        .notch-container {
+            width: 720px; height: 56px;
+            background: rgba(15,15,15,0.85); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 35px;
+            display: flex; align-items: center; justify-content: center; gap: 2rem;
+            padding: 0 2rem; pointer-events: auto;
+            transition: width 0.65s cubic-bezier(0.16,1,0.3,1), height 0.65s cubic-bezier(0.16,1,0.3,1);
+        }
+        .notch-wrapper:hover .notch-container { width: 900px; height: 72px; }
+        .nav-logo-link { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+        .nav-logo-wrap {
+            position: relative; overflow: hidden; flex-shrink: 0;
+            width: 32px; height: 32px;
+            transition: width 0.65s cubic-bezier(0.16,1,0.3,1), height 0.65s cubic-bezier(0.16,1,0.3,1);
+        }
+        .notch-wrapper:hover .nav-logo-wrap { width: 145px; height: 40px; }
+        .nav-logo-atom, .nav-logo-full {
+            position: absolute; top: 50%; left: 0; transform: translateY(-50%);
+            height: 32px; width: auto; transition: opacity 0.25s ease;
+        }
+        .notch-wrapper:hover .nav-logo-atom, .notch-wrapper:hover .nav-logo-full { height: 40px; }
+        .nav-logo-atom { opacity: 1; }
+        .nav-logo-full { opacity: 0; }
+        .notch-wrapper:hover .nav-logo-atom { opacity: 0; }
+        .notch-wrapper:hover .nav-logo-full { opacity: 1; }
+        .notch-links { display: flex; align-items: center; gap: 1.75rem; }
+        .notch-container a:not(.nav-logo-link) {
+            text-decoration: none; color: rgba(255,255,255,0.5);
+            font-size: 0.85rem; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            transition: color 0.3s ease;
+        }
+        .notch-container a:not(.nav-logo-link):hover { color: rgba(255,255,255,0.9); }
+
+        .notch-wrapper:hover .nav-logo {
+            transform: scale(1.15);
+        }
+
+        /* --- MOBILE HEADER --- */
+        .mobile-header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             padding: 1.5rem 2.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            z-index: 110;
-            background-color: transparent;
-            backdrop-filter: blur(10px);
-            pointer-events: none; 
-        }
-
-        .header-side { 
-            flex: 1; 
-            display: flex; 
-            align-items: center;
-            pointer-events: none; 
-            gap: 2.5rem; 
-        }
-
-        .header-side.left { justify-content: flex-end; padding-right: 8rem; }
-        .header-side.right { justify-content: flex-start; padding-left: 8rem; }
-
-        .nav-link {
-            pointer-events: auto;
-            text-decoration: none;
-            color: #a0a0a0;
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link:hover { color: #ffffff; }
-
-        .logo-container {
-            flex: 0 0 auto;
-            pointer-events: auto;
-        }
-
-        .logo-link { text-decoration: none; }
-
-        .logo-img {
-            height: 90px; 
-            width: auto;
-            display: block; 
-            filter: drop-shadow(0px 4px 15px rgba(0,0,0,0.3)); 
-            transition: height 0.3s ease;
-        }
-
-        /* The Horizontal Slideshow Container */
-        .slideshow-container {
-            display: flex;
-            width: 100vw;
-            height: 100vh;
-            overflow-x: scroll; 
-            overflow-y: hidden;
-            scroll-snap-type: x mandatory; 
-            -webkit-overflow-scrolling: touch; 
-            scroll-behavior: smooth;
-            position: relative;
-            -ms-overflow-style: none; 
-            scrollbar-width: none; 
-        }
-
-        .slideshow-container::-webkit-scrollbar { display: none; }
-
-        .slide {
-            flex: 0 0 100vw;
-            width: 100vw; 
-            height: 100svh;
-            scroll-snap-align: start; 
-            scroll-snap-stop: always; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center; 
-            align-items: center;
-            text-align: center;
-            padding: 0 2rem;
-            position: relative; 
-        }
-
-        .slide h1 {
-            margin-top: 120px; 
-            font-size: 4.5rem;
-            font-weight: 400;
-            letter-spacing: -0.03em;
-            margin-bottom: 0.5rem;
-            color: #ffffff;
-        }
-
-        .slide-1 { background-color: #1e1e1e; }
-        .slide-2 { background-color: #2a2a2a; } /* Updated indices */
-        .slide-3 { background-color: #1e1e1e; }
-
-        p {
-            font-size: 1.25rem;
-            color: #a0a0a0; 
-            max-width: 600px;
-            font-weight: 300;
-            line-height: 1.6;
-            margin-bottom: 2.5rem;
-        }
-
-        .btn {
-            display: inline-flex; 
-            align-items: center;
-            justify-content: center;
-            padding: 1rem 2.5rem;
-            font-size: 1rem;
-            font-weight: 500;
-            color: #f0f0f0;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            background-color: transparent;
-            border: 1px solid #555; 
-            border-radius: 50px; 
-            transition: all 0.3s ease;
-        }
-
-        /* Hover colors for the new slide order */
-        .slide-1 .btn:hover { border-color: #fabc0f; background-color: rgba(250, 188, 15, 0.2); color: #fabc0f; }
-        .slide-2 .btn:hover { border-color: #b90e32; background-color: rgba(185, 14, 50, 0.2); color: #ffffff; }
-        .slide-3 .btn:hover { border-color: #002552; background-color: rgba(0, 37, 82, 0.4); color: #ffffff; }
-
-        /* --- FIXED BOTTOM LEFT FOOTER --- */
-        .fixed-footer {
-            position: fixed;
-            bottom: 2.5rem;
-            left: 2.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1.25rem;
-            z-index: 100;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .social-icon {
-            width: 20px; 
-            height: 20px;
-            fill: #ffffff; 
-            transition: all 0.3s ease;
-        }
-
-        .social-link:nth-child(1):hover .social-icon { fill: #002552; transform: translateY(-3px); } 
-        .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; transform: translateY(-3px); } 
-        .social-link:nth-child(3):hover .social-icon { fill: #b90e32; transform: translateY(-3px); } 
-
-        /* --- CAROUSEL DOTS --- */
-        .carousel-dots {
-            position: fixed;
-            bottom: 2.5rem;
-            right: 2.5rem;
-            display: flex;
-            gap: 12px;
-            z-index: 100;
-        }
-
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.2);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .dot:hover { background-color: rgba(255, 255, 255, 0.6); }
-
-        .dot.active {
-            background-color: #fabc0f;
-            transform: scale(1.3);
-        }
-
-        /* --- MOBILE MENU --- */
-        .hamburger-btn {
             display: none;
+            align-items: center;
+            justify-content: flex-end;
+            z-index: 102;
+            pointer-events: none;
+        }
+
+        .hamburger-btn {
             background: none;
             border: none;
             cursor: pointer;
             flex-direction: column;
             gap: 6px;
             pointer-events: auto;
-            z-index: 102; 
             padding: 10px;
         }
 
@@ -256,7 +232,7 @@
             width: 26px;
             height: 2px;
             background-color: #f0f0f0;
-            transition: all 0.3s ease;
+            transition: all 0.45s ease;
             border-radius: 2px;
         }
 
@@ -269,7 +245,7 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background-color: rgba(26, 26, 26, 0.95); 
+            background-color: rgba(26, 26, 26, 0.95);
             backdrop-filter: blur(15px);
             display: flex;
             flex-direction: column;
@@ -278,7 +254,7 @@
             gap: 2.5rem;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.45s ease;
             z-index: 101;
         }
 
@@ -291,75 +267,660 @@
             text-transform: uppercase;
             letter-spacing: 0.15em;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: color 0.45s ease;
+        }
+
+        .mobile-nav-link:hover, .mobile-nav-link:active { color: #ffffff; }
+
+        /* --- VERTICAL SNAP SLIDESHOW --- */
+        .vertical-slideshow {
+            height: 100vh;
+            width: 100vw;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .vertical-slideshow::-webkit-scrollbar { display: none; }
+
+        .slide {
+            height: 100vh;
+            width: 100vw;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+            background: transparent !important;
+        }
+
+        .slide-content-wrapper {
+            max-width: 1400px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- HERO: LOGO-FORWARD LAYOUT --- */
+        .hero-orbit-field {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 900px;
+            height: 900px;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0;
+            animation: orbitFadeIn 3s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+        }
+
+        @keyframes orbitFadeIn {
+            to { opacity: 1; }
+        }
+
+        .orbit-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 1px solid rgba(250, 188, 15, 0.1);
+            border-radius: 50%;
+            transform-origin: center;
+        }
+
+        .orbit-ring.r1 { width: 420px; height: 420px; margin: -210px 0 0 -210px; animation: spin 40s linear infinite; }
+        .orbit-ring.r2 { width: 620px; height: 620px; margin: -310px 0 0 -310px; border-color: rgba(0, 37, 82, 0.2); animation: spin 60s linear infinite reverse; transform: rotate(35deg); }
+        .orbit-ring.r3 { width: 820px; height: 820px; margin: -410px 0 0 -410px; border-color: rgba(185, 14, 50, 0.12); animation: spin 90s linear infinite; transform: rotate(70deg); }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .orbit-electron {
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #fabc0f;
+            box-shadow: 0 0 10px 3px rgba(250, 188, 15, 0.5);
+            top: -3.5px;
+            left: 50%;
+            margin-left: -3.5px;
+        }
+
+        .orbit-ring.r2 .orbit-electron {
+            background: #6699cc;
+            box-shadow: 0 0 10px 3px rgba(102, 153, 204, 0.5);
+        }
+
+        .orbit-ring.r3 .orbit-electron {
+            background: #b90e32;
+            box-shadow: 0 0 10px 3px rgba(185, 14, 50, 0.5);
+        }
+
+        /* Hero logo — cinematic reveal matching school.html pattern */
+        .hero-logo-wrapper {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-logo {
+            height: 260px;
+            width: auto;
+            opacity: 0;
+            transform: scale(0.88) translateY(25px);
+            animation: cinematicReveal 3.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+            filter: drop-shadow(0 0 60px rgba(250, 188, 15, 0.18));
+        }
+
+        @keyframes cinematicReveal {
+            0%   { opacity: 0; transform: scale(0.88) translateY(25px); filter: blur(12px) drop-shadow(0 0 0 transparent); }
+            100% { opacity: 1; transform: scale(1) translateY(0);       filter: blur(0)    drop-shadow(0 0 60px rgba(250, 188, 15, 0.18)); }
+        }
+
+        .hero-team-name {
+            margin-top: 1.25rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.28em;
+            color: #fabc0f;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: fadeUp 2s cubic-bezier(0.16, 1, 0.3, 1) 1.1s forwards;
+        }
+
+        .hero-caption {
+            margin-top: 0.6rem;
+            font-size: 0.78rem;
+            font-weight: 400;
+            letter-spacing: 0.18em;
+            color: #666;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeUp 2s cubic-bezier(0.16, 1, 0.3, 1) 1.4s forwards;
+        }
+
+        .hero-divider {
+            width: 50px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(250,188,15,0.5), transparent);
+            margin: 1.75rem auto;
+            opacity: 0;
+            animation: fadeUp 2s cubic-bezier(0.16, 1, 0.3, 1) 1.5s forwards;
+        }
+
+        .hero-tagline {
+            position: relative;
+            z-index: 2;
+            font-size: 1.25rem;
+            color: #aaa;
+            max-width: 560px;
+            line-height: 1.75;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeUp 2s cubic-bezier(0.16, 1, 0.3, 1) 1.6s forwards;
+        }
+
+        .hero-actions {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            gap: 1.25rem;
+            opacity: 0;
+            animation: fadeUp 2s cubic-bezier(0.16, 1, 0.3, 1) 1.8s forwards;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #111;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background-color: #fabc0f;
+            border-radius: 50px;
+            transition: all 0.45s ease;
+            box-shadow: 0 10px 30px rgba(250, 188, 15, 0.25);
+        }
+
+        .btn-primary:hover {
+            background-color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #f0f0f0;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background-color: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50px;
+            transition: all 0.45s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: #fabc0f;
+            background-color: rgba(250, 188, 15, 0.08);
+            color: #fabc0f;
+            transform: translateY(-3px);
+        }
+
+        .scroll-cue {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+            color: #555;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            opacity: 0;
+            animation: fadeUp 2s ease 2.2s forwards;
+        }
+
+        .scroll-cue .line {
+            width: 1px;
+            height: 36px;
+            background: linear-gradient(to bottom, rgba(250,188,15,0.7), transparent);
+            animation: scrollPulse 2.4s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { transform: scaleY(0.6); opacity: 0.4; }
+            50% { transform: scaleY(1); opacity: 1; }
+        }
+
+        @keyframes fadeUp {
+            0%   { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- SECTION HEADERS --- */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-eyebrow {
+            display: block;
+            color: #fabc0f;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: 3.2rem;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            color: #fff;
+        }
+
+        .section-header p {
+            color: #aaa;
+            font-size: 1.1rem;
+            max-width: 680px;
+            margin: 1rem auto 0;
+            line-height: 1.65;
+        }
+
+        /* --- NEWS / SPOTLIGHT BENTO --- */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 1300px;
+        }
+
+        .news-card {
+            background: rgba(18, 18, 18, 0.85);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 22px;
+            padding: 2.5rem;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.6s ease;
+        }
+
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: var(--accent, #fabc0f);
+            transition: height 0.45s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255,255,255,0.16);
+        }
+
+        .news-card:hover::before { height: 5px; }
+
+        .news-tag {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent, #fabc0f);
+            margin-bottom: 1.25rem;
+        }
+
+        .news-card h3 {
+            font-size: 1.55rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.85rem;
+            line-height: 1.25;
+        }
+
+        .news-card p {
+            color: #999;
+            font-size: 0.98rem;
+            line-height: 1.65;
+            margin-bottom: 1.5rem;
+        }
+
+        .news-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: gap 0.45s ease, color 0.45s ease;
+        }
+
+        .news-link:hover { gap: 0.85rem; color: var(--accent, #fabc0f); }
+
+        /* --- STATS STRIP --- */
+        .stats-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 1300px;
+            margin-top: 3.5rem;
+        }
+
+        .stat-block {
+            text-align: left;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #fabc0f;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #888;
+            font-size: 0.9rem;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        /* --- WHAT WE DO: DUAL PILLAR --- */
+        .focus-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .focus-text {
+            text-align: left;
+        }
+
+        .focus-text h2 {
+            font-size: 3rem;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .focus-text p {
+            font-size: 1.1rem;
+            color: #aaa;
+            line-height: 1.75;
+            margin-bottom: 1.5rem;
+        }
+
+        .focus-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .focus-card {
+            background: rgba(18, 18, 18, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 20px;
+            padding: 2.25rem;
+            backdrop-filter: blur(15px);
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+            transition: transform 0.6s ease, background 0.6s ease;
+        }
+
+        .focus-card:hover {
+            transform: translateX(-10px);
+            background: rgba(28, 28, 28, 0.85);
+        }
+
+        .focus-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--accent);
+        }
+
+        .focus-card h3 {
+            font-size: 1.35rem;
+            color: #fff;
+            margin-bottom: 0.6rem;
+        }
+
+        .focus-card p {
+            color: #bbb;
+            line-height: 1.65;
+            margin: 0;
+            font-size: 0.96rem;
+        }
+
+        /* --- FINAL CTA --- */
+        .cta-container {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .cta-container h2 {
+            font-size: 3.8rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .cta-container p {
+            font-size: 1.2rem;
+            color: #aaa;
+            margin-bottom: 3rem;
+            line-height: 1.65;
+        }
+
+        .btn-large {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem 3.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #111;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background-color: #fabc0f;
+            border-radius: 50px;
+            transition: all 0.45s ease;
+            box-shadow: 0 10px 30px rgba(250, 188, 15, 0.3);
+        }
+
+        .btn-large:hover {
+            background-color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.4);
+        }
+
+        /* --- SCROLL REVEAL --- */
+        .reveal { opacity: 0; transform: translateY(40px); }
+        .reveal.active { animation: revealUp 1.2s cubic-bezier(0.16,1,0.3,1) both; }
+        .stagger-1.reveal.active { animation-delay: 0.15s; }
+        .stagger-2.reveal.active { animation-delay: 0.3s; }
+        .stagger-3.reveal.active { animation-delay: 0.45s; }
+        .stagger-4.reveal.active { animation-delay: 0.6s; }
+        @keyframes revealUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- FIXED FOOTER & BACK TO TOP --- */
+        .site-footer {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            display: flex;
+            gap: 1.25rem;
+            z-index: 100;
+        }
+
+        .social-link { display: flex; align-items: center; justify-content: center; }
+        .social-icon { width: 20px; height: 20px; fill: #ffffff; transition: all 0.45s ease; }
+        .social-link:nth-child(1):hover .social-icon { fill: #4488cc; transform: translateY(-3px); }
+        .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; transform: translateY(-3px); }
+        .social-link:nth-child(3):hover .social-icon { fill: #aaa; transform: translateY(-3px); }
+
+        #back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 50%;
+            color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px);
+            transition: all 0.45s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        #back-to-top svg { width: 24px; height: 24px; }
+        #back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+        #back-to-top:hover { border-color: #fabc0f; color: #fabc0f; transform: translateY(-3px); }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1100px) {
+            .hero-logo { height: 200px; }
+            .news-grid { grid-template-columns: 1fr; }
+            .stats-strip { grid-template-columns: repeat(2, 1fr); }
+            .focus-section { grid-template-columns: 1fr; gap: 2rem; }
         }
 
         @media (max-width: 768px) {
-            .site-header { padding: 1.5rem; justify-content: center; }
-            .desktop-only { display: none !important; }
-            .hamburger-btn { display: flex; position: absolute; right: 1.5rem; }
-            .logo-img { height: 55px; }
-            .slide h1 { margin-top: 100px; font-size: 2.8rem; }
-            p { font-size: 1.1rem; margin-bottom: 2rem; }
-            .fixed-footer { left: 1.5rem; bottom: 1.5rem; }
-            .carousel-dots { right: 1.5rem; bottom: 1.5rem; }
+            .vertical-slideshow { scroll-snap-type: none; }
+            .slide {
+                height: auto;
+                min-height: 100vh;
+                padding: 120px 1.5rem 60px;
+                scroll-snap-align: none;
+            }
+            .notch-wrapper { display: none; }
+            .mobile-header { display: flex !important; }
+            .hero-logo { height: 150px; }
+            .hero-team-name { font-size: 0.78rem; letter-spacing: 0.2em; }
+            .hero-tagline { font-size: 1.05rem; }
+            .hero-actions { flex-direction: column; width: 100%; }
+            .btn-primary, .btn-secondary { width: 100%; }
+            .hero-orbit-field { width: 500px; height: 500px; }
+            .orbit-ring.r1 { width: 240px; height: 240px; margin: -120px 0 0 -120px; }
+            .orbit-ring.r2 { width: 360px; height: 360px; margin: -180px 0 0 -180px; }
+            .orbit-ring.r3 { width: 480px; height: 480px; margin: -240px 0 0 -240px; }
+            .section-header h2 { font-size: 2.4rem; }
+            .stats-strip { grid-template-columns: 1fr 1fr; }
+            .cta-container h2 { font-size: 2.6rem; }
+            .site-footer { left: 50%; transform: translateX(-50%); bottom: 1.5rem; }
+            #back-to-top { bottom: 1.5rem; right: 1.5rem; width: 45px; height: 45px; }
         }
 
-        .mobile-swipe-indicator {
-            display: none; 
-            position: absolute;
-            bottom: 4rem; 
-            left: 50%;
-            transform: translateX(-50%);
-            color: #888;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            pointer-events: none;
-            align-items: center;
-            gap: 0.5rem;
-            opacity: 0.8;
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
-
-        .mobile-swipe-indicator span {
-            font-size: 1.2rem;
-            animation: swipePulse 1.5s infinite ease-in-out;
-        }
-
-        @keyframes swipePulse {
-            0%, 100% { transform: translateX(0); opacity: 0.5; }
-            50% { transform: translateX(8px); opacity: 1; }
-        }
-
-        @media (max-width: 768px) { .mobile-swipe-indicator { display: flex; } }
     </style>
 </head>
 <body>
-<header class="site-header">
-    <div class="header-side left desktop-only">
-        <a href="/about" class="nav-link">About</a>
-        <a href="/teams" class="nav-link">Teams</a>
-        <a href="/school" class="nav-link">QNET School</a>
-    </div>
-    
-    <div class="logo-container">
-        <a href="/" class="logo-link">
-            <img src="assets/QNET outline white.svg" alt="QNET Logo" class="logo-img">
+
+<!-- GLOBAL BACKGROUND: NEBULA + STARS -->
+<div class="global-bg">
+    <div class="nebula-blob nebula-1"></div>
+    <div class="nebula-blob nebula-2"></div>
+    <div class="nebula-blob nebula-3"></div>
+    <div class="nebula-blob nebula-4"></div>
+    <div class="star-layer stars-1"></div>
+    <div class="star-layer stars-2"></div>
+    <div class="star-layer stars-3"></div>
+</div>
+
+<!-- NOTCH NAVIGATION -->
+<div class="notch-wrapper">
+    <nav class="notch-container">
+        <a href="/" class="nav-logo-link">
+            <div class="nav-logo-wrap">
+                <img src="assets/Atom Logo.png" alt="QNET" class="nav-logo-atom">
+                <img src="assets/White NET Full Logo.svg" alt="QNET" class="nav-logo-full">
+            </div>
         </a>
-    </div>
+        <div class="notch-links">
+            <a href="/about">About</a>
+            <a href="/teams">Teams</a>
+            <a href="/school">QNET School</a>
+            <a href="/projects">Projects</a>
+            <a href="/sponsors">Sponsors</a>
+            <a href="/join">Join</a>
+        </div>
+    </nav>
+</div>
 
-    <div class="header-side right desktop-only">
-        <a href="/projects" class="nav-link">Projects</a>
-        <a href="/sponsors" class="nav-link">Sponsors</a>
-        <a href="/join" class="nav-link">Join</a>
-    </div>
-
+<!-- MOBILE HEADER -->
+<div class="mobile-header">
     <button class="hamburger-btn" aria-label="Toggle Mobile Menu">
         <span class="line"></span>
         <span class="line"></span>
     </button>
-</header>
-
+</div>
 <div class="mobile-menu">
     <a href="/about" class="mobile-nav-link">About</a>
     <a href="/teams" class="mobile-nav-link">Teams</a>
@@ -369,107 +930,194 @@
     <a href="/join" class="mobile-nav-link">Join</a>
 </div>
 
-<div class="mobile-menu">
-    <a href="/about" class="mobile-nav-link">About</a>
-    <a href="/teams" class="mobile-nav-link">Teams</a>
-    <a href="/projects" class="mobile-nav-link">Projects</a>
-    <a href="/join" class="mobile-nav-link">Join</a>
-</div>
+<main class="vertical-slideshow">
 
-<div class="slideshow-container">
-    <section class="slide slide-1">
-        <h1>Queen's Nuclear Engineering Team (QNET)</h1>
-        <p>Join the Teams and help us build something revolutionary.</p>
-        <a href="/join" class="btn" onclick="gtag('event', 'button_click', {'button_name': 'Index - Apply Now'});">Apply Now</a>
-        <div class="mobile-swipe-indicator">Swipe <span>→</span></div>
+    <!-- SLIDE 1: HERO -->
+    <section class="slide">
+        <div class="hero-orbit-field">
+            <div class="orbit-ring r1"><div class="orbit-electron"></div></div>
+            <div class="orbit-ring r2"><div class="orbit-electron"></div></div>
+            <div class="orbit-ring r3"><div class="orbit-electron"></div></div>
+        </div>
+        <div class="slide-content-wrapper">
+            <div class="hero-logo-wrapper">
+                <img src="assets/White NET Full Logo.svg" alt="QNET — Queen's Nuclear Engineering Team" class="hero-logo">
+                <div class="hero-team-name">Queen's Nuclear Engineering Team</div>
+                <div class="hero-caption">Queen's University &nbsp;·&nbsp; Founded 2026</div>
+            </div>
+            <div class="hero-divider"></div>
+            <p class="hero-tagline">
+                Canada's newest nuclear student design team — turning reactor theory into hands-on builds, from cloud chambers to CANDU simulations.
+            </p>
+            <div class="hero-actions">
+                <a href="/join" class="btn-primary" onclick="gtag('event', 'button_click', {'button_name': 'Home - Apply Now'});">Apply Now</a>
+                <a href="/about" class="btn-secondary" onclick="gtag('event', 'button_click', {'button_name': 'Home - Read Our Story'});">Read Our Story</a>
+            </div>
+        </div>
+        <div class="scroll-cue"><span>Scroll</span><div class="line"></div></div>
     </section>
 
-    <section class="slide slide-2">
-        <h1>Executive Team now announced!</h1>
-        <p>We have just announced our executive team for the 2026-2027 School Year!</p>
-        <a href="/teams.html" class="btn" onclick="gtag('event', 'button_click', {'button_name': 'Index - Read Our Story'});">Meet our Executive Team</a>
+    <!-- SLIDE 2: WHAT'S NEW -->
+    <section class="slide">
+        <div class="slide-content-wrapper">
+            <div class="section-header reveal">
+                <span class="section-eyebrow">What's New</span>
+                <h2>Fresh off the ground.</h2>
+                <p>We're brand-new and moving fast — here's where things stand as we build toward our first full year at Queen's.</p>
+            </div>
+
+            <div class="news-grid">
+                <div class="news-card reveal stagger-1" style="--accent: #fabc0f;">
+                    <span class="news-tag">Leadership</span>
+                    <h3>Executive Team Announced</h3>
+                    <p>Meet the founding executive team leading QNET into the 2026–2027 school year and shaping what this team becomes.</p>
+                    <a href="/teams" class="news-link">Meet the Team →</a>
+                </div>
+                <div class="news-card reveal stagger-2" style="--accent: #002552;">
+                    <span class="news-tag">Education</span>
+                    <h3>QNET School Launches</h3>
+                    <p>Our nuclear education program kicks off this September — hands-on curriculum, site tours, and real industry exposure before any builds begin.</p>
+                    <a href="/school" class="news-link">Explore the Program →</a>
+                </div>
+                <div class="news-card reveal stagger-3" style="--accent: #b90e32;">
+                    <span class="news-tag">Builds</span>
+                    <h3>Project Roadmap</h3>
+                    <p>From cloud chambers to reactor simulation — see what we're designing for our first real builds this year.</p>
+                    <a href="/projects" class="news-link">View Projects →</a>
+                </div>
+            </div>
+
+            <div class="stats-strip">
+                <div class="stat-block reveal stagger-1">
+                    <div class="stat-number">01</div>
+                    <div class="stat-label">Only nuclear design team at Queen's University</div>
+                </div>
+                <div class="stat-block reveal stagger-2">
+                    <div class="stat-number">2026</div>
+                    <div class="stat-label">Founding academic year</div>
+                </div>
+                <div class="stat-block reveal stagger-3">
+                    <div class="stat-number">4+</div>
+                    <div class="stat-label">Sub-teams across disciplines</div>
+                </div>
+                <div class="stat-block reveal stagger-4">
+                    <div class="stat-number">Fall '26</div>
+                    <div class="stat-label">First cohort begins QNET School</div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="slide slide-3">
-        <h1>Engineering the Future</h1>
-        <p>Learn about what types of projects we want to build after our launch!</p>
-        <a href="/projects" class="btn" onclick="gtag('event', 'button_click', {'button_name': 'Index - View Projects'});">View Projects</a>
+    <!-- SLIDE 3: WHAT WE DO -->
+    <section class="slide">
+        <div class="slide-content-wrapper focus-section">
+            <div class="focus-text reveal">
+                <h2>From theory to the lab bench.</h2>
+                <p>QNET pairs structured nuclear education with real, hands-on builds — so members graduate with both the knowledge and the experience the industry is looking for.</p>
+                <p>Every member starts with QNET School, then joins a sub-team to apply that knowledge to an actual project.</p>
+            </div>
+            <div class="focus-cards">
+                <div class="focus-card reveal stagger-1" style="--accent: #fabc0f;">
+                    <h3>Learn the Fundamentals</h3>
+                    <p>Reactor physics, radiation detection, and industry context — taught before any builds begin, through QNET School.</p>
+                </div>
+                <div class="focus-card reveal stagger-2" style="--accent: #002552;">
+                    <h3>Join a Sub-Team</h3>
+                    <p>Apply your skills on real hardware and software — from mechanical design to MCNP simulation and embedded systems.</p>
+                </div>
+                <div class="focus-card reveal stagger-3" style="--accent: #b90e32;">
+                    <h3>Build Something Real</h3>
+                    <p>Present finished work at our end-of-year demonstration in front of sponsors and nuclear industry professionals.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="slide slide-4">
-        <h1>About Us</h1>
-        <p>Learn more about Queen's first and only nuclear engineering team.</p>
-        <a href="/about" class="btn" onclick="gtag('event', 'button_click', {'button_name': 'Index - Read Our Story'});">Read Our Story</a>
+    <!-- SLIDE 4: FINAL CTA -->
+    <section class="slide">
+        <div class="slide-content-wrapper cta-container">
+            <h2 class="reveal">Help us build it from scratch.</h2>
+            <p class="reveal stagger-1">As a founding member, you'll shape what QNET becomes — its projects, its culture, and its place in the nuclear industry. There's no better time to get involved.</p>
+            <a href="/join" class="btn-large reveal stagger-2" onclick="gtag('event', 'button_click', {'button_name': 'Home - Final CTA Apply'});">Apply Now</a>
+        </div>
     </section>
-</div>
 
-<div class="carousel-dots" id="carousel-dots"></div>
+</main>
 
-<div class="fixed-footer">
-    <a href="https://www.linkedin.com/company/queensnuclear/" target="_blank" class="social-link">
+<footer class="site-footer">
+    <a href="https://www.linkedin.com/company/queensnuclear/" target="_blank" class="social-link" onclick="gtag('event', 'button_click', {'button_name': 'Social - LinkedIn'});">
         <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
     </a>
-    <a href="https://www.instagram.com/queensnuclear/" target="_blank" class="social-link">
+    <a href="https://www.instagram.com/queensnuclear/" target="_blank" class="social-link" onclick="gtag('event', 'button_click', {'button_name': 'Social - Instagram'});">
         <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
     </a>
-    <a href="https://github.com/qnuclear" target="_blank" class="social-link">
+    <a href="https://github.com/qnuclear" target="_blank" class="social-link" onclick="gtag('event', 'button_click', {'button_name': 'Social - GitHub'});">
         <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.011-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg>
     </a>
-</div>
+</footer>
+
+<button id="back-to-top" aria-label="Back to Top" onclick="gtag('event', 'button_click', {'button_name': 'Back to Top'});">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+</button>
 
 <script>
-    (function setRandomCursor() {
-        const queensColors = ['%23002552', '%23fabc0f', '%23b90e32'];
+    // Custom Cursor
+    try {
+        const queensColors = ['#002552', '#fabc0f', '#b90e32'];
         const randomColor = queensColors[Math.floor(Math.random() * queensColors.length)];
+        const svg1 = '<svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5" fill="' + randomColor + '"/></svg>';
+        const svg2 = '<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" fill="' + randomColor + '" opacity="0.4"/><circle cx="8" cy="8" r="4" fill="' + randomColor + '"/></svg>';
+
         const cursorStyle = document.createElement('style');
         cursorStyle.innerHTML = `
-            * { cursor: url('data:image/svg+xml;utf8,<svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5" fill="${randomColor}"/></svg>') 6 6, auto; }
-            a, button, .btn, .logo-link, .dot { cursor: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" fill="${randomColor}" opacity="0.4"/><circle cx="8" cy="8" r="4" fill="${randomColor}"/></svg>') 8 8, pointer !important; }
+            * { cursor: url('data:image/svg+xml;base64,${btoa(svg1)}') 6 6, auto !important; }
+            a, button, .notch-container, .btn-primary, .btn-secondary, .btn-large { cursor: url('data:image/svg+xml;base64,${btoa(svg2)}') 8 8, pointer !important; }
         `;
         document.head.appendChild(cursorStyle);
-    })();
+    } catch (e) {
+        console.error("Custom cursor failed.", e);
+    }
 
-    const container = document.querySelector('.slideshow-container');
-    let isScrolling = false;
+    // Scroll Reveal
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+        });
+    }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
 
-    container.addEventListener('wheel', (evt) => {
-        evt.preventDefault();
-        if (isScrolling) return; 
-        isScrolling = true;
-        const slideWidth = window.innerWidth;
-        const direction = evt.deltaY > 0 ? 1 : -1;
-        container.scrollBy({ left: direction * slideWidth, behavior: 'smooth' });
-        setTimeout(() => { isScrolling = false; }, 700); 
-    }, { passive: false });
+    revealElements.forEach(el => revealObserver.observe(el));
 
-    // Mobile Menu Toggle Logic
+    // Back to Top
+    const slideshowContainer = document.querySelector('.vertical-slideshow');
+    const backToTopBtn = document.getElementById('back-to-top');
+
+    slideshowContainer.addEventListener('scroll', () => {
+        backToTopBtn.classList.toggle('show', slideshowContainer.scrollTop > window.innerHeight * 0.5);
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+        slideshowContainer.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Mobile Hamburger
     const hamburgerBtn = document.querySelector('.hamburger-btn');
     const mobileMenu = document.querySelector('.mobile-menu');
-    hamburgerBtn.addEventListener('click', () => {
+
+    hamburgerBtn.addEventListener('click', (evt) => {
+        evt.preventDefault();
         hamburgerBtn.classList.toggle('open');
         mobileMenu.classList.toggle('open');
     });
 
-    // Dynamic Dots Logic
-    const slides = document.querySelectorAll('.slide');
-    const dotsContainer = document.getElementById('carousel-dots');
-    const dots = [];
-
-    slides.forEach((_, index) => {
-        const dot = document.createElement('div');
-        dot.classList.add('dot');
-        if (index === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => {
-            container.scrollTo({ left: window.innerWidth * index, behavior: 'smooth' });
-        });
-        dotsContainer.appendChild(dot);
-        dots.push(dot);
-    });
-
-    container.addEventListener('scroll', () => {
-        const slideIndex = Math.round(container.scrollLeft / window.innerWidth);
-        dots.forEach((dot, index) => {
-            index === slideIndex ? dot.classList.add('active') : dot.classList.remove('active');
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburgerBtn.classList.remove('open');
+            mobileMenu.classList.remove('open');
         });
     });
 </script>
