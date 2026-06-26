@@ -200,16 +200,19 @@
             background: rgba(18,18,18,0.85); backdrop-filter: blur(16px);
             border: 1px solid rgba(255,255,255,0.07); border-radius: 16px;
             padding: 1.75rem 1.25rem; text-align: center;
-            transition: border-color 0.6s ease, box-shadow 0.6s ease, transform 0.6s ease;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.25s ease;
         }
         .team-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(255,255,255,0.25);
-            box-shadow: 0 0 0 1px rgba(255,255,255,0.1), 0 16px 40px rgba(0,0,0,0.5);
+            border-color: var(--team-color, rgba(255,255,255,0.25));
+            box-shadow: 0 0 0 1px var(--team-color, rgba(255,255,255,0.1)), 0 16px 40px rgba(0,0,0,0.5);
         }
+        /* Keep hover instant regardless of the stagger reveal transition-delay */
+        .teams-grid .team-card { transition-delay: 0s; }
         .team-card-color {
             width: 36px; height: 36px; border-radius: 50%;
             margin: 0 auto 1rem auto;
+            background: var(--team-color, #fff);
         }
         .team-card h3 { font-size: 0.95rem; font-weight: 600; color: #fff; margin-bottom: 0.5rem; }
         .team-card p { font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.55; margin: 0; }
@@ -303,7 +306,7 @@
         </a>
         <div class="notch-links">
             <a href="/about">About</a>
-            <a href="/teams">Teams</a>
+            <a href="/teams">Meet the Teams</a>
             <a href="/school">QNET School</a>
             <a href="/projects">Projects</a>
             <a href="/sponsors">Sponsors</a>
@@ -324,7 +327,7 @@
 
 <div class="mobile-menu">
     <a href="/about" class="mobile-nav-link">About</a>
-    <a href="/teams" class="mobile-nav-link">Teams</a>
+    <a href="/teams" class="mobile-nav-link">Meet the Teams</a>
     <a href="/school" class="mobile-nav-link">QNET School</a>
     <a href="/projects" class="mobile-nav-link">Projects</a>
     <a href="/sponsors" class="mobile-nav-link">Sponsors</a>
@@ -338,13 +341,17 @@
         <span class="section-eyebrow reveal">Now Recruiting</span>
         <h1 class="hero-title reveal stagger-1">Join <span>QNET</span></h1>
         <p class="hero-sub reveal stagger-2">We are actively recruiting our inaugural strike team. As Team Leads and Directors build QNET's initial framework, we're looking for dedicated general members to get integrated before the Fall 2026 build begins.</p>
+        <p class="reveal stagger-3" style="font-size: 0.95rem; color: rgba(255,255,255,0.5); line-height: 1.6;">
+            New here? Get the full overview — team, projects, and sponsorship details — in our
+            <a href="/packages/QNET%20Information%20Package.pdf" target="_blank" rel="noopener" style="color: #fabc0f; text-decoration: none; font-weight: 600;" onclick="gtag('event','button_click',{'button_name':'Join - Information Package'});">Information Package →</a>
+        </p>
         <div id="scroll-down-btn" class="scroll-indicator">Open Position ↓</div>
     </section>
 
     <!-- Slide 2: General Member -->
     <section class="slide">
         <span class="section-eyebrow reveal">Open Now</span>
-        <h1 class="hero-title reveal stagger-1">General <span>Member</span></h1>
+        <h2 class="hero-title reveal stagger-1">General <span>Member</span></h2>
         <p class="hero-sub reveal stagger-2">Click below to join our Teams workspace and get integrated into the team before the Fall 2026 build kicks off.</p>
 
         <div class="join-card reveal stagger-3" onclick="window.open('https://teams.microsoft.com/l/channel/19%3AMgKqi9UGWvVHIfBTycni6a01601M4msTSpQH4agjig41%40thread.tacv2/General?groupId=36c05e75-3e2e-4a99-8d82-2d24d72e7c85&tenantId=d61ecb3b-38b1-42d5-82c4-efb2838b925c', '_blank'); gtag('event','button_click',{'button_name':'Role Card - General Member Teams'});">
@@ -362,31 +369,31 @@
     <!-- Slide 3: Teams overview -->
     <section class="slide">
         <span class="section-eyebrow reveal">The Sub-Teams</span>
-        <h1 class="hero-title reveal stagger-1">Where You'll <span>Contribute</span></h1>
+        <h2 class="hero-title reveal stagger-1">Where You'll <span>Contribute</span></h2>
         <p class="hero-sub reveal stagger-2">General members are placed across five sub-teams. Every team contributes directly to QNET's first build.</p>
         <div class="teams-grid">
-            <div class="team-card reveal stagger-1">
-                <div class="team-card-color" style="background:#002552;"></div>
+            <div class="team-card reveal stagger-1" style="--team-color:#002552;">
+                <div class="team-card-color"></div>
                 <h3>Mechanical</h3>
                 <p>CAD, 3D printing, structural design, simulation.</p>
             </div>
-            <div class="team-card reveal stagger-2">
-                <div class="team-card-color" style="background:#fabc0f;"></div>
+            <div class="team-card reveal stagger-2" style="--team-color:#fabc0f;">
+                <div class="team-card-color"></div>
                 <h3>Electrical</h3>
                 <p>PCB design, schematics, power architecture, sensing.</p>
             </div>
-            <div class="team-card reveal stagger-3">
-                <div class="team-card-color" style="background:#b90e32;"></div>
+            <div class="team-card reveal stagger-3" style="--team-color:#b90e32;">
+                <div class="team-card-color"></div>
                 <h3>Software</h3>
                 <p>Control logic, firmware, UI, data processing, IoT.</p>
             </div>
-            <div class="team-card reveal stagger-4">
-                <div class="team-card-color" style="background:rgba(255,255,255,0.8);"></div>
+            <div class="team-card reveal stagger-4" style="--team-color:rgba(255,255,255,0.8);">
+                <div class="team-card-color"></div>
                 <h3>Research</h3>
                 <p>Technical reports, engineering reviews, case studies.</p>
             </div>
-            <div class="team-card reveal stagger-5">
-                <div class="team-card-color" style="background:#32a852;"></div>
+            <div class="team-card reveal stagger-5" style="--team-color:#32a852;">
+                <div class="team-card-color"></div>
                 <h3>Materials</h3>
                 <p>Material selection, degradation modeling, safety analysis.</p>
             </div>

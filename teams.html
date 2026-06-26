@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QNET | Meet the Team</title>
+    <title>QNET | Meet the Teams</title>
     <meta name="description" content="Meet the interdisciplinary minds behind the Queen's Nuclear Engineering Team — mechanical, electrical, software, research, materials, and operations.">
     <link rel="icon" type="image/svg+xml" href="assets/outlinefavicon.svg">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8J80X6N4DV"></script>
@@ -298,6 +298,30 @@
             font-weight: 300;
             line-height: 1.6;
             margin-bottom: 3.5rem;
+        }
+
+        /* --- TEAM PROJECTS CTA --- */
+        .team-projects-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 3rem;
+            padding: 0.95rem 2.4rem;
+            background-color: #fabc0f;
+            color: #111;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(250, 188, 15, 0.25);
+        }
+        .team-projects-cta:hover {
+            background-color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.3);
         }
 
         /* --- HERO SLIDE --- */
@@ -768,7 +792,7 @@
         </a>
         <div class="notch-links">
             <a href="/about">About</a>
-            <a href="/teams" style="color:#fff;">Teams</a>
+            <a href="/teams" style="color:#fff;">Meet the Teams</a>
             <a href="/school">QNET School</a>
             <a href="/projects">Projects</a>
             <a href="/sponsors">Sponsors</a>
@@ -789,7 +813,7 @@
 </div>
 <div class="mobile-menu">
     <a href="/about" class="mobile-nav-link">About</a>
-    <a href="/teams" class="mobile-nav-link" style="color: #fff;">Teams</a>
+    <a href="/teams" class="mobile-nav-link" style="color: #fff;">Meet the Teams</a>
     <a href="/school" class="mobile-nav-link">QNET School</a>
     <a href="/projects" class="mobile-nav-link">Projects</a>
     <a href="/sponsors" class="mobile-nav-link">Sponsors</a>
@@ -802,7 +826,7 @@
     <section class="slide">
         <div class="hero-content">
             <span class="hero-eyebrow">Queen's Nuclear Engineering Team · 2026–2027</span>
-            <h2 class="hero-title">Meet the Team</h2>
+            <h1 class="hero-title">Meet the Teams</h1>
             <div class="hero-divider"></div>
             <p class="hero-tagline">The interdisciplinary minds driving the future of nuclear engineering at Queen's University. Scroll down to see our official roster.</p>
         </div>
@@ -1029,6 +1053,7 @@
                     </div>
                 </div>
             </div>
+            <a href="/projects#materials-studies" class="team-projects-cta" onclick="gtag('event', 'button_click', {'button_name': 'Teams - Discover Materials Projects'});">Discover Materials Team projects →</a>
         </div>
     </section>
 

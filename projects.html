@@ -373,7 +373,7 @@
         </a>
         <div class="notch-links">
             <a href="/about">About</a>
-            <a href="/teams">Teams</a>
+            <a href="/teams">Meet the Teams</a>
             <a href="/school">QNET School</a>
             <a href="/projects" style="color:#fff;">Projects</a>
             <a href="/sponsors">Sponsors</a>
@@ -394,7 +394,7 @@
 
 <div class="mobile-menu">
     <a href="/about" class="mobile-nav-link">About</a>
-    <a href="/teams" class="mobile-nav-link">Teams</a>
+    <a href="/teams" class="mobile-nav-link">Meet the Teams</a>
     <a href="/school" class="mobile-nav-link">QNET School</a>
     <a href="/projects" class="mobile-nav-link" style="color:#fff;">Projects</a>
     <a href="/sponsors" class="mobile-nav-link">Sponsors</a>
@@ -409,13 +409,17 @@
         <h1 class="hero-title reveal stagger-1">Our <span>Projects</span></h1>
         <p class="hero-sub reveal stagger-2">Our executives are currently preparing the framework of three different projects, including comprehensive feasibility reports, technical risk assessments, and strict milestones for their teams. General members will vote on which project becomes QNET's inaugural build.</p>
         <a href="/join" class="btn reveal stagger-3" onclick="gtag('event','button_click',{'button_name':'Projects - Join to Vote'});">Join the team to vote</a>
+        <p class="reveal stagger-3" style="margin-top: 1.75rem; font-size: 0.95rem; color: rgba(255,255,255,0.5); line-height: 1.6;">
+            See full technical details and per-project cost breakdowns in our
+            <a href="/packages/QNET%20Information%20Package.pdf" target="_blank" rel="noopener" style="color: #fabc0f; text-decoration: none; font-weight: 600;" onclick="gtag('event','button_click',{'button_name':'Projects - Information Package'});">Information Package →</a>
+        </p>
         <div id="next-slide-btn" class="down-indicator">Project Charter <span>↓</span></div>
     </section>
 
     <!-- Slide 2: Philosophy -->
     <section class="slide">
         <span class="section-eyebrow reveal">The Framework</span>
-        <h1 class="hero-title reveal stagger-1">Project <span>Philosophy</span></h1>
+        <h2 class="hero-title reveal stagger-1">Project <span>Philosophy</span></h2>
         <p class="hero-sub reveal stagger-2">All potential QNET projects must satisfy our three-pillar Project Charter before moving forward.</p>
         <div class="philosophy-grid">
             <div class="phil-card reveal stagger-1">
@@ -639,6 +643,55 @@
         </div>
     </section>
 
+    <!-- Slide 6: Materials Studies — independent Materials sub-team research -->
+    <section class="slide" id="materials-studies">
+        <div class="project-showcase">
+            <div class="project-static">
+                <span class="section-eyebrow">Independent Studies</span>
+                <h3>Materials Studies</h3>
+                <p>Led by Materials Lead <a href="/teams#NoahMiggiani" class="inline-member-link has-tooltip" data-name="Noah Miggiani" data-role="Materials Team Lead" data-bio="Conducts radiation damage research at MAX-Nuclear. Leads the Materials sub-team's independent study tracks." data-img="teamphoto/noah.png" data-color="#32a852"><strong>Noah Miggiani</strong></a>, the Materials sub-team runs its own studies independent of QNET's flagship build. As of July 1, 2026, the team has completed preliminary research to establish three potential study tracks.</p>
+                <div class="project-specs">
+                    <strong>About the Materials Team:</strong> This specialized branch of QNET bridges the gap between mechanical design and nuclear physics. While the other sub-teams focus on project design and build, the Materials team focuses on simulations and virtual testing — modeling atomic-level interaction, evaluating material degradation, and predicting how structural materials behave under intense reactor conditions.<br><br>
+                    <strong>Students in this branch can be expected to:</strong>
+                    <ul>
+                        <li>Utilize industry-standard ion irradiation modeling software like SRIM to predict radiation depth, energy deposition, and primary material damage production in critical components.</li>
+                        <li>Research and analyze reactor materials to safely predict how they will respond to operational stresses.</li>
+                        <li>Model degradation, microstructural responses, and other mechanical properties and effects.</li>
+                    </ul>
+                    <br>
+                    <strong>Select a study track to explore →</strong>
+                </div>
+            </div>
+            <div class="project-interactive">
+                <div class="vertical-nodes">
+                    <div class="node-line"></div>
+                    <button class="team-node-btn active" data-project="matstudies" data-team="ions" data-color="#002552">
+                        <div class="node-circle" style="background-color:#002552;"></div>
+                        <span class="team-label">Ion Surrogates</span>
+                    </button>
+                    <button class="team-node-btn" data-project="matstudies" data-team="healing" data-color="#fabc0f">
+                        <div class="node-circle" style="background-color:#fabc0f;"></div>
+                        <span class="team-label">Athermal Healing</span>
+                    </button>
+                    <button class="team-node-btn" data-project="matstudies" data-team="fusion" data-color="#b90e32">
+                        <div class="node-circle" style="background-color:#b90e32;"></div>
+                        <span class="team-label">Fusion Materials</span>
+                    </button>
+                </div>
+                <div class="team-details" id="details-matstudies" style="--theme-color:#002552;">
+                    <div class="team-header-label"><span>Materials Study Track</span></div>
+                    <h4 id="title-matstudies">Ion Surrogates for Neutron Radiation Damage</h4>
+                    <div id="members-matstudies" class="team-members-container">
+                        <a href="/teams#NoahMiggiani" class="member-avatar has-tooltip" style="background-image:url('teamphoto/noah.png');border-color:#002552;" data-name="Noah Miggiani" data-role="Materials Lead" data-bio="Conducts radiation damage research at MAX-Nuclear. Leads the Materials sub-team's independent study tracks." data-img="teamphoto/noah.png" data-color="#002552"></a>
+                    </div>
+                    <div id="desc-matstudies">
+                        <p>This track compares the difference in neutron beams and ion beams in both their recoil spectra and energy deposition partitioning. By comparing which locally-available ions produce spectra and energy-partitioning profiles that most closely mimic real neutron damage, researchers can identify better surrogates for running more accurate experiments with ions rather than neutrons — which are harder to use precisely, as they carry no charge. Our team plans to utilize SRIM simulations, as it is uniquely suited for capturing the recoil spectra and doesn't require any physical experiments aside from experimental validation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </div>
 
 <div class="fixed-footer">
@@ -705,6 +758,15 @@
         ],
         materials: [
             { name: "Noah Miggiani", role: "Team Lead", img: "teamphoto/noah.png", bio: "Working on the research of nuclear materials and structural degradation profiles.", anchor: "NoahMiggiani" }
+        ],
+        ions: [
+            { name: "Noah Miggiani", role: "Materials Lead", img: "teamphoto/noah.png", bio: "Conducts radiation damage research at MAX-Nuclear. Leads the Materials sub-team's independent study tracks.", anchor: "NoahMiggiani" }
+        ],
+        healing: [
+            { name: "Noah Miggiani", role: "Materials Lead", img: "teamphoto/noah.png", bio: "Conducts radiation damage research at MAX-Nuclear. Leads the Materials sub-team's independent study tracks.", anchor: "NoahMiggiani" }
+        ],
+        fusion: [
+            { name: "Noah Miggiani", role: "Materials Lead", img: "teamphoto/noah.png", bio: "Conducts radiation damage research at MAX-Nuclear. Leads the Materials sub-team's independent study tracks.", anchor: "NoahMiggiani" }
         ]
     };
 
@@ -735,6 +797,11 @@
             software: { title: "Software & Comp", desc: "<ul><li>Understand and utilize Field-Programmable Gate Arrays (FPGA) instead of basic Arduino.</li><li>Learn and implement high-speed clocks to time-stamp incoming pulses at the nanosecond.</li><li>Write scripts to handle spatial data processing, using linear algebra and trigonometry to calculate the LOR and convert them to a rendered 3D Image.</li></ul>" },
             research: { title: "Research", desc: "<ul><li>Compare the differences between a BGO crystal and a LYSO crystal.</li><li>Investigate the mathematical scalability of the project to create a circular ring assembly similar to real-world PET scans.</li></ul>" },
             materials: { title: "Materials", desc: "<ul><li>Explore how prolonged exposure to gamma radiation causes the semiconductors to misbehave (bit flips).</li><li>Investigate how to use thermal healing principles to reverse these effects caused by radiation.</li></ul>" }
+        },
+        matstudies: {
+            ions: { title: "Ion Surrogates for Neutron Radiation Damage", desc: "<p>This track compares the difference in neutron beams and ion beams in both their recoil spectra and energy deposition partitioning. By comparing which locally-available ions produce spectra and energy-partitioning profiles that most closely mimic real neutron damage, researchers can identify better surrogates for running more accurate experiments with ions rather than neutrons — which are harder to use precisely, as they carry no charge. Our team plans to utilize SRIM simulations, as it is uniquely suited for capturing the recoil spectra and doesn't require any physical experiments aside from experimental validation.</p>" },
+            healing: { title: "Athermal Healing of Irradiation Damage", desc: "<p>This track looks into the mechanisms behind athermal processes due to high electronic energy deposition in irradiation by swift ions. Our team aims to run a literature review to determine electronic stopping power thresholds for irradiation-induced annealing and amorphization. By running SRIM simulations of common reactor wall materials against various ions, this track identifies the most efficient ion-target combinations for inducing healing effects without amorphizing (causing further damage to) the material, and could extend the service life of reactor components.</p>" },
+            fusion: { title: "Candidate Materials for Near-Future Fusion Reactors", desc: "<p>This track evaluates the damage incurred by candidate fusion reactor wall materials, such as single-phase concentrated solution alloys (SP-CSAs), copper alloys, and tungsten alloys, when exposed to ions like hydrogen and helium found in fusion plasma environments. By combining SRIM simulations with a literature review, we gather insight on current research centered on selecting durable, plasma-facing inner wall materials for near-future energy systems.</p>" }
         }
     };
 
