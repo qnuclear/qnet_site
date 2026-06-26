@@ -21,6 +21,15 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
 
+        /* ── Responsive root scaling: laptop-width screens (769–1536px) get a
+           proportionally smaller root font-size so the desktop-tuned layout
+           (authored for large monitors) doesn't render oversized / "zoomed in".
+           rem-based sizing scales with this. Desktop (≥1537px) and mobile
+           (≤768px) are intentionally left untouched. ── */
+        @media (min-width: 769px) and (max-width: 1536px) {
+            html { font-size: clamp(13px, 0.84vw + 3.1px, 16px); }
+        }
+
         body { background-color: #050505; color: #f0f0f0; overflow: hidden; }
 
         /* ── Global Background ── */

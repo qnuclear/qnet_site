@@ -21,6 +21,15 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
+        /* ── Responsive root scaling: laptop-width screens (769–1536px) get a
+           proportionally smaller root font-size so the desktop-tuned layout
+           (authored for large monitors) doesn't render oversized / "zoomed in".
+           rem-based sizing scales with this. Desktop (≥1537px) and mobile
+           (≤768px) are intentionally left untouched. ── */
+        @media (min-width: 769px) and (max-width: 1536px) {
+            html { font-size: clamp(13px, 0.84vw + 3.1px, 16px); }
+        }
+
         /* Visually-hidden, screen-reader & SEO accessible */
         .sr-only {
             position: absolute;
@@ -221,7 +230,7 @@
         }
 
         .hero-logo {
-            height: 450px; 
+            height: 28.125rem; /* 450px at 16px root; scales down on laptop widths */
             opacity: 0;
             transform: scale(0.85) translateY(30px);
             animation: cinematicReveal 3.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
