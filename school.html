@@ -70,47 +70,45 @@
         .nebula-4 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,37,82,0.2), transparent 70%); bottom: 10%; left: 10%; animation: nebulaDrift 20s ease-in-out infinite alternate-reverse; }
         @keyframes nebulaDrift { 0% { opacity: 0.5; transform: scale(0.9) translate(0,0); } 100% { opacity: 1; transform: scale(1.2) translate(30px,-20px); } }
 
-        .star-layer {
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: transparent;
+        /* ── Atomic orbital background ── */
+        .orbit { position: absolute; top: 50%; left: 50%; border-radius: 50%; pointer-events: none; }
+        .orbit .ring { position: absolute; inset: 0; border: 1px solid rgba(255,255,255,0.08); border-radius: 50%; }
+        .orbit .spinner { position: absolute; inset: 0; animation: orbitSpin var(--period, 70s) linear infinite; }
+        .orbit.reverse .spinner { animation-direction: reverse; }
+        .orbit .electron {
+            position: absolute; top: -3px; left: 50%; margin-left: -3px;
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--ec, #fabc0f);
+            box-shadow: 0 0 12px 2px var(--ec, #fabc0f);
+            opacity: 0.55;
         }
-
-        /* Brightened stars for global visibility */
-        .stars-1 {
-            background-image: 
-                radial-gradient(2px 2px at 10% 10%, rgba(255,255,255,0.9), transparent),
-                radial-gradient(1.5px 1.5px at 20% 30%, rgba(255,255,255,0.7), transparent),
-                radial-gradient(2.5px 2.5px at 40% 70%, rgba(255,255,255,0.9), transparent),
-                radial-gradient(1.5px 1.5px at 60% 20%, rgba(255,255,255,0.8), transparent),
-                radial-gradient(2px 2px at 80% 80%, rgba(255,255,255,0.9), transparent);
-            background-size: 150px 150px;
-            animation: starDrift 150s linear infinite, twinkle 6s ease-in-out infinite alternate;
+        .orbit .electron.e2 { top: auto; bottom: -3px; opacity: 0.4; }
+        .nucleus-glow {
+            position: absolute; width: 340px; height: 340px; border-radius: 50%;
+            background: radial-gradient(circle, var(--nc, rgba(250,188,15,0.5)), transparent 70%);
+            filter: blur(70px); opacity: 0.12; pointer-events: none;
+            top: 6%; left: 45%;
         }
+        @keyframes orbitSpin { to { transform: rotate(360deg); } }
+        @media (prefers-reduced-motion: reduce) { .orbit .spinner, .nebula-blob { animation: none; } }
 
-        .stars-2 {
-            background-image: 
-                radial-gradient(1.5px 1.5px at 15% 85%, rgba(255,255,255,0.8), transparent),
-                radial-gradient(2.5px 2.5px at 35% 15%, rgba(255,255,255,0.9), transparent),
-                radial-gradient(2px 2px at 55% 55%, rgba(255,255,255,0.7), transparent),
-                radial-gradient(1.5px 1.5px at 75% 35%, rgba(255,255,255,0.9), transparent),
-                radial-gradient(2.5px 2.5px at 95% 65%, rgba(255,255,255,0.8), transparent);
-            background-size: 200px 200px;
-            animation: starDrift 210s linear infinite reverse, twinkle 7.5s ease-in-out infinite alternate-reverse;
+        .orbit-a {
+            width: 1300px; height: 1300px;
+            margin: -650px 0 0 -650px;
+            transform: rotate(-14deg) scaleY(0.4);
+            --period: 75s;
         }
-
-        .stars-3 {
-            background-image: 
-                radial-gradient(2.5px 2.5px at 5% 5%, rgba(255,255,255,0.9), transparent),
-                radial-gradient(1.5px 1.5px at 25% 75%, rgba(255,255,255,0.8), transparent),
-                radial-gradient(2px 2px at 50% 25%, rgba(255,255,255,0.9), transparent),
-                radial-gradient(1.5px 1.5px at 70% 90%, rgba(255,255,255,0.7), transparent),
-                radial-gradient(2.5px 2.5px at 90% 40%, rgba(255,255,255,0.9), transparent);
-            background-size: 300px 300px;
-            animation: starDrift 270s linear infinite, twinkle 9s ease-in-out infinite alternate;
+        .orbit-b {
+            width: 900px; height: 900px;
+            margin: -450px 0 0 -450px;
+            transform: rotate(26deg) scaleY(0.5);
+            --period: 55s;
+        }
+        .orbit-c {
+            width: 1600px; height: 1600px;
+            margin: -800px 0 0 -800px;
+            transform: rotate(4deg) scaleY(0.32);
+            --period: 100s;
         }
 
         .hero-vignette {
@@ -119,16 +117,6 @@
             background: radial-gradient(circle at 50% 50%, transparent 10%, #050505 90%);
             z-index: 1;
             pointer-events: none;
-        }
-
-        @keyframes starDrift {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes twinkle {
-            0% { opacity: 0.3; }
-            100% { opacity: 1; }
         }
 
         /* --- DYNAMIC MINI-HEADER NOTCH --- */
@@ -181,6 +169,15 @@
         }
         .notch-container a:not(.nav-logo-link):hover { color: rgba(255,255,255,0.9); }
 
+        /* ── Nav underline-grow (spec D) ── */
+        .notch-links a { position: relative; }
+        .notch-links a::after {
+            content: ''; position: absolute; bottom: -5px; left: 50%;
+            width: 0; height: 1px; background: #fabc0f;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+        .notch-links a:hover::after { width: 100%; left: 0; }
+
         /* --- VERTICAL SLIDESHOW (SNAP SCROLL) --- */
         .vertical-slideshow {
             height: 100vh;
@@ -230,7 +227,7 @@
         }
 
         .hero-logo {
-            height: 28.125rem; /* 450px at 16px root; scales down on laptop widths */
+            height: clamp(16rem, 30vw, 28.125rem);
             opacity: 0;
             transform: scale(0.85) translateY(30px);
             animation: cinematicReveal 3.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -239,7 +236,7 @@
 
         .hero-subtitle {
             margin-top: 1rem;
-            font-size: 1.6rem;
+            font-size: clamp(1.15rem, 1.8vw, 1.6rem);
             font-weight: 500;
             letter-spacing: 0.25em;
             color: #fabc0f;
@@ -359,18 +356,19 @@
             flex-direction: column;
             justify-content: flex-end;
             text-align: left;
-            transition: transform 0.6s ease, border-color 0.6s ease;
+            transition: all 0.4s ease;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        
+
         .experiential-card {
             justify-content: flex-start;
             padding-top: 3.5rem;
         }
 
         .bento-item:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-8px);
+            border-color: #fabc0f;
+            box-shadow: 0 20px 50px rgba(250,188,15,0.2);
         }
 
         .bento-bg-image {
@@ -424,6 +422,8 @@
         .bento-item li {
             margin-bottom: 0.35rem;
         }
+
+        .asset-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
 
         .span-2-col { grid-column: span 2; }
         .span-2-row { grid-row: span 2; }
@@ -514,14 +514,14 @@
             align-items: center;
             text-align: center;
             width: 320px;
-            transition: all 0.6s ease;
+            transition: all 0.4s ease;
         }
 
         .speaker-node:hover {
             background: rgba(30, 30, 30, 0.8);
-            transform: translateY(-10px);
+            transform: translateY(-8px);
             border-color: #fabc0f;
-            box-shadow: 0 15px 40px rgba(250, 188, 15, 0.15);
+            box-shadow: 0 20px 50px rgba(250,188,15,0.2);
         }
 
         .speaker-avatar {
@@ -647,6 +647,7 @@
             .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
             .bento-item { min-height: 320px; }
             .span-2-row { grid-row: span 1; }
+            .asset-list { grid-template-columns: 1fr; }
             .notch-wrapper, .notch-hitbox { display: none; }
             .mobile-header { display: flex !important; }
             .hero-logo { height: 110px; }
@@ -734,7 +735,7 @@
             gap: 2.5rem;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.6s ease;
+            transition: opacity 0.45s ease;
             z-index: 101;
         }
 
@@ -756,15 +757,16 @@
 </head>
 <body>
 
-<!-- GLOBAL BACKGROUND (Twinkling Stars) -->
+<!-- GLOBAL BACKGROUND: NEBULA + ORBITAL -->
 <div class="global-bg">
     <div class="nebula-blob nebula-1"></div>
     <div class="nebula-blob nebula-2"></div>
     <div class="nebula-blob nebula-3"></div>
     <div class="nebula-blob nebula-4"></div>
-    <div class="star-layer stars-1"></div>
-    <div class="star-layer stars-2"></div>
-    <div class="star-layer stars-3"></div>
+    <div class="orbit orbit-a"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
+    <div class="orbit orbit-b reverse"><div class="ring"></div><div class="spinner"><span class="electron"></span><span class="electron e2" style="--ec:#b90e32;"></span></div></div>
+    <div class="orbit orbit-c"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
+    <div class="nucleus-glow"></div>
     <div class="hero-vignette"></div>
 </div>
 
@@ -859,7 +861,7 @@
 
                 <!-- Card: Radiation -->
                 <div class="bento-item">
-                    <div class="bento-bg-image" style="background-image: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="bento-bg-image" style="background-image: url('assets/cc.png');"></div>
                     <div class="bento-gradient"></div>
                     <div class="bento-content">
                         <h3>Radiation & Detection</h3>
@@ -873,7 +875,10 @@
 
                 <!-- Card: Reactor Basics -->
                 <div class="bento-item">
-                    <div class="bento-bg-image" style="background-image: url('https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?auto=format&fit=crop&w=800&q=80');"></div>
+                    <!-- IMAGE PLACEHOLDER: supply photo of reactor basics / nuclear physics -->
+                    <div class="bento-bg-image" style="background: rgba(255,255,255,0.04); backdrop-filter: blur(4px); display:flex; align-items:center; justify-content:center; background-image:none;">
+                        <img src="assets/QNET outline white.svg" alt="" aria-hidden="true" style="width:48%; opacity:0.18; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none;">
+                    </div>
                     <div class="bento-gradient"></div>
                     <div class="bento-content">
                         <h3>Reactor Basics & Physics</h3>
@@ -890,7 +895,7 @@
                     <div class="bento-content">
                         <h3 style="color: #fabc0f;">Experiential Assets</h3>
                         <p style="margin-bottom: 0.75rem;">QNET School prioritizes high-impact experiential education over traditional lectures. Members will participate in hands-on tours and real-world exposure:</p>
-                        <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                        <ul class="asset-list">
                             <li>Tour the SLOWPOKE-2 Reactor.</li>
                             <li>Tour the Reactor Materials Testing Lab (RMTL).</li>
                             <li>Port Hope legacy waste trips.</li>

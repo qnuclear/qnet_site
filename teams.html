@@ -88,57 +88,36 @@
             100% { opacity: 1;   transform: scale(1.2) translate(30px, -20px); }
         }
 
-        .star-layer {
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: transparent;
+        /* ── Atomic orbital background ── */
+        .orbit { position: absolute; top: 50%; left: 50%; border-radius: 50%; pointer-events: none; }
+        .orbit .ring { position: absolute; inset: 0; border: 1px solid rgba(255,255,255,0.06); border-radius: 50%; }
+        .orbit .spinner { position: absolute; inset: 0; animation: orbitSpin var(--period, 70s) linear infinite; }
+        .orbit.reverse .spinner { animation-direction: reverse; }
+        .orbit .electron {
+            position: absolute; top: -3px; left: 50%; margin-left: -3px;
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--ec, #fabc0f);
+            box-shadow: 0 0 12px 2px var(--ec, #fabc0f);
+            opacity: 0.55;
         }
+        .orbit .electron.e2 { top: auto; bottom: -3px; opacity: 0.4; }
+        .nucleus-glow {
+            position: absolute; width: 340px; height: 340px; border-radius: 50%;
+            background: radial-gradient(circle, var(--nc, rgba(250,188,15,0.5)), transparent 70%);
+            filter: blur(70px); opacity: 0.12; pointer-events: none;
+        }
+        @keyframes orbitSpin { to { transform: rotate(360deg); } }
+        @media (prefers-reduced-motion: reduce) { .orbit .spinner, .nebula-blob { animation: none; } }
 
-        .stars-1 {
-            background-image:
-                radial-gradient(1.5px 1.5px at 10% 10%, rgba(255,255,255,0.7), transparent),
-                radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.5), transparent),
-                radial-gradient(2px 2px at 40% 70%, rgba(255,255,255,0.7), transparent),
-                radial-gradient(1px 1px at 60% 20%, rgba(255,255,255,0.6), transparent),
-                radial-gradient(1.5px 1.5px at 80% 80%, rgba(255,255,255,0.7), transparent);
-            background-size: 150px 150px;
-            animation: starDrift 150s linear infinite, twinkle 6s ease-in-out infinite alternate;
-        }
-
-        .stars-2 {
-            background-image:
-                radial-gradient(1px 1px at 15% 85%, rgba(255,255,255,0.6), transparent),
-                radial-gradient(2px 2px at 35% 15%, rgba(255,255,255,0.7), transparent),
-                radial-gradient(1.5px 1.5px at 55% 55%, rgba(255,255,255,0.5), transparent),
-                radial-gradient(1px 1px at 75% 35%, rgba(255,255,255,0.7), transparent),
-                radial-gradient(2px 2px at 95% 65%, rgba(255,255,255,0.6), transparent);
-            background-size: 200px 200px;
-            animation: starDrift 210s linear infinite reverse, twinkle 7.5s ease-in-out infinite alternate-reverse;
-        }
-
-        .stars-3 {
-            background-image:
-                radial-gradient(2px 2px at 5% 5%, rgba(255,255,255,0.7), transparent),
-                radial-gradient(1px 1px at 25% 75%, rgba(255,255,255,0.6), transparent),
-                radial-gradient(1.5px 1.5px at 50% 25%, rgba(255,255,255,0.7), transparent),
-                radial-gradient(1px 1px at 70% 90%, rgba(255,255,255,0.5), transparent),
-                radial-gradient(2px 2px at 90% 40%, rgba(255,255,255,0.7), transparent);
-            background-size: 300px 300px;
-            animation: starDrift 270s linear infinite, twinkle 9s ease-in-out infinite alternate;
-        }
-
-        @keyframes starDrift {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes twinkle {
-            0% { opacity: 0.25; }
-            100% { opacity: 0.85; }
-        }
+        /* teams variant */
+        .orbit-a { width: 1250px; height: 1250px; margin: -625px 0 0 -625px; transform: rotate(-20deg) scaleY(0.4); --period: 75s; }
+        .orbit-a .electron { --ec: #5a8cd2; }
+        .orbit-a .electron.e2 { --ec: #5a8cd2; }
+        .orbit-b { width: 950px; height: 950px; margin: -475px 0 0 -475px; transform: rotate(30deg) scaleY(0.52); --period: 60s; }
+        .orbit-b .electron { --ec: #fabc0f; }
+        .orbit-c { width: 1650px; height: 1650px; margin: -825px 0 0 -825px; transform: rotate(6deg) scaleY(0.3); --period: 105s; }
+        .orbit-c .electron { --ec: #b90e32; }
+        .nucleus-glow { top: 10%; left: 8%; --nc: rgba(60,110,190,0.5); }
 
         /* --- NOTCH NAVIGATION --- */
         .notch-wrapper {
@@ -188,6 +167,15 @@
             transition: color 0.3s ease;
         }
         .notch-container a:not(.nav-logo-link):hover { color: rgba(255,255,255,0.9); }
+
+        /* ── Nav underline-grow ── */
+        .notch-links a { position: relative; }
+        .notch-links a::after {
+            content: ''; position: absolute; bottom: -5px; left: 50%;
+            width: 0; height: 1px; background: #fabc0f;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+        .notch-links a:hover::after { width: 100%; left: 0; }
 
         /* ── Mobile Header ── */
         .mobile-header {
@@ -283,9 +271,9 @@
 
         /* --- SECTION EYEBROW --- */
         .section-eyebrow {
-            font-size: 0.78rem;
+            font-size: 0.8rem;
             font-weight: 700;
-            letter-spacing: 0.25em;
+            letter-spacing: 0.22em;
             text-transform: uppercase;
             color: #fabc0f;
             margin-bottom: 0.75rem;
@@ -293,7 +281,7 @@
         }
 
         h2 {
-            font-size: 3.5rem;
+            font-size: clamp(2.25rem, 3.5vw, 3.5rem);
             font-weight: 400;
             letter-spacing: -0.03em;
             margin-bottom: 0.5rem;
@@ -324,7 +312,7 @@
             letter-spacing: 0.1em;
             text-decoration: none;
             border-radius: 50px;
-            transition: all 0.4s ease;
+            transition: all 0.45s ease;
             box-shadow: 0 10px 30px rgba(250, 188, 15, 0.25);
         }
         .team-projects-cta:hover {
@@ -353,7 +341,7 @@
         }
 
         .hero-title {
-            font-size: 4.5rem;
+            font-size: clamp(2.75rem, 5vw, 4.5rem);
             font-weight: 300;
             letter-spacing: -0.04em;
             color: #ffffff;
@@ -779,15 +767,16 @@
 </head>
 <body>
 
-<!-- GLOBAL BACKGROUND: NEBULA + STARS -->
+<!-- GLOBAL BACKGROUND: NEBULA + ORBITS -->
 <div class="global-bg">
     <div class="nebula-blob nebula-1"></div>
     <div class="nebula-blob nebula-2"></div>
     <div class="nebula-blob nebula-3"></div>
     <div class="nebula-blob nebula-4"></div>
-    <div class="star-layer stars-1"></div>
-    <div class="star-layer stars-2"></div>
-    <div class="star-layer stars-3"></div>
+    <div class="orbit orbit-a"><div class="ring"></div><div class="spinner"><span class="electron"></span><span class="electron e2"></span></div></div>
+    <div class="orbit orbit-b reverse"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
+    <div class="orbit orbit-c"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
+    <div class="nucleus-glow"></div>
 </div>
 
 <!-- NOTCH NAV -->

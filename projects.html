@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QNET | Projects</title>
-    <meta name="description" content="Explore QNET's three inaugural nuclear engineering projects: a remotely operated rover, an SMR cooling system, and a gamma ray imaging system.">
+    <meta name="description" content="Explore QNET's three inaugural nuclear engineering projects: a nuclear cleanup rover, an SMR cooling system, and a gamma ray imaging system.">
     <meta property="og:title" content="QNET Projects | Nuclear Engineering at Queen's University">
     <meta property="og:description" content="See the nuclear engineering projects built by QNET students at Queen's University — from reactor design to radiation detection systems.">
     <meta property="og:image" content="https://queensnuclear.ca/assets/White%20NET%20Full%20Logo.png">
@@ -43,13 +43,31 @@
         .nebula-3 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(250,188,15,0.12), transparent 70%); bottom: -100px; left: 30%; animation: nebulaDrift 20s ease-in-out infinite alternate; }
         .nebula-4 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,37,82,0.25), transparent 70%); bottom: 10%; right: 10%; animation: nebulaDrift 25s ease-in-out infinite alternate-reverse; }
         @keyframes nebulaDrift { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(40px,30px) scale(1.08); } }
-        .star-layer { position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; }
-        .stars-1 { background-image: radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.6) 0%, transparent 100%), radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,0.5) 0%, transparent 100%), radial-gradient(1px 1px at 55% 15%, rgba(255,255,255,0.7) 0%, transparent 100%), radial-gradient(1px 1px at 75% 45%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(1px 1px at 90% 80%, rgba(255,255,255,0.6) 0%, transparent 100%), radial-gradient(1px 1px at 45% 90%, rgba(255,255,255,0.5) 0%, transparent 100%), radial-gradient(1px 1px at 20% 55%, rgba(255,255,255,0.3) 0%, transparent 100%), radial-gradient(1px 1px at 65% 60%, rgba(255,255,255,0.6) 0%, transparent 100%); animation: starDrift1 60s linear infinite; }
-        .stars-2 { background-image: radial-gradient(1.5px 1.5px at 15% 35%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 40% 10%, rgba(255,255,255,0.5) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 70% 75%, rgba(255,255,255,0.3) 0%, transparent 100%), radial-gradient(1px 1px at 85% 25%, rgba(255,255,255,0.6) 0%, transparent 100%), radial-gradient(1px 1px at 25% 85%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 50% 50%, rgba(255,255,255,0.5) 0%, transparent 100%); animation: starDrift2 80s linear infinite; }
-        .stars-3 { background-image: radial-gradient(2px 2px at 5% 60%, rgba(255,255,255,0.3) 0%, transparent 100%), radial-gradient(2px 2px at 35% 30%, rgba(255,255,255,0.2) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 60% 85%, rgba(255,255,255,0.4) 0%, transparent 100%), radial-gradient(2px 2px at 80% 10%, rgba(255,255,255,0.3) 0%, transparent 100%), radial-gradient(1px 1px at 95% 50%, rgba(255,255,255,0.5) 0%, transparent 100%); animation: starDrift3 100s linear infinite; }
-        @keyframes starDrift1 { from { transform: translate(0,0); } to { transform: translate(-20px,-15px); } }
-        @keyframes starDrift2 { from { transform: translate(0,0); } to { transform: translate(15px,-20px); } }
-        @keyframes starDrift3 { from { transform: translate(0,0); } to { transform: translate(-10px,10px); } }
+        /* ── Atomic orbital background ── */
+        .orbit { position: absolute; top: 50%; left: 50%; border-radius: 50%; pointer-events: none; }
+        .orbit .ring { position: absolute; inset: 0; border: 1px solid rgba(255,255,255,0.06); border-radius: 50%; }
+        .orbit .spinner { position: absolute; inset: 0; animation: orbitSpin var(--period, 70s) linear infinite; }
+        .orbit.reverse .spinner { animation-direction: reverse; }
+        .orbit .electron {
+            position: absolute; top: -3px; left: 50%; margin-left: -3px;
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--ec, #fabc0f);
+            box-shadow: 0 0 12px 2px var(--ec, #fabc0f);
+            opacity: 0.55;
+        }
+        .orbit .electron.e2 { top: auto; bottom: -3px; opacity: 0.4; }
+        .nucleus-glow {
+            position: absolute; width: 340px; height: 340px; border-radius: 50%;
+            background: radial-gradient(circle, var(--nc, rgba(250,188,15,0.5)), transparent 70%);
+            filter: blur(70px); opacity: 0.12; pointer-events: none;
+        }
+        @keyframes orbitSpin { to { transform: rotate(360deg); } }
+        @media (prefers-reduced-motion: reduce) { .orbit .spinner, .nebula-blob { animation: none; } }
+        /* projects variant */
+        .orbit-a { width: 1400px; height: 1400px; margin: -700px 0 0 -700px; transform: rotate(-35deg) scaleY(0.36); --period: 85s; --ec: #b90e32; }
+        .orbit-b { width: 1000px; height: 1000px; margin: -500px 0 0 -500px; transform: rotate(50deg) scaleY(0.46); --period: 60s; --ec: #fabc0f; }
+        .orbit-c { width: 1750px; height: 1750px; margin: -875px 0 0 -875px; transform: rotate(5deg) scaleY(0.28); --period: 115s; --ec: #fabc0f; }
+        .nucleus-glow { --nc: rgba(185,14,50,0.5); top: 30%; right: 6%; left: auto; }
 
         /* ── Notch Nav ── */
         .notch-wrapper {
@@ -90,6 +108,13 @@
             transition: color 0.3s ease;
         }
         .notch-container a:not(.nav-logo-link):hover { color: rgba(255,255,255,0.9); }
+        .notch-links a { position: relative; }
+        .notch-links a::after {
+            content: ''; position: absolute; bottom: -5px; left: 50%;
+            width: 0; height: 1px; background: #fabc0f;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+        .notch-links a:hover::after { width: 100%; left: 0; }
         @media (max-width: 768px) { .notch-wrapper { display: none; } }
 
         /* ── Mobile Header ── */
@@ -114,10 +139,10 @@
         /* ── Mobile Menu ── */
         .mobile-menu {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background: rgba(5,5,5,0.96); backdrop-filter: blur(20px);
+            background-color: rgba(26,26,26,0.95); backdrop-filter: blur(15px);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             gap: 2.5rem; opacity: 0; pointer-events: none;
-            transition: opacity 0.3s ease; z-index: 999;
+            transition: opacity 0.45s ease; z-index: 101;
         }
         .mobile-menu.open { opacity: 1; pointer-events: auto; }
         .mobile-nav-link {
@@ -149,8 +174,8 @@
         /* ── Typography ── */
         .section-eyebrow {
             display: inline-block;
-            font-size: 0.72rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.2em;
+            font-size: 0.8rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.22em;
             color: #fabc0f; margin-bottom: 1rem;
         }
         .hero-title {
@@ -185,9 +210,9 @@
             background: rgba(18,18,18,0.85); backdrop-filter: blur(16px);
             border: 1px solid rgba(255,255,255,0.07); border-radius: 20px;
             padding: 2.5rem 2rem; text-align: left;
-            transition: border-color 0.6s ease, box-shadow 0.6s ease;
+            transition: all 0.4s ease;
         }
-        .phil-card:hover { border-color: rgba(250,188,15,0.35); box-shadow: 0 16px 40px rgba(250,188,15,0.08); }
+        .phil-card:hover { transform: translateY(-8px); border-color: #fabc0f; box-shadow: 0 20px 50px rgba(250,188,15,0.2); }
         .phil-number {
             font-size: 2.5rem; font-weight: 700; color: rgba(250,188,15,0.2);
             letter-spacing: -0.05em; line-height: 1; margin-bottom: 1rem;
@@ -365,9 +390,10 @@
     <div class="nebula-blob nebula-2"></div>
     <div class="nebula-blob nebula-3"></div>
     <div class="nebula-blob nebula-4"></div>
-    <div class="star-layer stars-1"></div>
-    <div class="star-layer stars-2"></div>
-    <div class="star-layer stars-3"></div>
+    <div class="orbit orbit-a"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
+    <div class="orbit orbit-b reverse"><div class="ring"></div><div class="spinner"><span class="electron"></span><span class="electron e2" style="--ec:#b90e32"></span></div></div>
+    <div class="orbit orbit-c"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
+    <div class="nucleus-glow"></div>
 </div>
 
 <div id="global-tooltip"></div>
@@ -454,8 +480,8 @@
         <div class="project-showcase">
             <div class="project-static">
                 <span class="section-eyebrow">Project A</span>
-                <h3>Remotely Operated Rover</h3>
-                <p>Developed and idealized with Software Team Leads <a href="/teams#GabrielBrannon" class="inline-member-link has-tooltip" data-name="Gabriel Brannon" data-role="Software Team Lead" data-bio="Co-conceptualized the Remotely Operated Rover. Oversees the code stack." data-img="teamphoto/Gabe.png" data-color="#b90e32"><strong>Gabriel Brannon</strong></a> and <a href="/teams#TejasMarwaha" class="inline-member-link has-tooltip" data-name="Tejas Marwaha" data-role="Software Team Lead" data-bio="Co-conceptualized the Remotely Operated Rover. Oversees device communication." data-img="teamphoto/TJ.JPG" data-color="#b90e32"><strong>Tejas Marwaha</strong></a>, the remotely operated rover is a remote-control handling platform designed to replace human intervention during hazardous nuclear operations.</p>
+                <h3>Nuclear Cleanup Rover</h3>
+                <p>Developed and idealized with Software Team Leads <a href="/teams#GabrielBrannon" class="inline-member-link has-tooltip" data-name="Gabriel Brannon" data-role="Software Team Lead" data-bio="Co-conceptualized the Nuclear Cleanup Rover. Oversees the code stack." data-img="teamphoto/Gabe.png" data-color="#b90e32"><strong>Gabriel Brannon</strong></a> and <a href="/teams#TejasMarwaha" class="inline-member-link has-tooltip" data-name="Tejas Marwaha" data-role="Software Team Lead" data-bio="Co-conceptualized the Nuclear Cleanup Rover. Oversees device communication." data-img="teamphoto/TJ.JPG" data-color="#b90e32"><strong>Tejas Marwaha</strong></a>, the nuclear cleanup rover is a remote-control handling platform designed to replace human intervention during hazardous nuclear operations.</p>
                 <div class="project-specs">
                     <strong>Objective:</strong> To design, model, and assemble a highly functional mobile chassis carrying a multi-jointed robotic arm capable of traversing a restricted zone, retrieving localized material, and securing it into storage.<br><br>
                     <strong>Technical Specifications:</strong>
@@ -758,8 +784,8 @@
             { name: "Boden Parent", role: "Team Lead", img: "teamphoto/boden.jpg", bio: "Oversees internal power, sensing, and circuitry development.", anchor: "BodenParent" }
         ],
         software: [
-            { name: "Gabriel Brannon", role: "Team Lead", img: "teamphoto/Gabe.png", bio: "Co-conceptualized the Remotely Operated Rover. Oversees the code stack.", anchor: "GabrielBrannon" },
-            { name: "Tejas Marwaha", role: "Team Lead", img: "teamphoto/TJ.JPG", bio: "Co-conceptualized the Remotely Operated Rover. Oversees device communication.", anchor: "TejasMarwaha" }
+            { name: "Gabriel Brannon", role: "Team Lead", img: "teamphoto/Gabe.png", bio: "Co-conceptualized the Nuclear Cleanup Rover. Oversees the code stack.", anchor: "GabrielBrannon" },
+            { name: "Tejas Marwaha", role: "Team Lead", img: "teamphoto/TJ.JPG", bio: "Co-conceptualized the Nuclear Cleanup Rover. Oversees device communication.", anchor: "TejasMarwaha" }
         ],
         research: [
             { name: "Justin Hooey", role: "Team Lead", img: "teamphoto/justin.jpg", bio: "Co-conceptualized the SMR Cooling System project. Establishes the scientific framework.", anchor: "JustinHooey" },
