@@ -498,9 +498,10 @@
         }
 
         .btn-secondary:hover {
-            border-color: #fabc0f;
-            background-color: rgba(250, 188, 15, 0.08);
-            color: #fabc0f;
+            border-color: #b90e32;
+            color: #fff;
+            background: rgba(185,14,50,0.14);
+            box-shadow: 0 8px 24px rgba(185,14,50,0.3);
             translate: 0 -3px;
         }
 
@@ -522,10 +523,11 @@
         }
 
         .btn-gold-outline:hover {
-            background: #fabc0f;
-            color: #111;
+            border-color: #002552;
+            color: #fff;
+            background: rgba(0,37,82,0.3);
+            box-shadow: 0 8px 24px rgba(0,37,82,0.5), 0 0 0 1px rgba(0,37,82,0.7);
             translate: 0 -3px;
-            box-shadow: 0 15px 35px rgba(250,188,15,0.25);
         }
 
         .scroll-cue {
@@ -911,6 +913,13 @@
             .cta-container h2 { font-size: 2.6rem; }
             .site-footer { display: none; }
             #back-to-top { display: none; }
+
+            /* scroll-reactive atom: mobile sizing */
+            .orbit-a { width: 500px; height: 500px; margin: -250px 0 0 -250px; }
+            .orbit-b { width: 675px; height: 675px; margin: -338px 0 0 -338px; }
+            .orbit-c { width: 800px; height: 800px; margin: -400px 0 0 -400px; }
+            .orbit-d { width: 925px; height: 925px; margin: -463px 0 0 -463px; }
+            .orbit.depth-far { opacity: 0.35; }
         }
 
         @media (prefers-reduced-motion: reduce) {

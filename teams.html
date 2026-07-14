@@ -325,9 +325,10 @@
             box-shadow: 0 10px 30px rgba(250, 188, 15, 0.25);
         }
         .team-projects-cta:hover {
-            background-color: #ffffff;
+            background-color: #b90e32;
+            color: #fff;
             translate: 0 -3px;
-            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(185,14,50,0.4);
         }
 
         /* --- HERO SLIDE --- */
@@ -775,6 +776,12 @@
             .mobile-header { display: flex !important; }
             .site-footer { display: none; }
             #back-to-top { display: none; }
+
+            /* scroll-reactive atom: mobile sizing */
+            .orbit-a { width: 700px; height: 700px; margin: -350px 0 0 -350px; }
+            .orbit-b { width: 825px; height: 825px; margin: -413px 0 0 -413px; }
+            .orbit-c { width: 950px; height: 950px; margin: -475px 0 0 -475px; }
+            .orbit.depth-far { opacity: 0.35; }
         }
     </style>
 </head>

@@ -179,8 +179,12 @@
             justify-content: center; 
             align-items: center;
             text-align: center;
-            padding: 0 2rem; 
+            padding: 0 2rem;
             position: relative;
+        }
+
+        .slide.hero-slide {
+            overflow: hidden;
         }
 
         .slide-content-wrapper {
@@ -197,28 +201,21 @@
         .hero-bg {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: #050505;
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
             background-size: 50px 50px;
             background-position: center center;
             z-index: -2;
             transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
             animation: gridMove 30s linear infinite;
+            -webkit-mask-image: radial-gradient(ellipse at 50% 35%, black 20%, transparent 72%);
+            mask-image: radial-gradient(ellipse at 50% 35%, black 20%, transparent 72%);
         }
 
         @keyframes gridMove {
             0% { background-position: 0 0; }
             100% { background-position: 0 50px; }
-        }
-
-        .hero-vignette {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 30%, transparent 0%, #050505 70%);
-            z-index: -1;
-            pointer-events: none;
         }
 
         .hero-title {
@@ -285,13 +282,16 @@
         }
 
         .btn-download:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: rgba(255,255,255,0.3);
+            border-color: #002552;
+            color: #fff;
+            background: rgba(0,37,82,0.3);
             translate: 0 -3px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 24px rgba(0,37,82,0.5), 0 0 0 1px rgba(0,37,82,0.7);
         }
         .btn-download.primary { border-color: rgba(250,188,15,0.55); background: rgba(250,188,15,0.08); box-shadow: 0 10px 30px rgba(250,188,15,0.12); }
         .btn-download.primary:hover { border-color: #fabc0f; background: rgba(250,188,15,0.16); box-shadow: 0 15px 35px rgba(250,188,15,0.25); }
+        .btn-download.primary.red { border-color: rgba(185,14,50,0.55); background: rgba(185,14,50,0.08); box-shadow: 0 10px 30px rgba(185,14,50,0.12); }
+        .btn-download.primary.red:hover { border-color: #b90e32; background: rgba(185,14,50,0.16); box-shadow: 0 15px 35px rgba(185,14,50,0.3); }
 
         /* --- SECTION HEADERS --- */
         .section-header {
@@ -331,6 +331,7 @@
             padding: 3rem 2.5rem;
             text-align: left;
             position: relative;
+            overflow: hidden;
             transition: all 0.4s ease;
         }
 
@@ -339,8 +340,6 @@
             position: absolute;
             top: 0; left: 0; width: 100%; height: 4px;
             background: var(--card-color, #444);
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
             transition: height 0.4s ease;
         }
 
@@ -600,6 +599,17 @@
             .section-header h2 { font-size: 2.8rem; }
             .tiers-grid { grid-template-columns: 1fr; }
             .impact-container { padding: 2rem 1.5rem; }
+
+            /* scroll-reactive atom: mobile sizing */
+            .orbit-a { width: 350px; height: 350px; margin: -175px 0 0 -175px; }
+            .orbit-b { width: 450px; height: 450px; margin: -225px 0 0 -225px; }
+            .orbit-c { width: 550px; height: 550px; margin: -275px 0 0 -275px; }
+            .orbit-d { width: 650px; height: 650px; margin: -325px 0 0 -325px; }
+            .orbit-e { width: 750px; height: 750px; margin: -375px 0 0 -375px; }
+            .orbit-f { width: 825px; height: 825px; margin: -413px 0 0 -413px; }
+            .orbit-g { width: 900px; height: 900px; margin: -450px 0 0 -450px; }
+            .orbit-h { width: 975px; height: 975px; margin: -488px 0 0 -488px; }
+            .orbit.depth-far { opacity: 0.35; }
         }
 
         /* --- FIXED FOOTER & BACK TO TOP --- */
@@ -759,9 +769,8 @@
 
 <main class="vertical-slideshow">
 
-    <section class="slide">
+    <section class="slide hero-slide">
         <div class="hero-bg"></div>
-        <div class="hero-vignette"></div>
         <div class="slide-content-wrapper">
             <h1 class="hero-title">Fuel Our Future.</h1>
             <p class="hero-subtitle">As a brand-new design club, QNET relies on industry partners to fund our projects, educate our members, and build the next generation of nuclear engineers.</p>
@@ -1009,7 +1018,7 @@
             <p style="font-size: 1.15rem; color: #aaa; margin-bottom: 2rem; line-height: 1.6;">
                 At the end of March 2027, all sponsors will be invited to attend our final project demonstration at Mitchell Hall (69 Union St), where teams will present the project builds, research papers, and technical work developed throughout the school year. This allows sponsors to connect with students and see their support come to life.
             </p>
-            <a href="mailto:sponsors@queensnuclear.ca" class="btn-download primary" onclick="gtag('event', 'button_click', {'button_name': 'Sponsors - Contact Us to Sponsor'});">
+            <a href="mailto:sponsors@queensnuclear.ca" class="btn-download primary red" onclick="gtag('event', 'button_click', {'button_name': 'Sponsors - Contact Us to Sponsor'});">
                 <span class="title" style="color: #fabc0f;">Contact Us to Sponsor</span>
                 <span class="sub" style="color: #fff;">Become an Inaugural Partner</span>
             </a>

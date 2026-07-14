@@ -323,7 +323,7 @@
             position: relative;
             overflow: hidden;
             text-align: left;
-            transition: transform 0.6s ease, background 0.6s ease;
+            transition: all 0.4s ease;
         }
 
         .pillar-card:hover {
@@ -625,9 +625,10 @@
         }
 
         .btn-large:hover {
-            background-color: #fff;
+            background-color: #002552;
+            color: #fff;
             translate: 0 -3px;
-            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.4);
+            box-shadow: 0 15px 40px rgba(0,37,82,0.6);
         }
 
         .disclaimer-text {
@@ -691,6 +692,15 @@
             .hero-logo { height: 110px; }
             .prize-text { font-size: 3rem; }
             .cta-container h2 { font-size: 2.8rem; }
+
+            /* scroll-reactive atom: mobile sizing */
+            .orbit-a { width: 400px; height: 400px; margin: -200px 0 0 -200px; }
+            .orbit-b { width: 525px; height: 525px; margin: -263px 0 0 -263px; }
+            .orbit-c { width: 650px; height: 650px; margin: -325px 0 0 -325px; }
+            .orbit-d { width: 775px; height: 775px; margin: -388px 0 0 -388px; }
+            .orbit-e { width: 875px; height: 875px; margin: -438px 0 0 -438px; }
+            .orbit-f { width: 975px; height: 975px; margin: -488px 0 0 -488px; }
+            .orbit.depth-far { opacity: 0.35; }
         }
 
         /* --- FIXED FOOTER & BACK TO TOP --- */
@@ -917,8 +927,41 @@
                 <!-- Card: Reactor Basics -->
                 <div class="bento-item" style="--accent:#002552;">
                     <!-- IMAGE PLACEHOLDER: supply photo of reactor basics / nuclear physics -->
-                    <div class="bento-bg-image" style="background: rgba(255,255,255,0.04); backdrop-filter: blur(4px); display:flex; align-items:center; justify-content:center; background-image:none;">
-                        <img src="assets/QNET outline white.svg" alt="" aria-hidden="true" style="width:48%; opacity:0.18; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none;">
+                    <div class="bento-bg-image" style="background-image:none; opacity:0.9;">
+                        <svg viewBox="0 0 400 520" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Stylized reactor core cross-section diagram">
+                            <defs>
+                                <filter id="rbGlow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="4"/></filter>
+                                <g id="rbFuel"><circle r="14" fill="rgba(250,188,15,0.08)" stroke="rgba(250,188,15,0.55)" stroke-width="1.5"/><circle r="5" fill="rgba(250,188,15,0.35)"/></g>
+                                <g id="rbCtrl"><circle r="14" fill="rgba(185,14,50,0.12)" stroke="rgba(185,14,50,0.7)" stroke-width="1.5"/><circle r="5" fill="rgba(185,14,50,0.55)"/></g>
+                            </defs>
+                            <g stroke="rgba(255,255,255,0.05)" stroke-width="1">
+                                <path d="M0 65 H400 M0 130 H400 M0 195 H400 M0 260 H400 M0 325 H400 M0 390 H400 M0 455 H400"/>
+                                <path d="M50 0 V520 M100 0 V520 M150 0 V520 M200 0 V520 M250 0 V520 M300 0 V520 M350 0 V520"/>
+                            </g>
+                            <path d="M156 20 V160 M244 20 V160" stroke="rgba(185,14,50,0.45)" stroke-width="2" stroke-dasharray="6 5"/>
+                            <circle cx="200" cy="230" r="150" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
+                            <circle cx="200" cy="230" r="138" fill="rgba(0,37,82,0.10)" stroke="rgba(0,37,82,0.9)" stroke-width="2"/>
+                            <circle cx="200" cy="230" r="138" fill="none" stroke="rgba(0,37,82,0.5)" stroke-width="6" filter="url(#rbGlow)"/>
+                            <path d="M200 68 V392 M38 230 H362" stroke="rgba(255,255,255,0.10)" stroke-width="1" stroke-dasharray="2 6"/>
+                            <g>
+                                <use href="#rbFuel" x="156" y="142"/><use href="#rbFuel" x="200" y="142"/><use href="#rbFuel" x="244" y="142"/>
+                                <use href="#rbFuel" x="112" y="186"/><use href="#rbCtrl" x="156" y="186"/><use href="#rbFuel" x="200" y="186"/><use href="#rbFuel" x="244" y="186"/><use href="#rbFuel" x="288" y="186"/>
+                                <use href="#rbFuel" x="68" y="230"/><use href="#rbFuel" x="112" y="230"/><use href="#rbFuel" x="156" y="230"/><use href="#rbCtrl" x="200" y="230"/><use href="#rbFuel" x="244" y="230"/><use href="#rbFuel" x="288" y="230"/><use href="#rbFuel" x="332" y="230"/>
+                                <use href="#rbFuel" x="112" y="274"/><use href="#rbFuel" x="156" y="274"/><use href="#rbFuel" x="200" y="274"/><use href="#rbCtrl" x="244" y="274"/><use href="#rbFuel" x="288" y="274"/>
+                                <use href="#rbFuel" x="156" y="318"/><use href="#rbFuel" x="200" y="318"/><use href="#rbFuel" x="244" y="318"/>
+                            </g>
+                            <g stroke="rgba(255,255,255,0.25)" stroke-width="1">
+                                <path d="M62 412 H338 M62 406 V418 M338 406 V418"/>
+                            </g>
+                            <g font-family="'SF Mono','Consolas',monospace" font-size="9" fill="rgba(255,255,255,0.35)" letter-spacing="2">
+                                <text x="200" y="432" text-anchor="middle">CORE CROSS-SECTION</text>
+                            </g>
+                            <g>
+                                <rect x="62" y="450" width="22" height="4" rx="2" fill="rgba(250,188,15,0.7)"/>
+                                <rect x="92" y="450" width="22" height="4" rx="2" fill="rgba(185,14,50,0.7)"/>
+                                <rect x="122" y="450" width="22" height="4" rx="2" fill="rgba(0,37,82,0.95)" stroke="rgba(255,255,255,0.25)" stroke-width="0.5"/>
+                            </g>
+                        </svg>
                     </div>
                     <div class="bento-gradient"></div>
                     <div class="bento-content">
