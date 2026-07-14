@@ -44,32 +44,44 @@
         .nebula-4 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,37,82,0.22), transparent 70%); bottom: 10%; right: 10%; animation: nebulaDrift 25s ease-in-out infinite alternate-reverse; }
         @keyframes nebulaDrift { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(40px,30px) scale(1.08); } }
 
-        /* ── Atomic orbital background ── */
-        .orbit { position: absolute; top: 50%; left: 50%; border-radius: 50%; pointer-events: none; }
-        .orbit .ring { position: absolute; inset: 0; border: 1px solid rgba(255,255,255,0.06); border-radius: 50%; }
+        /* ── Atomic orbital background: scroll-reactive atom ── */
+        .orbit { position: absolute; top: 50%; left: 50%; border-radius: 50%; pointer-events: none;
+                 transition: opacity 0.6s ease, scale 0.6s ease; }
+        .orbit.orbit-faded { opacity: 0 !important; scale: 1.07; }
+        .orbit.depth-far { opacity: 0.5; }
+        .orbit.depth-mid { opacity: 0.75; }
+        .orbit .ring { position: absolute; inset: 0; border: 1px solid var(--rc, rgba(255,255,255,0.08)); border-radius: 50%; }
+        .orbit.ring-gold { --rc: rgba(250,188,15,0.2); --ec: #fabc0f; --eg: rgba(250,188,15,0.7); }
+        .orbit.ring-red  { --rc: rgba(185,14,50,0.2);  --ec: #b90e32; --eg: rgba(185,14,50,0.7); }
+        .orbit.ring-blue { --rc: rgba(0,37,82,0.55);   --ec: #002552; --eg: rgba(0,37,82,0.95); }
+        .orbit.ring-blue .ring { border-width: 2px; box-shadow: 0 0 24px rgba(0,37,82,0.45), inset 0 0 24px rgba(0,37,82,0.3); }
         .orbit .spinner { position: absolute; inset: 0; animation: orbitSpin var(--period, 70s) linear infinite; }
         .orbit.reverse .spinner { animation-direction: reverse; }
         .orbit .electron {
             position: absolute; top: -3px; left: 50%; margin-left: -3px;
             width: 6px; height: 6px; border-radius: 50%;
             background: var(--ec, #fabc0f);
-            box-shadow: 0 0 12px 2px var(--ec, #fabc0f);
-            opacity: 0.55;
+            box-shadow: 0 0 14px 3px var(--eg, rgba(250,188,15,0.7));
+            opacity: 0.8;
         }
-        .orbit .electron.e2 { top: auto; bottom: -3px; opacity: 0.4; }
+        .orbit.ring-blue .electron { width: 8px; height: 8px; top: -4px; margin-left: -4px; box-shadow: 0 0 18px 5px var(--eg); }
+        .orbit .electron.e2 { top: auto; bottom: -3px; opacity: 0.6; }
         .nucleus-glow {
             position: absolute; width: 340px; height: 340px; border-radius: 50%;
             background: radial-gradient(circle, var(--nc, rgba(250,188,15,0.5)), transparent 70%);
             filter: blur(70px); opacity: 0.12; pointer-events: none;
         }
         @keyframes orbitSpin { to { transform: rotate(360deg); } }
-        @media (prefers-reduced-motion: reduce) { .orbit .spinner, .nebula-blob { animation: none; } }
+        @media (prefers-reduced-motion: reduce) {
+            .orbit .spinner, .nebula-blob { animation: none; }
+            .orbit .electron { display: none; }
+            .orbit { transition: none; }
+        }
 
-        /* join variant: 2 orbits, red nucleus */
-        .orbit-a { width: 1450px; height: 1450px; margin: -725px 0 0 -725px; transform: rotate(-22deg) scaleY(0.4); --period: 90s; }
-        .orbit-a .electron { --ec: #b90e32; }
-        .orbit-b { width: 1000px; height: 1000px; margin: -500px 0 0 -500px; transform: rotate(24deg) scaleY(0.48); --period: 65s; }
-        .orbit-b .electron { --ec: #fabc0f; }
+        /* join variant: 3 orbits, red nucleus */
+        .orbit-a { width: 1100px; height: 1100px; margin: -550px 0 0 -550px; transform: perspective(1200px) rotateX(57deg) rotateZ(-33deg); --period: 65s; }
+        .orbit-b { width: 1450px; height: 1450px; margin: -725px 0 0 -725px; transform: perspective(1200px) rotateX(60deg) rotateZ(48deg); --period: 85s; }
+        .orbit-c { width: 1800px; height: 1800px; margin: -900px 0 0 -900px; transform: perspective(1200px) rotateX(70deg) rotateZ(-8deg); --period: 108s; }
         .nucleus-glow { --nc: rgba(185,14,50,0.5); bottom: 10%; right: 8%; top: auto; left: auto; }
 
         /* ── Notch Nav ── */
@@ -203,11 +215,11 @@
             border: 1px solid rgba(255,255,255,0.25); border-radius: 50px;
             transition: all 0.45s ease;
         }
-        .btn:hover { transform: translateY(-3px); border-color: #fabc0f; color: #fabc0f; background: rgba(250,188,15,0.08); box-shadow: 0 8px 24px rgba(250,188,15,0.15); }
+        .btn:hover { translate: 0 -3px; border-color: #fabc0f; color: #fabc0f; background: rgba(250,188,15,0.08); box-shadow: 0 8px 24px rgba(250,188,15,0.15); }
         .btn-primary {
             background: #fabc0f; color: #050505; border-color: #fabc0f; font-weight: 600;
         }
-        .btn-primary:hover { transform: translateY(-3px); background: #ffd04d; border-color: #ffd04d; color: #050505; box-shadow: 0 8px 24px rgba(250,188,15,0.25); }
+        .btn-primary:hover { translate: 0 -3px; background: #ffd04d; border-color: #ffd04d; color: #050505; box-shadow: 0 8px 24px rgba(250,188,15,0.25); }
 
         /* ── Join Card ── */
         .join-card {
@@ -218,9 +230,10 @@
             cursor: pointer;
         }
         .join-card:hover {
-            transform: translateY(-8px);
-            border-color: #fabc0f;
+            translate: 0 -8px;
+            border-color: var(--accent, #fabc0f);
             box-shadow: 0 20px 50px rgba(250,188,15,0.2);
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent, #fabc0f) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--accent, #fabc0f) 30%, transparent);
         }
         .join-card-tag {
             display: inline-block; font-size: 0.7rem; font-weight: 700;
@@ -242,10 +255,10 @@
             transition: all 0.4s ease;
         }
         .team-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--team-color, rgba(255,255,255,0.25));
-            box-shadow: 0 0 0 1px var(--team-color, rgba(255,255,255,0.2)), 0 20px 50px rgba(250,188,15,0.2);
-            box-shadow: 0 0 0 1px var(--team-color, rgba(255,255,255,0.2)), 0 20px 50px color-mix(in srgb, var(--team-color, #fabc0f) 20%, transparent);
+            translate: 0 -8px;
+            border-color: var(--team-color, #fabc0f);
+            box-shadow: 0 20px 50px rgba(250,188,15,0.2);
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--team-color, #fabc0f) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--team-color, #fabc0f) 30%, transparent);
         }
         /* Keep hover instant regardless of the stagger reveal transition-delay */
         .teams-grid .team-card { transition-delay: 0s; }
@@ -281,8 +294,6 @@
         .stagger-4.reveal.active { animation-delay: 0.6s; }
         .stagger-5.reveal.active { animation-delay: 0.75s; }
         @keyframes revealUp { from { opacity: 0; transform: translateY(36px); } to { opacity: 1; transform: translateY(0); } }
-        .stagger-4 { transition-delay: 0.6s; }
-        .stagger-5 { transition-delay: 0.75s; }
 
         /* ── Footer ── */
         .site-footer {
@@ -291,9 +302,9 @@
         }
         .social-link { display: flex; align-items: center; justify-content: center; }
         .social-icon { width: 20px; height: 20px; fill: rgba(255,255,255,0.5); transition: all 0.3s ease; }
-        .social-link:nth-child(1):hover .social-icon { fill: #5b8cc8; transform: translateY(-3px); }
-        .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; transform: translateY(-3px); }
-        .social-link:nth-child(3):hover .social-icon { fill: #b90e32; transform: translateY(-3px); }
+        .social-link:nth-child(1):hover .social-icon { fill: #5b8cc8; translate: 0 -3px; }
+        .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; translate: 0 -3px; }
+        .social-link:nth-child(3):hover .social-icon { fill: #b90e32; translate: 0 -3px; }
 
         /* ── Back to Top ── */
         #back-to-top {
@@ -307,7 +318,7 @@
         }
         #back-to-top svg { width: 22px; height: 22px; }
         #back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
-        #back-to-top:hover { border-color: #fabc0f; color: #fabc0f; transform: translateY(-3px); }
+        #back-to-top:hover { border-color: #fabc0f; color: #fabc0f; translate: 0 -3px; }
 
         /* ── Responsive ── */
         @media (max-width: 900px) {
@@ -331,8 +342,9 @@
     <div class="nebula-blob nebula-2"></div>
     <div class="nebula-blob nebula-3"></div>
     <div class="nebula-blob nebula-4"></div>
-    <div class="orbit orbit-a"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
-    <div class="orbit orbit-b reverse"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
+    <div class="orbit orbit-a ring-gold depth-far"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
+    <div class="orbit orbit-b ring-blue depth-mid reverse"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
+    <div class="orbit orbit-c ring-red"><div class="ring"></div><div class="spinner"><span class="electron"></span><span class="electron e2"></span></div></div>
     <div class="nucleus-glow"></div>
 </div>
 
@@ -394,7 +406,7 @@
         <h2 class="hero-title reveal stagger-1">General <span>Member</span></h2>
         <p class="hero-sub reveal stagger-2">Click below to join our Teams workspace and get integrated into the team before the Fall 2026 build kicks off.</p>
 
-        <div class="join-card reveal stagger-3" onclick="window.open('https://teams.microsoft.com/l/channel/19%3AMgKqi9UGWvVHIfBTycni6a01601M4msTSpQH4agjig41%40thread.tacv2/General?groupId=36c05e75-3e2e-4a99-8d82-2d24d72e7c85&tenantId=d61ecb3b-38b1-42d5-82c4-efb2838b925c', '_blank'); gtag('event','button_click',{'button_name':'Role Card - General Member Teams'});">
+        <div class="join-card reveal stagger-3" style="--accent:#b90e32;" onclick="window.open('https://teams.microsoft.com/l/channel/19%3AMgKqi9UGWvVHIfBTycni6a01601M4msTSpQH4agjig41%40thread.tacv2/General?groupId=36c05e75-3e2e-4a99-8d82-2d24d72e7c85&tenantId=d61ecb3b-38b1-42d5-82c4-efb2838b925c', '_blank'); gtag('event','button_click',{'button_name':'Role Card - General Member Teams'});">
             <span class="join-card-tag">Join the Workspace</span>
             <h2>General Member</h2>
             <p>Join the official QNET Microsoft Teams and get connected with our executives and team leads. Get early access to our project proposals, training resources, and community — well before formal recruitment begins in Fall 2026.</p>
@@ -485,6 +497,22 @@
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); revealObserver.unobserve(e.target); } });
     }, { threshold: 0.01, root: slideshowEl });
     revealEls.forEach(el => revealObserver.observe(el));
+
+    // Scroll-reactive atom: one ring fades per slide advance; last slide leaves one ring
+    const bgOrbits = document.querySelectorAll('.global-bg .orbit');
+    const bgSlides = Array.from(document.querySelectorAll('.vertical-slideshow > .slide'));
+    if (bgOrbits.length && bgSlides.length > 1) {
+        const orbitCount = bgOrbits.length;
+        const orbitObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const idx = bgSlides.indexOf(entry.target);
+                const faded = Math.round(idx * (orbitCount - 1) / (bgSlides.length - 1));
+                bgOrbits.forEach((o, i) => o.classList.toggle('orbit-faded', i < faded));
+            });
+        }, { threshold: 0.55 });
+        bgSlides.forEach(s => orbitObserver.observe(s));
+    }
 
     // Mobile menu
     const hamburger = document.querySelector('.hamburger-btn');

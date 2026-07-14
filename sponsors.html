@@ -54,30 +54,48 @@
         .nebula-4 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,37,82,0.2), transparent 70%); bottom: 10%; left: 10%; animation: nebulaDrift 20s ease-in-out infinite alternate-reverse; }
         @keyframes nebulaDrift { 0% { opacity: 0.5; transform: scale(0.9) translate(0,0); } 100% { opacity: 1; transform: scale(1.2) translate(30px,-20px); } }
 
-        /* ── Atomic orbital background ── */
-        .orbit { position: absolute; top: 50%; left: 50%; border-radius: 50%; pointer-events: none; }
-        .orbit .ring { position: absolute; inset: 0; border: 1px solid rgba(255,255,255,0.06); border-radius: 50%; }
+        /* ── Atomic orbital background: scroll-reactive atom ── */
+        .orbit { position: absolute; top: 50%; left: 50%; border-radius: 50%; pointer-events: none;
+                 transition: opacity 0.6s ease, scale 0.6s ease; }
+        .orbit.orbit-faded { opacity: 0 !important; scale: 1.07; }
+        .orbit.depth-far { opacity: 0.5; }
+        .orbit.depth-mid { opacity: 0.75; }
+        .orbit .ring { position: absolute; inset: 0; border: 1px solid var(--rc, rgba(255,255,255,0.08)); border-radius: 50%; }
+        .orbit.ring-gold { --rc: rgba(250,188,15,0.2); --ec: #fabc0f; --eg: rgba(250,188,15,0.7); }
+        .orbit.ring-red  { --rc: rgba(185,14,50,0.2);  --ec: #b90e32; --eg: rgba(185,14,50,0.7); }
+        .orbit.ring-blue { --rc: rgba(0,37,82,0.55);   --ec: #002552; --eg: rgba(0,37,82,0.95); }
+        .orbit.ring-blue .ring { border-width: 2px; box-shadow: 0 0 24px rgba(0,37,82,0.45), inset 0 0 24px rgba(0,37,82,0.3); }
         .orbit .spinner { position: absolute; inset: 0; animation: orbitSpin var(--period, 70s) linear infinite; }
         .orbit.reverse .spinner { animation-direction: reverse; }
         .orbit .electron {
             position: absolute; top: -3px; left: 50%; margin-left: -3px;
             width: 6px; height: 6px; border-radius: 50%;
             background: var(--ec, #fabc0f);
-            box-shadow: 0 0 12px 2px var(--ec, #fabc0f);
-            opacity: 0.55;
+            box-shadow: 0 0 14px 3px var(--eg, rgba(250,188,15,0.7));
+            opacity: 0.8;
         }
-        .orbit .electron.e2 { top: auto; bottom: -3px; opacity: 0.4; }
+        .orbit.ring-blue .electron { width: 8px; height: 8px; top: -4px; margin-left: -4px; box-shadow: 0 0 18px 5px var(--eg); }
+        .orbit .electron.e2 { top: auto; bottom: -3px; opacity: 0.6; }
         .nucleus-glow {
             position: absolute; width: 340px; height: 340px; border-radius: 50%;
             background: radial-gradient(circle, var(--nc, rgba(250,188,15,0.5)), transparent 70%);
             filter: blur(70px); opacity: 0.12; pointer-events: none;
             top: 12%; right: 10%; left: auto;
         }
-        .orbit-a { width: 1300px; height: 1300px; margin: -650px 0 0 -650px; transform: rotate(-18deg) scaleY(0.38); --period: 80s; }
-        .orbit-b { width: 950px; height: 950px; margin: -475px 0 0 -475px; transform: rotate(26deg) scaleY(0.5); --period: 58s; }
-        .orbit-c { width: 1650px; height: 1650px; margin: -825px 0 0 -825px; transform: rotate(7deg) scaleY(0.3); --period: 105s; }
+        .orbit-a { width: 700px; height: 700px; margin: -350px 0 0 -350px; transform: perspective(1200px) rotateX(56deg) rotateZ(-26deg); --period: 45s; }
+        .orbit-b { width: 900px; height: 900px; margin: -450px 0 0 -450px; transform: perspective(1200px) rotateX(58deg) rotateZ(38deg); --period: 55s; }
+        .orbit-c { width: 1100px; height: 1100px; margin: -550px 0 0 -550px; transform: perspective(1200px) rotateX(69deg) rotateZ(-6deg); --period: 66s; }
+        .orbit-d { width: 1300px; height: 1300px; margin: -650px 0 0 -650px; transform: perspective(1200px) rotateX(60deg) rotateZ(-52deg); --period: 78s; }
+        .orbit-e { width: 1500px; height: 1500px; margin: -750px 0 0 -750px; transform: perspective(1200px) rotateX(70deg) rotateZ(8deg); --period: 90s; }
+        .orbit-f { width: 1650px; height: 1650px; margin: -825px 0 0 -825px; transform: perspective(1200px) rotateX(72deg) rotateZ(16deg); --period: 100s; }
+        .orbit-g { width: 1800px; height: 1800px; margin: -900px 0 0 -900px; transform: perspective(1200px) rotateX(61deg) rotateZ(-36deg); --period: 110s; }
+        .orbit-h { width: 1950px; height: 1950px; margin: -975px 0 0 -975px; transform: perspective(1200px) rotateX(65deg) rotateZ(-20deg); --period: 120s; }
         @keyframes orbitSpin { to { transform: rotate(360deg); } }
-        @media (prefers-reduced-motion: reduce) { .orbit .spinner, .nebula-blob { animation: none; } }
+        @media (prefers-reduced-motion: reduce) {
+            .orbit .spinner, .nebula-blob { animation: none; }
+            .orbit .electron { display: none; }
+            .orbit { transition: none; }
+        }
 
         /* --- DYNAMIC NOTCH NAVIGATION (matches QNET School page) --- */
         .notch-wrapper {
@@ -269,7 +287,7 @@
         .btn-download:hover {
             background: rgba(255,255,255,0.1);
             border-color: rgba(255,255,255,0.3);
-            transform: translateY(-3px);
+            translate: 0 -3px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.4);
         }
         .btn-download.primary { border-color: rgba(250,188,15,0.55); background: rgba(250,188,15,0.08); box-shadow: 0 10px 30px rgba(250,188,15,0.12); }
@@ -327,11 +345,11 @@
         }
 
         .pitch-card:hover {
-            transform: translateY(-8px);
+            translate: 0 -8px;
             background: #151515;
             border-color: var(--card-color, #fabc0f);
             box-shadow: 0 20px 50px rgba(250,188,15,0.2);
-            box-shadow: 0 20px 50px color-mix(in srgb, var(--card-color, #fabc0f) 20%, transparent);
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--card-color, #fabc0f) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--card-color, #fabc0f) 30%, transparent);
         }
 
         .pitch-card:hover::before {
@@ -472,13 +490,11 @@
         }
 
         .tier-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--tier-color);
+            translate: 0 -8px;
+            border-color: var(--tier-color, #fabc0f);
+            box-shadow: 0 20px 50px rgba(250,188,15,0.2);
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--tier-color, #fabc0f) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--tier-color, #fabc0f) 30%, transparent);
         }
-        .tier-card.kinetic:hover { box-shadow: 0 20px 50px rgba(136,136,136,0.2); }
-        .tier-card.thermal:hover { box-shadow: 0 0 0 1px rgba(0,37,82,0.5), 0 20px 50px rgba(0,37,82,0.4); }
-        .tier-card.fission:hover { box-shadow: 0 20px 50px rgba(250,188,15,0.2); }
-        .tier-card.fusion:hover { box-shadow: 0 20px 50px rgba(185,14,50,0.2); }
 
         .tier-header {
             margin-bottom: 2rem;
@@ -547,21 +563,13 @@
         }
 
         /* --- SCROLL REVEAL ANIMATIONS --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .stagger-1 { transition-delay: 0.15s; }
-        .stagger-2 { transition-delay: 0.3s; }
-        .stagger-3 { transition-delay: 0.45s; }
-        .stagger-4 { transition-delay: 0.6s; }
+        .reveal { opacity: 0; transform: translateY(40px); }
+        .reveal.active { animation: revealUp 1.2s cubic-bezier(0.16,1,0.3,1) both; }
+        .stagger-1.reveal.active { animation-delay: 0.15s; }
+        .stagger-2.reveal.active { animation-delay: 0.3s; }
+        .stagger-3.reveal.active { animation-delay: 0.45s; }
+        .stagger-4.reveal.active { animation-delay: 0.6s; }
+        @keyframes revealUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
         @keyframes fadeUp {
             0% { opacity: 0; transform: translateY(30px); }
@@ -606,9 +614,9 @@
 
         .social-link { display: flex; align-items: center; justify-content: center; pointer-events: auto; }
         .social-icon { width: 20px; height: 20px; fill: #ffffff; transition: all 0.45s ease; }
-        .social-link:nth-child(1):hover .social-icon { fill: #002552; transform: translateY(-3px); } 
-        .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; transform: translateY(-3px); } 
-        .social-link:nth-child(3):hover .social-icon { fill: #b90e32; transform: translateY(-3px); } 
+        .social-link:nth-child(1):hover .social-icon { fill: #002552; translate: 0 -3px; }
+        .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; translate: 0 -3px; }
+        .social-link:nth-child(3):hover .social-icon { fill: #b90e32; translate: 0 -3px; }
 
         #back-to-top {
             position: fixed;
@@ -634,7 +642,7 @@
 
         #back-to-top svg { width: 24px; height: 24px; }
         #back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
-        #back-to-top:hover { border-color: #fabc0f; color: #fabc0f; transform: translateY(-3px); }
+        #back-to-top:hover { border-color: #fabc0f; color: #fabc0f; translate: 0 -3px; }
 
         @media (max-width: 768px) {
             .site-footer { display: none; }
@@ -700,9 +708,14 @@
     <div class="nebula-blob nebula-2"></div>
     <div class="nebula-blob nebula-3"></div>
     <div class="nebula-blob nebula-4"></div>
-    <div class="orbit orbit-a"><div class="ring"></div><div class="spinner"><span class="electron"></span><span class="electron e2"></span></div></div>
-    <div class="orbit orbit-b reverse"><div class="ring"></div><div class="spinner"><span class="electron" style="--ec:#5a8cd2;"></span></div></div>
-    <div class="orbit orbit-c"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
+    <div class="orbit orbit-a ring-gold depth-far"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
+    <div class="orbit orbit-b ring-red depth-far reverse"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
+    <div class="orbit orbit-c ring-blue depth-mid"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
+    <div class="orbit orbit-d ring-blue depth-mid"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
+    <div class="orbit orbit-e ring-red depth-mid reverse"><div class="ring"></div><div class="spinner"><span class="electron"></span><span class="electron e2"></span></div></div>
+    <div class="orbit orbit-f ring-gold depth-mid reverse"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
+    <div class="orbit orbit-g ring-red depth-mid"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
+    <div class="orbit orbit-h ring-gold reverse"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
     <div class="nucleus-glow"></div>
 </div>
 
@@ -1054,6 +1067,22 @@
     }, revealOptions);
 
     revealElements.forEach(el => revealOnScroll.observe(el));
+
+    // Scroll-reactive atom: one ring fades per slide advance; last slide leaves one ring
+    const bgOrbits = document.querySelectorAll('.global-bg .orbit');
+    const bgSlides = Array.from(document.querySelectorAll('.vertical-slideshow > .slide'));
+    if (bgOrbits.length && bgSlides.length > 1) {
+        const orbitCount = bgOrbits.length;
+        const orbitObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const idx = bgSlides.indexOf(entry.target);
+                const faded = Math.round(idx * (orbitCount - 1) / (bgSlides.length - 1));
+                bgOrbits.forEach((o, i) => o.classList.toggle('orbit-faded', i < faded));
+            });
+        }, { threshold: 0.55 });
+        bgSlides.forEach(s => orbitObserver.observe(s));
+    }
 
     // Scroll-to-Top Button
     const slideshowContainer = document.querySelector('.vertical-slideshow');

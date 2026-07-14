@@ -70,19 +70,28 @@
         .nebula-4 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,37,82,0.2), transparent 70%); bottom: 10%; left: 10%; animation: nebulaDrift 20s ease-in-out infinite alternate-reverse; }
         @keyframes nebulaDrift { 0% { opacity: 0.5; transform: scale(0.9) translate(0,0); } 100% { opacity: 1; transform: scale(1.2) translate(30px,-20px); } }
 
-        /* ── Atomic orbital background ── */
-        .orbit { position: absolute; top: 50%; left: 50%; border-radius: 50%; pointer-events: none; }
-        .orbit .ring { position: absolute; inset: 0; border: 1px solid rgba(255,255,255,0.08); border-radius: 50%; }
+        /* ── Atomic orbital background: scroll-reactive atom ── */
+        .orbit { position: absolute; top: 50%; left: 50%; border-radius: 50%; pointer-events: none;
+                 transition: opacity 0.6s ease, scale 0.6s ease; }
+        .orbit.orbit-faded { opacity: 0 !important; scale: 1.07; }
+        .orbit.depth-far { opacity: 0.5; }
+        .orbit.depth-mid { opacity: 0.75; }
+        .orbit .ring { position: absolute; inset: 0; border: 1px solid var(--rc, rgba(255,255,255,0.08)); border-radius: 50%; }
+        .orbit.ring-gold { --rc: rgba(250,188,15,0.2); --ec: #fabc0f; --eg: rgba(250,188,15,0.7); }
+        .orbit.ring-red  { --rc: rgba(185,14,50,0.2);  --ec: #b90e32; --eg: rgba(185,14,50,0.7); }
+        .orbit.ring-blue { --rc: rgba(0,37,82,0.55);   --ec: #002552; --eg: rgba(0,37,82,0.95); }
+        .orbit.ring-blue .ring { border-width: 2px; box-shadow: 0 0 24px rgba(0,37,82,0.45), inset 0 0 24px rgba(0,37,82,0.3); }
         .orbit .spinner { position: absolute; inset: 0; animation: orbitSpin var(--period, 70s) linear infinite; }
         .orbit.reverse .spinner { animation-direction: reverse; }
         .orbit .electron {
             position: absolute; top: -3px; left: 50%; margin-left: -3px;
             width: 6px; height: 6px; border-radius: 50%;
             background: var(--ec, #fabc0f);
-            box-shadow: 0 0 12px 2px var(--ec, #fabc0f);
-            opacity: 0.55;
+            box-shadow: 0 0 14px 3px var(--eg, rgba(250,188,15,0.7));
+            opacity: 0.8;
         }
-        .orbit .electron.e2 { top: auto; bottom: -3px; opacity: 0.4; }
+        .orbit.ring-blue .electron { width: 8px; height: 8px; top: -4px; margin-left: -4px; box-shadow: 0 0 18px 5px var(--eg); }
+        .orbit .electron.e2 { top: auto; bottom: -3px; opacity: 0.6; }
         .nucleus-glow {
             position: absolute; width: 340px; height: 340px; border-radius: 50%;
             background: radial-gradient(circle, var(--nc, rgba(250,188,15,0.5)), transparent 70%);
@@ -90,25 +99,47 @@
             top: 6%; left: 45%;
         }
         @keyframes orbitSpin { to { transform: rotate(360deg); } }
-        @media (prefers-reduced-motion: reduce) { .orbit .spinner, .nebula-blob { animation: none; } }
+        @media (prefers-reduced-motion: reduce) {
+            .orbit .spinner, .nebula-blob { animation: none; }
+            .orbit .electron { display: none; }
+            .orbit { transition: none; }
+        }
 
         .orbit-a {
-            width: 1300px; height: 1300px;
-            margin: -650px 0 0 -650px;
-            transform: rotate(-14deg) scaleY(0.4);
-            --period: 75s;
+            width: 800px; height: 800px;
+            margin: -400px 0 0 -400px;
+            transform: perspective(1200px) rotateX(62deg) rotateZ(30deg);
+            --period: 50s;
         }
         .orbit-b {
-            width: 900px; height: 900px;
-            margin: -450px 0 0 -450px;
-            transform: rotate(26deg) scaleY(0.5);
-            --period: 55s;
+            width: 1050px; height: 1050px;
+            margin: -525px 0 0 -525px;
+            transform: perspective(1200px) rotateX(57deg) rotateZ(-48deg);
+            --period: 62s;
         }
         .orbit-c {
-            width: 1600px; height: 1600px;
-            margin: -800px 0 0 -800px;
-            transform: rotate(4deg) scaleY(0.32);
-            --period: 100s;
+            width: 1300px; height: 1300px;
+            margin: -650px 0 0 -650px;
+            transform: perspective(1200px) rotateX(71deg) rotateZ(20deg);
+            --period: 75s;
+        }
+        .orbit-d {
+            width: 1550px; height: 1550px;
+            margin: -775px 0 0 -775px;
+            transform: perspective(1200px) rotateX(73deg) rotateZ(-18deg);
+            --period: 90s;
+        }
+        .orbit-e {
+            width: 1750px; height: 1750px;
+            margin: -875px 0 0 -875px;
+            transform: perspective(1200px) rotateX(59deg) rotateZ(44deg);
+            --period: 102s;
+        }
+        .orbit-f {
+            width: 1950px; height: 1950px;
+            margin: -975px 0 0 -975px;
+            transform: perspective(1200px) rotateX(66deg) rotateZ(-12deg);
+            --period: 122s;
         }
 
         .hero-vignette {
@@ -296,7 +327,10 @@
         }
 
         .pillar-card:hover {
-            transform: translateX(-10px);
+            translate: 0 -8px;
+            border-color: var(--accent, #fabc0f);
+            box-shadow: 0 20px 50px rgba(250,188,15,0.2);
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent, #fabc0f) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--accent, #fabc0f) 30%, transparent);
             background: rgba(30, 30, 30, 0.8);
         }
 
@@ -365,10 +399,13 @@
             padding-top: 3.5rem;
         }
 
+        .bento-item.experiential-card { border-color: rgba(250, 188, 15, 0.3); }
+
         .bento-item:hover {
-            transform: translateY(-8px);
-            border-color: #fabc0f;
+            translate: 0 -8px;
+            border-color: var(--accent, #fabc0f);
             box-shadow: 0 20px 50px rgba(250,188,15,0.2);
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent, #fabc0f) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--accent, #fabc0f) 30%, transparent);
         }
 
         .bento-bg-image {
@@ -460,7 +497,7 @@
         }
 
         .resource-card:hover {
-            transform: translateY(-5px);
+            translate: 0 -5px;
             border-color: rgba(255,255,255,0.2);
         }
 
@@ -519,9 +556,10 @@
 
         .speaker-node:hover {
             background: rgba(30, 30, 30, 0.8);
-            transform: translateY(-8px);
-            border-color: #fabc0f;
+            translate: 0 -8px;
+            border-color: var(--accent, #fabc0f);
             box-shadow: 0 20px 50px rgba(250,188,15,0.2);
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent, #fabc0f) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--accent, #fabc0f) 30%, transparent);
         }
 
         .speaker-avatar {
@@ -588,7 +626,7 @@
 
         .btn-large:hover {
             background-color: #fff;
-            transform: translateY(-3px);
+            translate: 0 -3px;
             box-shadow: 0 15px 40px rgba(255, 255, 255, 0.4);
         }
 
@@ -667,9 +705,9 @@
 
         .social-link { display: flex; align-items: center; justify-content: center; }
         .social-icon { width: 20px; height: 20px; fill: #ffffff; transition: all 0.6s ease; }
-        .social-link:nth-child(1):hover .social-icon { fill: #002552; transform: translateY(-3px); } 
-        .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; transform: translateY(-3px); } 
-        .social-link:nth-child(3):hover .social-icon { fill: #b90e32; transform: translateY(-3px); } 
+        .social-link:nth-child(1):hover .social-icon { fill: #002552; translate: 0 -3px; }
+        .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; translate: 0 -3px; }
+        .social-link:nth-child(3):hover .social-icon { fill: #b90e32; translate: 0 -3px; }
 
         #back-to-top {
             position: fixed;
@@ -695,7 +733,7 @@
 
         #back-to-top svg { width: 24px; height: 24px; }
         #back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
-        #back-to-top:hover { border-color: #fabc0f; color: #fabc0f; transform: translateY(-3px); }
+        #back-to-top:hover { border-color: #fabc0f; color: #fabc0f; translate: 0 -3px; }
 
         @media (max-width: 768px) {
             .site-footer { display: none; }
@@ -763,9 +801,12 @@
     <div class="nebula-blob nebula-2"></div>
     <div class="nebula-blob nebula-3"></div>
     <div class="nebula-blob nebula-4"></div>
-    <div class="orbit orbit-a"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
-    <div class="orbit orbit-b reverse"><div class="ring"></div><div class="spinner"><span class="electron"></span><span class="electron e2" style="--ec:#b90e32;"></span></div></div>
-    <div class="orbit orbit-c"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
+    <div class="orbit orbit-a ring-red depth-far"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
+    <div class="orbit orbit-b ring-gold depth-far reverse"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
+    <div class="orbit orbit-c ring-red depth-mid"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
+    <div class="orbit orbit-d ring-gold depth-mid reverse"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
+    <div class="orbit orbit-e ring-gold depth-mid"><div class="ring"></div><div class="spinner"><span class="electron"></span><span class="electron e2"></span></div></div>
+    <div class="orbit orbit-f ring-blue"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
     <div class="nucleus-glow"></div>
     <div class="hero-vignette"></div>
 </div>
@@ -850,7 +891,7 @@
             <div class="bento-grid">
                 
                 <!-- Large Card: Capstone -->
-                <div class="bento-item span-2-col span-2-row" style="background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);">
+                <div class="bento-item span-2-col span-2-row" style="background: linear-gradient(135deg, #111 0%, #1a1a1a 100%); --accent:#fabc0f;">
                     <div class="bento-content" style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
                         <div class="prize-text">Up to $500</div>
                         <h3 style="font-size: 2.2rem; margin-bottom: 1rem;">Capstone Design Contest</h3>
@@ -860,7 +901,7 @@
                 </div>
 
                 <!-- Card: Radiation -->
-                <div class="bento-item">
+                <div class="bento-item" style="--accent:#b90e32;">
                     <div class="bento-bg-image" style="background-image: url('assets/cc.png');"></div>
                     <div class="bento-gradient"></div>
                     <div class="bento-content">
@@ -874,7 +915,7 @@
                 </div>
 
                 <!-- Card: Reactor Basics -->
-                <div class="bento-item">
+                <div class="bento-item" style="--accent:#002552;">
                     <!-- IMAGE PLACEHOLDER: supply photo of reactor basics / nuclear physics -->
                     <div class="bento-bg-image" style="background: rgba(255,255,255,0.04); backdrop-filter: blur(4px); display:flex; align-items:center; justify-content:center; background-image:none;">
                         <img src="assets/QNET outline white.svg" alt="" aria-hidden="true" style="width:48%; opacity:0.18; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none;">
@@ -891,7 +932,7 @@
                 </div>
 
                 <!-- Card: Tours (Experiential Assets) -->
-                <div class="bento-item span-2-col experiential-card" style="border-color: rgba(250, 188, 15, 0.3);">
+                <div class="bento-item span-2-col experiential-card" style="--accent:#fabc0f;">
                     <div class="bento-content">
                         <h3 style="color: #fabc0f;">Experiential Assets</h3>
                         <p style="margin-bottom: 0.75rem;">QNET School prioritizes high-impact experiential education over traditional lectures. Members will participate in hands-on tours and real-world exposure:</p>
@@ -953,19 +994,19 @@
             </div>
             
             <div class="speakers-grid">
-                <div class="speaker-node">
+                <div class="speaker-node" style="--accent:#002552;">
                     <div class="speaker-avatar" style="background-image: url('teamphoto/john.jpg'); border: none;"></div>
                     <h4>John Thelen</h4>
                     <span>Acting WDD Director</span>
                     <p>CNSC | Queen's Alum</p>
                 </div>
-                <div class="speaker-node">
+                <div class="speaker-node" style="--accent:#002552;">
                     <div class="speaker-avatar" style="background-image: url('teamphoto/pavel.jpg'); border: none;"></div>
                     <h4>Pavel Samuleev</h4>
                     <span>SLOWPOKE-2 Director</span>
                     <p>RMC / RCMP</p>
                 </div>
-                <div class="speaker-node">
+                <div class="speaker-node" style="--accent:#002552;">
                     <div class="speaker-avatar" style="background-image: url('teamphoto/dean.jpg'); border: none;"></div>
                     <h4>Dean Haslip</h4>
                     <span>VP & CSO</span>
@@ -1042,6 +1083,22 @@
     backToTopBtn.addEventListener('click', () => {
         slideshowContainer.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    // Scroll-reactive atom: one ring fades per slide advance; last slide leaves one ring
+    const bgOrbits = document.querySelectorAll('.global-bg .orbit');
+    const bgSlides = Array.from(document.querySelectorAll('.vertical-slideshow > .slide'));
+    if (bgOrbits.length && bgSlides.length > 1) {
+        const orbitCount = bgOrbits.length;
+        const orbitObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const idx = bgSlides.indexOf(entry.target);
+                const faded = Math.round(idx * (orbitCount - 1) / (bgSlides.length - 1));
+                bgOrbits.forEach((o, i) => o.classList.toggle('orbit-faded', i < faded));
+            });
+        }, { threshold: 0.55 });
+        bgSlides.forEach(s => orbitObserver.observe(s));
+    }
 
     // Mobile Hamburger
     const hamburgerBtn = document.querySelector('.hamburger-btn');

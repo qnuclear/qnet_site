@@ -88,35 +88,44 @@
             100% { opacity: 1;   transform: scale(1.2) translate(30px, -20px); }
         }
 
-        /* ── Atomic orbital background ── */
-        .orbit { position: absolute; top: 50%; left: 50%; border-radius: 50%; pointer-events: none; }
-        .orbit .ring { position: absolute; inset: 0; border: 1px solid rgba(255,255,255,0.06); border-radius: 50%; }
+        /* ── Atomic orbital background: scroll-reactive atom ── */
+        .orbit { position: absolute; top: 50%; left: 50%; border-radius: 50%; pointer-events: none;
+                 transition: opacity 0.6s ease, scale 0.6s ease; }
+        .orbit.orbit-faded { opacity: 0 !important; scale: 1.07; }
+        .orbit.depth-far { opacity: 0.5; }
+        .orbit.depth-mid { opacity: 0.75; }
+        .orbit .ring { position: absolute; inset: 0; border: 1px solid var(--rc, rgba(255,255,255,0.08)); border-radius: 50%; }
+        .orbit.ring-gold { --rc: rgba(250,188,15,0.2); --ec: #fabc0f; --eg: rgba(250,188,15,0.7); }
+        .orbit.ring-red  { --rc: rgba(185,14,50,0.2);  --ec: #b90e32; --eg: rgba(185,14,50,0.7); }
+        .orbit.ring-blue { --rc: rgba(0,37,82,0.55);   --ec: #002552; --eg: rgba(0,37,82,0.95); }
+        .orbit.ring-blue .ring { border-width: 2px; box-shadow: 0 0 24px rgba(0,37,82,0.45), inset 0 0 24px rgba(0,37,82,0.3); }
         .orbit .spinner { position: absolute; inset: 0; animation: orbitSpin var(--period, 70s) linear infinite; }
         .orbit.reverse .spinner { animation-direction: reverse; }
         .orbit .electron {
             position: absolute; top: -3px; left: 50%; margin-left: -3px;
             width: 6px; height: 6px; border-radius: 50%;
             background: var(--ec, #fabc0f);
-            box-shadow: 0 0 12px 2px var(--ec, #fabc0f);
-            opacity: 0.55;
+            box-shadow: 0 0 14px 3px var(--eg, rgba(250,188,15,0.7));
+            opacity: 0.8;
         }
-        .orbit .electron.e2 { top: auto; bottom: -3px; opacity: 0.4; }
+        .orbit.ring-blue .electron { width: 8px; height: 8px; top: -4px; margin-left: -4px; box-shadow: 0 0 18px 5px var(--eg); }
+        .orbit .electron.e2 { top: auto; bottom: -3px; opacity: 0.6; }
         .nucleus-glow {
             position: absolute; width: 340px; height: 340px; border-radius: 50%;
             background: radial-gradient(circle, var(--nc, rgba(250,188,15,0.5)), transparent 70%);
             filter: blur(70px); opacity: 0.12; pointer-events: none;
         }
         @keyframes orbitSpin { to { transform: rotate(360deg); } }
-        @media (prefers-reduced-motion: reduce) { .orbit .spinner, .nebula-blob { animation: none; } }
+        @media (prefers-reduced-motion: reduce) {
+            .orbit .spinner, .nebula-blob { animation: none; }
+            .orbit .electron { display: none; }
+            .orbit { transition: none; }
+        }
 
-        /* teams variant */
-        .orbit-a { width: 1250px; height: 1250px; margin: -625px 0 0 -625px; transform: rotate(-20deg) scaleY(0.4); --period: 75s; }
-        .orbit-a .electron { --ec: #5a8cd2; }
-        .orbit-a .electron.e2 { --ec: #5a8cd2; }
-        .orbit-b { width: 950px; height: 950px; margin: -475px 0 0 -475px; transform: rotate(30deg) scaleY(0.52); --period: 60s; }
-        .orbit-b .electron { --ec: #fabc0f; }
-        .orbit-c { width: 1650px; height: 1650px; margin: -825px 0 0 -825px; transform: rotate(6deg) scaleY(0.3); --period: 105s; }
-        .orbit-c .electron { --ec: #b90e32; }
+        /* teams variant: 3 division rings */
+        .orbit-a { width: 1400px; height: 1400px; margin: -700px 0 0 -700px; transform: perspective(1200px) rotateX(60deg) rotateZ(-38deg); --period: 80s; }
+        .orbit-b { width: 1650px; height: 1650px; margin: -825px 0 0 -825px; transform: perspective(1200px) rotateX(64deg) rotateZ(28deg); --period: 95s; }
+        .orbit-c { width: 1900px; height: 1900px; margin: -950px 0 0 -950px; transform: perspective(1200px) rotateX(67deg) rotateZ(-14deg); --period: 115s; }
         .nucleus-glow { top: 10%; left: 8%; --nc: rgba(60,110,190,0.5); }
 
         /* --- NOTCH NAVIGATION --- */
@@ -317,7 +326,7 @@
         }
         .team-projects-cta:hover {
             background-color: #ffffff;
-            transform: translateY(-3px);
+            translate: 0 -3px;
             box-shadow: 0 15px 35px rgba(255, 255, 255, 0.3);
         }
 
@@ -500,7 +509,7 @@
 
         .staff-social-link:hover {
             background-color: rgba(255,255,255,0.15);
-            transform: translateY(-2px);
+            translate: 0 -2px;
         }
 
         .staff-social-link:hover svg { fill: #fff; }
@@ -577,34 +586,38 @@
         }
 
         /* Card hover lift */
-        .staff-card:hover { transform: translateY(-8px); }
+        .staff-card:hover {
+            translate: 0 -8px;
+            border-color: var(--accent, #fabc0f);
+            box-shadow: 0 20px 50px rgba(250,188,15,0.2);
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent, #fabc0f) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--accent, #fabc0f) 30%, transparent);
+        }
 
         /* STEM — gold full-outline hover */
+        .stem-card { --accent: #fabc0f; }
         .stem-card .staff-role { color: #fabc0f; }
         .stem-card .degree-badge { color: #fabc0f; background: rgba(250, 188, 15, 0.1); }
-        .stem-card:hover { border-color: #fabc0f; box-shadow: 0 20px 50px rgba(250, 188, 15, 0.2); }
         .stem-card:hover .staff-photo { border-color: rgba(250, 188, 15, 0.6); }
         .stem-card:hover .staff-academic { border-top-color: rgba(250, 188, 15, 0.25); }
 
         /* OPS — red full-outline hover */
+        .ops-card { --accent: #b90e32; }
         .ops-card .staff-role { color: #b90e32; }
         .ops-card .degree-badge { color: #b90e32; background: rgba(185, 14, 50, 0.1); }
-        .ops-card:hover { border-color: #b90e32; box-shadow: 0 20px 50px rgba(185, 14, 50, 0.2); }
         .ops-card:hover .staff-photo { border-color: rgba(185, 14, 50, 0.6); }
         .ops-card:hover .staff-academic { border-top-color: rgba(185, 14, 50, 0.25); }
 
         /* EXEC — Queen's blue #002552 */
+        .exec-card { --accent: #002552; }
         .exec-card .staff-role { color: #6699cc; }
         .exec-card .degree-badge { color: #6699cc; background: rgba(0, 37, 82, 0.25); }
-        .exec-card:hover { border-color: #002552; box-shadow: 0 0 0 1px rgba(0,37,82,0.5), 0 20px 50px rgba(0, 37, 82, 0.4); }
         .exec-card:hover .staff-photo { border-color: rgba(0, 37, 82, 0.8); }
         .exec-card:hover .staff-academic { border-top-color: rgba(0, 37, 82, 0.3); }
 
         /* FACULTY — gold full-outline hover */
-        .faculty-card { border-color: rgba(250, 188, 15, 0.12); }
+        .faculty-card { border-color: rgba(250, 188, 15, 0.12); --accent: #fabc0f; }
         .faculty-card .staff-photo { border-color: rgba(250, 188, 15, 0.4); }
         .faculty-card .staff-role { color: #fabc0f; font-size: 0.95rem; }
-        .faculty-card:hover { border-color: #fabc0f; box-shadow: 0 20px 50px rgba(250, 188, 15, 0.2); }
         .faculty-card:hover .staff-photo { border-color: rgba(250, 188, 15, 0.7); }
         .faculty-card:hover .staff-academic { border-top-color: rgba(250, 188, 15, 0.2); }
 
@@ -696,9 +709,9 @@
 
         .social-link { display: flex; align-items: center; justify-content: center; pointer-events: auto; }
         .social-icon { width: 20px; height: 20px; fill: #ffffff; transition: all 0.45s ease; }
-        .social-link:nth-child(1):hover .social-icon { fill: #002552; transform: translateY(-3px); }
-        .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; transform: translateY(-3px); }
-        .social-link:nth-child(3):hover .social-icon { fill: #b90e32; transform: translateY(-3px); }
+        .social-link:nth-child(1):hover .social-icon { fill: #002552; translate: 0 -3px; }
+        .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; translate: 0 -3px; }
+        .social-link:nth-child(3):hover .social-icon { fill: #b90e32; translate: 0 -3px; }
 
         #back-to-top {
             position: fixed;
@@ -724,7 +737,7 @@
 
         #back-to-top svg { width: 24px; height: 24px; }
         #back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
-        #back-to-top:hover { border-color: #fabc0f; color: #fabc0f; transform: translateY(-3px); }
+        #back-to-top:hover { border-color: #fabc0f; color: #fabc0f; translate: 0 -3px; }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 1200px) {
@@ -773,9 +786,9 @@
     <div class="nebula-blob nebula-2"></div>
     <div class="nebula-blob nebula-3"></div>
     <div class="nebula-blob nebula-4"></div>
-    <div class="orbit orbit-a"><div class="ring"></div><div class="spinner"><span class="electron"></span><span class="electron e2"></span></div></div>
-    <div class="orbit orbit-b reverse"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
-    <div class="orbit orbit-c"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
+    <div class="orbit orbit-a ring-gold depth-mid"><div class="ring"></div><div class="spinner"><span class="electron"></span><span class="electron e2"></span></div></div>
+    <div class="orbit orbit-b ring-red depth-mid reverse"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
+    <div class="orbit orbit-c ring-blue"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
     <div class="nucleus-glow"></div>
 </div>
 
@@ -1284,6 +1297,23 @@
     }, revealOptions);
 
     revealElements.forEach(el => revealOnScroll.observe(el));
+
+    // Scroll-reactive atom: one ring fades per slide advance; last slide leaves one ring
+    const bgOrbits = document.querySelectorAll('.global-bg .orbit');
+    const bgSlides = Array.from(document.querySelectorAll('.vertical-slideshow > .slide'));
+    if (bgOrbits.length && bgSlides.length > 1) {
+        const orbitCount = bgOrbits.length;
+        const orbitObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const idx = bgSlides.indexOf(entry.target);
+                const fadeMap = [0, 0, 0, 0, 0, 0, 1, 2, 2]; // hero+Technical keep all rings; gold fades at Operations; red fades at Leadership; blue rides out
+                const faded = fadeMap[idx] !== undefined ? fadeMap[idx] : 0;
+                bgOrbits.forEach((o, i) => o.classList.toggle('orbit-faded', i < faded));
+            });
+        }, { threshold: 0.55 });
+        bgSlides.forEach(s => orbitObserver.observe(s));
+    }
 
     // Mobile Hamburger
     const hamburgerBtn = document.querySelector('.hamburger-btn');
