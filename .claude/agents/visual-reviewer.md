@@ -6,7 +6,7 @@ description: Use this agent after layout, CSS, or component changes to check ren
 
 tools: Read, Bash, Glob, Grep
 
-model: sonnet-5
+model: sonnet
 
 ---
 

@@ -2,7 +2,7 @@
 name: responsive-tester
 description: Use this agent after CSS, layout, or component changes that could affect mobile or tablet display. Use proactively after broad layout/CSS edits.
 tools: Read, Bash, Glob, Grep
-model: sonnet-5
+model: sonnet
 ---
 
 You are a responsive design specialist. Review changed CSS/layout/components
