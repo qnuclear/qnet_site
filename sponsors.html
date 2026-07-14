@@ -137,11 +137,11 @@
         .nav-logo-full { opacity: 0; }
         .notch-wrapper:hover .nav-logo-atom { opacity: 0; }
         .notch-wrapper:hover .nav-logo-full { opacity: 1; }
-        .notch-links { display: flex; align-items: center; gap: 1.75rem; }
+        .notch-links { display: flex; align-items: center; gap: 1.15rem; }
         .notch-container a:not(.nav-logo-link) {
             text-decoration: none; color: rgba(255,255,255,0.5);
-            font-size: 0.85rem; font-weight: 500;
-            text-transform: uppercase; letter-spacing: 0.12em;
+            font-size: 0.78rem; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.08em;
             transition: color 0.3s ease;
             white-space: nowrap;
         }
@@ -303,6 +303,26 @@
             background-position: center;
             opacity: 0.3;
             pointer-events: none;
+        }
+
+        /* --- EOY RADIATION RIPPLE --- */
+        .eoy-ripple-layer { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+        .eoy-ripple-layer .ripple {
+            position: absolute; top: 50%; left: 50%;
+            width: 40px; height: 40px; margin: -20px 0 0 -20px;
+            border: 1.5px solid rgba(250,188,15,0.35);
+            border-radius: 50%;
+            opacity: 0;
+            animation: eoyRipple 6s ease-out infinite;
+        }
+        .eoy-ripple-layer .r2 { border-color: rgba(0,37,82,0.4); animation-delay: 2s; }
+        .eoy-ripple-layer .r3 { border-color: rgba(185,14,50,0.35); animation-delay: 4s; }
+        @keyframes eoyRipple {
+            0%   { transform: scale(1);  opacity: 0.5; }
+            100% { transform: scale(14); opacity: 0; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .eoy-ripple-layer .ripple { animation: none; opacity: 0; }
         }
 
         /* --- SECTION HEADERS --- */
@@ -1026,14 +1046,19 @@
 
     <section class="slide">
         <div class="eoy-photo-layer"></div>
+        <div class="eoy-ripple-layer" aria-hidden="true">
+            <span class="ripple r1"></span>
+            <span class="ripple r2"></span>
+            <span class="ripple r3"></span>
+        </div>
         <div class="slide-content-wrapper" style="max-width: 800px;">
             <h2 style="font-size: clamp(2.25rem, 3.5vw, 3.5rem); font-weight: 600; color: #fff; margin-bottom: 1.5rem;">End of Year Demonstration</h2>
             <p style="font-size: 1.15rem; color: #aaa; margin-bottom: 2rem; line-height: 1.6;">
                 At the end of March 2027, all sponsors will be invited to attend our final project demonstration at Mitchell Hall (69 Union St), where teams will present the project builds, research papers, and technical work developed throughout the school year. This allows sponsors to connect with students and see their support come to life.
             </p>
-            <a href="mailto:sponsors@queensnuclear.ca" class="btn-download primary red" onclick="gtag('event', 'button_click', {'button_name': 'Sponsors - Contact Us to Sponsor'});">
-                <span class="title" style="color: #fabc0f;">Contact Us to Sponsor</span>
-                <span class="sub" style="color: #fff;">Become an Inaugural Partner</span>
+            <a href="mailto:sponsors@queensnuclear.ca" class="btn-download primary" onclick="gtag('event', 'button_click', {'button_name': 'Sponsors - Contact Us to Sponsor'});">
+                <span class="title">Contact Us to Sponsor</span>
+                <span class="sub">Become an Inaugural Partner</span>
             </a>
         </div>
     </section>
@@ -1090,7 +1115,7 @@
 
     revealElements.forEach(el => revealOnScroll.observe(el));
 
-    // Scroll-reactive atom: one ring fades per slide advance; last slide leaves one ring
+    // Scroll-reactive atom: one ring fades per slide advance; last slide hides all rings
     const bgOrbits = document.querySelectorAll('.global-bg .orbit');
     const bgSlides = Array.from(document.querySelectorAll('.vertical-slideshow > .slide'));
     if (bgOrbits.length && bgSlides.length > 1) {
@@ -1099,7 +1124,7 @@
             entries.forEach(entry => {
                 if (!entry.isIntersecting) return;
                 const idx = bgSlides.indexOf(entry.target);
-                const faded = Math.round(idx * (orbitCount - 1) / (bgSlides.length - 1));
+                const faded = (idx === bgSlides.length - 1) ? orbitCount : Math.round(idx * (orbitCount - 1) / (bgSlides.length - 1));
                 bgOrbits.forEach((o, i) => o.classList.toggle('orbit-faded', i < faded));
             });
         }, { threshold: 0.55 });
