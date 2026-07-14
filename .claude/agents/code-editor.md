@@ -6,7 +6,7 @@ description: Use this agent to implement specific, well-scoped code changes once
 
 tools: Read, Edit, Write, Bash, Glob, Grep
 
-model: sonnet-5
+model: fable
 
 ---
 

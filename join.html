@@ -51,9 +51,9 @@
         .orbit.depth-far { opacity: 0.5; }
         .orbit.depth-mid { opacity: 0.75; }
         .orbit .ring { position: absolute; inset: 0; border: 1.5px solid var(--rc, rgba(255,255,255,0.08)); border-radius: 50%; box-shadow: 0 0 20px var(--rc, transparent); }
-        .orbit.ring-gold { --rc: rgba(250,188,15,0.45); --ec: #fabc0f; --eg: rgba(250,188,15,0.7); }
-        .orbit.ring-red  { --rc: rgba(185,14,50,0.4);  --ec: #b90e32; --eg: rgba(185,14,50,0.7); }
-        .orbit.ring-blue { --rc: rgba(0,37,82,0.65);   --ec: #002552; --eg: rgba(0,37,82,0.95); }
+        .orbit.ring-gold { --rc: rgba(250,188,15,0.35); --ec: #fabc0f; --eg: rgba(250,188,15,0.7); }
+        .orbit.ring-red  { --rc: rgba(185,14,50,0.35); --ec: #b90e32; --eg: rgba(185,14,50,0.7); }
+        .orbit.ring-blue { --rc: rgba(0,37,82,0.45);  --ec: #002552; --eg: rgba(0,37,82,0.95); }
         .orbit.ring-blue .ring { border-width: 2.5px; box-shadow: 0 0 28px rgba(0,37,82,0.5), inset 0 0 24px rgba(0,37,82,0.3); }
         .orbit .spinner { position: absolute; inset: 0; animation: orbitSpin var(--period, 70s) linear infinite; }
         .orbit.reverse .spinner { animation-direction: reverse; }
@@ -79,9 +79,9 @@
         }
 
         /* join variant: 3 orbits, red nucleus */
-        .orbit-a { width: 1100px; height: 1100px; margin: -550px 0 0 -550px; transform: perspective(1200px) rotateX(57deg) rotateZ(-33deg); --period: 65s; }
-        .orbit-b { width: 1450px; height: 1450px; margin: -725px 0 0 -725px; transform: perspective(1200px) rotateX(60deg) rotateZ(48deg); --period: 85s; }
-        .orbit-c { width: 1800px; height: 1800px; margin: -900px 0 0 -900px; transform: perspective(1200px) rotateX(70deg) rotateZ(-8deg); --period: 108s; }
+        .orbit-a { width: 1100px; height: 1100px; margin: -550px 0 0 -550px; transform: perspective(1200px) rotateX(30deg) rotateZ(-33deg); --period: 65s; }
+        .orbit-b { width: 1450px; height: 1450px; margin: -725px 0 0 -725px; transform: perspective(1200px) rotateX(80deg) rotateZ(48deg); --period: 85s; }
+        .orbit-c { width: 1800px; height: 1800px; margin: -900px 0 0 -900px; transform: perspective(1200px) rotateX(55deg) rotateZ(-8deg); --period: 108s; }
         .nucleus-glow { --nc: rgba(185,14,50,0.5); bottom: 10%; right: 8%; top: auto; left: auto; }
 
         /* ── Notch Nav ── */
