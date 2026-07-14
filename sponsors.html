@@ -60,11 +60,11 @@
         .orbit.orbit-faded { opacity: 0 !important; scale: 1.07; }
         .orbit.depth-far { opacity: 0.5; }
         .orbit.depth-mid { opacity: 0.75; }
-        .orbit .ring { position: absolute; inset: 0; border: 1px solid var(--rc, rgba(255,255,255,0.08)); border-radius: 50%; }
-        .orbit.ring-gold { --rc: rgba(250,188,15,0.2); --ec: #fabc0f; --eg: rgba(250,188,15,0.7); }
-        .orbit.ring-red  { --rc: rgba(185,14,50,0.2);  --ec: #b90e32; --eg: rgba(185,14,50,0.7); }
-        .orbit.ring-blue { --rc: rgba(0,37,82,0.55);   --ec: #002552; --eg: rgba(0,37,82,0.95); }
-        .orbit.ring-blue .ring { border-width: 2px; box-shadow: 0 0 24px rgba(0,37,82,0.45), inset 0 0 24px rgba(0,37,82,0.3); }
+        .orbit .ring { position: absolute; inset: 0; border: 1.5px solid var(--rc, rgba(255,255,255,0.08)); border-radius: 50%; box-shadow: 0 0 20px var(--rc, transparent); }
+        .orbit.ring-gold { --rc: rgba(250,188,15,0.45); --ec: #fabc0f; --eg: rgba(250,188,15,0.7); }
+        .orbit.ring-red  { --rc: rgba(185,14,50,0.4);  --ec: #b90e32; --eg: rgba(185,14,50,0.7); }
+        .orbit.ring-blue { --rc: rgba(0,37,82,0.65);   --ec: #002552; --eg: rgba(0,37,82,0.95); }
+        .orbit.ring-blue .ring { border-width: 2.5px; box-shadow: 0 0 28px rgba(0,37,82,0.5), inset 0 0 24px rgba(0,37,82,0.3); }
         .orbit .spinner { position: absolute; inset: 0; animation: orbitSpin var(--period, 70s) linear infinite; }
         .orbit.reverse .spinner { animation-direction: reverse; }
         .orbit .electron {
@@ -143,6 +143,7 @@
             font-size: 0.85rem; font-weight: 500;
             text-transform: uppercase; letter-spacing: 0.12em;
             transition: color 0.3s ease;
+            white-space: nowrap;
         }
         .notch-container a:not(.nav-logo-link):hover { color: rgba(255,255,255,0.9); }
         .notch-links a { position: relative; }
@@ -292,6 +293,17 @@
         .btn-download.primary:hover { border-color: #fabc0f; background: rgba(250,188,15,0.16); box-shadow: 0 15px 35px rgba(250,188,15,0.25); }
         .btn-download.primary.red { border-color: rgba(185,14,50,0.55); background: rgba(185,14,50,0.08); box-shadow: 0 10px 30px rgba(185,14,50,0.12); }
         .btn-download.primary.red:hover { border-color: #b90e32; background: rgba(185,14,50,0.16); box-shadow: 0 15px 35px rgba(185,14,50,0.3); }
+
+        /* --- EOY DEMONSTRATION PHOTO LAYER --- */
+        .eoy-photo-layer {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('assets/mitchell_hall.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            pointer-events: none;
+        }
 
         /* --- SECTION HEADERS --- */
         .section-header {
@@ -782,7 +794,7 @@
                 </a>
                 <a href="/packages/QNET%20Information%20Package.pdf" class="btn-download" target="_blank" rel="noopener" onclick="gtag('event', 'button_click', {'button_name': 'Sponsors - Information Package Download'});">
                     <span class="title">Information Package</span>
-                    <span class="sub">Download PDF</span>
+                    <span class="sub" style="color: #6f9fd8;">Download PDF</span>
                 </a>
             </div>
         </div>
@@ -798,7 +810,7 @@
             <div class="pitch-grid">
                 <div class="pitch-card reveal stagger-1" style="--card-color: #002552;">
                     <h3>Invest in the Future</h3>
-                    <p>You are investing in a club that aims to educate aspiring undergraduates about nuclear concepts and the industry. By providing early, direct exposure, we are building a more accessible path into the field—increasing the supply of skilled, industry-ready nuclear engineers.</p>
+                    <p>You are investing in a club that aims to educate aspiring undergraduates about nuclear concepts and the industry. By providing early, direct exposure, we are building a more accessible path into the field, increasing the supply of skilled, industry-ready nuclear engineers.</p>
                 </div>
                 <div class="pitch-card reveal stagger-2" style="--card-color: #fabc0f;">
                     <h3>Inaugural Partner Status</h3>
@@ -858,7 +870,7 @@
             <div class="section-header reveal">
                 <span class="impact-eyebrow" style="display:block; margin-bottom:1rem;">Where Your Sponsorship Goes · Builds</span>
                 <h2>And part of it builds our projects.</h2>
-                <p>The rest of your sponsorship goes straight into our flagship project builds — the reactors, rovers, and detectors our members design and assemble by hand. Every project is costed under a minimum budget for technical success and an ideal budget to bring our ideas fully to life.</p>
+                <p>The rest of your sponsorship goes straight into our flagship project builds: the reactors, rovers, and detectors our members design and assemble by hand. Every project is costed under a minimum budget for technical success and an ideal budget to bring our ideas fully to life.</p>
             </div>
 
             <div class="pitch-grid">
@@ -941,7 +953,7 @@
                     </div>
                     <ul class="tier-features">
                         <li>All Fission benefits, with Large+ apparel logo placement</li>
-                        <li>Title sponsor of a QNET School onboarding project — pick the project and act as its simulated stakeholder</li>
+                        <li>Title sponsor of a QNET School onboarding project: pick the project and act as its simulated stakeholder</li>
                         <li>Named co-sponsor of a flagship build (Rover / SMR / Gamma Ray)</li>
                         <li>Direct pipeline with the exec team</li>
                         <li>Priority access to QNET project research and reports</li>
@@ -962,7 +974,7 @@
             <div class="pitch-grid">
                 <div class="pitch-card reveal stagger-1" style="--card-color: #fabc0f;">
                     <h3>01 · Direct Funding</h3>
-                    <p>The most flexible way to help. Money goes straight into projects and QNET School — tracked with a transparent budget so you can see exactly where each dollar goes.</p>
+                    <p>The most flexible way to help. Money goes straight into projects and QNET School, tracked with a transparent budget so you can see exactly where each dollar goes.</p>
                 </div>
                 <div class="pitch-card reveal stagger-2" style="--card-color: #b90e32;">
                     <h3>02 · Components &amp; Equipment</h3>
@@ -1002,17 +1014,18 @@
                 <div class="pitch-card reveal stagger-3" style="--card-color: #002552;">
                     <h3>Capstone Contest</h3>
                     <p style="color: #fabc0f; font-weight: 600; font-size: 1.1rem; margin-bottom: 1rem;">$100 – $500</p>
-                    <p>Sponsors can back the capstone prize pool — the incentive that keeps members engaged as groups of 3–5 develop and pitch a real-world nuclear project to a panel of judges.</p>
+                    <p>Sponsors can back the capstone prize pool: the incentive that keeps members engaged as groups of 3–5 develop and pitch a real-world nuclear project to a panel of judges.</p>
                 </div>
             </div>
 
             <p class="reveal" style="margin-top: 2.5rem; color: #aaa; font-size: 1rem; text-align: center; max-width: 850px;">
-                All sponsors receive an end-of-year <strong style="color:#f0f0f0;">Impact Report</strong> detailing how their funding was spent, the milestones it reached, and the impact it made — from projects built and skills gained to students placed on a path into the nuclear industry.
+                All sponsors receive an end-of-year <strong style="color:#f0f0f0;">Impact Report</strong> detailing how their funding was spent, the milestones it reached, and the impact it made, from projects built and skills gained to students placed on a path into the nuclear industry.
             </p>
         </div>
     </section>
 
-    <section class="slide" style="background-color: #000;">
+    <section class="slide">
+        <div class="eoy-photo-layer"></div>
         <div class="slide-content-wrapper" style="max-width: 800px;">
             <h2 style="font-size: clamp(2.25rem, 3.5vw, 3.5rem); font-weight: 600; color: #fff; margin-bottom: 1.5rem;">End of Year Demonstration</h2>
             <p style="font-size: 1.15rem; color: #aaa; margin-bottom: 2rem; line-height: 1.6;">

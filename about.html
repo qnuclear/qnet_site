@@ -49,11 +49,11 @@
         .orbit.orbit-faded { opacity: 0 !important; scale: 1.07; }
         .orbit.depth-far { opacity: 0.5; }
         .orbit.depth-mid { opacity: 0.75; }
-        .orbit .ring { position: absolute; inset: 0; border: 1px solid var(--rc, rgba(255,255,255,0.08)); border-radius: 50%; }
-        .orbit.ring-gold { --rc: rgba(250,188,15,0.2); --ec: #fabc0f; --eg: rgba(250,188,15,0.7); }
-        .orbit.ring-red  { --rc: rgba(185,14,50,0.2);  --ec: #b90e32; --eg: rgba(185,14,50,0.7); }
-        .orbit.ring-blue { --rc: rgba(0,37,82,0.55);   --ec: #002552; --eg: rgba(0,37,82,0.95); }
-        .orbit.ring-blue .ring { border-width: 2px; box-shadow: 0 0 24px rgba(0,37,82,0.45), inset 0 0 24px rgba(0,37,82,0.3); }
+        .orbit .ring { position: absolute; inset: 0; border: 1.5px solid var(--rc, rgba(255,255,255,0.08)); border-radius: 50%; box-shadow: 0 0 20px var(--rc, transparent); }
+        .orbit.ring-gold { --rc: rgba(250,188,15,0.45); --ec: #fabc0f; --eg: rgba(250,188,15,0.7); }
+        .orbit.ring-red  { --rc: rgba(185,14,50,0.4);  --ec: #b90e32; --eg: rgba(185,14,50,0.7); }
+        .orbit.ring-blue { --rc: rgba(0,37,82,0.65);   --ec: #002552; --eg: rgba(0,37,82,0.95); }
+        .orbit.ring-blue .ring { border-width: 2.5px; box-shadow: 0 0 28px rgba(0,37,82,0.5), inset 0 0 24px rgba(0,37,82,0.3); }
         .orbit .spinner { position: absolute; inset: 0; animation: orbitSpin var(--period, 70s) linear infinite; }
         .orbit.reverse .spinner { animation-direction: reverse; }
         .orbit .electron {
@@ -134,6 +134,7 @@
             font-size: 0.85rem; font-weight: 500;
             text-transform: uppercase; letter-spacing: 0.12em;
             transition: color 0.3s ease;
+            white-space: nowrap;
         }
         .notch-container a:not(.nav-logo-link):hover { color: rgba(255,255,255,0.9); }
         @media (max-width: 768px) { .notch-wrapper { display: none; } }
@@ -547,12 +548,12 @@
             <div class="value-card reveal stagger-1" style="--accent:#fabc0f;">
                 <span class="value-icon">⚛️</span>
                 <h3>Nuclear First</h3>
-                <p>Every project must teach real nuclear engineering principles. We don't build for the sake of building — we build to understand.</p>
+                <p>Every project must teach real nuclear engineering principles. We don't build for the sake of building. We build to understand.</p>
             </div>
             <div class="value-card reveal stagger-2" style="--accent:#002552;">
                 <span class="value-icon">🔬</span>
                 <h3>Interdisciplinary by Design</h3>
-                <p>Nuclear engineering touches every field. Our teams span mechanical, electrical, software, research, and materials — always together.</p>
+                <p>Nuclear engineering touches every field. Our teams span mechanical, electrical, software, research, and materials, always together.</p>
             </div>
             <div class="value-card reveal stagger-3" style="--accent:#b90e32;">
                 <span class="value-icon">🚀</span>

@@ -50,11 +50,11 @@
         .orbit.orbit-faded { opacity: 0 !important; scale: 1.07; }
         .orbit.depth-far { opacity: 0.5; }
         .orbit.depth-mid { opacity: 0.75; }
-        .orbit .ring { position: absolute; inset: 0; border: 1px solid var(--rc, rgba(255,255,255,0.08)); border-radius: 50%; }
-        .orbit.ring-gold { --rc: rgba(250,188,15,0.2); --ec: #fabc0f; --eg: rgba(250,188,15,0.7); }
-        .orbit.ring-red  { --rc: rgba(185,14,50,0.2);  --ec: #b90e32; --eg: rgba(185,14,50,0.7); }
-        .orbit.ring-blue { --rc: rgba(0,37,82,0.55);   --ec: #002552; --eg: rgba(0,37,82,0.95); }
-        .orbit.ring-blue .ring { border-width: 2px; box-shadow: 0 0 24px rgba(0,37,82,0.45), inset 0 0 24px rgba(0,37,82,0.3); }
+        .orbit .ring { position: absolute; inset: 0; border: 1.5px solid var(--rc, rgba(255,255,255,0.08)); border-radius: 50%; box-shadow: 0 0 20px var(--rc, transparent); }
+        .orbit.ring-gold { --rc: rgba(250,188,15,0.45); --ec: #fabc0f; --eg: rgba(250,188,15,0.7); }
+        .orbit.ring-red  { --rc: rgba(185,14,50,0.4);  --ec: #b90e32; --eg: rgba(185,14,50,0.7); }
+        .orbit.ring-blue { --rc: rgba(0,37,82,0.65);   --ec: #002552; --eg: rgba(0,37,82,0.95); }
+        .orbit.ring-blue .ring { border-width: 2.5px; box-shadow: 0 0 28px rgba(0,37,82,0.5), inset 0 0 24px rgba(0,37,82,0.3); }
         .orbit .spinner { position: absolute; inset: 0; animation: orbitSpin var(--period, 70s) linear infinite; }
         .orbit.reverse .spinner { animation-direction: reverse; }
         .orbit .electron {
@@ -121,6 +121,7 @@
             font-size: 0.85rem; font-weight: 500;
             text-transform: uppercase; letter-spacing: 0.12em;
             transition: color 0.3s ease;
+            white-space: nowrap;
         }
         .notch-container a:not(.nav-logo-link):hover { color: rgba(255,255,255,0.9); }
         /* ── Nav underline-grow ── */
@@ -200,6 +201,7 @@
             color: #fff; line-height: 1.05; margin-bottom: 1.5rem;
         }
         .hero-title span { color: #fabc0f; }
+        .hero-title span.bold-emphasis { font-weight: 700; }
         .hero-sub {
             font-size: 1.15rem; color: rgba(255,255,255,0.55);
             max-width: 640px; font-weight: 300; line-height: 1.75;
@@ -398,10 +400,10 @@
     <!-- Slide 1: Hero -->
     <section class="slide">
         <span class="section-eyebrow reveal">Now Recruiting</span>
-        <h1 class="hero-title reveal stagger-1">Join <span>QNET</span></h1>
+        <h1 class="hero-title reveal stagger-1">Join <span class="bold-emphasis">QNET</span></h1>
         <p class="hero-sub reveal stagger-2">We are actively recruiting our inaugural strike team. As Team Leads and Directors build QNET's initial framework, we're looking for dedicated general members to get integrated before the Fall 2026 build begins.</p>
         <p class="reveal stagger-3" style="font-size: 0.95rem; color: rgba(255,255,255,0.5); line-height: 1.6;">
-            New here? Get the full overview — team, projects, and sponsorship details — in our
+            New here? Get the full overview, team, projects, and sponsorship details, in our
             <a href="/packages/QNET%20Information%20Package.pdf" target="_blank" rel="noopener" style="color: #fabc0f; text-decoration: none; font-weight: 600;" onclick="gtag('event','button_click',{'button_name':'Join - Information Package'});">Information Package →</a>
         </p>
         <div id="scroll-down-btn" class="scroll-indicator">Open Position ↓</div>
@@ -416,7 +418,7 @@
         <div class="join-card reveal stagger-3" style="--accent:#b90e32;" onclick="window.open('https://teams.microsoft.com/l/channel/19%3AMgKqi9UGWvVHIfBTycni6a01601M4msTSpQH4agjig41%40thread.tacv2/General?groupId=36c05e75-3e2e-4a99-8d82-2d24d72e7c85&tenantId=d61ecb3b-38b1-42d5-82c4-efb2838b925c', '_blank'); gtag('event','button_click',{'button_name':'Role Card - General Member Teams'});">
             <span class="join-card-tag">Join the Workspace</span>
             <h2>General Member</h2>
-            <p>Join the official QNET Microsoft Teams and get connected with our executives and team leads. Get early access to our project proposals, training resources, and community — well before formal recruitment begins in Fall 2026.</p>
+            <p>Join the official QNET Microsoft Teams and get connected with our executives and team leads. Get early access to our project proposals, training resources, and community, well before formal recruitment begins in Fall 2026.</p>
         </div>
 
         <div style="display:flex; gap:1rem; margin-top:2rem;" class="reveal stagger-4">
