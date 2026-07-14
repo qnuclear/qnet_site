@@ -47,12 +47,12 @@
         .orbit { position: absolute; top: 50%; left: 50%; border-radius: 50%; pointer-events: none;
                  transition: opacity 0.6s ease, scale 0.6s ease; }
         .orbit.orbit-faded { opacity: 0 !important; scale: 1.07; }
-        .orbit.depth-far { opacity: 0.5; }
-        .orbit.depth-mid { opacity: 0.75; }
+        .orbit.depth-far { opacity: 0.85; }
+        .orbit.depth-mid { opacity: 0.9; }
         .orbit .ring { position: absolute; inset: 0; border: 1.5px solid var(--rc, rgba(255,255,255,0.08)); border-radius: 50%; box-shadow: 0 0 20px var(--rc, transparent); }
-        .orbit.ring-gold { --rc: rgba(250,188,15,0.4); --ec: #fabc0f; --eg: rgba(250,188,15,0.7); }
-        .orbit.ring-red  { --rc: rgba(185,14,50,0.4); --ec: #b90e32; --eg: rgba(185,14,50,0.7); }
-        .orbit.ring-blue { --rc: rgba(0,37,82,0.5);  --ec: #002552; --eg: rgba(0,37,82,0.95); }
+        .orbit.ring-gold { --rc: rgba(250,188,15,0.6); --ec: #fabc0f; --eg: rgba(250,188,15,0.7); }
+        .orbit.ring-red  { --rc: rgba(185,14,50,0.55); --ec: #b90e32; --eg: rgba(185,14,50,0.7); }
+        .orbit.ring-blue { --rc: rgba(0,37,82,0.65);  --ec: #002552; --eg: rgba(0,37,82,0.95); }
         .orbit.ring-blue .ring { border-width: 2.5px; box-shadow: 0 0 28px rgba(0,37,82,0.5), inset 0 0 24px rgba(0,37,82,0.3); }
         .orbit .spinner { position: absolute; inset: 0; animation: orbitSpin var(--period, 70s) linear infinite; }
         .orbit.reverse .spinner { animation-direction: reverse; }
@@ -72,25 +72,18 @@
             --nc: rgba(185,14,50,0.5); bottom: 8%; left: 6%; top: auto;
         }
         .orbit-a {
-            width: 42vmin; height: 42vmin; margin: -21vmin 0 0 -21vmin;
+            width: 64vmin; height: 64vmin; margin: -32vmin 0 0 -32vmin;
             transform: perspective(1200px) rotateX(26deg) rotateZ(-20deg); --period: 70s;
         }
         .orbit-b {
-            width: 50vmin; height: 50vmin; margin: -25vmin 0 0 -25vmin;
+            width: 76vmin; height: 76vmin; margin: -38vmin 0 0 -38vmin;
             transform: perspective(1200px) rotateX(78deg) rotateZ(35deg); --period: 90s;
         }
         .orbit-c {
-            width: 58vmin; height: 58vmin; margin: -29vmin 0 0 -29vmin;
+            width: 88vmin; height: 88vmin; margin: -44vmin 0 0 -44vmin;
             transform: perspective(1200px) rotateX(52deg) rotateZ(90deg); --period: 110s;
         }
         @keyframes orbitSpin { to { transform: rotate(360deg); } }
-        .atom-core { position: absolute; top: 50%; left: 50%; width: 140px; height: 140px; transform: translate(-50%, -50%); pointer-events: none; z-index: 1; }
-        .atom-core::before { content: ''; position: absolute; inset: -80px; border-radius: 50%; background: radial-gradient(circle, rgba(250,188,15,0.35), transparent 70%); filter: blur(18px); }
-        .atom-core .nucleon { position: absolute; width: 22px; height: 22px; border-radius: 50%; top: 50%; left: 50%; }
-        .atom-core .nucleon.gold { background: #fabc0f; transform: translate(-65%,-90%); box-shadow: 0 0 14px rgba(250,188,15,0.7); }
-        .atom-core .nucleon.red  { background: #b90e32; transform: translate(-140%,-15%); box-shadow: 0 0 14px rgba(185,14,50,0.7); }
-        .atom-core .nucleon.blue { background: #002552; transform: translate(10%,-15%); box-shadow: 0 0 14px rgba(0,37,82,0.9); border: 1px solid rgba(255,255,255,0.3); }
-        .atom-core .nucleon.core { width: 14px; height: 14px; background: #fff; opacity: 0.9; transform: translate(-50%,-50%); }
         @media (prefers-reduced-motion: reduce) {
             .orbit .spinner, .nebula-blob { animation: none; }
             .orbit .electron { display: none; }
@@ -408,7 +401,7 @@
             #back-to-top { display: none; }
 
             /* scroll-reactive atom: mobile */
-            .orbit.depth-far { opacity: 0.35; }
+            .orbit.depth-far { opacity: 0.85; }
         }
     </style>
 </head>
@@ -422,12 +415,6 @@
     <div class="orbit orbit-a ring-red depth-far"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
     <div class="orbit orbit-b ring-gold depth-mid reverse"><div class="ring"></div><div class="spinner"><span class="electron"></span><span class="electron e2"></span></div></div>
     <div class="orbit orbit-c ring-blue"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
-    <div class="atom-core">
-        <span class="nucleon gold"></span>
-        <span class="nucleon red"></span>
-        <span class="nucleon blue"></span>
-        <span class="nucleon core"></span>
-    </div>
     <div class="nucleus-glow"></div>
 </div>
 
