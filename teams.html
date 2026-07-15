@@ -91,41 +91,42 @@
         /* ── Atomic orbital background: scroll-reactive atom ── */
         .orbit { position: absolute; top: 50%; left: 50%; border-radius: 50%; pointer-events: none;
                  transition: opacity 0.6s ease, scale 0.6s ease; }
+        .global-bg .orbit { opacity: 0.18; }
         .orbit.orbit-faded { opacity: 0 !important; scale: 1.07; }
-        .orbit.depth-far { opacity: 0.85; }
-        .orbit.depth-mid { opacity: 0.9; }
         .orbit .ring { position: absolute; inset: 0; border: 1.5px solid var(--rc, rgba(255,255,255,0.08)); border-radius: 50%; box-shadow: 0 0 20px var(--rc, transparent); }
         .orbit.ring-gold { --rc: rgba(250,188,15,0.6); --ec: #fabc0f; --eg: rgba(250,188,15,0.7); }
         .orbit.ring-red  { --rc: rgba(185,14,50,0.55); --ec: #b90e32; --eg: rgba(185,14,50,0.7); }
         .orbit.ring-blue { --rc: rgba(0,37,82,0.65);  --ec: #002552; --eg: rgba(0,37,82,0.95); }
         .orbit.ring-blue .ring { border-width: 2.5px; box-shadow: 0 0 28px rgba(0,37,82,0.5), inset 0 0 24px rgba(0,37,82,0.3); }
-        .orbit .spinner { position: absolute; inset: 0; animation: orbitSpin var(--period, 70s) linear infinite; }
-        .orbit.reverse .spinner { animation-direction: reverse; }
-        .orbit .electron {
-            position: absolute; top: -3px; left: 50%; margin-left: -3px;
-            width: 6px; height: 6px; border-radius: 50%;
-            background: var(--ec, #fabc0f);
-            box-shadow: 0 0 14px 3px var(--eg, rgba(250,188,15,0.7));
-            opacity: 0.8;
-        }
-        .orbit.ring-blue .electron { width: 8px; height: 8px; top: -4px; margin-left: -4px; box-shadow: 0 0 18px 5px var(--eg); }
-        .orbit .electron.e2 { top: auto; bottom: -3px; opacity: 0.6; }
         .nucleus-glow {
             position: absolute; width: 340px; height: 340px; border-radius: 50%;
             background: radial-gradient(circle, var(--nc, rgba(250,188,15,0.5)), transparent 70%);
             filter: blur(70px); opacity: 0.12; pointer-events: none;
         }
-        @keyframes orbitSpin { to { transform: rotate(360deg); } }
+        .logo-orbits {
+            position: fixed;
+            inset: 0;
+            margin: auto;
+            width: 85vmin;
+            height: 85vmin;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .logo-orbits .qlo-blue { filter: drop-shadow(0 0 8px rgba(0, 37, 82, 0.9)); }
         @media (prefers-reduced-motion: reduce) {
-            .orbit .spinner, .nebula-blob { animation: none; }
-            .orbit .electron { display: none; }
-            .orbit { transition: none; }
+            .nebula-blob { animation: none; }
+            .global-bg .orbit { transition: none; }
         }
 
-        /* teams variant: 3 division rings */
+        /* teams variant: 8 rings (slide count - 1) */
         .orbit-a { width: 64vmin; height: 64vmin; margin: -32vmin 0 0 -32vmin; transform: perspective(1200px) rotateX(24deg) rotateZ(-20deg); --period: 80s; }
         .orbit-b { width: 76vmin; height: 76vmin; margin: -38vmin 0 0 -38vmin; transform: perspective(1200px) rotateX(76deg) rotateZ(35deg); --period: 95s; }
         .orbit-c { width: 88vmin; height: 88vmin; margin: -44vmin 0 0 -44vmin; transform: perspective(1200px) rotateX(52deg) rotateZ(90deg); --period: 115s; }
+        .orbit-d { width: 46vmin; height: 46vmin; margin: -23vmin 0 0 -23vmin; transform: perspective(1200px) rotateX(80deg) rotateZ(-60deg); --period: 60s; }
+        .orbit-e { width: 52vmin; height: 52vmin; margin: -26vmin 0 0 -26vmin; transform: perspective(1200px) rotateX(30deg) rotateZ(15deg); --period: 68s; }
+        .orbit-f { width: 58vmin; height: 58vmin; margin: -29vmin 0 0 -29vmin; transform: perspective(1200px) rotateX(66deg) rotateZ(65deg); --period: 74s; }
+        .orbit-g { width: 70vmin; height: 70vmin; margin: -35vmin 0 0 -35vmin; transform: perspective(1200px) rotateX(44deg) rotateZ(-85deg); --period: 88s; }
+        .orbit-h { width: 82vmin; height: 82vmin; margin: -41vmin 0 0 -41vmin; transform: perspective(1200px) rotateX(84deg) rotateZ(50deg); --period: 105s; }
         .nucleus-glow { top: 10%; left: 8%; --nc: rgba(60,110,190,0.5); }
 
         /* --- NOTCH NAVIGATION --- */
@@ -777,9 +778,6 @@
             .mobile-header { display: flex !important; }
             .site-footer { display: none; }
             #back-to-top { display: none; }
-
-            /* scroll-reactive atom: mobile */
-            .orbit.depth-far { opacity: 0.85; }
         }
     </style>
 </head>
@@ -791,10 +789,52 @@
     <div class="nebula-blob nebula-2"></div>
     <div class="nebula-blob nebula-3"></div>
     <div class="nebula-blob nebula-4"></div>
-    <div class="orbit orbit-a ring-gold depth-mid"><div class="ring"></div><div class="spinner"><span class="electron"></span><span class="electron e2"></span></div></div>
-    <div class="orbit orbit-b ring-red depth-mid reverse"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
-    <div class="orbit orbit-c ring-blue"><div class="ring"></div><div class="spinner"><span class="electron"></span></div></div>
+    <div class="orbit orbit-a ring-gold"><div class="ring"></div></div>
+    <div class="orbit orbit-b ring-red"><div class="ring"></div></div>
+    <div class="orbit orbit-c ring-blue"><div class="ring"></div></div>
+    <div class="orbit orbit-d ring-gold"><div class="ring"></div></div>
+    <div class="orbit orbit-e ring-red"><div class="ring"></div></div>
+    <div class="orbit orbit-f ring-blue"><div class="ring"></div></div>
+    <div class="orbit orbit-g ring-gold"><div class="ring"></div></div>
+    <div class="orbit orbit-h ring-red"><div class="ring"></div></div>
     <div class="nucleus-glow"></div>
+    <svg class="logo-orbits" viewBox="0 0 459 459" aria-hidden="true" focusable="false">
+        <defs>
+            <filter id="qlo-glow" x="-150%" y="-150%" width="400%" height="400%">
+                <feGaussianBlur stdDeviation="2.5" result="b"/>
+                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <path id="qlo-track-gold" d="M 169.8 271.7 A 223 80 53.4 0 1 298.2 176.3 A 223 80 53.4 0 1 169.8 271.7" fill="none"/>
+            <path id="qlo-track-split" d="M 434.5 188.6 A 210 105 -10 0 1 20.9 261.6 A 210 105 -10 0 1 434.5 188.6" fill="none"/>
+        </defs>
+        <!-- gold ring: back half (upper-right, dimmer+thinner) then front half (lower-left) -->
+        <path d="M 101.1 44.9 A 223 80 53.4 0 1 366.9 403.1" fill="none" stroke="#fabc0f" stroke-width="10" stroke-linecap="round" opacity="0.28"/>
+        <path d="M 101.1 44.9 A 223 80 53.4 0 0 366.9 403.1" fill="none" stroke="#fabc0f" stroke-width="15" stroke-linecap="round" opacity="0.65"/>
+        <!-- split ring: blue top half (back, glow via CSS) + red bottom half (front) -->
+        <path class="qlo-blue" d="M 20.9 261.6 A 210 105 -10 0 1 434.5 188.6" fill="none" stroke="#002552" stroke-width="10" stroke-linecap="round" opacity="0.75"/>
+        <path d="M 434.5 188.6 A 210 105 -10 0 1 20.9 261.6" fill="none" stroke="#b90e32" stroke-width="13" stroke-linecap="round" opacity="0.65"/>
+        <!-- electrons: gold x2 on gold ring, red+blue on split ring, depth-synced size/brightness -->
+        <circle r="3.5" fill="#fabc0f" filter="url(#qlo-glow)">
+            <animateMotion dur="26s" begin="0s" repeatCount="indefinite"><mpath href="#qlo-track-gold"/></animateMotion>
+            <animate attributeName="r" values="3.5;2.8;2.2;2.8;3.5" keyTimes="0;0.25;0.5;0.75;1" dur="26s" begin="0s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="1;0.75;0.5;0.75;1" keyTimes="0;0.25;0.5;0.75;1" dur="26s" begin="0s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="3.5" fill="#fabc0f" filter="url(#qlo-glow)">
+            <animateMotion dur="26s" begin="-13s" repeatCount="indefinite"><mpath href="#qlo-track-gold"/></animateMotion>
+            <animate attributeName="r" values="3.5;2.8;2.2;2.8;3.5" keyTimes="0;0.25;0.5;0.75;1" dur="26s" begin="-13s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="1;0.75;0.5;0.75;1" keyTimes="0;0.25;0.5;0.75;1" dur="26s" begin="-13s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="3" fill="#b90e32" filter="url(#qlo-glow)">
+            <animateMotion dur="34s" begin="0s" repeatCount="indefinite"><mpath href="#qlo-track-split"/></animateMotion>
+            <animate attributeName="r" values="3;3.5;3;2.2;3" keyTimes="0;0.25;0.5;0.75;1" dur="34s" begin="0s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.85;1;0.85;0.5;0.85" keyTimes="0;0.25;0.5;0.75;1" dur="34s" begin="0s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="3" fill="#002552" filter="url(#qlo-glow)">
+            <animateMotion dur="34s" begin="-17s" repeatCount="indefinite"><mpath href="#qlo-track-split"/></animateMotion>
+            <animate attributeName="r" values="3;3.5;3;2.2;3" keyTimes="0;0.25;0.5;0.75;1" dur="34s" begin="-17s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.85;1;0.85;0.5;0.85" keyTimes="0;0.25;0.5;0.75;1" dur="34s" begin="-17s" repeatCount="indefinite"/>
+        </circle>
+    </svg>
 </div>
 
 <!-- NOTCH NAV -->
@@ -1303,22 +1343,24 @@
 
     revealElements.forEach(el => revealOnScroll.observe(el));
 
-    // Scroll-reactive atom: one ring fades per slide advance; last slide leaves one ring
+    // Scroll-reactive atom: one secondary ring fades per slide advance; final slide has none
     const bgOrbits = document.querySelectorAll('.global-bg .orbit');
     const bgSlides = Array.from(document.querySelectorAll('.vertical-slideshow > .slide'));
     if (bgOrbits.length && bgSlides.length > 1) {
-        const orbitCount = bgOrbits.length;
         const orbitObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (!entry.isIntersecting) return;
                 const idx = bgSlides.indexOf(entry.target);
-                const fadeMap = [0, 0, 0, 0, 0, 0, 1, 2, 2]; // hero+Technical keep all rings; gold fades at Operations; red fades at Leadership; blue rides out
-                const faded = fadeMap[idx] !== undefined ? fadeMap[idx] : 0;
+                const faded = idx;
                 bgOrbits.forEach((o, i) => o.classList.toggle('orbit-faded', i < faded));
             });
         }, { threshold: 0.55 });
         bgSlides.forEach(s => orbitObserver.observe(s));
     }
+
+    // Logo orbitals: pause SMIL animations for reduced motion
+    const qloSvg = document.querySelector('.logo-orbits');
+    if (qloSvg && window.matchMedia('(prefers-reduced-motion: reduce)').matches) qloSvg.pauseAnimations();
 
     // Mobile Hamburger
     const hamburgerBtn = document.querySelector('.hamburger-btn');
