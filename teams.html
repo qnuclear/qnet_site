@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QNET | Meet the Teams</title>
     <meta name="description" content="Meet the interdisciplinary minds behind the Queen's Nuclear Engineering Team — mechanical, electrical, software, research, materials, and operations.">
+    <meta property="og:title" content="Meet the Teams | Queen's Nuclear Engineering Team">
+    <meta property="og:description" content="Meet the interdisciplinary minds behind the Queen's Nuclear Engineering Team — mechanical, electrical, software, research, materials, and operations.">
+    <meta property="og:image" content="https://queensnuclear.ca/assets/White%20NET%20Full%20Logo.png">
+    <meta property="og:url" content="https://queensnuclear.ca/teams">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://queensnuclear.ca/assets/White%20NET%20Full%20Logo.png">
+    <link rel="canonical" href="https://queensnuclear.ca/teams">
     <link rel="icon" type="image/svg+xml" href="assets/outlinefavicon.svg">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8J80X6N4DV"></script>
     <script>
@@ -1350,8 +1358,8 @@
         // Underdamped spring integrator (semi-implicit Euler); targets are cumulative, never reset.
         const qloSpring = (k, c) => ({ x: 0, v: 0, t: 0, k: k, c: c });
         const qloLayers = [
-            { el: qloWrap.querySelector('.qlo-layer-gold'),  kick:  80, spin: qloSpring(40, 7),   tiltX: qloSpring(70, 11), tiltY: qloSpring(70, 11) },
-            { el: qloWrap.querySelector('.qlo-layer-split'), kick: -40, spin: qloSpring(120, 17), tiltX: qloSpring(90, 14), tiltY: qloSpring(90, 14) }
+            { el: qloWrap.querySelector('.qlo-layer-gold'),  kick:  80, spin: qloSpring(10, 3.5),  tiltX: qloSpring(17.5, 5.5), tiltY: qloSpring(17.5, 5.5) },
+            { el: qloWrap.querySelector('.qlo-layer-split'), kick: -40, spin: qloSpring(30, 8.5),  tiltX: qloSpring(22.5, 7),   tiltY: qloSpring(22.5, 7) }
         ];
         let qloRaf = 0;
         let qloPrev = 0;

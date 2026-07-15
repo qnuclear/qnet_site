@@ -1,0 +1,21 @@
+# QNET — Queen's Nuclear Engineering Team
+
+> Canada's newest nuclear student design team, turning reactor theory into hands-on builds, from cloud chambers to CANDU simulations.
+
+QNET (Queen's Nuclear Engineering Team) is a student design team at Queen's University in Kingston, Ontario, Canada, founded in 2026.
+
+## Pages
+
+- [Home](https://queensnuclear.ca/): Mission, news, and what the team does
+- [About](https://queensnuclear.ca/about): Mission, 4-phase roadmap (Foundation → Build-Up → Launch → Future, through 2027+), and core values (Nuclear First; Interdisciplinary by Design; Built to Scale)
+- [Teams](https://queensnuclear.ca/teams): Executive and sub-team members (Mechanical, Electrical, Software, Research, Materials, Operations)
+- [QNET School](https://queensnuclear.ca/school): Nuclear education program launching September 2026 with two pillars — General School (interactive activities for all members) and Sub-Team Training (project-specific skills); curriculum covers radiation & detection (cloud chamber, Geiger counters), reactor basics & physics (reactor types, MCNP intro), and experiential assets (SLOWPOKE-2 tour, RMTL tour, Port Hope legacy waste); capstone design contest with up to $500 prize; Coursera & IAEA certification resources
+- [Projects](https://queensnuclear.ca/projects): Three inaugural projects — Nuclear Cleanup Rover (remote-control handling platform for hazardous nuclear operations, est. $1,060–$1,385), SMR Cooling System (simulates a real-world SMR cooling system with cooling tower, est. $800–$1,000), Gamma Ray Imaging (scaled-down low-cost medical imaging prototype based on PET-scan mechanisms, est. $822–$1,242) — plus a Materials research sub-team
+- [Join](https://queensnuclear.ca/join): Recruitment — general member positions open now; step 1: join the Microsoft Teams workspace, step 2: formal recruitment Fall 2026
+- [Sponsors](https://queensnuclear.ca/sponsors): Sponsorship tiers — Kinetic ($50–$199), Thermal ($200–$499), Fission ($500–$1,499), Fusion ($1,500+, "Inaugural Partner"); contact sponsors@queensnuclear.ca
+
+## Key facts
+
+- Five sub-teams: Mechanical (CAD, 3D printing, structural design); Electrical (PCB design, power, sensing); Software (control logic, firmware, UI, IoT); Research (technical reports, reviews, case studies); Materials (material selection, degradation modeling, safety analysis)
+- End-of-year demonstration in front of sponsors and nuclear industry professionals
+- Socials: [LinkedIn](https://www.linkedin.com/company/queensnuclear/), [Instagram](https://www.instagram.com/queensnuclear/), [GitHub](https://github.com/qnuclear)
