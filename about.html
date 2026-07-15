@@ -59,13 +59,21 @@
             z-index: 0;
             pointer-events: none;
             isolation: isolate;
-            transition: transform 0.8s ease-in-out;
+            perspective: 1200px;
+        }
+        .logo-orbits .qlo-layer {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            mix-blend-mode: screen;
+            will-change: transform;
         }
         .logo-orbits .qlo-blue { filter: drop-shadow(0 0 8px rgba(0, 37, 82, 0.55)); }
         .logo-orbits .qlo-ring { mix-blend-mode: screen; }
         @media (prefers-reduced-motion: reduce) {
             .nebula-blob { animation: none; }
-            .logo-orbits { transition: none; }
+            .logo-orbits, .logo-orbits .qlo-layer { transition: none; transform: none; }
         }
 
         /* ── Notch Nav ── */
@@ -388,47 +396,58 @@
     <div class="nebula-blob nebula-3"></div>
     <div class="nebula-blob nebula-4"></div>
     <div class="nucleus-glow"></div>
-    <svg class="logo-orbits" viewBox="0 0 459 459" aria-hidden="true" focusable="false">
-        <defs>
-            <filter id="qlo-glow" x="-150%" y="-150%" width="400%" height="400%">
-                <feGaussianBlur stdDeviation="3.75" result="b"/>
-                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-            <path id="qlo-track-gold" d="M 169.8 271.7 A 223 80 53.4 0 1 298.2 176.3 A 223 80 53.4 0 1 169.8 271.7" fill="none"/>
-            <path id="qlo-track-split" d="M 434.5 188.6 A 210 105 -10 0 1 20.9 261.6 A 210 105 -10 0 1 434.5 188.6" fill="none"/>
-        </defs>
-        <!-- gold ring: two halves, uniform stroke -->
-        <path class="qlo-ring" d="M 101.1 44.9 A 223 80 53.4 0 1 366.9 403.1" fill="none" stroke="#fabc0f" stroke-width="12" stroke-linecap="round" opacity="0.3"/>
-        <path class="qlo-ring" d="M 101.1 44.9 A 223 80 53.4 0 0 366.9 403.1" fill="none" stroke="#fabc0f" stroke-width="12" stroke-linecap="round" opacity="0.3"/>
-        <!-- split ring: blue top half (back, glow via CSS) + red bottom half (front) -->
-        <path class="qlo-blue qlo-ring" d="M 20.9 261.6 A 210 105 -10 0 1 434.5 188.6" fill="none" stroke="#002552" stroke-width="10" stroke-linecap="round" opacity="0.4"/>
-        <path class="qlo-ring" d="M 434.5 188.6 A 210 105 -10 0 1 20.9 261.6" fill="none" stroke="#b90e32" stroke-width="13" stroke-linecap="round" opacity="0.34"/>
-        <!-- electrons: gold x2 on gold ring, red+blue on split ring, depth-synced size/brightness -->
-        <circle r="3.45" fill="#fabc0f" filter="url(#qlo-glow)">
-            <animateMotion dur="26s" begin="0s" repeatCount="indefinite"><mpath href="#qlo-track-gold"/></animateMotion>
-            <animateMotion class="qlo-burst" data-base-begin="0" data-base-dur="26" dur="0.85s" begin="indefinite" repeatCount="1" calcMode="linear"><mpath href="#qlo-track-gold"/></animateMotion>
-            <animate attributeName="r" values="3.45;2.7;2.1;2.7;3.45" keyTimes="0;0.25;0.5;0.75;1" dur="26s" begin="0s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.65;0.5;0.35;0.5;0.65" keyTimes="0;0.25;0.5;0.75;1" dur="26s" begin="0s" repeatCount="indefinite"/>
-        </circle>
-        <circle r="3.45" fill="#fabc0f" filter="url(#qlo-glow)">
-            <animateMotion dur="26s" begin="-13s" repeatCount="indefinite"><mpath href="#qlo-track-gold"/></animateMotion>
-            <animateMotion class="qlo-burst" data-base-begin="-13" data-base-dur="26" dur="0.95s" begin="indefinite" repeatCount="1" calcMode="linear"><mpath href="#qlo-track-gold"/></animateMotion>
-            <animate attributeName="r" values="3.45;2.7;2.1;2.7;3.45" keyTimes="0;0.25;0.5;0.75;1" dur="26s" begin="-13s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.65;0.5;0.35;0.5;0.65" keyTimes="0;0.25;0.5;0.75;1" dur="26s" begin="-13s" repeatCount="indefinite"/>
-        </circle>
-        <circle r="3" fill="#b90e32" filter="url(#qlo-glow)">
-            <animateMotion dur="34s" begin="0s" repeatCount="indefinite"><mpath href="#qlo-track-split"/></animateMotion>
-            <animateMotion class="qlo-burst" data-base-begin="0" data-base-dur="34" dur="0.8s" begin="indefinite" repeatCount="1" calcMode="linear"><mpath href="#qlo-track-split"/></animateMotion>
-            <animate attributeName="r" values="3;3.45;3;2.1;3" keyTimes="0;0.25;0.5;0.75;1" dur="34s" begin="0s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.55;0.65;0.55;0.35;0.55" keyTimes="0;0.25;0.5;0.75;1" dur="34s" begin="0s" repeatCount="indefinite"/>
-        </circle>
-        <circle r="3" fill="#002552" filter="url(#qlo-glow)">
-            <animateMotion dur="34s" begin="-17s" repeatCount="indefinite"><mpath href="#qlo-track-split"/></animateMotion>
-            <animateMotion class="qlo-burst" data-base-begin="-17" data-base-dur="34" dur="1s" begin="indefinite" repeatCount="1" calcMode="linear"><mpath href="#qlo-track-split"/></animateMotion>
-            <animate attributeName="r" values="3;3.45;3;2.1;3" keyTimes="0;0.25;0.5;0.75;1" dur="34s" begin="-17s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.55;0.65;0.55;0.35;0.55" keyTimes="0;0.25;0.5;0.75;1" dur="34s" begin="-17s" repeatCount="indefinite"/>
-        </circle>
-    </svg>
+    <div class="logo-orbits" aria-hidden="true">
+        <svg class="qlo-layer qlo-layer-gold" viewBox="0 0 459 459" focusable="false">
+            <defs>
+                <filter id="qlo-glow-g" x="-150%" y="-150%" width="400%" height="400%">
+                    <feGaussianBlur stdDeviation="3.75" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+                <path id="qlo-track-gold" d="M 169.8 271.7 A 223 80 53.4 0 1 298.2 176.3 A 223 80 53.4 0 1 169.8 271.7" fill="none"/>
+            </defs>
+            <!-- gold ring: two halves, uniform stroke -->
+            <path class="qlo-ring" d="M 101.1 44.9 A 223 80 53.4 0 1 366.9 403.1" fill="none" stroke="#fabc0f" stroke-width="12" stroke-linecap="round" opacity="0.3"/>
+            <path class="qlo-ring" d="M 101.1 44.9 A 223 80 53.4 0 0 366.9 403.1" fill="none" stroke="#fabc0f" stroke-width="12" stroke-linecap="round" opacity="0.3"/>
+            <!-- gold electrons, depth-synced size/brightness -->
+            <circle r="3.45" fill="#fabc0f" filter="url(#qlo-glow-g)">
+                <animateMotion dur="26s" begin="0s" repeatCount="indefinite"><mpath href="#qlo-track-gold"/></animateMotion>
+                <animateMotion class="qlo-burst" data-base-begin="0" data-base-dur="26" dur="0.85s" begin="indefinite" repeatCount="1" calcMode="linear"><mpath href="#qlo-track-gold"/></animateMotion>
+                <animate attributeName="r" values="3.45;2.7;2.1;2.7;3.45" keyTimes="0;0.25;0.5;0.75;1" dur="26s" begin="0s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.65;0.5;0.35;0.5;0.65" keyTimes="0;0.25;0.5;0.75;1" dur="26s" begin="0s" repeatCount="indefinite"/>
+            </circle>
+            <circle r="3.45" fill="#fabc0f" filter="url(#qlo-glow-g)">
+                <animateMotion dur="26s" begin="-13s" repeatCount="indefinite"><mpath href="#qlo-track-gold"/></animateMotion>
+                <animateMotion class="qlo-burst" data-base-begin="-13" data-base-dur="26" dur="0.95s" begin="indefinite" repeatCount="1" calcMode="linear"><mpath href="#qlo-track-gold"/></animateMotion>
+                <animate attributeName="r" values="3.45;2.7;2.1;2.7;3.45" keyTimes="0;0.25;0.5;0.75;1" dur="26s" begin="-13s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.65;0.5;0.35;0.5;0.65" keyTimes="0;0.25;0.5;0.75;1" dur="26s" begin="-13s" repeatCount="indefinite"/>
+            </circle>
+        </svg>
+        <svg class="qlo-layer qlo-layer-split" viewBox="0 0 459 459" focusable="false">
+            <defs>
+                <filter id="qlo-glow-s" x="-150%" y="-150%" width="400%" height="400%">
+                    <feGaussianBlur stdDeviation="3.75" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+                <path id="qlo-track-split" d="M 434.5 188.6 A 210 105 -10 0 1 20.9 261.6 A 210 105 -10 0 1 434.5 188.6" fill="none"/>
+            </defs>
+            <!-- split ring: blue top half (back, glow via CSS) + red bottom half (front) -->
+            <path class="qlo-blue qlo-ring" d="M 20.9 261.6 A 210 105 -10 0 1 434.5 188.6" fill="none" stroke="#002552" stroke-width="10" stroke-linecap="round" opacity="0.4"/>
+            <path class="qlo-ring" d="M 434.5 188.6 A 210 105 -10 0 1 20.9 261.6" fill="none" stroke="#b90e32" stroke-width="13" stroke-linecap="round" opacity="0.34"/>
+            <!-- split-ring electrons: red + blue, depth-synced size/brightness -->
+            <circle r="3" fill="#b90e32" filter="url(#qlo-glow-s)">
+                <animateMotion dur="34s" begin="0s" repeatCount="indefinite"><mpath href="#qlo-track-split"/></animateMotion>
+                <animateMotion class="qlo-burst" data-base-begin="0" data-base-dur="34" dur="0.8s" begin="indefinite" repeatCount="1" calcMode="linear"><mpath href="#qlo-track-split"/></animateMotion>
+                <animate attributeName="r" values="3;3.45;3;2.1;3" keyTimes="0;0.25;0.5;0.75;1" dur="34s" begin="0s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.55;0.65;0.55;0.35;0.55" keyTimes="0;0.25;0.5;0.75;1" dur="34s" begin="0s" repeatCount="indefinite"/>
+            </circle>
+            <circle r="3" fill="#002552" filter="url(#qlo-glow-s)">
+                <animateMotion dur="34s" begin="-17s" repeatCount="indefinite"><mpath href="#qlo-track-split"/></animateMotion>
+                <animateMotion class="qlo-burst" data-base-begin="-17" data-base-dur="34" dur="1s" begin="indefinite" repeatCount="1" calcMode="linear"><mpath href="#qlo-track-split"/></animateMotion>
+                <animate attributeName="r" values="3;3.45;3;2.1;3" keyTimes="0;0.25;0.5;0.75;1" dur="34s" begin="-17s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.55;0.65;0.55;0.35;0.55" keyTimes="0;0.25;0.5;0.75;1" dur="34s" begin="-17s" repeatCount="indefinite"/>
+            </circle>
+        </svg>
+    </div>
 </div>
 
 <div class="notch-wrapper">
@@ -619,18 +638,21 @@
     }, { threshold: 0.01, root: slideshowEl });
     revealEls.forEach(el => revealObserver.observe(el));
 
-    // Scroll-reactive atom: cumulative Z-spin per slide change + electrons do one fast lap
-    const qloSwapEl = document.querySelector('.logo-orbits');
+    // Scroll-reactive atom: "impulse and settle" - each slide change is an energy pulse.
+    // The two ring layers counter-rotate with spring physics (gold = light body, big kick
+    // with one gentle overshoot; split = heavy body, tighter settle), pick up a subtle
+    // clamped 3D tilt, and the electrons do a staggered one-lap speed burst.
+    const qloWrap = document.querySelector('.logo-orbits');
     const bgSlides = Array.from(document.querySelectorAll('.vertical-slideshow > .slide'));
-    if (qloSwapEl && bgSlides.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        const qloBursts = Array.from(qloSwapEl.querySelectorAll('.qlo-burst'));
+    if (qloWrap && bgSlides.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const qloBursts = Array.from(qloWrap.querySelectorAll('.qlo-burst'));
         // Fire a one-lap speed burst that starts at the electron's current phase
         // and lands exactly where the (still running) slow orbit will be - no snapping.
         const qloBurst = (burstEl) => {
             const baseBegin = parseFloat(burstEl.getAttribute('data-base-begin'));
             const baseDur = parseFloat(burstEl.getAttribute('data-base-dur'));
             const burstDur = parseFloat(burstEl.getAttribute('dur'));
-            const now = qloSwapEl.getCurrentTime();
+            const now = burstEl.ownerSVGElement.getCurrentTime(); // each layer runs its own SMIL timeline
             const phase = ((((now - baseBegin) % baseDur) + baseDur) % baseDur) / baseDur;
             const total = 1 + burstDur / baseDur; // one full lap + base-motion catch-up
             let pos = Math.min(phase, 0.9999);
@@ -650,25 +672,66 @@
             burstEl.setAttribute('keyTimes', times.join(';'));
             burstEl.beginElement();
         };
-        let currentRotation = 0; // cumulative, never resets
+        // Underdamped spring integrator (semi-implicit Euler); targets are cumulative, never reset.
+        const qloSpring = (k, c) => ({ x: 0, v: 0, t: 0, k: k, c: c });
+        const qloLayers = [
+            { el: qloWrap.querySelector('.qlo-layer-gold'),  kick:  80, spin: qloSpring(40, 7),   tiltX: qloSpring(70, 11), tiltY: qloSpring(70, 11) },
+            { el: qloWrap.querySelector('.qlo-layer-split'), kick: -40, spin: qloSpring(120, 17), tiltX: qloSpring(90, 14), tiltY: qloSpring(90, 14) }
+        ];
+        let qloRaf = 0;
+        let qloPrev = 0;
+        const qloApply = (l) => {
+            l.el.style.transform = `rotateX(${l.tiltX.x.toFixed(3)}deg) rotateY(${l.tiltY.x.toFixed(3)}deg) rotateZ(${l.spin.x.toFixed(3)}deg)`;
+        };
+        const qloFrame = (now) => {
+            const dt = Math.min(Math.max((now - qloPrev) / 1000, 0), 1 / 30); // clamp dt to survive tab-switch gaps
+            qloPrev = now;
+            let settled = true;
+            qloLayers.forEach(l => {
+                [l.spin, l.tiltX, l.tiltY].forEach(s => {
+                    s.v += (-s.k * (s.x - s.t) - s.c * s.v) * dt;
+                    s.x += s.v * dt;
+                    if (Math.abs(s.x - s.t) >= 0.01 || Math.abs(s.v) >= 0.01) settled = false;
+                });
+                qloApply(l);
+            });
+            if (settled) { // write the exact resting pose once, then idle - zero per-frame work at rest
+                qloLayers.forEach(l => {
+                    [l.spin, l.tiltX, l.tiltY].forEach(s => { s.x = s.t; s.v = 0; });
+                    qloApply(l);
+                });
+                qloRaf = 0;
+                return;
+            }
+            qloRaf = requestAnimationFrame(qloFrame);
+        };
         let qloLastSlide = 0;
         const swapObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (!entry.isIntersecting) return;
                 const slideIdx = bgSlides.indexOf(entry.target);
                 if (slideIdx === qloLastSlide) return;
-                currentRotation += (slideIdx - qloLastSlide) * 50; // +50deg per slide down, -50deg per slide up
+                const dir = slideIdx - qloLastSlide; // signed: scrolling up mirrors, multi-slide jumps scale
                 qloLastSlide = slideIdx;
-                qloSwapEl.style.transform = `rotateZ(${currentRotation}deg)`;
-                qloBursts.forEach(qloBurst);
+                qloLayers.forEach((l, li) => {
+                    l.spin.t += dir * l.kick; // cumulative heading
+                    // Tilt targets follow the new heading (deterministic, incommensurate periods
+                    // so the pose keeps evolving), clamped to +-8deg - rings never go edge-on.
+                    const h = (l.spin.t + li * 90) * Math.PI / 180;
+                    l.tiltX.t = Math.max(-8, Math.min(8, Math.sin(h * 0.7) * 8));
+                    l.tiltY.t = Math.max(-8, Math.min(8, Math.cos(h * 0.4) * 8));
+                });
+                if (!qloRaf) { qloPrev = performance.now(); qloRaf = requestAnimationFrame(qloFrame); }
+                qloBursts.forEach((b, i) => setTimeout(() => qloBurst(b), i * 60)); // energy ripples through the electrons
             });
         }, { threshold: 0.55 });
         bgSlides.forEach(s => swapObserver.observe(s));
     }
 
-    // Logo orbitals: pause SMIL animations for reduced motion
-    const qloSvg = document.querySelector('.logo-orbits');
-    if (qloSvg && window.matchMedia('(prefers-reduced-motion: reduce)').matches) qloSvg.pauseAnimations();
+    // Logo orbitals: pause SMIL animations for reduced motion (both layer SVGs)
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('.logo-orbits .qlo-layer').forEach(qloSvg => qloSvg.pauseAnimations());
+    }
 
     // Timeline Data
     const timelineData = {
