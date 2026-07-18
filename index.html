@@ -1145,15 +1145,20 @@
 <script>
     // Custom Cursor
     try {
-        const queensColors = ['#002552', '#fabc0f', '#b90e32'];
-        const randomColor = queensColors[Math.floor(Math.random() * queensColors.length)];
-        const svg1 = '<svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="5" fill="' + randomColor + '"/></svg>';
-        const svg2 = '<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" fill="' + randomColor + '" opacity="0.4"/><circle cx="8" cy="8" r="4" fill="' + randomColor + '"/></svg>';
+        const cursorColors = [
+            { fill: '#002552', glow: '#003c82', glowOpacity: 0.85 },
+            { fill: '#fabc0f', glow: '#fabc0f', glowOpacity: 0.35 },
+            { fill: '#b90e32', glow: '#b90e32', glowOpacity: 0.35 }
+        ];
+        const cursorColor = cursorColors[Math.floor(Math.random() * cursorColors.length)];
+        const glowDefs = '<defs><radialGradient id="cg"><stop offset="40%" stop-color="' + cursorColor.glow + '" stop-opacity="' + cursorColor.glowOpacity + '"/><stop offset="100%" stop-color="' + cursorColor.glow + '" stop-opacity="0"/></radialGradient></defs>';
+        const svg1 = '<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' + glowDefs + '<circle cx="12" cy="12" r="11" fill="url(#cg)"/><circle cx="12" cy="12" r="5" fill="' + cursorColor.fill + '"/></svg>';
+        const svg2 = '<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' + glowDefs + '<circle cx="12" cy="12" r="11" fill="url(#cg)"/><circle cx="12" cy="12" r="7" fill="' + cursorColor.fill + '" opacity="0.4"/><circle cx="12" cy="12" r="4" fill="' + cursorColor.fill + '"/></svg>';
 
         const cursorStyle = document.createElement('style');
         cursorStyle.innerHTML = `
-            * { cursor: url('data:image/svg+xml;base64,${btoa(svg1)}') 6 6, auto !important; }
-            a, button, .notch-container, .btn-primary, .btn-gold-outline, .btn-secondary, .btn-large { cursor: url('data:image/svg+xml;base64,${btoa(svg2)}') 8 8, pointer !important; }
+            * { cursor: url('data:image/svg+xml;base64,${btoa(svg1)}') 12 12, auto !important; }
+            a, button, .notch-container, .btn-primary, .btn-gold-outline, .btn-secondary, .btn-large { cursor: url('data:image/svg+xml;base64,${btoa(svg2)}') 12 12, pointer !important; }
         `;
         document.head.appendChild(cursorStyle);
     } catch (e) {
