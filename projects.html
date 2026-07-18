@@ -10,6 +10,9 @@
     <meta property="og:image" content="https://queensnuclear.ca/assets/White%20NET%20Full%20Logo.png">
     <meta property="og:url" content="https://queensnuclear.ca/projects">
     <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://queensnuclear.ca/assets/White%20NET%20Full%20Logo.png">
+    <link rel="canonical" href="https://queensnuclear.ca/projects">
     <link rel="icon" type="image/svg+xml" href="assets/outlinefavicon.svg">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8J80X6N4DV"></script>
     <script>
@@ -43,16 +46,7 @@
         .nebula-3 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(250,188,15,0.12), transparent 70%); bottom: -100px; left: 30%; animation: nebulaDrift 20s ease-in-out infinite alternate; }
         .nebula-4 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,37,82,0.25), transparent 70%); bottom: 10%; right: 10%; animation: nebulaDrift 25s ease-in-out infinite alternate-reverse; }
         @keyframes nebulaDrift { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(40px,30px) scale(1.08); } }
-        /* ── Atomic orbital background: scroll-reactive atom ── */
-        .orbit { position: absolute; top: 50%; left: 50%; border-radius: 50%; pointer-events: none;
-                 transition: opacity 0.6s ease, scale 0.6s ease; }
-        .global-bg .orbit { opacity: 0.18; }
-        .orbit.orbit-faded { opacity: 0 !important; scale: 1.07; }
-        .orbit .ring { position: absolute; inset: 0; border: 1.5px solid var(--rc, rgba(255,255,255,0.08)); border-radius: 50%; box-shadow: 0 0 20px var(--rc, transparent); }
-        .orbit.ring-gold { --rc: rgba(250,188,15,0.6); --ec: #fabc0f; --eg: rgba(250,188,15,0.7); }
-        .orbit.ring-red  { --rc: rgba(185,14,50,0.55); --ec: #b90e32; --eg: rgba(185,14,50,0.7); }
-        .orbit.ring-blue { --rc: rgba(0,37,82,0.65);  --ec: #002552; --eg: rgba(0,37,82,0.95); }
-        .orbit.ring-blue .ring { border-width: 2.5px; box-shadow: 0 0 28px rgba(0,37,82,0.5), inset 0 0 24px rgba(0,37,82,0.3); }
+        /* ── Atomic orbital background ── */
         .nucleus-glow {
             position: absolute; width: 340px; height: 340px; border-radius: 50%;
             background: radial-gradient(circle, var(--nc, rgba(250,188,15,0.5)), transparent 70%);
@@ -66,18 +60,24 @@
             height: 85vmin;
             z-index: 0;
             pointer-events: none;
+            isolation: isolate;
+            perspective: 1200px;
         }
-        .logo-orbits .qlo-blue { filter: drop-shadow(0 0 8px rgba(0, 37, 82, 0.9)); }
+        .logo-orbits .qlo-layer {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            mix-blend-mode: screen;
+            will-change: transform;
+        }
+        .logo-orbits .qlo-blue { filter: drop-shadow(0 0 8px rgba(0, 37, 82, 0.55)); }
+        .logo-orbits .qlo-ring { mix-blend-mode: screen; }
         @media (prefers-reduced-motion: reduce) {
             .nebula-blob { animation: none; }
-            .global-bg .orbit { transition: none; }
+            .logo-orbits, .logo-orbits .qlo-layer { transition: none; transform: none; }
         }
         /* projects variant */
-        .orbit-a { width: 52vmin; height: 52vmin; margin: -26vmin 0 0 -26vmin; transform: perspective(1200px) rotateX(28deg) rotateZ(-20deg); --period: 48s; }
-        .orbit-b { width: 59vmin; height: 59vmin; margin: -29.5vmin 0 0 -29.5vmin; transform: perspective(1200px) rotateX(76deg) rotateZ(35deg); --period: 60s; }
-        .orbit-c { width: 66vmin; height: 66vmin; margin: -33vmin 0 0 -33vmin; transform: perspective(1200px) rotateX(24deg) rotateZ(90deg); --period: 72s; }
-        .orbit-d { width: 74vmin; height: 74vmin; margin: -37vmin 0 0 -37vmin; transform: perspective(1200px) rotateX(52deg) rotateZ(-60deg); --period: 88s; }
-        .orbit-e { width: 81vmin; height: 81vmin; margin: -40.5vmin 0 0 -40.5vmin; transform: perspective(1200px) rotateX(80deg) rotateZ(15deg); --period: 100s; }
         .nucleus-glow { --nc: rgba(185,14,50,0.5); top: 30%; right: 6%; left: auto; }
 
         /* ── Notch Nav ── */
@@ -361,7 +361,7 @@
         }
         .social-link { display: flex; align-items: center; justify-content: center; }
         .social-icon { width: 20px; height: 20px; fill: rgba(255,255,255,0.5); transition: all 0.6s ease; }
-        .social-link:nth-child(1):hover .social-icon { fill: #5b8cc8; translate: 0 -3px; }
+        .social-link:nth-child(1):hover .social-icon { fill: #002552; translate: 0 -3px; }
         .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; translate: 0 -3px; }
         .social-link:nth-child(3):hover .social-icon { fill: #b90e32; translate: 0 -3px; }
 
@@ -407,49 +407,55 @@
     <div class="nebula-blob nebula-2"></div>
     <div class="nebula-blob nebula-3"></div>
     <div class="nebula-blob nebula-4"></div>
-    <div class="orbit orbit-a ring-gold"><div class="ring"></div></div>
-    <div class="orbit orbit-b ring-red"><div class="ring"></div></div>
-    <div class="orbit orbit-c ring-blue"><div class="ring"></div></div>
-    <div class="orbit orbit-d ring-gold"><div class="ring"></div></div>
-    <div class="orbit orbit-e ring-red"><div class="ring"></div></div>
     <div class="nucleus-glow"></div>
-    <svg class="logo-orbits" viewBox="0 0 459 459" aria-hidden="true" focusable="false">
-        <defs>
-            <filter id="qlo-glow" x="-150%" y="-150%" width="400%" height="400%">
-                <feGaussianBlur stdDeviation="2.5" result="b"/>
-                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-            <path id="qlo-track-gold" d="M 169.8 271.7 A 223 80 53.4 0 1 298.2 176.3 A 223 80 53.4 0 1 169.8 271.7" fill="none"/>
-            <path id="qlo-track-split" d="M 434.5 188.6 A 210 105 -10 0 1 20.9 261.6 A 210 105 -10 0 1 434.5 188.6" fill="none"/>
-        </defs>
-        <!-- gold ring: back half (upper-right, dimmer+thinner) then front half (lower-left) -->
-        <path d="M 101.1 44.9 A 223 80 53.4 0 1 366.9 403.1" fill="none" stroke="#fabc0f" stroke-width="10" stroke-linecap="round" opacity="0.28"/>
-        <path d="M 101.1 44.9 A 223 80 53.4 0 0 366.9 403.1" fill="none" stroke="#fabc0f" stroke-width="15" stroke-linecap="round" opacity="0.65"/>
-        <!-- split ring: blue top half (back, glow via CSS) + red bottom half (front) -->
-        <path class="qlo-blue" d="M 20.9 261.6 A 210 105 -10 0 1 434.5 188.6" fill="none" stroke="#002552" stroke-width="10" stroke-linecap="round" opacity="0.75"/>
-        <path d="M 434.5 188.6 A 210 105 -10 0 1 20.9 261.6" fill="none" stroke="#b90e32" stroke-width="13" stroke-linecap="round" opacity="0.65"/>
-        <!-- electrons: gold x2 on gold ring, red+blue on split ring, depth-synced size/brightness -->
-        <circle r="3.5" fill="#fabc0f" filter="url(#qlo-glow)">
-            <animateMotion dur="26s" begin="0s" repeatCount="indefinite"><mpath href="#qlo-track-gold"/></animateMotion>
-            <animate attributeName="r" values="3.5;2.8;2.2;2.8;3.5" keyTimes="0;0.25;0.5;0.75;1" dur="26s" begin="0s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="1;0.75;0.5;0.75;1" keyTimes="0;0.25;0.5;0.75;1" dur="26s" begin="0s" repeatCount="indefinite"/>
-        </circle>
-        <circle r="3.5" fill="#fabc0f" filter="url(#qlo-glow)">
-            <animateMotion dur="26s" begin="-13s" repeatCount="indefinite"><mpath href="#qlo-track-gold"/></animateMotion>
-            <animate attributeName="r" values="3.5;2.8;2.2;2.8;3.5" keyTimes="0;0.25;0.5;0.75;1" dur="26s" begin="-13s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="1;0.75;0.5;0.75;1" keyTimes="0;0.25;0.5;0.75;1" dur="26s" begin="-13s" repeatCount="indefinite"/>
-        </circle>
-        <circle r="3" fill="#b90e32" filter="url(#qlo-glow)">
-            <animateMotion dur="34s" begin="0s" repeatCount="indefinite"><mpath href="#qlo-track-split"/></animateMotion>
-            <animate attributeName="r" values="3;3.5;3;2.2;3" keyTimes="0;0.25;0.5;0.75;1" dur="34s" begin="0s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.85;1;0.85;0.5;0.85" keyTimes="0;0.25;0.5;0.75;1" dur="34s" begin="0s" repeatCount="indefinite"/>
-        </circle>
-        <circle r="3" fill="#002552" filter="url(#qlo-glow)">
-            <animateMotion dur="34s" begin="-17s" repeatCount="indefinite"><mpath href="#qlo-track-split"/></animateMotion>
-            <animate attributeName="r" values="3;3.5;3;2.2;3" keyTimes="0;0.25;0.5;0.75;1" dur="34s" begin="-17s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.85;1;0.85;0.5;0.85" keyTimes="0;0.25;0.5;0.75;1" dur="34s" begin="-17s" repeatCount="indefinite"/>
-        </circle>
-    </svg>
+    <div class="logo-orbits" aria-hidden="true">
+        <svg class="qlo-layer qlo-layer-gold" viewBox="0 0 459 459" focusable="false">
+            <defs>
+                <filter id="qlo-glow-g" x="-150%" y="-150%" width="400%" height="400%">
+                    <feGaussianBlur stdDeviation="3.75" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+                <path id="qlo-track-gold" d="M 169.8 271.7 A 223 80 53.4 0 1 298.2 176.3 A 223 80 53.4 0 1 169.8 271.7" fill="none"/>
+            </defs>
+            <!-- gold ring: two halves, uniform stroke -->
+            <path class="qlo-ring" d="M 101.1 44.9 A 223 80 53.4 0 1 366.9 403.1" fill="none" stroke="#fabc0f" stroke-width="12" stroke-linecap="round" opacity="0.3"/>
+            <path class="qlo-ring" d="M 101.1 44.9 A 223 80 53.4 0 0 366.9 403.1" fill="none" stroke="#fabc0f" stroke-width="12" stroke-linecap="round" opacity="0.3"/>
+            <!-- gold electrons, depth-synced size/brightness -->
+            <circle r="3.45" fill="#fabc0f" filter="url(#qlo-glow-g)">
+                <animateMotion dur="40s" begin="0s" repeatCount="indefinite"><mpath href="#qlo-track-gold"/></animateMotion>
+                <animate attributeName="r" values="3.45;2.7;2.1;2.7;3.45" keyTimes="0;0.25;0.5;0.75;1" dur="40s" begin="0s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.65;0.5;0.35;0.5;0.65" keyTimes="0;0.25;0.5;0.75;1" dur="40s" begin="0s" repeatCount="indefinite"/>
+            </circle>
+            <circle r="3.45" fill="#fabc0f" filter="url(#qlo-glow-g)">
+                <animateMotion dur="40s" begin="-20s" repeatCount="indefinite"><mpath href="#qlo-track-gold"/></animateMotion>
+                <animate attributeName="r" values="3.45;2.7;2.1;2.7;3.45" keyTimes="0;0.25;0.5;0.75;1" dur="40s" begin="-20s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.65;0.5;0.35;0.5;0.65" keyTimes="0;0.25;0.5;0.75;1" dur="40s" begin="-20s" repeatCount="indefinite"/>
+            </circle>
+        </svg>
+        <svg class="qlo-layer qlo-layer-split" viewBox="0 0 459 459" focusable="false">
+            <defs>
+                <filter id="qlo-glow-s" x="-150%" y="-150%" width="400%" height="400%">
+                    <feGaussianBlur stdDeviation="3.75" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+                <path id="qlo-track-split" d="M 434.5 188.6 A 210 105 -10 0 1 20.9 261.6 A 210 105 -10 0 1 434.5 188.6" fill="none"/>
+            </defs>
+            <!-- split ring: blue top half (back, glow via CSS) + red bottom half (front) -->
+            <path class="qlo-blue qlo-ring" d="M 20.9 261.6 A 210 105 -10 0 1 434.5 188.6" fill="none" stroke="#002552" stroke-width="10" stroke-linecap="round" opacity="0.4"/>
+            <path class="qlo-ring" d="M 434.5 188.6 A 210 105 -10 0 1 20.9 261.6" fill="none" stroke="#b90e32" stroke-width="13" stroke-linecap="round" opacity="0.34"/>
+            <!-- split-ring electrons: red + blue, depth-synced size/brightness -->
+            <circle r="3" fill="#b90e32" filter="url(#qlo-glow-s)">
+                <animateMotion dur="52s" begin="0s" repeatCount="indefinite"><mpath href="#qlo-track-split"/></animateMotion>
+                <animate attributeName="r" values="3;3.45;3;2.1;3" keyTimes="0;0.25;0.5;0.75;1" dur="52s" begin="0s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.55;0.65;0.55;0.35;0.55" keyTimes="0;0.25;0.5;0.75;1" dur="52s" begin="0s" repeatCount="indefinite"/>
+            </circle>
+            <circle r="3" fill="#002552" filter="url(#qlo-glow-s)">
+                <animateMotion dur="52s" begin="-26s" repeatCount="indefinite"><mpath href="#qlo-track-split"/></animateMotion>
+                <animate attributeName="r" values="3;3.45;3;2.1;3" keyTimes="0;0.25;0.5;0.75;1" dur="52s" begin="-26s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.55;0.65;0.55;0.35;0.55" keyTimes="0;0.25;0.5;0.75;1" dur="52s" begin="-26s" repeatCount="indefinite"/>
+            </circle>
+        </svg>
+    </div>
 </div>
 
 <div id="global-tooltip"></div>
@@ -735,7 +741,7 @@
     </section>
 
     <!-- Slide 6: Materials Studies — independent Materials sub-team research -->
-    <section class="slide" id="materials-studies">
+    <section class="slide" id="materials">
         <div class="project-showcase">
             <div class="project-static">
                 <span class="section-eyebrow">Independent Studies</span>
@@ -842,24 +848,116 @@
     }, { threshold: 0.01 });
     revealEls.forEach(el => revealObserver.observe(el));
 
-    // Scroll-reactive atom: one secondary ring fades per slide advance; final slide has none
-    const bgOrbits = document.querySelectorAll('.global-bg .orbit');
+    // Scroll-reactive atom: "impulse and settle" - each slide change is an energy pulse.
+    // The two ring layers counter-rotate with spring physics (gold = light body, big kick
+    // with one gentle overshoot; split = heavy body, tighter settle) and pick up a
+    // subtle clamped 3D tilt. The electrons keep a constant, ambient orbital drift.
+    const qloWrap = document.querySelector('.logo-orbits');
     const bgSlides = Array.from(document.querySelectorAll('.vertical-slideshow > .slide'));
-    if (bgOrbits.length && bgSlides.length > 1) {
-        const orbitObserver = new IntersectionObserver((entries) => {
+    const qloHashSlide = location.hash.length > 1 ? (bgSlides.find(s => s.id === location.hash.slice(1)) || null) : null;
+    if (qloWrap && bgSlides.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        // Underdamped spring integrator (semi-implicit Euler); targets are cumulative, never reset.
+        const qloSpring = (k, c) => ({ x: 0, v: 0, t: 0, k: k, c: c });
+        const qloLayers = [
+            { el: qloWrap.querySelector('.qlo-layer-gold'),  kick:  80, spin: qloSpring(10, 3.5),  tiltX: qloSpring(17.5, 5.5), tiltY: qloSpring(17.5, 5.5) },
+            { el: qloWrap.querySelector('.qlo-layer-split'), kick: -40, spin: qloSpring(30, 8.5),  tiltX: qloSpring(22.5, 7),   tiltY: qloSpring(22.5, 7) }
+        ];
+        let qloRaf = 0;
+        let qloPrev = 0;
+        const qloApply = (l) => {
+            l.el.style.transform = `rotateX(${l.tiltX.x.toFixed(3)}deg) rotateY(${l.tiltY.x.toFixed(3)}deg) rotateZ(${l.spin.x.toFixed(3)}deg)`;
+        };
+        const qloFrame = (now) => {
+            const dt = Math.min(Math.max((now - qloPrev) / 1000, 0), 1 / 30); // clamp dt to survive tab-switch gaps
+            qloPrev = now;
+            let settled = true;
+            qloLayers.forEach(l => {
+                [l.spin, l.tiltX, l.tiltY].forEach(s => {
+                    s.v += (-s.k * (s.x - s.t) - s.c * s.v) * dt;
+                    s.x += s.v * dt;
+                    if (Math.abs(s.x - s.t) >= 0.01 || Math.abs(s.v) >= 0.01) settled = false;
+                });
+                qloApply(l);
+            });
+            if (settled) { // write the exact resting pose once, then idle - zero per-frame work at rest
+                qloLayers.forEach(l => {
+                    [l.spin, l.tiltX, l.tiltY].forEach(s => { s.x = s.t; s.v = 0; });
+                    qloApply(l);
+                });
+                qloRaf = 0;
+                return;
+            }
+            qloRaf = requestAnimationFrame(qloFrame);
+        };
+        // Tilt targets follow the spin heading (deterministic, incommensurate periods
+        // so the pose keeps evolving), clamped to +-8deg - rings never go edge-on.
+        const qloRetilt = () => qloLayers.forEach((l, li) => {
+            const h = (l.spin.t + li * 90) * Math.PI / 180;
+            l.tiltX.t = Math.max(-8, Math.min(8, Math.sin(h * 0.7) * 8));
+            l.tiltY.t = Math.max(-8, Math.min(8, Math.cos(h * 0.4) * 8));
+        });
+        // Ring separation: the ring planes must settle at least 40deg apart or the atom
+        // reads as a single ellipse. Plane orientation = base ellipse rotation (gold 53.4,
+        // split -10) + cumulative spin target, compared mod 180 and folded into [0,90].
+        // Enforced on the gold TARGET before the springs run, so a too-parallel impulse
+        // just becomes one slightly larger swing - never a visible late correction.
+        const qloFold = (a) => { a = Math.abs(a) % 180; return a > 90 ? 180 - a : a; };
+        const qloSep = () => qloFold((53.4 + qloLayers[0].spin.t) - (-10 + qloLayers[1].spin.t));
+        const qloSeparate = (dir) => {
+            const sep = qloSep();
+            if (sep >= 40) return;
+            const sgn = dir < 0 ? -1 : 1;
+            qloLayers[0].spin.t += sgn * (40 - sep); // exact deficit when moving away from alignment
+            if (qloSep() < 40) qloLayers[0].spin.t += sgn * 2 * sep; // crossed the fold - total push becomes 40 + sep
+        };
+        let qloLastSlide = 0;
+        const swapObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (!entry.isIntersecting) return;
-                const idx = bgSlides.indexOf(entry.target);
-                const faded = idx;
-                bgOrbits.forEach((o, i) => o.classList.toggle('orbit-faded', i < faded));
+                const slideIdx = bgSlides.indexOf(entry.target);
+                if (slideIdx === qloLastSlide) return;
+                const dir = slideIdx - qloLastSlide; // signed: scrolling up mirrors, multi-slide jumps scale
+                qloLastSlide = slideIdx;
+                qloLayers.forEach(l => { l.spin.t += dir * l.kick; }); // cumulative headings
+                qloSeparate(dir);
+                qloRetilt();
+                if (!qloRaf) { qloPrev = performance.now(); qloRaf = requestAnimationFrame(qloFrame); }
             });
         }, { threshold: 0.55 });
-        bgSlides.forEach(s => orbitObserver.observe(s));
+        bgSlides.forEach(s => swapObserver.observe(s));
+        // Hash deep-link: pose the atom as if the user had already scrolled to the target
+        // slide - the same cumulative impulses, separation guard and tilt headings, but with
+        // every spring set AT its target (zero velocity) and applied in one style write. The
+        // observer's same-slide early-return then keeps everything quiet until real scrolling.
+        const qloHashIdx = qloHashSlide ? bgSlides.indexOf(qloHashSlide) : 0;
+        if (qloHashIdx > 0) {
+            qloLastSlide = qloHashIdx;
+            qloLayers.forEach(l => { l.spin.t += qloHashIdx * l.kick; });
+            qloSeparate(qloHashIdx);
+            qloRetilt();
+            qloLayers.forEach(l => {
+                [l.spin, l.tiltX, l.tiltY].forEach(s => { s.x = s.t; s.v = 0; });
+                qloApply(l);
+            });
+        }
     }
 
-    // Logo orbitals: pause SMIL animations for reduced motion
-    const qloSvg = document.querySelector('.logo-orbits');
-    if (qloSvg && window.matchMedia('(prefers-reduced-motion: reduce)').matches) qloSvg.pauseAnimations();
+    // Hash deep-link: the slideshow container scrolls, not the window, so native hash
+    // navigation can land half-scrolled or not fire at all. Snap the target slide into
+    // view instantly (navigation, not decoration - it also runs under reduced motion),
+    // and re-square at load unless the user has already scrolled somewhere else.
+    if (qloHashSlide) {
+        qloHashSlide.scrollIntoView({ behavior: 'instant' });
+        window.addEventListener('load', () => {
+            const off = qloHashSlide.getBoundingClientRect().top;
+            if (off !== 0 && Math.abs(off) < window.innerHeight / 2) qloHashSlide.scrollIntoView({ behavior: 'instant' });
+        });
+    }
+
+    // Logo orbitals: pause SMIL animations for reduced motion (both layer SVGs)
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('.logo-orbits .qlo-layer').forEach(qloSvg => qloSvg.pauseAnimations());
+    }
 
     // Staff Data
     const staffData = {
