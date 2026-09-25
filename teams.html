@@ -478,16 +478,26 @@
             letter-spacing: -0.02em;
         }
 
-        .staff-email {
-            display: inline-block;
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.55);
-            text-decoration: none;
-            margin: -0.15rem 0 0.75rem;
-            word-break: break-all;
-            transition: color 0.3s ease;
+        .vacant-photo {
+            display: flex; align-items: center; justify-content: center;
+            border: 2px dashed rgba(185, 14, 50, 0.5);
+            background-color: rgba(185, 14, 50, 0.06);
+            color: rgba(185, 14, 50, 0.85); font-size: 3.5rem; font-weight: 300;
         }
-        .staff-email:hover { color: #fabc0f; }
+        .vacant-card { border-color: rgba(185, 14, 50, 0.35); }
+        @media (min-width: 1025px) { .directors-grid { gap: 1.5rem; } .directors-grid .staff-card { width: 300px; } }
+        .vacant-card .staff-name { text-transform: uppercase; letter-spacing: 0.12em; }
+        .staff-apply-btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 0.8rem 2rem; margin-bottom: 1.5rem;
+            font-size: 0.85rem; font-weight: 700; color: #fff; text-decoration: none;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            background: #b90e32; border: 1px solid #b90e32; border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(185, 14, 50, 0.3);
+            transition: all 0.3s ease;
+        }
+        .staff-apply-btn:hover { background: transparent; color: #fabc0f; border-color: #fabc0f; translate: 0 -2px; }
+        .apply-deadline { color: #fabc0f; font-weight: 600; font-size: 0.95rem; }
 
         .staff-role {
             font-size: 0.85rem;
@@ -915,11 +925,13 @@
                     <div class="staff-top">
                         <div class="staff-photo" style="background-image: url('teamphoto/Tochi.jpeg'); background-size: cover;"></div>
                         <h3 class="staff-name">Tochukwu Odiwa</h3>
-                        <a href="mailto:qnet.mechanical@engsoc.queensu.ca" class="staff-email" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Tochukwu Odiwa'});">qnet.mechanical@engsoc.queensu.ca</a>
                         <span class="staff-role">Team Lead</span>
                         <div class="staff-socials">
                             <a href="https://www.linkedin.com/in/tochukwu-odiwa-ba8480282/" target="_blank" aria-label="LinkedIn" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - LinkedIn - Tochukwu Odiwa'});">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            </a>
+                            <a href="mailto:qnet.mechanical@engsoc.queensu.ca" aria-label="Email qnet.mechanical@engsoc.queensu.ca" title="qnet.mechanical@engsoc.queensu.ca" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Tochukwu Odiwa'});">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                             </a>
                         </div>
                     </div>
@@ -936,11 +948,13 @@
                     <div class="staff-top">
                         <div class="staff-photo" style="background-image: url('teamphoto/Aidan.png'); background-size: cover;"></div>
                         <h3 class="staff-name">Aidan Woods</h3>
-                        <a href="mailto:qnet.mechanical@engsoc.queensu.ca" class="staff-email" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Aidan Woods'});">qnet.mechanical@engsoc.queensu.ca</a>
                         <span class="staff-role">Team Lead</span>
                         <div class="staff-socials">
                             <a href="https://www.linkedin.com/in/aidan-woods-34860a347/" target="_blank" aria-label="LinkedIn" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - LinkedIn - Aidan Woods'});">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            </a>
+                            <a href="mailto:qnet.mechanical@engsoc.queensu.ca" aria-label="Email qnet.mechanical@engsoc.queensu.ca" title="qnet.mechanical@engsoc.queensu.ca" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Aidan Woods'});">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                             </a>
                         </div>
                     </div>
@@ -966,11 +980,13 @@
                     <div class="staff-top">
                         <div class="staff-photo" style="background-image: url('teamphoto/arsalan.jpg'); background-size: cover;"></div>
                         <h3 class="staff-name">Arsalan Vahidi</h3>
-                        <a href="mailto:qnet.electrical@engsoc.queensu.ca" class="staff-email" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Arsalan Vahidi'});">qnet.electrical@engsoc.queensu.ca</a>
                         <span class="staff-role">Team Lead</span>
                         <div class="staff-socials">
                             <a href="https://www.linkedin.com/in/arsalan-vahidi-579b992a5/" target="_blank" aria-label="LinkedIn" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - LinkedIn - Arsalan Vahidi'});">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            </a>
+                            <a href="mailto:qnet.electrical@engsoc.queensu.ca" aria-label="Email qnet.electrical@engsoc.queensu.ca" title="qnet.electrical@engsoc.queensu.ca" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Arsalan Vahidi'});">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                             </a>
                         </div>
                     </div>
@@ -985,11 +1001,13 @@
                     <div class="staff-top">
                         <div class="staff-photo" style="background-image: url('teamphoto/boden.jpg'); background-size: cover;"></div>
                         <h3 class="staff-name">Boden Parent</h3>
-                        <a href="mailto:qnet.electrical@engsoc.queensu.ca" class="staff-email" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Boden Parent'});">qnet.electrical@engsoc.queensu.ca</a>
                         <span class="staff-role">Team Lead</span>
                         <div class="staff-socials">
                             <a href="https://www.linkedin.com/in/boden-parent-992abb383/" target="_blank" aria-label="LinkedIn" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - LinkedIn - Boden Parent'});">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            </a>
+                            <a href="mailto:qnet.electrical@engsoc.queensu.ca" aria-label="Email qnet.electrical@engsoc.queensu.ca" title="qnet.electrical@engsoc.queensu.ca" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Boden Parent'});">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                             </a>
                         </div>
                     </div>
@@ -1015,11 +1033,13 @@
                     <div class="staff-top">
                         <div class="staff-photo" style="background-image: url('teamphoto/Gabe.png'); background-size: cover;"></div>
                         <h3 class="staff-name">Gabriel Brannon</h3>
-                        <a href="mailto:qnet.software@engsoc.queensu.ca" class="staff-email" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Gabriel Brannon'});">qnet.software@engsoc.queensu.ca</a>
                         <span class="staff-role">Team Lead</span>
                         <div class="staff-socials">
                             <a href="https://www.linkedin.com/in/gabriel-brannon-99b28734a/" target="_blank" aria-label="LinkedIn" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - LinkedIn - Gabriel Brannon'});">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            </a>
+                            <a href="mailto:qnet.software@engsoc.queensu.ca" aria-label="Email qnet.software@engsoc.queensu.ca" title="qnet.software@engsoc.queensu.ca" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Gabriel Brannon'});">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                             </a>
                         </div>
                     </div>
@@ -1034,11 +1054,13 @@
                     <div class="staff-top">
                         <div class="staff-photo" style="background-image: url('teamphoto/TJ.JPG'); background-size: cover;"></div>
                         <h3 class="staff-name">Tejas Marwaha</h3>
-                        <a href="mailto:qnet.software@engsoc.queensu.ca" class="staff-email" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Tejas Marwaha'});">qnet.software@engsoc.queensu.ca</a>
                         <span class="staff-role">Team Lead</span>
                         <div class="staff-socials">
                             <a href="https://www.linkedin.com/in/tejas-marwaha-2a5219325/" target="_blank" aria-label="LinkedIn" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - LinkedIn - Tejas Marwaha'});">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            </a>
+                            <a href="mailto:qnet.software@engsoc.queensu.ca" aria-label="Email qnet.software@engsoc.queensu.ca" title="qnet.software@engsoc.queensu.ca" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Tejas Marwaha'});">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                             </a>
                         </div>
                     </div>
@@ -1064,11 +1086,13 @@
                     <div class="staff-top">
                         <div class="staff-photo" style="background-image: url('teamphoto/justin.jpg'); background-size: cover;"></div>
                         <h3 class="staff-name">Justin Hooey</h3>
-                        <a href="mailto:qnet.research@engsoc.queensu.ca" class="staff-email" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Justin Hooey'});">qnet.research@engsoc.queensu.ca</a>
                         <span class="staff-role">Team Lead</span>
                         <div class="staff-socials">
                             <a href="https://www.linkedin.com/in/justin-hooey-1114a4316/" target="_blank" aria-label="LinkedIn" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - LinkedIn - Justin Hooey'});">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            </a>
+                            <a href="mailto:qnet.research@engsoc.queensu.ca" aria-label="Email qnet.research@engsoc.queensu.ca" title="qnet.research@engsoc.queensu.ca" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Justin Hooey'});">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                             </a>
                         </div>
                     </div>
@@ -1083,11 +1107,13 @@
                     <div class="staff-top">
                         <div class="staff-photo" style="background-image: url('teamphoto/ella.jpg'); background-size: cover;"></div>
                         <h3 class="staff-name">Ella Adair</h3>
-                        <a href="mailto:qnet.research@engsoc.queensu.ca" class="staff-email" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Ella Adair'});">qnet.research@engsoc.queensu.ca</a>
                         <span class="staff-role">Team Lead</span>
                         <div class="staff-socials">
                             <a href="https://www.linkedin.com/in/ella-adair/" target="_blank" aria-label="LinkedIn" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - LinkedIn - Ella Adair'});">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            </a>
+                            <a href="mailto:qnet.research@engsoc.queensu.ca" aria-label="Email qnet.research@engsoc.queensu.ca" title="qnet.research@engsoc.queensu.ca" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Ella Adair'});">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                             </a>
                         </div>
                     </div>
@@ -1115,11 +1141,13 @@
                     </div>
                     <div class="staff-info-container">
                         <h3 class="staff-name">Noah Miggiani</h3>
-                        <a href="mailto:qnet.materials@engsoc.queensu.ca" class="staff-email" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Noah Miggiani'});">qnet.materials@engsoc.queensu.ca</a>
                         <span class="staff-role">Team Lead</span>
                         <div class="staff-socials">
                             <a href="https://www.linkedin.com/in/noah-miggiani-873856347/" target="_blank" aria-label="LinkedIn" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - LinkedIn - Noah Miggiani'});">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            </a>
+                            <a href="mailto:qnet.materials@engsoc.queensu.ca" aria-label="Email qnet.materials@engsoc.queensu.ca" title="qnet.materials@engsoc.queensu.ca" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Noah Miggiani'});">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                             </a>
                         </div>
                         <div class="staff-academic">
@@ -1143,16 +1171,18 @@
             <span class="section-eyebrow" style="color: #b90e32;">Operations</span>
             <h2>Our Directors</h2>
             <p class="subtitle">The organizational backbone managing our runway, industry presence, and logistics.</p>
-            <div class="staff-grid">
+            <div class="staff-grid directors-grid">
                 <div class="staff-card ops-card reveal stagger-1" id="AlexHayes">
                     <div class="staff-top">
                         <div class="staff-photo" style="background-image: url('teamphoto/Alex.jpg'); background-size: cover;"></div>
                         <h3 class="staff-name">Alex Hayes</h3>
-                        <a href="mailto:qnet.finance@engsoc.queensu.ca" class="staff-email" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Alex Hayes'});">qnet.finance@engsoc.queensu.ca</a>
                         <span class="staff-role">Director of Finance</span>
                         <div class="staff-socials">
                             <a href="https://www.queensu.ca/physics/people-search/alexander-hayes" target="_blank" aria-label="Queen's Profile" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - Profile - Alex Hayes'});">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.22.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                            </a>
+                            <a href="mailto:qnet.finance@engsoc.queensu.ca" aria-label="Email qnet.finance@engsoc.queensu.ca" title="qnet.finance@engsoc.queensu.ca" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Alex Hayes'});">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                             </a>
                         </div>
                     </div>
@@ -1167,11 +1197,13 @@
                     <div class="staff-top">
                         <div class="staff-photo" style="background-image: url('teamphoto/regan.jpg'); background-size: cover;"></div>
                         <h3 class="staff-name">Regan Lane</h3>
-                        <a href="mailto:qnet.marketing@engsoc.queensu.ca" class="staff-email" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Regan Lane'});">qnet.marketing@engsoc.queensu.ca</a>
                         <span class="staff-role">Director of Marketing</span>
                         <div class="staff-socials">
                             <a href="https://www.linkedin.com/in/regan-lane-272959385/" target="_blank" aria-label="LinkedIn" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - LinkedIn - Regan Lane'});">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            </a>
+                            <a href="mailto:qnet.marketing@engsoc.queensu.ca" aria-label="Email qnet.marketing@engsoc.queensu.ca" title="qnet.marketing@engsoc.queensu.ca" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Regan Lane'});">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                             </a>
                         </div>
                     </div>
@@ -1189,11 +1221,13 @@
                     <div class="staff-top">
                         <div class="staff-photo" style="background-image: url('teamphoto/naomi.jpg'); background-size: cover;"></div>
                         <h3 class="staff-name">Naomi Cain</h3>
-                        <a href="mailto:qnet.events@engsoc.queensu.ca" class="staff-email" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Naomi Cain'});">qnet.events@engsoc.queensu.ca</a>
                         <span class="staff-role">Director of Events</span>
                         <div class="staff-socials">
                             <a href="https://www.linkedin.com/in/naomi-cain-10a356345/" target="_blank" aria-label="LinkedIn" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - LinkedIn - Naomi Cain'});">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            </a>
+                            <a href="mailto:qnet.events@engsoc.queensu.ca" aria-label="Email qnet.events@engsoc.queensu.ca" title="qnet.events@engsoc.queensu.ca" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Naomi Cain'});">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                             </a>
                         </div>
                     </div>
@@ -1201,6 +1235,20 @@
                         <span class="degree-badge">BASc Candidate</span>
                         <span class="major-text">Engineering Physics<br>Materials Option</span>
                         <span class="class-year">Class of '28</span>
+                    </div>
+                    <div class="staff-badge-slot"></div>
+                </div>
+
+                <div class="staff-card ops-card vacant-card reveal stagger-4" id="DirectorOfSponsorship">
+                    <div class="staff-top">
+                        <div class="staff-photo vacant-photo" aria-hidden="true">?</div>
+                        <h3 class="staff-name">Vacant</h3>
+                        <span class="staff-role">Director of Sponsorship</span>
+                        <a href="https://apply.clikk.ca/engsoc/jobs/a49cf7c9-addd-4a9c-bf29-e7d27149f0fc" target="_blank" rel="noopener" class="staff-apply-btn" onclick="gtag('event', 'button_click', {'button_name': 'Team - Apply - Director of Sponsorship'});">Apply Now</a>
+                    </div>
+                    <div class="staff-academic">
+                        <span class="degree-badge">Now Hiring</span>
+                        <span class="apply-deadline">Applications close Oct 2</span>
                     </div>
                     <div class="staff-badge-slot"></div>
                 </div>
@@ -1221,7 +1269,6 @@
                     </div>
                     <div class="staff-info-container">
                         <h3 class="staff-name">Ryan Haghi</h3>
-                        <a href="mailto:qnet@engsoc.queensu.ca" class="staff-email" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Ryan Haghi'});">qnet@engsoc.queensu.ca</a>
                         <span class="staff-role">Founder and President</span>
                         <span class="staff-role" style="color: #b90e32;">Interim Director of Sponsorship</span>
                         <div class="staff-socials">
@@ -1230,6 +1277,9 @@
                             </a>
                             <a href="https://ryanhaghi.ca" target="_blank" aria-label="Website" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - Website - Ryan Haghi'});">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.22.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                            </a>
+                            <a href="mailto:qnet@engsoc.queensu.ca" aria-label="Email qnet@engsoc.queensu.ca" title="qnet@engsoc.queensu.ca" class="staff-social-link" onclick="gtag('event', 'button_click', {'button_name': 'Team - Email - Ryan Haghi'});">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                             </a>
                         </div>
                         <div class="staff-academic">
@@ -1325,7 +1375,7 @@
         const cursorStyle = document.createElement('style');
         cursorStyle.innerHTML = `
             * { cursor: url('data:image/svg+xml;base64,${btoa(svg1)}') 12 12, auto !important; }
-            a, button, .notch-container, .staff-social-link { cursor: url('data:image/svg+xml;base64,${btoa(svg2)}') 12 12, pointer !important; }
+            a, button, .notch-container, .staff-social-link, .staff-apply-btn { cursor: url('data:image/svg+xml;base64,${btoa(svg2)}') 12 12, pointer !important; }
         `;
         document.head.appendChild(cursorStyle);
     } catch (e) {
