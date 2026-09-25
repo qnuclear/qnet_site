@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QNET | Projects</title>
-    <meta name="description" content="Explore QNET's three inaugural nuclear engineering projects: a nuclear cleanup rover, an SMR cooling system, and a gamma ray imaging system.">
+    <meta name="description" content="QNET's 2026–2027 flagship build: the SMR Cooling System, a bench-scale reactor primary loop with a mock fuel bundle, cooled passively by natural circulation.">
     <meta property="og:title" content="QNET Projects | Nuclear Engineering at Queen's University">
-    <meta property="og:description" content="See the nuclear engineering projects built by QNET students at Queen's University — from reactor design to radiation detection systems.">
+    <meta property="og:description" content="QNET's 2026–2027 flagship build: a bench-scale SMR cooling loop designed, simulated and built by Queen's University students.">
     <meta property="og:image" content="https://queensnuclear.ca/assets/White%20NET%20Full%20Logo.png">
     <meta property="og:url" content="https://queensnuclear.ca/projects">
     <meta property="og:type" content="website">
@@ -80,26 +80,9 @@
         /* projects variant */
         .nucleus-glow { --nc: rgba(185,14,50,0.5); top: 30%; right: 6%; left: auto; }
 
-        /* ── Announcement Banner ── */
-        .join-banner {
-            position: fixed; top: 0; left: 0; width: 100%; height: 40px; z-index: 1200;
-            display: flex; align-items: center; justify-content: center; gap: 0.65rem;
-            background: linear-gradient(90deg, rgba(185,14,50,0.92), rgba(0,37,82,0.92));
-            color: #fff; text-decoration: none; font-size: 0.82rem; font-weight: 500;
-            text-align: center; padding: 0 3.5rem; white-space: nowrap; overflow: hidden;
-            transition: opacity 0.3s ease;
-        }
-        .join-banner:hover { opacity: 0.9; }
-        .join-banner-text strong { color: #fabc0f; }
-        .join-banner-cta { font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #fabc0f; flex-shrink: 0; }
-        @media (max-width: 600px) {
-            .join-banner { font-size: 0.72rem; padding: 0 1rem; gap: 0.4rem; }
-            .join-banner-text { overflow: hidden; text-overflow: ellipsis; }
-        }
-
         /* ── Notch Nav ── */
         .notch-wrapper {
-            position: fixed; top: 40px; width: 100%; height: 90px; z-index: 1000;
+            position: fixed; top: 0; width: 100%; height: 90px; z-index: 1000;
             display: flex; justify-content: center; align-items: flex-start;
             padding-top: 15px; pointer-events: none;
         }
@@ -148,7 +131,7 @@
 
         /* ── Mobile Header ── */
         .mobile-header {
-            display: none; position: fixed; top: 40px; left: 0; width: 100%; height: 70px;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 70px;
             background: rgba(5,5,5,0.9); backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255,255,255,0.07);
             align-items: center; justify-content: center; z-index: 1000;
@@ -196,7 +179,7 @@
             scroll-snap-align: start; scroll-snap-stop: always;
             display: flex; flex-direction: column;
             justify-content: center; align-items: center;
-            text-align: center; padding: 140px 2rem 4rem 2rem;
+            text-align: center; padding: 100px 2rem 4rem 2rem;
             position: relative; background: transparent;
         }
 
@@ -397,11 +380,119 @@
         #back-to-top { transition: all 0.6s ease; }
         #back-to-top:hover { border-color: #fabc0f; color: #fabc0f; translate: 0 -3px; }
 
+        /* ── SMR Project ── */
+        .hero-note { font-size: 0.95rem; color: rgba(255,255,255,0.5); line-height: 1.6; max-width: 640px; margin-top: 1.75rem; }
+        .hero-note strong { color: rgba(255,255,255,0.8); font-weight: 600; }
+        .tentative-tag {
+            display: inline-block; font-size: 0.72rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.15em; color: #fabc0f;
+            border: 1px solid rgba(250,188,15,0.4); border-radius: 50px;
+            padding: 0.35rem 0.9rem; margin-bottom: 1.25rem;
+        }
+        .philosophy-grid.four { grid-template-columns: repeat(4, 1fr); max-width: 1300px; }
+        .split-layout {
+            display: grid; grid-template-columns: 1fr 1.1fr; gap: 2.5rem;
+            width: 100%; max-width: 1200px; align-items: center; text-align: left;
+        }
+        .split-layout .hero-title, .split-layout .hero-sub { text-align: left; }
+        .card-stack { display: flex; flex-direction: column; gap: 1.25rem; }
+        .card-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; width: 100%; max-width: 1200px; }
+        .glass-card {
+            background: rgba(18,18,18,0.85); backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-left: 4px solid var(--accent, #fabc0f);
+            border-radius: 22px; padding: 1.75rem 2rem; text-align: left;
+        }
+        .glass-card h3 { font-size: 1.15rem; font-weight: 600; color: #fff; margin-bottom: 0.9rem; }
+        .glass-card p { font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+        .glass-card ul, .phil-card ul { list-style: none; }
+        .glass-card li, .phil-card li {
+            position: relative; padding-left: 1.25rem; margin-bottom: 0.55rem;
+            color: rgba(255,255,255,0.7); font-size: 0.95rem; line-height: 1.55;
+        }
+        .glass-card li:last-child, .phil-card li:last-child { margin-bottom: 0; }
+        .glass-card li::before, .phil-card li::before { content: "•"; position: absolute; left: 0; color: var(--dot, var(--accent, #fabc0f)); }
+        .glass-card li strong { color: #fff; font-weight: 600; }
+        .diagram-card { padding: 1.5rem; border-left: 1px solid rgba(255,255,255,0.07); }
+        .loop-diagram { width: 100%; height: auto; display: block; }
+        .figure-card { margin: 0; padding: 1.25rem; border-left: 1px solid rgba(255,255,255,0.07); }
+        .figure-card img { width: 100%; height: auto; display: block; border-radius: 12px; }
+        .figure-card figcaption { font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.5; margin-top: 0.85rem; }
+        .step-tools { display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.35); margin: -0.4rem 0 0.9rem; }
+        .spec-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; width: 100%; max-width: 1200px; margin-bottom: 1.5rem; }
+        .spec-card { padding: 1.5rem 1.75rem; }
+        .spec-value { font-size: 2.2rem; font-weight: 700; color: #fabc0f; letter-spacing: -0.03em; line-height: 1; margin-bottom: 0.5rem; }
+        .spec-label { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.4; }
+        .card-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; width: 100%; max-width: 1200px; }
+        .fine-print { font-size: 0.88rem; color: rgba(255,255,255,0.45); line-height: 1.6; margin-top: 1.5rem; max-width: 820px; }
+
+        /* ── Timeline (shared with about.html) ── */
+        .timeline-section {
+            width: 100%; max-width: 1100px; text-align: left;
+        }
+        .timeline-track {
+            position: relative; width: 100%; height: 14px;
+            background: rgba(255,255,255,0.12); display: flex;
+            justify-content: space-between; align-items: center;
+            margin: 6.5rem 0 6rem 0; padding: 0 5%; border-radius: 8px;
+        }
+        .timeline-track::after {
+            content: ''; position: absolute; right: -24px; top: 50%; transform: translateY(-50%);
+            border-top: 24px solid transparent; border-bottom: 24px solid transparent;
+            border-left: 24px solid rgba(255,255,255,0.12);
+        }
+        .timeline-node {
+            width: 30px; height: 30px; border-radius: 50%;
+            background-color: var(--node-color); z-index: 2; cursor: pointer;
+            position: relative; transition: all 0.3s ease;
+            box-shadow: 0 0 0 4px #050505;
+        }
+        .timeline-node:hover { transform: scale(1.2); }
+        .timeline-node.active { transform: scale(1.3); box-shadow: 0 0 0 6px rgba(255,255,255,0.15), 0 0 0 4px #050505; }
+        .node-label {
+            position: absolute; white-space: nowrap; color: rgba(255,255,255,0.55);
+            font-size: 0.92rem; pointer-events: none; text-align: center;
+            transition: color 0.3s ease;
+        }
+        .timeline-node.active .node-label { color: #fff; font-weight: 500; }
+        .node-label small { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.35); margin-top: 0.2rem; }
+        .node-label.top { bottom: 44px; left: 50%; transform: translateX(-50%); }
+        .node-label.bottom { top: 44px; left: 50%; transform: translateX(-50%); }
+        .timeline-content-box {
+            background: rgba(18,18,18,0.85); backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-left: 4px solid var(--box-color, #002552);
+            border-radius: 20px; padding: 3rem 4rem;
+            text-align: left; transition: border-color 0.4s ease; min-height: 260px;
+        }
+        .timeline-content-box h3 { font-size: 2rem; color: #fff; margin-bottom: 0.5rem; font-weight: 500; }
+        .timeline-content-box h3 span { font-size: 1rem; color: rgba(255,255,255,0.35); font-weight: 300; margin-left: 10px; }
+        .timeline-content-box p.goal { font-size: 1.1rem; color: #fabc0f; margin-bottom: 2rem; font-style: italic; }
+        .timeline-content-box ul {
+            list-style: none; padding-left: 0;
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem 3rem;
+        }
+        .timeline-content-box li {
+            position: relative; padding-left: 1.5rem;
+            color: rgba(255,255,255,0.75); font-size: 1rem; line-height: 1.5;
+        }
+        .timeline-content-box li::before {
+            content: "•"; position: absolute; left: 0;
+            color: var(--box-color, #002552); font-size: 1.5rem; line-height: 1;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-content { animation: fadeIn 0.4s ease forwards; }
+
+        @media (max-width: 1100px) {
+            .philosophy-grid.four, .spec-grid { grid-template-columns: repeat(2, 1fr); }
+            .split-layout { grid-template-columns: 1fr; }
+        }
+
         /* ── Responsive ── */
         @media (max-width: 768px) {
             body { overflow: auto; }
             .vertical-slideshow { scroll-snap-type: none; height: auto; overflow: visible; }
-            .slide { scroll-snap-align: none; height: auto; min-height: 100svh; padding-top: 130px; padding-bottom: 100px; }
+            .slide { scroll-snap-align: none; height: auto; min-height: 100svh; padding-top: 90px; padding-bottom: 100px; }
             .hero-title { font-size: 2.8rem; }
             .philosophy-grid { grid-template-columns: 1fr; gap: 1rem; }
             .project-showcase { flex-direction: column; height: auto; padding: 1.5rem; gap: 1.5rem; }
@@ -414,15 +505,24 @@
             .team-details { padding: 1.25rem; overflow-y: visible; }
             .fixed-footer { display: none; }
             #back-to-top { display: none; }
+            .philosophy-grid.four, .spec-grid, .card-grid-2, .card-grid-3 { grid-template-columns: 1fr; gap: 1rem; }
+            .split-layout { gap: 1.5rem; }
+            .glass-card { padding: 1.5rem; }
+            .timeline-track {
+                height: 8px; margin: 3rem 0 5rem 0; padding: 0 5%; overflow: visible;
+            }
+            .timeline-track::after { display: none; }
+            .timeline-node { width: 22px; height: 22px; }
+            .node-label { font-size: 0.72rem; }
+            .node-label.top { bottom: 32px; }
+            .node-label.bottom { top: 32px; }
+            .node-label small { display: none; }
+            .timeline-content-box { padding: 1.5rem; min-height: auto; }
+            .timeline-content-box ul { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-
-<a href="/join" class="join-banner" onclick="gtag('event','button_click',{'button_name':'Announcement Banner - Join'});">
-    <span class="join-banner-text">Join before <strong>Sept 23</strong> to attend our General Member Meeting and vote on the project</span>
-    <span class="join-banner-cta">Join Now →</span>
-</a>
 
 <div class="global-bg">
     <div class="nebula-blob nebula-1"></div>
@@ -524,131 +624,250 @@
 
     <!-- Slide 1: Hero -->
     <section class="slide">
-        <span class="section-eyebrow reveal">2026–2027 Build Year</span>
-        <h1 class="hero-title reveal stagger-1">Our <span>Projects</span></h1>
-        <p class="hero-sub reveal stagger-2">Our executives are currently preparing the framework of three different projects, including comprehensive feasibility reports, technical risk assessments, and strict milestones for their teams. General members will vote on which project becomes QNET's inaugural build.</p>
-        <a href="/join" class="btn reveal stagger-3" onclick="gtag('event','button_click',{'button_name':'Projects - Join to Vote'});">Join the team to vote</a>
-        <p class="reveal stagger-3" style="margin-top: 1.75rem; font-size: 0.95rem; color: rgba(255,255,255,0.5); line-height: 1.6;">
-            See full technical details and per-project cost breakdowns in our
-            <a href="/packages/QNET%20Information%20Package.pdf" target="_blank" rel="noopener" style="color: #fabc0f; text-decoration: none; font-weight: 600;" onclick="gtag('event','button_click',{'button_name':'Projects - Information Package'});">Information Package →</a>
-        </p>
-        <div id="next-slide-btn" class="down-indicator">Project Charter <span>↓</span></div>
+        <span class="section-eyebrow reveal">2026–2027 Flagship Build</span>
+        <h1 class="hero-title reveal stagger-1">SMR <span>Cooling System</span></h1>
+        <span class="tentative-tag reveal stagger-1">Tentative Plan</span>
+        <p class="hero-sub reveal stagger-2">A scaled-down reactor primary loop with a mock fuel bundle: passive reactor cooling, at bench scale. Led by build team leads <a href="/teams#AidanWoods" class="inline-member-link has-tooltip" data-name="Aidan Woods" data-role="Mechanical Team Lead" data-bio="Co-conceptualized the SMR Cooling System project. Oversees hardware housing." data-img="teamphoto/Aidan.png" data-color="#002552"><strong>Aidan Woods</strong></a>, <a href="/teams#JustinHooey" class="inline-member-link has-tooltip" data-name="Justin Hooey" data-role="Research Team Lead" data-bio="Co-conceptualized the SMR Cooling System project. Establishes the scientific framework." data-img="teamphoto/justin.jpg" data-color="#ffffff"><strong>Justin Hooey</strong></a> and <a href="/teams#EllaAdair" class="inline-member-link has-tooltip" data-name="Ella Adair" data-role="Research Team Lead" data-bio="Establishing the scientific and theoretical framework for QNET projects." data-img="teamphoto/ella.jpg" data-color="#ffffff"><strong>Ella Adair</strong></a>, with a role for every sub-team.</p>
+        <a href="/join" class="btn reveal stagger-3" onclick="gtag('event','button_click',{'button_name':'Projects - Join the Build'});">Join the Build</a>
+        <p class="hero-note reveal stagger-4">Chosen by our general members at the first General Members Meeting on September 24, 2026, with <strong>38 votes</strong>, ahead of Gamma-Ray Imaging (23) and the Nuclear Cleanup Rover (12). Everything on this page is the build team's tentative plan and may change as the design matures.</p>
+        <div id="next-slide-btn" class="down-indicator">Why This Project <span>↓</span></div>
     </section>
 
-    <!-- Slide 2: Philosophy -->
+    <!-- Slide 2: Why This Project -->
     <section class="slide">
-        <span class="section-eyebrow reveal">The Framework</span>
-        <h2 class="hero-title reveal stagger-1">Project <span>Philosophy</span></h2>
-        <p class="hero-sub reveal stagger-2">All potential QNET projects must satisfy our three-pillar Project Charter before moving forward.</p>
-        <div class="philosophy-grid">
+        <span class="section-eyebrow reveal">The Case</span>
+        <h2 class="hero-title reveal stagger-1">Why This <span>Project?</span></h2>
+        <div class="philosophy-grid four">
             <div class="phil-card reveal stagger-1" style="--accent:#fabc0f;">
                 <div class="phil-number">01</div>
-                <h3>Teaches Nuclear Concepts</h3>
-                <p>Providing members with tangible, hands-on experience with nuclear physics and engineering principles.</p>
+                <h3>Real Industry Work</h3>
+                <p>Scaled loop tests are how labs and vendors check reactor cooling. The safety cases for reactors licensed in Canada depend on this kind of analysis.</p>
             </div>
             <div class="phil-card reveal stagger-2" style="--accent:#002552;">
                 <div class="phil-number">02</div>
-                <h3>Involves Multiple Disciplines</h3>
-                <p>Nuclear engineering is vastly interdisciplinary — our projects must reflect that breadth across teams.</p>
+                <h3>Topical</h3>
+                <p>SMRs like the BWRX-300 at Darlington are being built today. Passive cooling is central to their safety design.</p>
             </div>
             <div class="phil-card reveal stagger-3" style="--accent:#b90e32;">
                 <div class="phil-number">03</div>
-                <h3>Achievable Within Scope</h3>
-                <p>Scoped appropriately to be completed safely and effectively within timeline and resources by a student team.</p>
+                <h3>Every Sub-Team Has a Role</h3>
+                <p>Mech, Software, Elec, Research and Materials each own part of the loop, and every part is needed for it to work.</p>
+            </div>
+            <div class="phil-card reveal stagger-4" style="--accent:#fabc0f;">
+                <div class="phil-number">04</div>
+                <h3>Multifaceted</h3>
+                <p>The calculations, CFD and reports are useful even without the build. The build is how we check them.</p>
             </div>
         </div>
     </section>
 
-    <!-- Slide 3: Project A — Rover -->
+    <!-- Slide 3: What We're Building -->
     <section class="slide">
-        <div class="project-showcase">
-            <div class="project-static">
-                <span class="section-eyebrow">Project A</span>
-                <h3>Nuclear Cleanup Rover</h3>
-                <p>Developed and idealized with Software Team Leads <a href="/teams#GabrielBrannon" class="inline-member-link has-tooltip" data-name="Gabriel Brannon" data-role="Software Team Lead" data-bio="Co-conceptualized the Nuclear Cleanup Rover. Oversees the code stack." data-img="teamphoto/Gabe.png" data-color="#b90e32"><strong>Gabriel Brannon</strong></a> and <a href="/teams#TejasMarwaha" class="inline-member-link has-tooltip" data-name="Tejas Marwaha" data-role="Software Team Lead" data-bio="Co-conceptualized the Nuclear Cleanup Rover. Oversees device communication." data-img="teamphoto/TJ.JPG" data-color="#b90e32"><strong>Tejas Marwaha</strong></a>, the nuclear cleanup rover is a remote-control handling platform designed to replace human intervention during hazardous nuclear operations.</p>
-                <div class="project-specs">
-                    <strong>Objective:</strong> To design, model, and assemble a highly functional mobile chassis carrying a multi-jointed robotic arm capable of traversing a restricted zone, retrieving localized material, and securing it into storage.<br><br>
-                    <strong>Technical Specifications:</strong>
-                    <ul>
-                        <li>Must feature a 360-degree horizontal rotation shoulder base with vertical and horizontal elbow and wrist tracking joints.</li>
-                        <li>Must stably lift and transport targeted objects weighing between 0.25 to 1.0 kg without failure.</li>
-                        <li>Must be fully operated from a safe distance using a remote controller or dedicated web application.</li>
-                    </ul>
-                    <br>
-                    <strong>By developing this project, students actively:</strong>
-                    <ul>
-                        <li>Gain an understanding of how reactor control rods are handled, inspected and moved within automated reactor systems.</li>
-                        <li>Learn the safe transportation and storage constraints required to move nuclear fuel components.</li>
-                        <li>Develop a clear understanding of radiation detection.</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="project-interactive">
-                <div class="vertical-nodes">
-                    <div class="node-line"></div>
-                    <button class="team-node-btn active" data-project="rover" data-team="mech" data-color="#002552">
-                        <div class="node-circle" style="background-color:#002552;"></div>
-                        <span class="team-label">Mech</span>
-                    </button>
-                    <button class="team-node-btn" data-project="rover" data-team="elec" data-color="#fabc0f">
-                        <div class="node-circle" style="background-color:#fabc0f;"></div>
-                        <span class="team-label">Elec</span>
-                    </button>
-                    <button class="team-node-btn" data-project="rover" data-team="software" data-color="#b90e32">
-                        <div class="node-circle" style="background-color:#b90e32;"></div>
-                        <span class="team-label">Software</span>
-                    </button>
-                    <button class="team-node-btn" data-project="rover" data-team="research" data-color="#ffffff">
-                        <div class="node-circle" style="background-color:#ffffff;"></div>
-                        <span class="team-label">Research</span>
-                    </button>
-                    <button class="team-node-btn" data-project="rover" data-team="materials" data-color="#32a852">
-                        <div class="node-circle" style="background-color:#32a852;"></div>
-                        <span class="team-label">Materials</span>
-                    </button>
-                </div>
-                <div class="team-details" id="details-rover" style="--theme-color:#002552;">
-                    <div class="team-header-label"><span>Team Tasks &amp; Learning Outcomes</span></div>
-                    <h4 id="title-rover">Mechanical</h4>
-                    <div id="members-rover" class="team-members-container">
-                        <a href="/teams#TochukwuOdiwa" class="member-avatar has-tooltip" style="background-image:url('teamphoto/Tochi.jpeg');border-color:#002552;" data-name="Tochukwu Odiwa" data-role="Team Lead" data-bio="Co-conceptualized the Gamma Ray Imaging project. Oversees physical architecture." data-img="teamphoto/Tochi.jpeg" data-color="#002552"></a>
-                        <a href="/teams#AidanWoods" class="member-avatar has-tooltip" style="background-image:url('teamphoto/Aidan.png');border-color:#002552;" data-name="Aidan Woods" data-role="Team Lead" data-bio="Co-conceptualized the SMR Cooling System project. Oversees hardware housing." data-img="teamphoto/Aidan.png" data-color="#002552"></a>
-                    </div>
-                    <div id="desc-rover">
+        <div class="split-layout">
+            <div>
+                <span class="section-eyebrow reveal">The Build</span>
+                <h2 class="hero-title reveal stagger-1">What We're <span>Building</span></h2>
+                <div class="card-stack">
+                    <div class="glass-card reveal stagger-2" style="--accent:#fabc0f;">
                         <ul>
-                            <li>Develop advanced proficiency in CAD and additive 3D printing.</li>
-                            <li>Learn how to run computation stress, strain and load-distribution simulations.</li>
-                            <li>Gain practical experience in structural tolerance design, mechanical joint design, and end-effector gripper mechanics.</li>
+                            <li><strong>A scaled-down reactor primary loop</strong> with a mock fuel bundle.</li>
+                            <li><strong>Primary mode: passive (no pump).</strong> Hot water rises, cools, and sinks back down (natural circulation), and that alone keeps the "fuel" cool.</li>
+                            <li><strong>Backup:</strong> a pump sits on a bypass line with a check valve and only starts if the loop overheats or flow stalls.</li>
+                            <li><strong>Sensors along the loop</strong> measure temperature, flow and heater power, so we can compare test data with our calculations and simulations.</li>
                         </ul>
                     </div>
                 </div>
             </div>
+            <div class="glass-card diagram-card reveal stagger-3">
+                <svg class="loop-diagram" viewBox="0 0 432 362" role="img" aria-label="Loop diagram: a heated section (mock fuel) at the bottom left sends hot water up to an elevated reservoir and across to a cooling section on the right, 1 to 3 metres above the heater. Cooled water flows down through a low-flow meter and back along the bottom to the heater. A backup pump sits on a dashed bypass line under the bottom leg. Four thermocouples are spaced around the loop.">
+                    <!-- hot leg (red) -->
+                    <path d="M72 188 V53 H106 M207 53 H370 V101" fill="none" stroke="#b90e32" stroke-width="5" stroke-linejoin="round"/>
+                    <!-- cold leg (blue) -->
+                    <path d="M370 168 V202 M370 242 V274 H72 V265" fill="none" stroke="#6f9fd8" stroke-width="5" stroke-linejoin="round"/>
+                    <!-- backup bypass (dashed) -->
+                    <path d="M149 274 V310 H293 V274" fill="none" stroke="#8a8a96" stroke-width="3" stroke-dasharray="7 6"/>
+                    <!-- flow arrows -->
+                    <path d="M64 124 L72 110 L80 124 Z" fill="#b90e32"/>
+                    <path d="M286 45 L300 53 L286 61 Z" fill="#b90e32"/>
+                    <path d="M362 252 L370 266 L378 252 Z" fill="#6f9fd8"/>
+                    <path d="M330 266 L316 274 L330 282 Z" fill="#6f9fd8"/>
+                    <path d="M120 266 L106 274 L120 282 Z" fill="#6f9fd8"/>
+                    <!-- elevation marker -->
+                    <path d="M170 98 V172" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" stroke-dasharray="4 4"/>
+                    <path d="M164 106 L170 96 L176 106 M164 164 L170 174 L176 164" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+                    <text x="182" y="132" fill="rgba(255,255,255,0.6)" font-size="12" font-weight="600">1–3 m</text>
+                    <text x="182" y="148" fill="rgba(255,255,255,0.45)" font-size="11">elevation</text>
+                    <!-- heated section -->
+                    <rect x="29" y="188" width="86" height="77" rx="10" fill="#b90e32"/>
+                    <text x="72" y="222" fill="#fff" font-size="12" font-weight="600" text-anchor="middle">Heated</text>
+                    <text x="72" y="237" fill="#fff" font-size="12" font-weight="600" text-anchor="middle">section</text>
+                    <text x="72" y="253" fill="rgba(255,255,255,0.8)" font-size="10" text-anchor="middle">(mock fuel)</text>
+                    <!-- reservoir -->
+                    <rect x="106" y="24" width="101" height="58" rx="10" fill="#0b0b0e" stroke="#fabc0f" stroke-width="2"/>
+                    <text x="156.5" y="50" fill="#fabc0f" font-size="12" font-weight="600" text-anchor="middle">Reservoir</text>
+                    <text x="156.5" y="66" fill="rgba(250,188,15,0.75)" font-size="10" text-anchor="middle">(elevated)</text>
+                    <!-- cooling section -->
+                    <rect x="322" y="101" width="96" height="67" rx="10" fill="#002552" stroke="#6f9fd8" stroke-width="2"/>
+                    <text x="370" y="131" fill="#fff" font-size="12" font-weight="600" text-anchor="middle">Cooling</text>
+                    <text x="370" y="147" fill="#fff" font-size="12" font-weight="600" text-anchor="middle">section</text>
+                    <!-- low-flow meter -->
+                    <rect x="322" y="202" width="96" height="40" rx="10" fill="#0b1a2e" stroke="#6f9fd8" stroke-width="1.5"/>
+                    <text x="370" y="226" fill="#fff" font-size="11" text-anchor="middle">Low-flow meter</text>
+                    <!-- backup pump -->
+                    <rect x="178" y="294" width="86" height="33" rx="9" fill="#2a2a30" stroke="#8a8a96" stroke-width="1.5"/>
+                    <text x="221" y="315" fill="#fff" font-size="11" text-anchor="middle">Backup pump</text>
+                    <!-- thermocouples -->
+                    <g font-size="11" font-weight="700" text-anchor="middle">
+                        <circle cx="72.5" cy="149.5" r="12" fill="#fff"/><text x="72.5" y="153.5" fill="#0b0b0e">T</text>
+                        <circle cx="258.5" cy="53.5" r="12" fill="#fff"/><text x="258.5" y="57.5" fill="#0b0b0e">T</text>
+                        <circle cx="370" cy="185" r="12" fill="#fff"/><text x="370" y="189" fill="#0b0b0e">T</text>
+                        <circle cx="220.5" cy="274" r="12" fill="#fff"/><text x="220.5" y="278" fill="#0b0b0e">T</text>
+                    </g>
+                    <!-- legend -->
+                    <text x="216" y="354" fill="rgba(255,255,255,0.5)" font-size="11" text-anchor="middle">T = thermocouple · Red = hot · Blue = cold · Dashed = backup</text>
+                </svg>
+            </div>
         </div>
     </section>
 
-    <!-- Slide 4: Project B — SMR -->
+    <!-- Slide 4: Scope -->
+    <section class="slide">
+        <span class="section-eyebrow reveal">Keeping It Achievable</span>
+        <h2 class="hero-title reveal stagger-1"><span>Scope</span></h2>
+        <div class="split-layout">
+            <div class="card-stack">
+                <div class="glass-card reveal stagger-1" style="--accent:#6f9fd8;">
+                    <h3>In Scope</h3>
+                    <ul>
+                        <li>Mock fuel bundle / heated section</li>
+                        <li>Elevated reservoir</li>
+                        <li>Cooling (heat-rejection) section</li>
+                        <li>Backup pump on a bypass line</li>
+                        <li>Temperature, flow and power sensing</li>
+                        <li>Data logging and heater control</li>
+                        <li>E-stop, pump auto-start, heater trip</li>
+                        <li>Hand calcs, CFD and 3 reports</li>
+                    </ul>
+                </div>
+                <div class="glass-card reveal stagger-2" style="--accent:#b90e32;">
+                    <h3>Out of Scope</h3>
+                    <ul>
+                        <li>Steam generator and secondary steam cycle</li>
+                        <li>Turbine and power generation</li>
+                        <li>Real nuclear fuel or radiation</li>
+                        <li>High pressure: we stay near atmospheric</li>
+                        <li>Water above 75 °C, or any boiling</li>
+                    </ul>
+                </div>
+            </div>
+            <figure class="glass-card figure-card reveal stagger-3">
+                <img src="assets/smr-gao-diagram.jpg" alt="Diagram of a small modular reactor: the reactor core inside a reactor vessel and containment structure, with coolant circulating past a steam generator that drives a turbine and generator connected to the power grid." loading="lazy">
+                <figcaption>A full SMR, for reference. We're building the primary cooling loop around the core, not the steam generator, turbine or generator.</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <!-- Slide 5: Design, Simulate and Test -->
+    <section class="slide">
+        <span class="section-eyebrow reveal">Design Process</span>
+        <h2 class="hero-title reveal stagger-1">Design, Simulate <span>&amp; Test</span></h2>
+        <div class="philosophy-grid">
+            <div class="phil-card reveal stagger-1" style="--accent:#fabc0f;">
+                <div class="phil-number">01</div>
+                <h3>Calculations</h3>
+                <span class="step-tools">Python</span>
+                <ul>
+                    <li>Determine design parameters for CFD simulations</li>
+                    <li>Scale the loop from a CANDU / BWXT reference</li>
+                    <li>Design CAD model</li>
+                </ul>
+            </div>
+            <div class="phil-card reveal stagger-2" style="--accent:#002552; --dot:#6f9fd8;">
+                <div class="phil-number">02</div>
+                <h3>CFD Simulation</h3>
+                <span class="step-tools">Software TBD</span>
+                <ul>
+                    <li>Use industry computational fluid dynamics software to simulate the loop design</li>
+                    <li>Verify design parameter calculations</li>
+                    <li>Visualize simulation data for comparison to measurements</li>
+                </ul>
+            </div>
+            <div class="phil-card reveal stagger-3" style="--accent:#b90e32;">
+                <div class="phil-number">03</div>
+                <h3>Validate with the Loop</h3>
+                <span class="step-tools">Tools TBD</span>
+                <ul>
+                    <li>Record sensor data</li>
+                    <li>Plot test data against CFD and calculations</li>
+                    <li>Explore and explain differences from the simulation</li>
+                    <li>Generate key reports from data and simulations</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 6: The Physical Build -->
+    <section class="slide">
+        <span class="section-eyebrow reveal">Approximate Design Specifications</span>
+        <h2 class="hero-title reveal stagger-1">The Physical <span>Build</span></h2>
+        <div class="spec-grid">
+            <div class="glass-card spec-card reveal stagger-1" style="--accent:#fabc0f;">
+                <div class="spec-value">1–3 m</div>
+                <div class="spec-label">Loop elevation</div>
+            </div>
+            <div class="glass-card spec-card reveal stagger-2" style="--accent:#b90e32;">
+                <div class="spec-value">≤ 75 °C</div>
+                <div class="spec-label">Water hard cap</div>
+            </div>
+            <div class="glass-card spec-card reveal stagger-3" style="--accent:#002552;">
+                <div class="spec-value">250–500 W</div>
+                <div class="spec-label">Heater, wall outlet</div>
+            </div>
+            <div class="glass-card spec-card reveal stagger-4" style="--accent:#fabc0f;">
+                <div class="spec-value">~$1,315</div>
+                <div class="spec-label">Current BOM estimate</div>
+            </div>
+        </div>
+        <div class="card-grid-3">
+            <div class="glass-card reveal stagger-1" style="--accent:#fabc0f;">
+                <h3>Frame</h3>
+                <p>Aluminum extrusion clamped to a workbench (no drilling into the bench). The cooler sits well above the heater.</p>
+            </div>
+            <div class="glass-card reveal stagger-2" style="--accent:#002552;">
+                <h3>Piping</h3>
+                <p>3/4" modular copper, CPVC or silicone rated to at least 80 °C (not standard PVC). Wide, smooth pipe keeps friction low for passive flow.</p>
+            </div>
+            <div class="glass-card reveal stagger-3" style="--accent:#b90e32;">
+                <h3>Heater</h3>
+                <p>Resistive wire spread along the heated section, switched by a solid-state relay. Small cartridge heaters concentrate too much heat and would boil water at their surface.</p>
+            </div>
+        </div>
+        <p class="fine-print reveal stagger-4">Expect roughly +$100–200 on the BOM for a low-flow meter and a check valve. The working range is $1.5k–$3k with a better flow meter and pressure sensors. CAD, CFD and software are free. Empty weight and lab space are still to be determined.</p>
+    </section>
+
+    <!-- Slide 7: Deliverables & Sub-Teams -->
     <section class="slide">
         <div class="project-showcase">
             <div class="project-static">
-                <span class="section-eyebrow">Project B</span>
-                <h3>SMR Cooling System</h3>
-                <p>Developed and idealized by <a href="/teams#AidanWoods" class="inline-member-link has-tooltip" data-name="Aidan Woods" data-role="Mechanical Team Lead" data-bio="Co-conceptualized the SMR Cooling System project. Oversees hardware housing." data-img="teamphoto/Aidan.png" data-color="#002552"><strong>Aidan Woods</strong></a> and <a href="/teams#JustinHooey" class="inline-member-link has-tooltip" data-name="Justin Hooey" data-role="Research Team Lead" data-bio="Co-conceptualized the SMR Cooling System project. Establishes the scientific framework." data-img="teamphoto/justin.jpg" data-color="#ffffff"><strong>Justin Hooey</strong></a>, this simulates a real-world SMR cooling system equipped with a Cooling Tower.</p>
+                <span class="section-eyebrow">What We'll Deliver</span>
+                <h3>Deliverables</h3>
+                <p>Three technical reports, each owned by two sub-teams, backed by a working loop.</p>
                 <div class="project-specs">
-                    <strong>Objective:</strong> To design, model, and assemble a highly functional cooling system modeled after Small Modular Reactor (SMR) cycles to evaluate heat rejection and test the cooling system's effectiveness in simulated disasters.<br><br>
-                    <strong>Technical Specifications:</strong>
+                    <strong>Thermal-hydraulics report</strong> (Mech + Software)
                     <ul>
-                        <li>Must feature four main focus systems: a mock reactor core that generates heat, a primary convection cycle, a secondary steam cycle, and integrated control systems.</li>
-                        <li>Must operate with working fluid temperatures of 90–120°C.</li>
-                        <li>Working fluid will be non-toxic and non-flammable.</li>
-                        <li>Loop must possess proper calculations for pressure vessel limits and safety thresholds to manage potential vacuum or over-pressure safety hazards.</li>
+                        <li>Passive flow rate, pressure drop and heat transfer, with CFD checked against test data. Also covers passive vs. pumped operation.</li>
+                    </ul>
+                    <strong>Reactor physics report</strong> (Research + Mech)
+                    <ul>
+                        <li>Heat generated in the fuel bundle, including traditional CANDU fuel and reprocessed fuel mixes, and how that maps to our heater power.</li>
+                    </ul>
+                    <strong>Safety &amp; control systems report</strong> (Elec + Software)
+                    <ul>
+                        <li>Temperature limits, backup-pump auto-start, heater trip and emergency stop.</li>
                     </ul>
                     <br>
-                    <strong>By developing this project, students actively:</strong>
-                    <ul>
-                        <li>Develop an understanding of real-world reactor operations.</li>
-                        <li>Gain an understanding of power generation cycles.</li>
-                        <li>Learn real-world reactor operational anomalies and power-less accident scenarios.</li>
-                    </ul>
+                    <strong>Plus:</strong> full CAD model, working test loop, and a data acquisition system.<br><br>
+                    <strong>Select a sub-team to see its role →</strong>
                 </div>
             </div>
             <div class="project-interactive">
@@ -676,7 +895,7 @@
                     </button>
                 </div>
                 <div class="team-details" id="details-smr" style="--theme-color:#002552;">
-                    <div class="team-header-label"><span>Team Tasks &amp; Learning Outcomes</span></div>
+                    <div class="team-header-label"><span>Sub-Team Roles</span></div>
                     <h4 id="title-smr">Mechanical</h4>
                     <div id="members-smr" class="team-members-container">
                         <a href="/teams#TochukwuOdiwa" class="member-avatar has-tooltip" style="background-image:url('teamphoto/Tochi.jpeg');border-color:#002552;" data-name="Tochukwu Odiwa" data-role="Team Lead" data-bio="Co-conceptualized the Gamma Ray Imaging project. Oversees physical architecture." data-img="teamphoto/Tochi.jpeg" data-color="#002552"></a>
@@ -684,9 +903,9 @@
                     </div>
                     <div id="desc-smr">
                         <ul>
-                            <li>Develop advanced proficiency in CAD, parametric assemblies, and technical drawings.</li>
-                            <li>Learn how to calculate safety thresholds, pressure vessel limits, and structural geometries for high-temperature piping systems.</li>
-                            <li>Gain practical experience in scaling multi-loop fluid convection geometries using lightweight rapid-prototyping materials.</li>
+                            <li>CAD of the loop and frame in Onshape.</li>
+                            <li>Fabricate and assemble piping, reservoir and heat-transfer surfaces.</li>
+                            <li>Thermal-hydraulic CFD with Software.</li>
                         </ul>
                     </div>
                 </div>
@@ -694,75 +913,122 @@
         </div>
     </section>
 
-    <!-- Slide 5: Project C — Gamma -->
+    <!-- Slide 8: Safety & Success Conditions -->
     <section class="slide">
-        <div class="project-showcase">
-            <div class="project-static">
-                <span class="section-eyebrow">Project C</span>
-                <h3>Gamma Ray Imaging</h3>
-                <p>Developed and idealized by <a href="/teams#TochukwuOdiwa" class="inline-member-link has-tooltip" data-name="Tochukwu Odiwa" data-role="Mechanical Team Lead" data-bio="Co-conceptualized the Gamma Ray Imaging project. Oversees physical architecture." data-img="teamphoto/Tochi.jpeg" data-color="#002552"><strong>Tochukwu Odiwa</strong></a> and <a href="/teams#ArsalanVahidi" class="inline-member-link has-tooltip" data-name="Arsalan Vahidi" data-role="Electrical Team Lead" data-bio="Co-conceptualized the Gamma Ray Imaging project. Oversees circuitry development." data-img="teamphoto/arsalan.jpg" data-color="#fabc0f"><strong>Arsalan Vahidi</strong></a>, this aims to build a scaled-down, low-cost medical imaging prototype based on the mechanisms of a PET scan.</p>
-                <div class="project-specs">
-                    <strong>Objective:</strong> To design, model, and assemble a Gamma Ray Imaging system able to pinpoint the exact location where radiation originated from in 3D space.<br><br>
-                    <strong>Technical Specifications:</strong>
-                    <ul>
-                        <li>Utilizes two identical detector sets with a BGO crystal array to convert incoming gamma rays from a decaying thoriated tungsten rod to a faint spark of light, and semiconductors to convert the light into an electrical pulse.</li>
-                        <li>The system must be enclosed in a box to prevent light leaking in.</li>
-                        <li>The system must precisely map out detector coordinates to calculate and draw intersecting vectors (lines of response), generating a reconstructed 3D image.</li>
-                    </ul>
-                    <br>
-                    <strong>By developing this project, students actively:</strong>
-                    <ul>
-                        <li>Gain an understanding of the physics behind positron decay.</li>
-                        <li>Learn how the nuclear industry maps radiation beyond basic Geiger counters.</li>
-                        <li>Study quantum mechanisms such as the photoelectric effect and Compton scattering.</li>
-                        <li>Gain experience with natural decay chains and basic radiation safety using thoriated tungsten welding rods.</li>
-                    </ul>
-                </div>
+        <span class="section-eyebrow reveal">Yes, We Care About You</span>
+        <h2 class="hero-title reveal stagger-1">Safety <span>&amp; Success</span></h2>
+        <div class="card-grid-2">
+            <div class="glass-card reveal stagger-1" style="--accent:#b90e32;">
+                <h3>Safety</h3>
+                <ul>
+                    <li><strong>Layered temperature limits.</strong> Run at 60 °C or below. Backup pump starts at 65 °C, heater trips at 75 °C. Avoid creating steam.</li>
+                    <li><strong>Heater surface.</strong> Heat spread out so the surface stays under 95 °C, with a hardware thermal cutoff.</li>
+                    <li><strong>Near-atmospheric pressure.</strong> A vented reservoir absorbs the ~2.5% thermal expansion. Tubing is rated to at least 80 °C.</li>
+                    <li><strong>Emergency stop.</strong> A physical E-stop cuts the heater. Passive flow keeps cooling it with no power needed.</li>
+                    <li><strong>Electrical.</strong> SSR-switched heater and pump, fused circuits, and electronics enclosed away from water.</li>
+                    <li><strong>Burns &amp; procedures.</strong> Hot sections marked, gloves on, and a written safety plan used at every test.</li>
+                </ul>
             </div>
-            <div class="project-interactive">
-                <div class="vertical-nodes">
-                    <div class="node-line"></div>
-                    <button class="team-node-btn active" data-project="gamma" data-team="mech" data-color="#002552">
-                        <div class="node-circle" style="background-color:#002552;"></div>
-                        <span class="team-label">Mech</span>
-                    </button>
-                    <button class="team-node-btn" data-project="gamma" data-team="elec" data-color="#fabc0f">
-                        <div class="node-circle" style="background-color:#fabc0f;"></div>
-                        <span class="team-label">Elec</span>
-                    </button>
-                    <button class="team-node-btn" data-project="gamma" data-team="software" data-color="#b90e32">
-                        <div class="node-circle" style="background-color:#b90e32;"></div>
-                        <span class="team-label">Software</span>
-                    </button>
-                    <button class="team-node-btn" data-project="gamma" data-team="research" data-color="#ffffff">
-                        <div class="node-circle" style="background-color:#ffffff;"></div>
-                        <span class="team-label">Research</span>
-                    </button>
-                    <button class="team-node-btn" data-project="gamma" data-team="materials" data-color="#32a852">
-                        <div class="node-circle" style="background-color:#32a852;"></div>
-                        <span class="team-label">Materials</span>
-                    </button>
-                </div>
-                <div class="team-details" id="details-gamma" style="--theme-color:#002552;">
-                    <div class="team-header-label"><span>Team Tasks &amp; Learning Outcomes</span></div>
-                    <h4 id="title-gamma">Mechanical</h4>
-                    <div id="members-gamma" class="team-members-container">
-                        <a href="/teams#TochukwuOdiwa" class="member-avatar has-tooltip" style="background-image:url('teamphoto/Tochi.jpeg');border-color:#002552;" data-name="Tochukwu Odiwa" data-role="Team Lead" data-bio="Co-conceptualized the Gamma Ray Imaging project. Oversees physical architecture." data-img="teamphoto/Tochi.jpeg" data-color="#002552"></a>
-                        <a href="/teams#AidanWoods" class="member-avatar has-tooltip" style="background-image:url('teamphoto/Aidan.png');border-color:#002552;" data-name="Aidan Woods" data-role="Team Lead" data-bio="Co-conceptualized the SMR Cooling System project. Oversees hardware housing." data-img="teamphoto/Aidan.png" data-color="#002552"></a>
-                    </div>
-                    <div id="desc-gamma">
-                        <ul>
-                            <li>Develop advanced proficiency in CAD in developing a light-tight enclosure.</li>
-                            <li>Learn how to run computation stress, strain and load-distribution simulations.</li>
-                            <li>Gain practical experience in structural tolerance design and mechanical joint design.</li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="glass-card reveal stagger-2" style="--accent:#fabc0f;">
+                <h3>Success Conditions</h3>
+                <ul>
+                    <li><strong>Passive circulation.</strong> Removes full heater power with no pump. This is the normal mode.</li>
+                    <li><strong>Backup pump failover.</strong> Pump starts automatically when the 65 °C limit is hit.</li>
+                    <li><strong>Within limits.</strong> Hot leg at or below 60 °C, heater surface below 95 °C, no boiling.</li>
+                    <li><strong>100% leak-free.</strong> No leaks at operating temperature.</li>
+                    <li><strong>1 reading / second.</strong> Temperature, pressure and flow logged continuously.</li>
+                    <li><strong>Safety plan in use.</strong> Reports and procedures used during every test.</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <!-- Slide 6: Materials Studies — independent Materials sub-team research -->
+    <!-- Slide 9: Timeline -->
+    <section class="slide">
+        <div class="timeline-section">
+            <span class="section-eyebrow reveal">Tentative · October to March</span>
+            <h2 class="hero-title reveal stagger-1" style="margin-bottom:0;">The <span>Timeline</span></h2>
+
+            <div class="timeline-track">
+                <div class="timeline-node active" data-target="onboarding" style="--node-color:#002552;">
+                    <span class="node-label top">Onboarding<br><small>Oct</small></span>
+                </div>
+                <div class="timeline-node" data-target="design" style="--node-color:#fabc0f;">
+                    <span class="node-label bottom">Calcs &amp; CAD<br><small>Oct – Nov</small></span>
+                </div>
+                <div class="timeline-node" data-target="freeze" style="--node-color:#b90e32;">
+                    <span class="node-label top">Design Freeze<br><small>Nov</small></span>
+                </div>
+                <div class="timeline-node" data-target="fabrication" style="--node-color:#002552;">
+                    <span class="node-label bottom">Fabrication<br><small>Jan</small></span>
+                </div>
+                <div class="timeline-node" data-target="assembly" style="--node-color:#fabc0f;">
+                    <span class="node-label top">Assembly<br><small>Feb</small></span>
+                </div>
+                <div class="timeline-node" data-target="integration" style="--node-color:#b90e32;">
+                    <span class="node-label bottom">Testing &amp; Reports<br><small>Mar</small></span>
+                </div>
+            </div>
+
+            <div class="timeline-content-box" id="timeline-content" style="--box-color:#002552;"></div>
+        </div>
+    </section>
+
+    <!-- Slide 10: Learning Opportunities -->
+    <section class="slide">
+        <span class="section-eyebrow reveal">What You'll Take Away</span>
+        <h2 class="hero-title reveal stagger-1">Learning <span>Opportunities</span></h2>
+        <div class="split-layout" style="align-items:stretch;">
+            <div class="glass-card reveal stagger-1" style="--accent:#fabc0f;">
+                <h3>What You'll Learn</h3>
+                <ul>
+                    <li>CAD in Onshape, plus design for manufacturing (tolerances, 3D-print fits)</li>
+                    <li>Fluid mechanics: natural circulation, head loss, pumps</li>
+                    <li>Heat transfer and heat exchanger basics</li>
+                    <li>Scaling a real system down to lab size, and why that's hard</li>
+                    <li>CFD with OpenFOAM and ParaView</li>
+                    <li>Python data acquisition on a Raspberry Pi</li>
+                    <li>Control and safety circuits: SSRs, fuses, LTspice</li>
+                </ul>
+            </div>
+            <div class="glass-card reveal stagger-2" style="--accent:#002552; --dot:#6f9fd8;">
+                <h3>Scaling Up If We Have the Budget</h3>
+                <ul>
+                    <li>More and better sensors, including pressure</li>
+                    <li>Simulate loss-of-power accidents</li>
+                    <li>Emergency core cooling injection</li>
+                    <li>A second, actively cooled loop</li>
+                    <li>Test different fuel-mix heat profiles</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 11: Philosophy -->
+    <section class="slide">
+        <span class="section-eyebrow reveal">The Framework</span>
+        <h2 class="hero-title reveal stagger-1">Project <span>Philosophy</span></h2>
+        <p class="hero-sub reveal stagger-2">All potential QNET projects must satisfy our three-pillar Project Charter before moving forward.</p>
+        <div class="philosophy-grid">
+            <div class="phil-card reveal stagger-1" style="--accent:#fabc0f;">
+                <div class="phil-number">01</div>
+                <h3>Teaches Nuclear Concepts</h3>
+                <p>Providing members with tangible, hands-on experience with nuclear physics and engineering principles.</p>
+            </div>
+            <div class="phil-card reveal stagger-2" style="--accent:#002552;">
+                <div class="phil-number">02</div>
+                <h3>Involves Multiple Disciplines</h3>
+                <p>Nuclear engineering is vastly interdisciplinary — our projects must reflect that breadth across teams.</p>
+            </div>
+            <div class="phil-card reveal stagger-3" style="--accent:#b90e32;">
+                <div class="phil-number">03</div>
+                <h3>Achievable Within Scope</h3>
+                <p>Scoped appropriately to be completed safely and effectively within timeline and resources by a student team.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 12: Materials Studies — independent Materials sub-team research -->
     <section class="slide" id="materials">
         <div class="project-showcase">
             <div class="project-static">
@@ -845,7 +1111,7 @@
         const cursorStyle = document.createElement('style');
         cursorStyle.innerHTML = `
             * { cursor: url('data:image/svg+xml;base64,${btoa(svg1)}') 12 12, auto !important; }
-            a, button, .btn, .team-node-btn, .member-avatar, .down-indicator, .inline-member-link { cursor: url('data:image/svg+xml;base64,${btoa(svg2)}') 12 12, pointer !important; }
+            a, button, .btn, .team-node-btn, .timeline-node, .member-avatar, .down-indicator, .inline-member-link { cursor: url('data:image/svg+xml;base64,${btoa(svg2)}') 12 12, pointer !important; }
         `;
         document.head.appendChild(cursorStyle);
     } catch (e) {
@@ -1020,26 +1286,12 @@
     }
 
     const teamContent = {
-        rover: {
-            mech: { title: "Mechanical", desc: "<ul><li>Develop advanced proficiency in CAD and additive 3D printing.</li><li>Learn how to run computation stress, strain and load-distribution simulations.</li><li>Gain practical experience in structural tolerance design, mechanical joint design, and end-effector gripper mechanics.</li></ul>" },
-            elec: { title: "Electrical", desc: "<ul><li>Learn how to map custom schematics into PCBs.</li><li>Understand voltage regulation and basic power architecture.</li><li>Gain experience in electrical safety, noise isolation and emergency power cutoffs.</li></ul>" },
-            software: { title: "Software & Comp", desc: "<ul><li>Write low-latency control logic in either C (microcontrollers) or Python (microprocessors).</li><li>Learn and implement advanced forward and inverse kinematics math equations.</li><li>Design off-site UI via software apps or web platforms (IoT).</li></ul>" },
-            research: { title: "Research", desc: "<ul><li>Draft formal roadmaps to evaluate the rover's scalability.</li><li>Create engineering reviews that compare our rover's design and metrics against real-world nuclear robotics.</li><li>Write case studies on how automated logic vs manual control is utilized during containment failures.</li></ul>" },
-            materials: { title: "Materials", desc: "<ul><li>Model the mechanical stress, wear and thermal degradation profiles of different structural mediums over long-term operations.</li><li>Research and analyze safe substitute materials to predict how the physical arm would react if it were handling real structural reactor components.</li></ul>" }
-        },
         smr: {
-            mech: { title: "Mechanical", desc: "<ul><li>Develop advanced proficiency in CAD, parametric assemblies, and technical drawings.</li><li>Learn how to calculate safety thresholds, pressure vessel limits, and structural geometries for high-temperature piping systems.</li><li>Gain practical experience in scaling multi-loop fluid convection geometries using lightweight rapid-prototyping materials.</li></ul>" },
-            elec: { title: "Electrical", desc: "<ul><li>Learn how to map complex power layouts and custom hardware schematics into prototypes.</li><li>Understand voltage regulation and basic power architecture.</li><li>Gain experience in sensor wiring and safe electrical practices.</li></ul>" },
-            software: { title: "Software & Comp", desc: "<ul><li>Write control software to track real-time system temperatures, pressures, and other parameters.</li><li>Learn and implement automated safety logic to handle simulated operational anomalies.</li><li>Design UI and sensor integration to monitor the system.</li></ul>" },
-            research: { title: "Research", desc: "<ul><li>Draft formal proposals evaluating the effectiveness of the design.</li><li>Create engineering reviews that compare our student-scale loop against active SMR cycles.</li><li>Write case studies analyzing real-world incidents and how they could have been handled better.</li></ul>" },
-            materials: { title: "Materials", desc: "<ul><li>Model the structural integrity of scaled pressure vessel mockups.</li><li>Research non-toxic, non-flammable working fluids to find the most optimal profile.</li><li>Predict material degradation profiles under operating conditions.</li></ul>" }
-        },
-        gamma: {
-            mech: { title: "Mechanical", desc: "<ul><li>Develop advanced proficiency in CAD in developing a light-tight enclosure.</li><li>Learn how to run computation stress, strain and load-distribution simulations.</li><li>Gain practical experience in structural tolerance design and mechanical joint design.</li></ul>" },
-            elec: { title: "Electrical", desc: "<ul><li>Master Transimpedance Amplifier circuits to convert small signals into readable voltages from the semiconductors.</li><li>Learn how to build a circuit that actively filters out noise.</li><li>Learn how to design, lay out and order a custom PCB that integrates the sensors, amplifiers and power sources.</li></ul>" },
-            software: { title: "Software & Comp", desc: "<ul><li>Understand and utilize Field-Programmable Gate Arrays (FPGA) instead of basic Arduino.</li><li>Learn and implement high-speed clocks to time-stamp incoming pulses at the nanosecond.</li><li>Write scripts to handle spatial data processing, using linear algebra and trigonometry to calculate the LOR and convert them to a rendered 3D Image.</li></ul>" },
-            research: { title: "Research", desc: "<ul><li>Compare the differences between a BGO crystal and a LYSO crystal.</li><li>Investigate the mathematical scalability of the project to create a circular ring assembly similar to real-world PET scans.</li></ul>" },
-            materials: { title: "Materials", desc: "<ul><li>Explore how prolonged exposure to gamma radiation causes the semiconductors to misbehave (bit flips).</li><li>Investigate how to use thermal healing principles to reverse these effects caused by radiation.</li></ul>" }
+            mech: { title: "Mechanical", desc: "<ul><li>CAD of the loop and frame in Onshape.</li><li>Fabricate and assemble piping, reservoir and heat-transfer surfaces.</li><li>Thermal-hydraulic CFD with Software.</li></ul>" },
+            elec: { title: "Electrical", desc: "<ul><li>Heater and backup-pump circuits with SSR control.</li><li>Hardware safety: E-stop, fuses, thermal cutoff.</li><li>Keep all electronics isolated from water.</li></ul>" },
+            software: { title: "Software & Comp", desc: "<ul><li>Raspberry Pi data acquisition in Python.</li><li>Read temperature, flow and pressure sensors together.</li><li>Logic that starts the backup pump and trips the heater.</li></ul>" },
+            research: { title: "Research", desc: "<ul><li>Scale real reactor behaviour down to the loop.</li><li>Calculate target heater power.</li><li>Model fuel-bundle heating (CANDU / reprocessed).</li></ul>" },
+            materials: { title: "Materials", desc: "<ul><li>Tubing and fittings rated to at least 80 °C (no standard PVC).</li><li>Heater choice that keeps surface heat flux low.</li><li>Set max temperature limits.</li></ul>" }
         },
         matstudies: {
             ions: { title: "Ion Surrogates for Neutron Radiation Damage", desc: "<p>This track compares the difference in neutron beams and ion beams in both their recoil spectra and energy deposition partitioning. By comparing which locally-available ions produce spectra and energy-partitioning profiles that most closely mimic real neutron damage, researchers can identify better surrogates for running more accurate experiments with ions rather than neutrons — which are harder to use precisely, as they carry no charge. Our team plans to utilize SRIM simulations, as it is uniquely suited for capturing the recoil spectra and doesn't require any physical experiments aside from experimental validation.</p>" },
@@ -1067,6 +1319,69 @@
             titleEl.style.color = color;
         });
     });
+
+    // Timeline (tentative build plan)
+    const timelineData = {
+        onboarding: {
+            title: "Onboarding &amp; Component Selection", subtitle: "October",
+            goal: "Semester 1: design",
+            tasks: ["Crash courses", "Readings", "Pick core hardware"],
+            color: "#002552"
+        },
+        design: {
+            title: "Calcs, CAD &amp; Simulation", subtitle: "October – November",
+            goal: "Semester 1: design",
+            tasks: ["Calculations", "Loop CAD", "CFD setup", "Tolerances"],
+            color: "#fabc0f"
+        },
+        freeze: {
+            title: "Design Freeze &amp; Ordering", subtitle: "November",
+            goal: "Semester 1: design",
+            tasks: ["Lock CAD and interfaces", "Order parts"],
+            color: "#b90e32"
+        },
+        fabrication: {
+            title: "Fabrication", subtitle: "January",
+            goal: "Semester 2: build &amp; test",
+            tasks: ["3D print and machine parts", "Build frame"],
+            color: "#002552"
+        },
+        assembly: {
+            title: "Assembly &amp; Leak Testing", subtitle: "February",
+            goal: "Semester 2: build &amp; test",
+            tasks: ["Assemble loop", "Leak test", "First passive-flow shakedown"],
+            color: "#fabc0f"
+        },
+        integration: {
+            title: "Integration, Testing &amp; Reports", subtitle: "March",
+            goal: "Semester 2: build &amp; test",
+            tasks: ["Passive-flow and pump-failover tests", "Then the 3 reports"],
+            color: "#b90e32"
+        }
+    };
+
+    const timelineBox = document.getElementById('timeline-content');
+    const timelineNodes = document.querySelectorAll('.timeline-node');
+
+    function updateTimeline(targetId, track) {
+        const data = timelineData[targetId];
+        const tasksHtml = data.tasks.map(t => `<li>${t}</li>`).join('');
+        timelineBox.style.setProperty('--box-color', data.color);
+        timelineBox.innerHTML = '';
+        setTimeout(() => {
+            timelineBox.innerHTML = `<div class="fade-content"><h3>${data.title} <span>${data.subtitle}</span></h3><p class="goal">${data.goal}</p><ul>${tasksHtml}</ul></div>`;
+        }, 10);
+        if (track) gtag('event','button_click',{'button_name':'Projects Timeline - ' + targetId});
+    }
+
+    timelineNodes.forEach(node => {
+        node.addEventListener('click', function() {
+            timelineNodes.forEach(n => n.classList.remove('active'));
+            this.classList.add('active');
+            updateTimeline(this.dataset.target, true);
+        });
+    });
+    updateTimeline('onboarding', false);
 
     // Tooltip
     const tooltip = document.getElementById('global-tooltip');
