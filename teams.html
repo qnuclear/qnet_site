@@ -768,6 +768,126 @@
         #back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
         #back-to-top:hover { border-color: #fabc0f; color: #fabc0f; translate: 0 -3px; }
 
+        /* --- SECTION NAVIGATOR ---
+           Desktop (mouse, >1100px): a quiet tick rail on the right edge that opens into
+           labels on hover. Touch / tablet / phone: a small pill at the bottom showing the
+           current section; tapping it opens a glass sheet of every section. */
+        .section-rail { display: none; position: fixed; right: 1.1rem; top: 50%; transform: translateY(-50%); z-index: 99; }
+        .section-rail ol {
+            list-style: none; position: relative; isolation: isolate;
+            display: flex; flex-direction: column; gap: 0.3rem;
+            padding: 1rem 0.85rem;
+            animation: railIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 1.4s both;
+        }
+        .section-rail ol::before {
+            content: ''; position: absolute; inset: 0; z-index: -1;
+            background: rgba(18, 18, 18, 0.85); backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.07); border-radius: 22px;
+            opacity: 0; transform: scaleX(0.6); transform-origin: right center;
+            transition: opacity 0.45s ease, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .section-rail:hover ol::before, .section-rail:focus-within ol::before { opacity: 1; transform: none; }
+        .rail-link {
+            display: flex; align-items: center; justify-content: flex-end; gap: 0.9rem;
+            height: 22px; text-decoration: none; outline: none;
+        }
+        .rail-label {
+            font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.5); white-space: nowrap;
+            opacity: 0; transform: translateX(10px);
+            transition: opacity 0.35s ease, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+        }
+        .section-rail:hover .rail-label, .section-rail:focus-within .rail-label {
+            opacity: 1; transform: none; transition-delay: calc(var(--i) * 28ms), calc(var(--i) * 28ms), 0s;
+        }
+        .rail-link:hover .rail-label, .rail-link:focus-visible .rail-label { color: #fff; }
+        .rail-link.active .rail-label { color: var(--c); }
+        .rail-tick {
+            flex-shrink: 0; width: 12px; height: 2px; border-radius: 2px;
+            background: rgba(255,255,255,0.22);
+            transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease, box-shadow 0.4s ease;
+        }
+        .rail-link:hover .rail-tick, .rail-link:focus-visible .rail-tick { width: 18px; background: rgba(255,255,255,0.6); }
+        .rail-link.active .rail-tick {
+            width: 28px; background: var(--c);
+            box-shadow: 0 0 12px color-mix(in srgb, var(--c) 55%, transparent);
+        }
+        @keyframes railIn {
+            0% { opacity: 0; transform: translateX(12px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        .section-pill-wrap {
+            display: none; position: fixed; left: 50%; z-index: 99;
+            bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+            transform: translate(-50%, 160%); opacity: 0; pointer-events: none;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+        }
+        .section-pill-wrap.visible { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
+        .section-pill {
+            display: flex; align-items: center; gap: 0.65rem;
+            padding: 0.75rem 1.15rem; border-radius: 50px;
+            background: rgba(18, 18, 18, 0.85); backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+            color: #fff; font-family: inherit; font-size: 0.74rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap;
+            -webkit-tap-highlight-color: transparent;
+            transition: border-color 0.4s ease;
+        }
+        .section-pill-wrap.open .section-pill { border-color: color-mix(in srgb, var(--c, #fabc0f) 45%, transparent); }
+        .pill-dot {
+            width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
+            background: var(--c, #fabc0f); box-shadow: 0 0 10px var(--c, #fabc0f);
+            transition: background-color 0.4s ease, box-shadow 0.4s ease;
+        }
+        .pill-label { display: inline-block; transition: opacity 0.18s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .pill-label.swap { opacity: 0; transform: translateY(6px); }
+        .pill-count { color: rgba(255,255,255,0.35); font-variant-numeric: tabular-nums; letter-spacing: 0.06em; }
+        .pill-chevron { width: 12px; height: 12px; fill: none; stroke: rgba(255,255,255,0.5); stroke-width: 2.5; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .section-pill-wrap.open .pill-chevron { transform: rotate(180deg); }
+        .section-sheet {
+            position: absolute; left: 50%; bottom: calc(100% + 0.65rem);
+            width: min(270px, calc(100vw - 32px));
+            max-height: calc(100svh - 170px); overflow-y: auto; overscroll-behavior: contain;
+            padding: 0.5rem; border-radius: 22px;
+            background: rgba(18, 18, 18, 0.92); backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.07);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            opacity: 0; pointer-events: none; visibility: hidden;
+            transform: translate(-50%, 12px) scale(0.96); transform-origin: bottom center;
+            transition: opacity 0.35s ease, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.55s;
+        }
+        .section-pill-wrap.open .section-sheet {
+            opacity: 1; pointer-events: auto; visibility: visible; transform: translate(-50%, 0) scale(1);
+            transition: opacity 0.35s ease, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s;
+        }
+        .sheet-link {
+            display: flex; align-items: center; gap: 0.8rem;
+            padding: 0.7rem 0.9rem; border-radius: 14px;
+            color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.92rem; font-weight: 500;
+            -webkit-tap-highlight-color: transparent;
+            opacity: 0; transform: translateY(8px);
+            transition: opacity 0.3s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, color 0.3s ease;
+        }
+        .section-pill-wrap.open .sheet-link { opacity: 1; transform: none; transition-delay: calc(var(--i) * 25ms), calc(var(--i) * 25ms), 0s, 0s; }
+        .sheet-link:active { background: rgba(255,255,255,0.06); }
+        .sheet-link.active { color: #fff; background: rgba(255,255,255,0.05); }
+        .sheet-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; background: rgba(255,255,255,0.2); transition: background-color 0.3s ease, box-shadow 0.3s ease; }
+        .sheet-link.active .sheet-dot { background: var(--c); box-shadow: 0 0 8px var(--c); }
+
+        @media (min-width: 1101px) and (hover: hover) and (pointer: fine) {
+            .section-rail { display: block; }
+            .slide { padding-left: 4.5rem; padding-right: 4.5rem; }
+        }
+        @media (max-width: 1100px), (hover: none), (pointer: coarse) {
+            .section-pill-wrap { display: block; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .section-rail ol { animation: none; }
+            .section-rail *, .section-rail ol::before, .section-pill-wrap, .section-pill-wrap * { transition-duration: 0.01ms !important; transition-delay: 0s !important; }
+        }
+
         /* --- RESPONSIVE --- */
         @media (max-width: 1200px) {
             .staff-card { width: calc(50% - 1.5rem); min-width: 320px; }
@@ -908,7 +1028,7 @@
 <main class="vertical-slideshow">
 
     <!-- SLIDE 1: HERO -->
-    <section class="slide">
+    <section class="slide" id="overview" data-nav="Overview" data-nav-color="#ffffff">
         <div class="hero-content">
             <span class="hero-eyebrow">Queen's Nuclear Engineering Team · 2026–2027</span>
             <h1 class="hero-title">Meet the Teams</h1>
@@ -919,7 +1039,7 @@
     </section>
 
     <!-- SLIDE 2: MECHANICAL TEAM -->
-    <section class="slide">
+    <section class="slide" id="mechanical" data-nav="Mechanical" data-nav-color="#fabc0f">
         <div class="slide-content">
             <span class="section-eyebrow">Technical Division</span>
             <h2>Mechanical Team</h2>
@@ -974,7 +1094,7 @@
     </section>
 
     <!-- SLIDE 3: ELECTRICAL TEAM -->
-    <section class="slide">
+    <section class="slide" id="electrical" data-nav="Electrical" data-nav-color="#fabc0f">
         <div class="slide-content">
             <span class="section-eyebrow">Technical Division</span>
             <h2>Electrical Team</h2>
@@ -1027,7 +1147,7 @@
     </section>
 
     <!-- SLIDE 4: SOFTWARE TEAM -->
-    <section class="slide">
+    <section class="slide" id="software" data-nav="Software" data-nav-color="#fabc0f">
         <div class="slide-content">
             <span class="section-eyebrow">Technical Division</span>
             <h2>Software Team</h2>
@@ -1080,7 +1200,7 @@
     </section>
 
     <!-- SLIDE 5: RESEARCH TEAM -->
-    <section class="slide">
+    <section class="slide" id="research" data-nav="Research" data-nav-color="#fabc0f">
         <div class="slide-content">
             <span class="section-eyebrow">Technical Division</span>
             <h2>Research Team</h2>
@@ -1133,7 +1253,7 @@
     </section>
 
     <!-- SLIDE 6: MATERIALS TEAM -->
-    <section class="slide">
+    <section class="slide" id="materials" data-nav="Materials" data-nav-color="#fabc0f">
         <div class="slide-content">
             <span class="section-eyebrow">Technical Division</span>
             <h2>Materials Team</h2>
@@ -1170,7 +1290,7 @@
     </section>
 
     <!-- SLIDE 7: OUR DIRECTORS -->
-    <section class="slide">
+    <section class="slide" id="directors" data-nav="Directors" data-nav-color="#b90e32">
         <div class="slide-content">
             <span class="section-eyebrow" style="color: #b90e32;">Operations</span>
             <h2>Our Directors</h2>
@@ -1272,7 +1392,7 @@
     </section>
 
     <!-- SLIDE 8: LEADERSHIP -->
-    <section class="slide">
+    <section class="slide" id="leadership" data-nav="Leadership" data-nav-color="#6699cc">
         <div class="slide-content">
             <span class="section-eyebrow">Founding Leadership</span>
             <h2>Leadership</h2>
@@ -1312,7 +1432,7 @@
     </section>
 
     <!-- SLIDE 9: ADVISORS -->
-    <section class="slide">
+    <section class="slide" id="advisors" data-nav="Advisors" data-nav-color="#6699cc">
         <div class="slide-content">
             <span class="section-eyebrow">Guidance</span>
             <h2>Advisors</h2>
@@ -1344,7 +1464,7 @@
     </section>
 
     <!-- SLIDE 10: FACULTY ADVISOR -->
-    <section class="slide">
+    <section class="slide" id="faculty-advisor" data-nav="Faculty Advisor" data-nav-color="#fabc0f">
         <div class="slide-content">
             <span class="section-eyebrow">Academic Guidance</span>
             <h2>Faculty Advisor</h2>
@@ -1387,6 +1507,18 @@
     </section>
 
 </main>
+
+<!-- SECTION NAVIGATOR (built from the slides' data-nav attributes) -->
+<nav class="section-rail" aria-label="Page sections"><ol></ol></nav>
+<div class="section-pill-wrap">
+    <div class="section-sheet" id="section-sheet"></div>
+    <button class="section-pill" aria-expanded="false" aria-controls="section-sheet" aria-label="Jump to section">
+        <span class="pill-dot"></span>
+        <span class="pill-label">Overview</span>
+        <span class="pill-count">01/10</span>
+        <svg class="pill-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>
+    </button>
+</div>
 
 <footer class="site-footer">
     <a href="https://www.linkedin.com/company/queensnuclear/" target="_blank" class="social-link" onclick="gtag('event', 'button_click', {'button_name': 'Social - LinkedIn'});">
@@ -1569,6 +1701,73 @@
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         document.querySelectorAll('.logo-orbits .qlo-layer').forEach(qloSvg => qloSvg.pauseAnimations());
     }
+
+    // Section Navigator: desktop rail + touch pill/sheet, both built from the slides.
+    const navSlides = Array.from(document.querySelectorAll('.vertical-slideshow > .slide[data-nav]'));
+    const railList = document.querySelector('.section-rail ol');
+    const pillWrap = document.querySelector('.section-pill-wrap');
+    const pillBtn = pillWrap.querySelector('.section-pill');
+    const pillLabel = pillWrap.querySelector('.pill-label');
+    const pillCount = pillWrap.querySelector('.pill-count');
+    const sectionSheet = pillWrap.querySelector('.section-sheet');
+    const navReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const navTotal = String(navSlides.length).padStart(2, '0');
+
+    navSlides.forEach((slide, i) => {
+        const vars = `--c: ${slide.dataset.navColor}; --i: ${i};`;
+        railList.insertAdjacentHTML('beforeend', `<li><a class="rail-link" href="#${slide.id}" style="${vars}"><span class="rail-label">${slide.dataset.nav}</span><span class="rail-tick"></span></a></li>`);
+        sectionSheet.insertAdjacentHTML('beforeend', `<a class="sheet-link" href="#${slide.id}" style="${vars}"><span class="sheet-dot"></span>${slide.dataset.nav}</a>`);
+    });
+    const railLinks = Array.from(railList.querySelectorAll('.rail-link'));
+    const sheetLinks = Array.from(sectionSheet.querySelectorAll('.sheet-link'));
+
+    const setSheetOpen = (open) => {
+        pillWrap.classList.toggle('open', open);
+        pillBtn.setAttribute('aria-expanded', open);
+        // Short screens (landscape phones) scroll the sheet: keep the current section in view.
+        const current = sheetLinks[navActive];
+        if (open && current) sectionSheet.scrollTop = current.offsetTop - (sectionSheet.clientHeight - current.offsetHeight) / 2;
+    };
+
+    let navActive = -1;
+    let pillSwapTimer = 0;
+    const setActiveSection = (idx) => {
+        if (idx === navActive || idx < 0) return;
+        navActive = idx;
+        railLinks.forEach((a, i) => a.classList.toggle('active', i === idx));
+        sheetLinks.forEach((a, i) => a.classList.toggle('active', i === idx));
+        pillWrap.style.setProperty('--c', navSlides[idx].dataset.navColor);
+        pillWrap.classList.toggle('visible', idx > 0);
+        if (idx === 0) setSheetOpen(false);
+        pillLabel.classList.add('swap');
+        clearTimeout(pillSwapTimer);
+        pillSwapTimer = setTimeout(() => {
+            pillLabel.textContent = navSlides[idx].dataset.nav;
+            pillCount.textContent = String(idx + 1).padStart(2, '0') + '/' + navTotal;
+            pillLabel.classList.remove('swap');
+        }, navReducedMotion ? 0 : 180);
+    };
+
+    // A thin band across the middle of the viewport: whichever slide crosses it is "current".
+    const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) setActiveSection(navSlides.indexOf(entry.target)); });
+    }, { rootMargin: '-45% 0px -54% 0px' });
+    navSlides.forEach(s => navObserver.observe(s));
+
+    [...railLinks, ...sheetLinks].forEach(link => {
+        link.addEventListener('click', (evt) => {
+            evt.preventDefault();
+            const target = document.getElementById(link.hash.slice(1));
+            setSheetOpen(false);
+            target.scrollIntoView({ behavior: navReducedMotion ? 'instant' : 'smooth', block: 'start' });
+            history.replaceState(null, '', link.hash);
+            gtag('event', 'button_click', {'button_name': 'Teams - Section Nav - ' + target.dataset.nav});
+        });
+    });
+
+    pillBtn.addEventListener('click', () => setSheetOpen(!pillWrap.classList.contains('open')));
+    document.addEventListener('click', (evt) => { if (!pillWrap.contains(evt.target)) setSheetOpen(false); });
+    document.addEventListener('keydown', (evt) => { if (evt.key === 'Escape') setSheetOpen(false); });
 
     // Mobile Hamburger
     const hamburgerBtn = document.querySelector('.hamburger-btn');
