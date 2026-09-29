@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QNET | SMR Cooling System</title>
+    <meta name="description" content="QNET's 2026–2027 flagship build: the SMR Cooling System, a bench-scale reactor primary loop with a mock fuel bundle, cooled passively by natural circulation.">
+    <meta property="og:title" content="SMR Cooling System | QNET, Queen's Nuclear Engineering Team">
+    <meta property="og:description" content="QNET's 2026–2027 flagship build: a bench-scale SMR cooling loop designed, simulated and built by Queen's University students.">
+    <meta property="og:image" content="https://queensnuclear.ca/assets/White%20NET%20Full%20Logo.png">
+    <meta property="og:url" content="https://queensnuclear.ca/smr-cooling-system">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://queensnuclear.ca/assets/White%20NET%20Full%20Logo.png">
+    <link rel="canonical" href="https://queensnuclear.ca/smr-cooling-system">
+    <link rel="icon" type="image/svg+xml" href="assets/outlinefavicon.svg">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8J80X6N4DV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-8J80X6N4DV');
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+
+        /* ── Responsive root scaling: laptop-width screens (769–1536px) get a
+           proportionally smaller root font-size so the desktop-tuned layout
+           (authored for large monitors) doesn't render oversized / "zoomed in".
+           rem-based sizing scales with this. Desktop (≥1537px) and mobile
+           (≤768px) are intentionally left untouched. ── */
+        @media (min-width: 769px) and (max-width: 1536px) {
+            html { font-size: clamp(13px, 0.84vw + 3.1px, 16px); }
+        }
+
+        body { background-color: #050505; color: #f0f0f0; overflow: hidden; }
+
+        /* ── Global Background ── */
+        .global-bg {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: #050505; z-index: 0; pointer-events: none; overflow: hidden;
+        }
+        .nebula-blob { position: absolute; border-radius: 50%; filter: blur(110px); }
+        .nebula-1 { width: 700px; height: 700px; background: radial-gradient(circle, rgba(0,37,82,0.45), transparent 70%); top: -180px; left: -180px; animation: nebulaDrift 18s ease-in-out infinite alternate; }
+        .nebula-2 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(185,14,50,0.18), transparent 70%); top: 30%; right: -150px; animation: nebulaDrift 22s ease-in-out infinite alternate-reverse; }
+        .nebula-3 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(250,188,15,0.12), transparent 70%); bottom: -100px; left: 30%; animation: nebulaDrift 20s ease-in-out infinite alternate; }
+        .nebula-4 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,37,82,0.25), transparent 70%); bottom: 10%; right: 10%; animation: nebulaDrift 25s ease-in-out infinite alternate-reverse; }
+        @keyframes nebulaDrift { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(40px,30px) scale(1.08); } }
+        /* ── Atomic orbital background ── */
+        .nucleus-glow {
+            position: absolute; width: 340px; height: 340px; border-radius: 50%;
+            background: radial-gradient(circle, var(--nc, rgba(250,188,15,0.5)), transparent 70%);
+            filter: blur(70px); opacity: 0.12; pointer-events: none;
+        }
+        .logo-orbits {
+            position: fixed;
+            inset: 0;
+            margin: auto;
+            width: 85vmin;
+            height: 85vmin;
+            z-index: 0;
+            pointer-events: none;
+            isolation: isolate;
+            perspective: 1200px;
+        }
+        .logo-orbits .qlo-layer {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            mix-blend-mode: screen;
+            will-change: transform;
+        }
+        .logo-orbits .qlo-blue { filter: drop-shadow(0 0 8px rgba(0, 37, 82, 0.55)); }
+        .logo-orbits .qlo-ring { mix-blend-mode: screen; }
+        @media (prefers-reduced-motion: reduce) {
+            .nebula-blob { animation: none; }
+            .logo-orbits, .logo-orbits .qlo-layer { transition: none; transform: none; }
+        }
+        /* projects variant */
+        .nucleus-glow { --nc: rgba(185,14,50,0.5); top: 30%; right: 6%; left: auto; }
+
+        /* ── Notch Nav ── */
+        .notch-wrapper {
+            position: fixed; top: 0; width: 100%; height: 90px; z-index: 1000;
+            display: flex; justify-content: center; align-items: flex-start;
+            padding-top: 15px; pointer-events: none;
+        }
+        .notch-container {
+            width: 810px; height: 56px; max-width: calc(100vw - 32px);
+            background: rgba(15,15,15,0.85); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 35px;
+            display: flex; align-items: center; justify-content: center; gap: 2rem;
+            padding: 0 2rem; pointer-events: auto;
+            transition: width 0.65s cubic-bezier(0.16,1,0.3,1), height 0.65s cubic-bezier(0.16,1,0.3,1);
+        }
+        .notch-wrapper:hover .notch-container { width: 990px; height: 72px; }
+        .nav-logo-link { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+        .nav-logo-wrap {
+            position: relative; overflow: hidden; flex-shrink: 0;
+            width: 32px; height: 32px;
+            transition: width 0.65s cubic-bezier(0.16,1,0.3,1), height 0.65s cubic-bezier(0.16,1,0.3,1);
+        }
+        .notch-wrapper:hover .nav-logo-wrap { width: 145px; height: 40px; }
+        .nav-logo-atom, .nav-logo-full {
+            position: absolute; top: 50%; left: 0; transform: translateY(-50%);
+            height: 32px; width: auto; transition: opacity 0.25s ease;
+        }
+        .notch-wrapper:hover .nav-logo-atom, .notch-wrapper:hover .nav-logo-full { height: 40px; }
+        .nav-logo-atom { opacity: 1; }
+        .nav-logo-full { opacity: 0; }
+        .notch-wrapper:hover .nav-logo-atom { opacity: 0; }
+        .notch-wrapper:hover .nav-logo-full { opacity: 1; }
+        .notch-links { display: flex; align-items: center; gap: 1.15rem; }
+        .notch-container a:not(.nav-logo-link) {
+            text-decoration: none; color: rgba(255,255,255,0.5);
+            font-size: 0.78rem; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.08em;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+        .notch-container a:not(.nav-logo-link):hover { color: rgba(255,255,255,0.9); }
+        .notch-links a { position: relative; }
+        .notch-links a::after {
+            content: ''; position: absolute; bottom: -5px; left: 50%;
+            width: 0; height: 1px; background: #fabc0f;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+        .notch-links a:hover::after { width: 100%; left: 0; }
+        @media (max-width: 768px) { .notch-wrapper { display: none; } }
+
+        /* ── Mobile Header ── */
+        .mobile-header {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 70px;
+            background: rgba(5,5,5,0.9); backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            align-items: center; justify-content: center; z-index: 1000;
+        }
+        .mobile-logo-link { display: flex; align-items: center; text-decoration: none; }
+        .mobile-logo { height: 36px; width: auto; }
+        .hamburger-btn {
+            display: flex; position: absolute; right: 1.25rem;
+            background: none; border: none; cursor: pointer;
+            flex-direction: column; gap: 6px; padding: 8px; z-index: 1001;
+        }
+        .hamburger-btn .line { width: 24px; height: 2px; background: #f0f0f0; border-radius: 2px; transition: all 0.3s ease; }
+        .hamburger-btn.open .line:nth-child(1) { transform: translateY(4px) rotate(45deg); }
+        .hamburger-btn.open .line:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
+        @media (max-width: 768px) { .mobile-header { display: flex !important; } }
+
+        /* ── Mobile Menu ── */
+        .mobile-menu {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background-color: rgba(26,26,26,0.95); backdrop-filter: blur(15px);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 2.5rem; opacity: 0; pointer-events: none;
+            transition: opacity 0.45s ease; z-index: 101;
+        }
+        .mobile-menu.open { opacity: 1; pointer-events: auto; }
+        .mobile-nav-link {
+            color: rgba(255,255,255,0.5); font-size: 1.5rem; text-decoration: none;
+            text-transform: uppercase; letter-spacing: 0.15em; font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .mobile-nav-link:hover, .mobile-nav-link:active { color: #fff; }
+
+        /* ── Slideshow ── */
+        .vertical-slideshow {
+            position: relative; z-index: 1;
+            height: 100vh; width: 100vw;
+            overflow-y: scroll; overflow-x: hidden;
+            scroll-snap-type: y mandatory; scroll-behavior: smooth;
+            -ms-overflow-style: none; scrollbar-width: none;
+        }
+        .vertical-slideshow::-webkit-scrollbar { display: none; }
+
+        .slide {
+            min-height: 100vh; width: 100vw;
+            scroll-snap-align: start; scroll-snap-stop: always;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center; padding: 100px 2rem 4rem 2rem;
+            position: relative; background: transparent;
+        }
+
+        /* ── Typography ── */
+        .section-eyebrow {
+            display: inline-block;
+            font-size: 0.8rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.22em;
+            color: #fabc0f; margin-bottom: 1rem;
+        }
+        .hero-title {
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 300; letter-spacing: -0.03em;
+            color: #fff; line-height: 1.05; margin-bottom: 1.5rem;
+        }
+        .hero-title span { color: #fabc0f; }
+        .hero-sub {
+            font-size: 1.1rem; color: rgba(255,255,255,0.55);
+            max-width: 640px; font-weight: 300; line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+
+        /* ── Buttons ── */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 0.85rem 2.25rem; font-size: 0.9rem; font-weight: 500;
+            color: #f0f0f0; text-decoration: none; text-transform: uppercase;
+            letter-spacing: 0.1em; background: transparent;
+            border: 1px solid rgba(255,255,255,0.25); border-radius: 50px;
+            transition: all 0.6s ease;
+        }
+        .btn:hover { border-color: #fabc0f; color: #fabc0f; background: rgba(250,188,15,0.08); }
+
+        /* ── Philosophy Cards ── */
+        .philosophy-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem; max-width: 1100px; width: 100%; margin-top: 1.5rem;
+        }
+        .phil-card {
+            background: rgba(18,18,18,0.85); backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.07); border-radius: 20px;
+            padding: 2.5rem 2rem; text-align: left;
+            transition: all 0.4s ease;
+        }
+        .phil-card:hover {
+            translate: 0 -8px;
+            border-color: var(--accent, #fabc0f);
+            box-shadow: 0 20px 50px rgba(250,188,15,0.2);
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent, #fabc0f) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--accent, #fabc0f) 30%, transparent);
+        }
+        .phil-number {
+            font-size: 2.5rem; font-weight: 700; color: rgba(250,188,15,0.2);
+            letter-spacing: -0.05em; line-height: 1; margin-bottom: 1rem;
+        }
+        .phil-card h3 { font-size: 1.15rem; font-weight: 600; color: #fff; margin-bottom: 0.75rem; }
+        .phil-card p { font-size: 0.95rem; color: rgba(255,255,255,0.5); line-height: 1.6; margin: 0; }
+
+        /* ── Project Showcase ── */
+        .project-showcase {
+            display: flex; align-items: stretch; justify-content: center;
+            width: 100%; max-width: 1300px; height: 75vh; gap: 2.5rem;
+            background: rgba(18,18,18,0.75); backdrop-filter: blur(20px);
+            padding: 2.5rem; border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.07);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+        }
+        .project-static {
+            flex: 1.2; text-align: left; display: flex; flex-direction: column;
+            justify-content: flex-start; overflow-y: auto; padding-right: 1.5rem;
+        }
+        .project-static::-webkit-scrollbar { width: 4px; }
+        .project-static::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+        .project-static h3 { font-size: 1.8rem; color: #fff; margin-bottom: 0.75rem; font-weight: 500; }
+        .project-static > p { font-size: 1rem; color: rgba(255,255,255,0.6); margin-bottom: 0; line-height: 1.65; }
+        .project-specs { font-size: 0.92rem; color: rgba(255,255,255,0.6); line-height: 1.5; margin-top: 1rem; }
+        .project-specs ul { margin-left: 1.5rem; margin-top: 0.5rem; margin-bottom: 0.5rem; }
+        .project-specs li { margin-bottom: 0.25rem; }
+        .project-specs strong { color: #fff; }
+
+        .inline-member-link {
+            color: #fff; text-decoration: none; position: relative;
+            transition: color 0.6s ease, border-bottom-color 0.6s ease; cursor: pointer;
+            border-bottom: 1px dotted rgba(255,255,255,0.4);
+        }
+        .inline-member-link:hover { color: #fabc0f; border-bottom-color: #fabc0f; }
+
+        /* ── Team Interactive Panel ── */
+        .project-interactive { flex: 1.6; display: flex; gap: 2rem; align-items: stretch; }
+        .vertical-nodes {
+            position: relative; display: flex; flex-direction: column;
+            gap: 1.5rem; padding: 1rem 0; justify-content: center;
+        }
+        .node-line {
+            position: absolute; top: 30px; bottom: 30px; left: 17px;
+            width: 3px; background: rgba(255,255,255,0.1); z-index: 1; border-radius: 2px;
+        }
+        .team-node-btn {
+            position: relative; z-index: 2; display: flex; align-items: center;
+            gap: 1rem; background: none; border: none; cursor: pointer;
+            text-align: left; opacity: 0.4; transition: all 0.3s ease;
+        }
+        .team-node-btn.active, .team-node-btn:hover { opacity: 1; }
+        .node-circle {
+            width: 36px; height: 36px; border-radius: 50%;
+            border: 5px solid #050505; box-shadow: 0 0 0 2px rgba(255,255,255,0.3);
+            transition: all 0.3s ease; flex-shrink: 0;
+        }
+        .team-node-btn.active .node-circle { transform: scale(1.2); box-shadow: 0 0 0 3px #fff; }
+        .team-label { font-size: 1rem; font-weight: 500; color: #fff; text-transform: uppercase; letter-spacing: 0.05em; }
+
+        .team-details {
+            flex: 1; background: rgba(10,10,10,0.8); backdrop-filter: blur(16px);
+            padding: 2rem 2.5rem; border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.07);
+            border-left: 4px solid var(--theme-color, #002552);
+            transition: border-color 0.3s ease; text-align: left;
+            overflow-y: auto; position: relative;
+        }
+        .team-details::-webkit-scrollbar { width: 4px; }
+        .team-details::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+        .team-header-label {
+            font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.15em;
+            color: rgba(255,255,255,0.35); margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem;
+        }
+        .team-details h4 { font-size: 1.6rem; color: var(--theme-color, #002552); margin-bottom: 1.25rem; font-weight: 600; }
+        .team-members-container { display: flex; gap: 0.75rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+        .member-avatar {
+            width: 50px; height: 50px; border-radius: 50%;
+            background-size: cover; background-position: center;
+            border: 2px solid var(--theme-color, #002552); cursor: pointer;
+            transition: transform 0.3s ease; display: block;
+        }
+        .member-avatar:hover { transform: scale(1.12); }
+        .team-details p { font-size: 1rem; color: rgba(255,255,255,0.8); margin-bottom: 0; line-height: 1.6; }
+        .team-details ul { margin-left: 1.2rem; }
+        .team-details li { margin-bottom: 0.35rem; color: rgba(255,255,255,0.75); font-size: 0.95rem; line-height: 1.55; }
+
+        /* ── Tooltip ── */
+        #global-tooltip {
+            position: fixed; background: rgba(20,20,20,0.95); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1); padding: 1rem;
+            border-radius: 12px; width: 250px; text-align: left;
+            opacity: 0; pointer-events: none; transition: opacity 0.2s ease;
+            z-index: 9999; box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            display: flex; flex-direction: column; gap: 0.75rem;
+        }
+        #global-tooltip.visible { opacity: 1; }
+        .tooltip-header { display: flex; gap: 1rem; align-items: center; }
+        .tooltip-img { width: 44px; height: 44px; border-radius: 50%; background-size: cover; background-position: center; border: 2px solid; flex-shrink: 0; }
+        .tooltip-info strong { color: #fff; font-size: 1rem; display: block; margin-bottom: 0.1rem; }
+        .tooltip-info em { font-style: normal; font-weight: 600; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; display: block; }
+        .tooltip-bio { color: rgba(255,255,255,0.65); font-size: 0.84rem; line-height: 1.4; }
+
+        /* ── Down Indicator ── */
+        .down-indicator {
+            position: absolute; bottom: 3rem; color: rgba(255,255,255,0.35);
+            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.15em;
+            cursor: pointer; display: flex; flex-direction: column;
+            align-items: center; gap: 0.4rem; transition: color 0.3s ease;
+        }
+        .down-indicator:hover { color: rgba(255,255,255,0.8); }
+        .down-indicator span { font-size: 1.25rem; animation: bounceDown 1.5s infinite ease-in-out; }
+        @keyframes bounceDown { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(7px); } }
+
+        /* ── Scroll Reveal ── */
+        .reveal { opacity: 0; transform: translateY(36px); }
+        .reveal.active { animation: revealUp 1.2s cubic-bezier(0.16,1,0.3,1) both; }
+        .stagger-1.reveal.active { animation-delay: 0.15s; }
+        .stagger-2.reveal.active { animation-delay: 0.3s; }
+        .stagger-3.reveal.active { animation-delay: 0.45s; }
+        .stagger-4.reveal.active { animation-delay: 0.6s; }
+        @keyframes revealUp { from { opacity: 0; transform: translateY(36px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ── Footer ── */
+        .fixed-footer {
+            position: fixed; bottom: 2.5rem; left: 2.5rem;
+            display: flex; align-items: center; gap: 1.25rem; z-index: 100;
+        }
+        .social-link { display: flex; align-items: center; justify-content: center; }
+        .social-icon { width: 20px; height: 20px; fill: rgba(255,255,255,0.5); transition: all 0.6s ease; }
+        .social-link:nth-child(1):hover .social-icon { fill: #002552; translate: 0 -3px; }
+        .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; translate: 0 -3px; }
+        .social-link:nth-child(3):hover .social-icon { fill: #b90e32; translate: 0 -3px; }
+
+        /* ── Back to Top ── */
+        #back-to-top {
+            position: fixed; bottom: 2rem; right: 2rem; width: 48px; height: 48px;
+            background: rgba(18,18,18,0.85); backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 50%;
+            color: rgba(255,255,255,0.6); display: flex; justify-content: center;
+            align-items: center; cursor: pointer; z-index: 100;
+            opacity: 0; pointer-events: none; transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        #back-to-top svg { width: 22px; height: 22px; }
+        #back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+        #back-to-top { transition: all 0.6s ease; }
+        #back-to-top:hover { border-color: #fabc0f; color: #fabc0f; translate: 0 -3px; }
+
+        /* ── SMR Project ── */
+        .hero-note { font-size: 0.95rem; color: rgba(255,255,255,0.5); line-height: 1.6; max-width: 640px; margin-top: 1.75rem; }
+        .hero-note strong { color: rgba(255,255,255,0.8); font-weight: 600; }
+        .tentative-tag {
+            display: inline-block; font-size: 0.72rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.15em; color: #fabc0f;
+            border: 1px solid rgba(250,188,15,0.4); border-radius: 50px;
+            padding: 0.35rem 0.9rem; margin-bottom: 1.25rem;
+        }
+        .philosophy-grid.four { grid-template-columns: repeat(4, 1fr); max-width: 1300px; }
+        .split-layout {
+            display: grid; grid-template-columns: 1fr 1.1fr; gap: 2.5rem;
+            width: 100%; max-width: 1200px; align-items: center; text-align: left;
+        }
+        .split-layout .hero-title, .split-layout .hero-sub { text-align: left; }
+        .card-stack { display: flex; flex-direction: column; gap: 1.25rem; }
+        .card-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; width: 100%; max-width: 1200px; }
+        .glass-card {
+            background: rgba(18,18,18,0.85); backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-left: 4px solid var(--accent, #fabc0f);
+            border-radius: 22px; padding: 1.75rem 2rem; text-align: left;
+        }
+        .glass-card h3 { font-size: 1.15rem; font-weight: 600; color: #fff; margin-bottom: 0.9rem; }
+        .glass-card p { font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+        .glass-card ul, .phil-card ul { list-style: none; }
+        .glass-card li, .phil-card li {
+            position: relative; padding-left: 1.25rem; margin-bottom: 0.55rem;
+            color: rgba(255,255,255,0.7); font-size: 0.95rem; line-height: 1.55;
+        }
+        .glass-card li:last-child, .phil-card li:last-child { margin-bottom: 0; }
+        .glass-card li::before, .phil-card li::before { content: "•"; position: absolute; left: 0; color: var(--dot, var(--accent, #fabc0f)); }
+        .glass-card li strong { color: #fff; font-weight: 600; }
+        .diagram-card { padding: 1.5rem; border-left: 1px solid rgba(255,255,255,0.07); }
+        .loop-diagram { width: 100%; height: auto; display: block; }
+        .figure-card { margin: 0; padding: 1.25rem; border-left: 1px solid rgba(255,255,255,0.07); }
+        .figure-card img { width: 100%; height: auto; display: block; border-radius: 12px; }
+        .figure-card figcaption { font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.5; margin-top: 0.85rem; }
+        .step-tools { display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.35); margin: -0.4rem 0 0.9rem; }
+        .spec-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; width: 100%; max-width: 1200px; margin-bottom: 1.5rem; }
+        .spec-card { padding: 1.5rem 1.75rem; }
+        .spec-value { font-size: 2.2rem; font-weight: 700; color: #fabc0f; letter-spacing: -0.03em; line-height: 1; margin-bottom: 0.5rem; }
+        .spec-label { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.4; }
+        .card-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; width: 100%; max-width: 1200px; }
+        .fine-print { font-size: 0.88rem; color: rgba(255,255,255,0.45); line-height: 1.6; margin-top: 1.5rem; max-width: 820px; }
+
+        /* ── Timeline (shared with about.html) ── */
+        .timeline-section {
+            width: 100%; max-width: 1100px; text-align: left;
+        }
+        .timeline-track {
+            position: relative; width: 100%; height: 14px;
+            background: rgba(255,255,255,0.12); display: flex;
+            justify-content: space-between; align-items: center;
+            margin: 6.5rem 0 6rem 0; padding: 0 5%; border-radius: 8px;
+        }
+        .timeline-track::after {
+            content: ''; position: absolute; right: -24px; top: 50%; transform: translateY(-50%);
+            border-top: 24px solid transparent; border-bottom: 24px solid transparent;
+            border-left: 24px solid rgba(255,255,255,0.12);
+        }
+        .timeline-node {
+            width: 30px; height: 30px; border-radius: 50%;
+            background-color: var(--node-color); z-index: 2; cursor: pointer;
+            position: relative; transition: all 0.3s ease;
+            box-shadow: 0 0 0 4px #050505;
+        }
+        .timeline-node:hover { transform: scale(1.2); }
+        .timeline-node.active { transform: scale(1.3); box-shadow: 0 0 0 6px rgba(255,255,255,0.15), 0 0 0 4px #050505; }
+        .node-label {
+            position: absolute; white-space: nowrap; color: rgba(255,255,255,0.55);
+            font-size: 0.92rem; pointer-events: none; text-align: center;
+            transition: color 0.3s ease;
+        }
+        .timeline-node.active .node-label { color: #fff; font-weight: 500; }
+        .node-label small { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.35); margin-top: 0.2rem; }
+        .node-label.top { bottom: 44px; left: 50%; transform: translateX(-50%); }
+        .node-label.bottom { top: 44px; left: 50%; transform: translateX(-50%); }
+        .timeline-content-box {
+            background: rgba(18,18,18,0.85); backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-left: 4px solid var(--box-color, #002552);
+            border-radius: 20px; padding: 3rem 4rem;
+            text-align: left; transition: border-color 0.4s ease; min-height: 260px;
+        }
+        .timeline-content-box h3 { font-size: 2rem; color: #fff; margin-bottom: 0.5rem; font-weight: 500; }
+        .timeline-content-box h3 span { font-size: 1rem; color: rgba(255,255,255,0.35); font-weight: 300; margin-left: 10px; }
+        .timeline-content-box p.goal { font-size: 1.1rem; color: #fabc0f; margin-bottom: 2rem; font-style: italic; }
+        .timeline-content-box ul {
+            list-style: none; padding-left: 0;
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem 3rem;
+        }
+        .timeline-content-box li {
+            position: relative; padding-left: 1.5rem;
+            color: rgba(255,255,255,0.75); font-size: 1rem; line-height: 1.5;
+        }
+        .timeline-content-box li::before {
+            content: "•"; position: absolute; left: 0;
+            color: var(--box-color, #002552); font-size: 1.5rem; line-height: 1;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-content { animation: fadeIn 0.4s ease forwards; }
+
+        @media (max-width: 1100px) {
+            .philosophy-grid.four, .spec-grid { grid-template-columns: repeat(2, 1fr); }
+            .split-layout { grid-template-columns: 1fr; }
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            body { overflow: auto; }
+            .vertical-slideshow { scroll-snap-type: none; height: auto; overflow: visible; }
+            .slide { scroll-snap-align: none; height: auto; min-height: 100svh; padding-top: 90px; padding-bottom: 100px; }
+            .hero-title { font-size: 2.8rem; }
+            .philosophy-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .project-showcase { flex-direction: column; height: auto; padding: 1.5rem; gap: 1.5rem; }
+            .project-static { padding-right: 0; overflow-y: visible; }
+            .project-interactive { flex-direction: column; gap: 1rem; }
+            .vertical-nodes { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 0.75rem; padding: 0; }
+            .node-line { display: none; }
+            .team-node-btn { flex-direction: column; gap: 0.25rem; }
+            .team-label { font-size: 0.72rem; }
+            .team-details { padding: 1.25rem; overflow-y: visible; }
+            .fixed-footer { display: none; }
+            #back-to-top { display: none; }
+            .philosophy-grid.four, .spec-grid, .card-grid-2, .card-grid-3 { grid-template-columns: 1fr; gap: 1rem; }
+            .split-layout { gap: 1.5rem; }
+            .glass-card { padding: 1.5rem; }
+            .timeline-track {
+                height: 8px; margin: 3rem 0 5rem 0; padding: 0 5%; overflow: visible;
+            }
+            .timeline-track::after { display: none; }
+            .timeline-node { width: 22px; height: 22px; }
+            .node-label { font-size: 0.72rem; }
+            .node-label.top { bottom: 32px; }
+            .node-label.bottom { top: 32px; }
+            .node-label small { display: none; }
+            .timeline-content-box { padding: 1.5rem; min-height: auto; }
+            .timeline-content-box ul { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="global-bg">
+    <div class="nebula-blob nebula-1"></div>
+    <div class="nebula-blob nebula-2"></div>
+    <div class="nebula-blob nebula-3"></div>
+    <div class="nebula-blob nebula-4"></div>
+    <div class="nucleus-glow"></div>
+    <div class="logo-orbits" aria-hidden="true">
+        <svg class="qlo-layer qlo-layer-gold" viewBox="0 0 459 459" focusable="false">
+            <defs>
+                <filter id="qlo-glow-g" x="-150%" y="-150%" width="400%" height="400%">
+                    <feGaussianBlur stdDeviation="3.75" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+                <path id="qlo-track-gold" d="M 169.8 271.7 A 223 80 53.4 0 1 298.2 176.3 A 223 80 53.4 0 1 169.8 271.7" fill="none"/>
+            </defs>
+            <!-- gold ring: two halves, uniform stroke -->
+            <path class="qlo-ring" d="M 101.1 44.9 A 223 80 53.4 0 1 366.9 403.1" fill="none" stroke="#fabc0f" stroke-width="12" stroke-linecap="round" opacity="0.3"/>
+            <path class="qlo-ring" d="M 101.1 44.9 A 223 80 53.4 0 0 366.9 403.1" fill="none" stroke="#fabc0f" stroke-width="12" stroke-linecap="round" opacity="0.3"/>
+            <!-- gold electrons, depth-synced size/brightness -->
+            <circle r="3.45" fill="#fabc0f" filter="url(#qlo-glow-g)">
+                <animateMotion dur="40s" begin="0s" repeatCount="indefinite"><mpath href="#qlo-track-gold"/></animateMotion>
+                <animate attributeName="r" values="3.45;2.7;2.1;2.7;3.45" keyTimes="0;0.25;0.5;0.75;1" dur="40s" begin="0s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.65;0.5;0.35;0.5;0.65" keyTimes="0;0.25;0.5;0.75;1" dur="40s" begin="0s" repeatCount="indefinite"/>
+            </circle>
+            <circle r="3.45" fill="#fabc0f" filter="url(#qlo-glow-g)">
+                <animateMotion dur="40s" begin="-20s" repeatCount="indefinite"><mpath href="#qlo-track-gold"/></animateMotion>
+                <animate attributeName="r" values="3.45;2.7;2.1;2.7;3.45" keyTimes="0;0.25;0.5;0.75;1" dur="40s" begin="-20s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.65;0.5;0.35;0.5;0.65" keyTimes="0;0.25;0.5;0.75;1" dur="40s" begin="-20s" repeatCount="indefinite"/>
+            </circle>
+        </svg>
+        <svg class="qlo-layer qlo-layer-split" viewBox="0 0 459 459" focusable="false">
+            <defs>
+                <filter id="qlo-glow-s" x="-150%" y="-150%" width="400%" height="400%">
+                    <feGaussianBlur stdDeviation="3.75" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+                <path id="qlo-track-split" d="M 434.5 188.6 A 210 105 -10 0 1 20.9 261.6 A 210 105 -10 0 1 434.5 188.6" fill="none"/>
+            </defs>
+            <!-- split ring: blue top half (back, glow via CSS) + red bottom half (front) -->
+            <path class="qlo-blue qlo-ring" d="M 20.9 261.6 A 210 105 -10 0 1 434.5 188.6" fill="none" stroke="#002552" stroke-width="10" stroke-linecap="round" opacity="0.4"/>
+            <path class="qlo-ring" d="M 434.5 188.6 A 210 105 -10 0 1 20.9 261.6" fill="none" stroke="#b90e32" stroke-width="13" stroke-linecap="round" opacity="0.34"/>
+            <!-- split-ring electrons: red + blue, depth-synced size/brightness -->
+            <circle r="3" fill="#b90e32" filter="url(#qlo-glow-s)">
+                <animateMotion dur="52s" begin="0s" repeatCount="indefinite"><mpath href="#qlo-track-split"/></animateMotion>
+                <animate attributeName="r" values="3;3.45;3;2.1;3" keyTimes="0;0.25;0.5;0.75;1" dur="52s" begin="0s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.55;0.65;0.55;0.35;0.55" keyTimes="0;0.25;0.5;0.75;1" dur="52s" begin="0s" repeatCount="indefinite"/>
+            </circle>
+            <circle r="3" fill="#002552" filter="url(#qlo-glow-s)">
+                <animateMotion dur="52s" begin="-26s" repeatCount="indefinite"><mpath href="#qlo-track-split"/></animateMotion>
+                <animate attributeName="r" values="3;3.45;3;2.1;3" keyTimes="0;0.25;0.5;0.75;1" dur="52s" begin="-26s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.55;0.65;0.55;0.35;0.55" keyTimes="0;0.25;0.5;0.75;1" dur="52s" begin="-26s" repeatCount="indefinite"/>
+            </circle>
+        </svg>
+    </div>
+</div>
+
+<div id="global-tooltip"></div>
+
+<div class="notch-wrapper">
+    <nav class="notch-container">
+        <a href="/" class="nav-logo-link">
+            <div class="nav-logo-wrap">
+                <img src="assets/Atom Logo.png" alt="QNET" class="nav-logo-atom">
+                <img src="assets/White NET Full Logo.svg" alt="QNET" class="nav-logo-full">
+            </div>
+        </a>
+        <div class="notch-links">
+            <a href="/about">About</a>
+            <a href="/teams">Meet the Teams</a>
+            <a href="/school">QNET School</a>
+            <a href="/smr-cooling-system" style="color:#fff;">SMR Cooling System</a>
+            <a href="/sponsors">Sponsors</a>
+            <a href="/join">Join</a>
+        </div>
+    </nav>
+</div>
+
+<div class="mobile-header">
+    <a href="/" class="mobile-logo-link">
+        <img src="assets/White NET Full Logo.svg" alt="QNET" class="mobile-logo">
+    </a>
+    <button class="hamburger-btn" aria-label="Toggle Mobile Menu">
+        <span class="line"></span>
+        <span class="line"></span>
+    </button>
+</div>
+
+<div class="mobile-menu">
+    <a href="/about" class="mobile-nav-link">About</a>
+    <a href="/teams" class="mobile-nav-link">Meet the Teams</a>
+    <a href="/school" class="mobile-nav-link">QNET School</a>
+    <a href="/smr-cooling-system" class="mobile-nav-link" style="color:#fff;">SMR Cooling System</a>
+    <a href="/sponsors" class="mobile-nav-link">Sponsors</a>
+    <a href="/join" class="mobile-nav-link">Join</a>
+</div>
+
+<div class="vertical-slideshow">
+
+    <!-- Slide 1: Hero -->
+    <section class="slide">
+        <span class="section-eyebrow reveal">2026–2027 Flagship Build</span>
+        <h1 class="hero-title reveal stagger-1">SMR <span>Cooling System</span></h1>
+        <span class="tentative-tag reveal stagger-1">Tentative Plan</span>
+        <p class="hero-sub reveal stagger-2">A scaled-down reactor primary loop with a mock fuel bundle: passive reactor cooling, at bench scale. Led by build team leads <a href="/teams#AidanWoods" class="inline-member-link has-tooltip" data-name="Aidan Woods" data-role="Mechanical Team Lead" data-bio="Co-conceptualized the SMR Cooling System project. Oversees hardware housing." data-img="teamphoto/Aidan.png" data-color="#002552"><strong>Aidan Woods</strong></a>, <a href="/teams#JustinHooey" class="inline-member-link has-tooltip" data-name="Justin Hooey" data-role="Research Team Lead" data-bio="Co-conceptualized the SMR Cooling System project. Establishes the scientific framework." data-img="teamphoto/justin.jpg" data-color="#ffffff"><strong>Justin Hooey</strong></a> and <a href="/teams#EllaAdair" class="inline-member-link has-tooltip" data-name="Ella Adair" data-role="Research Team Lead" data-bio="Establishing the scientific and theoretical framework for QNET projects." data-img="teamphoto/ella.jpg" data-color="#ffffff"><strong>Ella Adair</strong></a>, with a role for every sub-team.</p>
+        <a href="/join" class="btn reveal stagger-3" onclick="gtag('event','button_click',{'button_name':'Projects - Join the Build'});">Join the Build</a>
+        <p class="hero-note reveal stagger-4">Chosen by our general members at the first General Members Meeting on September 24, 2026, with <strong>38 votes</strong>, ahead of Gamma-Ray Imaging (23) and the Nuclear Cleanup Rover (12). Everything on this page is the build team's tentative plan and may change as the design matures.</p>
+        <div id="next-slide-btn" class="down-indicator">Why This Project <span>↓</span></div>
+    </section>
+
+    <!-- Slide 2: Why This Project -->
+    <section class="slide">
+        <span class="section-eyebrow reveal">The Case</span>
+        <h2 class="hero-title reveal stagger-1">Why This <span>Project?</span></h2>
+        <div class="philosophy-grid four">
+            <div class="phil-card reveal stagger-1" style="--accent:#fabc0f;">
+                <div class="phil-number">01</div>
+                <h3>Real Industry Work</h3>
+                <p>Scaled loop tests are how labs and vendors check reactor cooling. The safety cases for reactors licensed in Canada depend on this kind of analysis.</p>
+            </div>
+            <div class="phil-card reveal stagger-2" style="--accent:#002552;">
+                <div class="phil-number">02</div>
+                <h3>Topical</h3>
+                <p>SMRs like the BWRX-300 at Darlington are being built today. Passive cooling is central to their safety design.</p>
+            </div>
+            <div class="phil-card reveal stagger-3" style="--accent:#b90e32;">
+                <div class="phil-number">03</div>
+                <h3>Every Sub-Team Has a Role</h3>
+                <p>Mech, Software, Elec, Research and Materials each own part of the loop, and every part is needed for it to work.</p>
+            </div>
+            <div class="phil-card reveal stagger-4" style="--accent:#fabc0f;">
+                <div class="phil-number">04</div>
+                <h3>Multifaceted</h3>
+                <p>The calculations, CFD and reports are useful even without the build. The build is how we check them.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 3: What We're Building -->
+    <section class="slide">
+        <div class="split-layout">
+            <div>
+                <span class="section-eyebrow reveal">The Build</span>
+                <h2 class="hero-title reveal stagger-1">What We're <span>Building</span></h2>
+                <div class="card-stack">
+                    <div class="glass-card reveal stagger-2" style="--accent:#fabc0f;">
+                        <ul>
+                            <li><strong>A scaled-down reactor primary loop</strong> with a mock fuel bundle.</li>
+                            <li><strong>Primary mode: passive (no pump).</strong> Hot water rises, cools, and sinks back down (natural circulation), and that alone keeps the "fuel" cool.</li>
+                            <li><strong>Backup:</strong> a pump sits on a bypass line with a check valve and only starts if the loop overheats or flow stalls.</li>
+                            <li><strong>Sensors along the loop</strong> measure temperature, flow and heater power, so we can compare test data with our calculations and simulations.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card diagram-card reveal stagger-3">
+                <svg class="loop-diagram" viewBox="0 0 432 362" role="img" aria-label="Loop diagram: a heated section (mock fuel) at the bottom left sends hot water up to an elevated reservoir and across to a cooling section on the right, 1 to 3 metres above the heater. Cooled water flows down through a low-flow meter and back along the bottom to the heater. A backup pump sits on a dashed bypass line under the bottom leg. Four thermocouples are spaced around the loop.">
+                    <!-- hot leg (red) -->
+                    <path d="M72 188 V53 H106 M207 53 H370 V101" fill="none" stroke="#b90e32" stroke-width="5" stroke-linejoin="round"/>
+                    <!-- cold leg (blue) -->
+                    <path d="M370 168 V202 M370 242 V274 H72 V265" fill="none" stroke="#6f9fd8" stroke-width="5" stroke-linejoin="round"/>
+                    <!-- backup bypass (dashed) -->
+                    <path d="M149 274 V310 H293 V274" fill="none" stroke="#8a8a96" stroke-width="3" stroke-dasharray="7 6"/>
+                    <!-- flow arrows -->
+                    <path d="M64 124 L72 110 L80 124 Z" fill="#b90e32"/>
+                    <path d="M286 45 L300 53 L286 61 Z" fill="#b90e32"/>
+                    <path d="M362 252 L370 266 L378 252 Z" fill="#6f9fd8"/>
+                    <path d="M330 266 L316 274 L330 282 Z" fill="#6f9fd8"/>
+                    <path d="M120 266 L106 274 L120 282 Z" fill="#6f9fd8"/>
+                    <!-- elevation marker -->
+                    <path d="M170 98 V172" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" stroke-dasharray="4 4"/>
+                    <path d="M164 106 L170 96 L176 106 M164 164 L170 174 L176 164" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+                    <text x="182" y="132" fill="rgba(255,255,255,0.6)" font-size="12" font-weight="600">1–3 m</text>
+                    <text x="182" y="148" fill="rgba(255,255,255,0.45)" font-size="11">elevation</text>
+                    <!-- heated section -->
+                    <rect x="29" y="188" width="86" height="77" rx="10" fill="#b90e32"/>
+                    <text x="72" y="222" fill="#fff" font-size="12" font-weight="600" text-anchor="middle">Heated</text>
+                    <text x="72" y="237" fill="#fff" font-size="12" font-weight="600" text-anchor="middle">section</text>
+                    <text x="72" y="253" fill="rgba(255,255,255,0.8)" font-size="10" text-anchor="middle">(mock fuel)</text>
+                    <!-- reservoir -->
+                    <rect x="106" y="24" width="101" height="58" rx="10" fill="#0b0b0e" stroke="#fabc0f" stroke-width="2"/>
+                    <text x="156.5" y="50" fill="#fabc0f" font-size="12" font-weight="600" text-anchor="middle">Reservoir</text>
+                    <text x="156.5" y="66" fill="rgba(250,188,15,0.75)" font-size="10" text-anchor="middle">(elevated)</text>
+                    <!-- cooling section -->
+                    <rect x="322" y="101" width="96" height="67" rx="10" fill="#002552" stroke="#6f9fd8" stroke-width="2"/>
+                    <text x="370" y="131" fill="#fff" font-size="12" font-weight="600" text-anchor="middle">Cooling</text>
+                    <text x="370" y="147" fill="#fff" font-size="12" font-weight="600" text-anchor="middle">section</text>
+                    <!-- low-flow meter -->
+                    <rect x="322" y="202" width="96" height="40" rx="10" fill="#0b1a2e" stroke="#6f9fd8" stroke-width="1.5"/>
+                    <text x="370" y="226" fill="#fff" font-size="11" text-anchor="middle">Low-flow meter</text>
+                    <!-- backup pump -->
+                    <rect x="178" y="294" width="86" height="33" rx="9" fill="#2a2a30" stroke="#8a8a96" stroke-width="1.5"/>
+                    <text x="221" y="315" fill="#fff" font-size="11" text-anchor="middle">Backup pump</text>
+                    <!-- thermocouples -->
+                    <g font-size="11" font-weight="700" text-anchor="middle">
+                        <circle cx="72.5" cy="149.5" r="12" fill="#fff"/><text x="72.5" y="153.5" fill="#0b0b0e">T</text>
+                        <circle cx="258.5" cy="53.5" r="12" fill="#fff"/><text x="258.5" y="57.5" fill="#0b0b0e">T</text>
+                        <circle cx="370" cy="185" r="12" fill="#fff"/><text x="370" y="189" fill="#0b0b0e">T</text>
+                        <circle cx="220.5" cy="274" r="12" fill="#fff"/><text x="220.5" y="278" fill="#0b0b0e">T</text>
+                    </g>
+                    <!-- legend -->
+                    <text x="216" y="354" fill="rgba(255,255,255,0.5)" font-size="11" text-anchor="middle">T = thermocouple · Red = hot · Blue = cold · Dashed = backup</text>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 4: Scope -->
+    <section class="slide">
+        <span class="section-eyebrow reveal">Keeping It Achievable</span>
+        <h2 class="hero-title reveal stagger-1"><span>Scope</span></h2>
+        <div class="split-layout">
+            <div class="card-stack">
+                <div class="glass-card reveal stagger-1" style="--accent:#6f9fd8;">
+                    <h3>In Scope</h3>
+                    <ul>
+                        <li>Mock fuel bundle / heated section</li>
+                        <li>Elevated reservoir</li>
+                        <li>Cooling (heat-rejection) section</li>
+                        <li>Backup pump on a bypass line</li>
+                        <li>Temperature, flow and power sensing</li>
+                        <li>Data logging and heater control</li>
+                        <li>E-stop, pump auto-start, heater trip</li>
+                        <li>Hand calcs, CFD and 3 reports</li>
+                    </ul>
+                </div>
+                <div class="glass-card reveal stagger-2" style="--accent:#b90e32;">
+                    <h3>Out of Scope</h3>
+                    <ul>
+                        <li>Steam generator and secondary steam cycle</li>
+                        <li>Turbine and power generation</li>
+                        <li>Real nuclear fuel or radiation</li>
+                        <li>High pressure: we stay near atmospheric</li>
+                        <li>Water above 75 °C, or any boiling</li>
+                    </ul>
+                </div>
+            </div>
+            <figure class="glass-card figure-card reveal stagger-3">
+                <img src="assets/smr-gao-diagram.jpg" alt="Diagram of a small modular reactor: the reactor core inside a reactor vessel and containment structure, with coolant circulating past a steam generator that drives a turbine and generator connected to the power grid." loading="lazy">
+                <figcaption>A full SMR, for reference. We're building the primary cooling loop around the core, not the steam generator, turbine or generator.</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <!-- Slide 5: Design, Simulate and Test -->
+    <section class="slide">
+        <span class="section-eyebrow reveal">Design Process</span>
+        <h2 class="hero-title reveal stagger-1">Design, Simulate <span>&amp; Test</span></h2>
+        <div class="philosophy-grid">
+            <div class="phil-card reveal stagger-1" style="--accent:#fabc0f;">
+                <div class="phil-number">01</div>
+                <h3>Calculations</h3>
+                <span class="step-tools">Python</span>
+                <ul>
+                    <li>Determine design parameters for CFD simulations</li>
+                    <li>Scale the loop from a CANDU / BWXT reference</li>
+                    <li>Design CAD model</li>
+                </ul>
+            </div>
+            <div class="phil-card reveal stagger-2" style="--accent:#002552; --dot:#6f9fd8;">
+                <div class="phil-number">02</div>
+                <h3>CFD Simulation</h3>
+                <span class="step-tools">Software TBD</span>
+                <ul>
+                    <li>Use industry computational fluid dynamics software to simulate the loop design</li>
+                    <li>Verify design parameter calculations</li>
+                    <li>Visualize simulation data for comparison to measurements</li>
+                </ul>
+            </div>
+            <div class="phil-card reveal stagger-3" style="--accent:#b90e32;">
+                <div class="phil-number">03</div>
+                <h3>Validate with the Loop</h3>
+                <span class="step-tools">Tools TBD</span>
+                <ul>
+                    <li>Record sensor data</li>
+                    <li>Plot test data against CFD and calculations</li>
+                    <li>Explore and explain differences from the simulation</li>
+                    <li>Generate key reports from data and simulations</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 6: The Physical Build -->
+    <section class="slide">
+        <span class="section-eyebrow reveal">Approximate Design Specifications</span>
+        <h2 class="hero-title reveal stagger-1">The Physical <span>Build</span></h2>
+        <div class="spec-grid">
+            <div class="glass-card spec-card reveal stagger-1" style="--accent:#fabc0f;">
+                <div class="spec-value">1–3 m</div>
+                <div class="spec-label">Loop elevation</div>
+            </div>
+            <div class="glass-card spec-card reveal stagger-2" style="--accent:#b90e32;">
+                <div class="spec-value">≤ 75 °C</div>
+                <div class="spec-label">Water hard cap</div>
+            </div>
+            <div class="glass-card spec-card reveal stagger-3" style="--accent:#002552;">
+                <div class="spec-value">250–500 W</div>
+                <div class="spec-label">Heater, wall outlet</div>
+            </div>
+            <div class="glass-card spec-card reveal stagger-4" style="--accent:#fabc0f;">
+                <div class="spec-value">~$1,315</div>
+                <div class="spec-label">Current BOM estimate</div>
+            </div>
+        </div>
+        <div class="card-grid-3">
+            <div class="glass-card reveal stagger-1" style="--accent:#fabc0f;">
+                <h3>Frame</h3>
+                <p>Aluminum extrusion clamped to a workbench (no drilling into the bench). The cooler sits well above the heater.</p>
+            </div>
+            <div class="glass-card reveal stagger-2" style="--accent:#002552;">
+                <h3>Piping</h3>
+                <p>3/4" modular copper, CPVC or silicone rated to at least 80 °C (not standard PVC). Wide, smooth pipe keeps friction low for passive flow.</p>
+            </div>
+            <div class="glass-card reveal stagger-3" style="--accent:#b90e32;">
+                <h3>Heater</h3>
+                <p>Resistive wire spread along the heated section, switched by a solid-state relay. Small cartridge heaters concentrate too much heat and would boil water at their surface.</p>
+            </div>
+        </div>
+        <p class="fine-print reveal stagger-4">Expect roughly +$100–200 on the BOM for a low-flow meter and a check valve. The working range is $1.5k–$3k with a better flow meter and pressure sensors. CAD, CFD and software are free. Empty weight and lab space are still to be determined.</p>
+    </section>
+
+    <!-- Slide 7: Deliverables & Sub-Teams -->
+    <section class="slide">
+        <div class="project-showcase">
+            <div class="project-static">
+                <span class="section-eyebrow">What We'll Deliver</span>
+                <h3>Deliverables</h3>
+                <p>Three technical reports, each owned by two sub-teams, backed by a working loop.</p>
+                <div class="project-specs">
+                    <strong>Thermal-hydraulics report</strong> (Mech + Software)
+                    <ul>
+                        <li>Passive flow rate, pressure drop and heat transfer, with CFD checked against test data. Also covers passive vs. pumped operation.</li>
+                    </ul>
+                    <strong>Reactor physics report</strong> (Research + Mech)
+                    <ul>
+                        <li>Heat generated in the fuel bundle, including traditional CANDU fuel and reprocessed fuel mixes, and how that maps to our heater power.</li>
+                    </ul>
+                    <strong>Safety &amp; control systems report</strong> (Elec + Software)
+                    <ul>
+                        <li>Temperature limits, backup-pump auto-start, heater trip and emergency stop.</li>
+                    </ul>
+                    <br>
+                    <strong>Plus:</strong> full CAD model, working test loop, and a data acquisition system.<br><br>
+                    <strong>Select a sub-team to see its role →</strong>
+                </div>
+            </div>
+            <div class="project-interactive">
+                <div class="vertical-nodes">
+                    <div class="node-line"></div>
+                    <button class="team-node-btn active" data-project="smr" data-team="mech" data-color="#002552">
+                        <div class="node-circle" style="background-color:#002552;"></div>
+                        <span class="team-label">Mech</span>
+                    </button>
+                    <button class="team-node-btn" data-project="smr" data-team="elec" data-color="#fabc0f">
+                        <div class="node-circle" style="background-color:#fabc0f;"></div>
+                        <span class="team-label">Elec</span>
+                    </button>
+                    <button class="team-node-btn" data-project="smr" data-team="software" data-color="#b90e32">
+                        <div class="node-circle" style="background-color:#b90e32;"></div>
+                        <span class="team-label">Software</span>
+                    </button>
+                    <button class="team-node-btn" data-project="smr" data-team="research" data-color="#ffffff">
+                        <div class="node-circle" style="background-color:#ffffff;"></div>
+                        <span class="team-label">Research</span>
+                    </button>
+                    <button class="team-node-btn" data-project="smr" data-team="materials" data-color="#32a852">
+                        <div class="node-circle" style="background-color:#32a852;"></div>
+                        <span class="team-label">Materials</span>
+                    </button>
+                </div>
+                <div class="team-details" id="details-smr" style="--theme-color:#002552;">
+                    <div class="team-header-label"><span>Sub-Team Roles</span></div>
+                    <h4 id="title-smr">Mechanical</h4>
+                    <div id="members-smr" class="team-members-container">
+                        <a href="/teams#TochukwuOdiwa" class="member-avatar has-tooltip" style="background-image:url('teamphoto/Tochi.jpeg');border-color:#002552;" data-name="Tochukwu Odiwa" data-role="Team Lead" data-bio="Co-conceptualized the Gamma Ray Imaging project. Oversees physical architecture." data-img="teamphoto/Tochi.jpeg" data-color="#002552"></a>
+                        <a href="/teams#AidanWoods" class="member-avatar has-tooltip" style="background-image:url('teamphoto/Aidan.png');border-color:#002552;" data-name="Aidan Woods" data-role="Team Lead" data-bio="Co-conceptualized the SMR Cooling System project. Oversees hardware housing." data-img="teamphoto/Aidan.png" data-color="#002552"></a>
+                    </div>
+                    <div id="desc-smr">
+                        <ul>
+                            <li>CAD of the loop and frame in Onshape.</li>
+                            <li>Fabricate and assemble piping, reservoir and heat-transfer surfaces.</li>
+                            <li>Thermal-hydraulic CFD with Software.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 8: Safety & Success Conditions -->
+    <section class="slide">
+        <span class="section-eyebrow reveal">Yes, We Care About You</span>
+        <h2 class="hero-title reveal stagger-1">Safety <span>&amp; Success</span></h2>
+        <div class="card-grid-2">
+            <div class="glass-card reveal stagger-1" style="--accent:#b90e32;">
+                <h3>Safety</h3>
+                <ul>
+                    <li><strong>Layered temperature limits.</strong> Run at 60 °C or below. Backup pump starts at 65 °C, heater trips at 75 °C. Avoid creating steam.</li>
+                    <li><strong>Heater surface.</strong> Heat spread out so the surface stays under 95 °C, with a hardware thermal cutoff.</li>
+                    <li><strong>Near-atmospheric pressure.</strong> A vented reservoir absorbs the ~2.5% thermal expansion. Tubing is rated to at least 80 °C.</li>
+                    <li><strong>Emergency stop.</strong> A physical E-stop cuts the heater. Passive flow keeps cooling it with no power needed.</li>
+                    <li><strong>Electrical.</strong> SSR-switched heater and pump, fused circuits, and electronics enclosed away from water.</li>
+                    <li><strong>Burns &amp; procedures.</strong> Hot sections marked, gloves on, and a written safety plan used at every test.</li>
+                </ul>
+            </div>
+            <div class="glass-card reveal stagger-2" style="--accent:#fabc0f;">
+                <h3>Success Conditions</h3>
+                <ul>
+                    <li><strong>Passive circulation.</strong> Removes full heater power with no pump. This is the normal mode.</li>
+                    <li><strong>Backup pump failover.</strong> Pump starts automatically when the 65 °C limit is hit.</li>
+                    <li><strong>Within limits.</strong> Hot leg at or below 60 °C, heater surface below 95 °C, no boiling.</li>
+                    <li><strong>100% leak-free.</strong> No leaks at operating temperature.</li>
+                    <li><strong>1 reading / second.</strong> Temperature, pressure and flow logged continuously.</li>
+                    <li><strong>Safety plan in use.</strong> Reports and procedures used during every test.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 9: Timeline -->
+    <section class="slide">
+        <div class="timeline-section">
+            <span class="section-eyebrow reveal">Tentative · October to March</span>
+            <h2 class="hero-title reveal stagger-1" style="margin-bottom:0;">The <span>Timeline</span></h2>
+
+            <div class="timeline-track">
+                <div class="timeline-node active" data-target="onboarding" style="--node-color:#002552;">
+                    <span class="node-label top">Onboarding<br><small>Oct</small></span>
+                </div>
+                <div class="timeline-node" data-target="design" style="--node-color:#fabc0f;">
+                    <span class="node-label bottom">Calcs &amp; CAD<br><small>Oct – Nov</small></span>
+                </div>
+                <div class="timeline-node" data-target="freeze" style="--node-color:#b90e32;">
+                    <span class="node-label top">Design Freeze<br><small>Nov</small></span>
+                </div>
+                <div class="timeline-node" data-target="fabrication" style="--node-color:#002552;">
+                    <span class="node-label bottom">Fabrication<br><small>Jan</small></span>
+                </div>
+                <div class="timeline-node" data-target="assembly" style="--node-color:#fabc0f;">
+                    <span class="node-label top">Assembly<br><small>Feb</small></span>
+                </div>
+                <div class="timeline-node" data-target="integration" style="--node-color:#b90e32;">
+                    <span class="node-label bottom">Testing &amp; Reports<br><small>Mar</small></span>
+                </div>
+            </div>
+
+            <div class="timeline-content-box" id="timeline-content" style="--box-color:#002552;"></div>
+        </div>
+    </section>
+
+    <!-- Slide 10: Learning Opportunities -->
+    <section class="slide">
+        <span class="section-eyebrow reveal">What You'll Take Away</span>
+        <h2 class="hero-title reveal stagger-1">Learning <span>Opportunities</span></h2>
+        <div class="split-layout" style="align-items:stretch;">
+            <div class="glass-card reveal stagger-1" style="--accent:#fabc0f;">
+                <h3>What You'll Learn</h3>
+                <ul>
+                    <li>CAD in Onshape, plus design for manufacturing (tolerances, 3D-print fits)</li>
+                    <li>Fluid mechanics: natural circulation, head loss, pumps</li>
+                    <li>Heat transfer and heat exchanger basics</li>
+                    <li>Scaling a real system down to lab size, and why that's hard</li>
+                    <li>CFD with OpenFOAM and ParaView</li>
+                    <li>Python data acquisition on a Raspberry Pi</li>
+                    <li>Control and safety circuits: SSRs, fuses, LTspice</li>
+                </ul>
+            </div>
+            <div class="glass-card reveal stagger-2" style="--accent:#002552; --dot:#6f9fd8;">
+                <h3>Scaling Up If We Have the Budget</h3>
+                <ul>
+                    <li>More and better sensors, including pressure</li>
+                    <li>Simulate loss-of-power accidents</li>
+                    <li>Emergency core cooling injection</li>
+                    <li>A second, actively cooled loop</li>
+                    <li>Test different fuel-mix heat profiles</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 11: Philosophy -->
+    <section class="slide">
+        <span class="section-eyebrow reveal">The Framework</span>
+        <h2 class="hero-title reveal stagger-1">Project <span>Philosophy</span></h2>
+        <p class="hero-sub reveal stagger-2">All potential QNET projects must satisfy our three-pillar Project Charter before moving forward.</p>
+        <div class="philosophy-grid">
+            <div class="phil-card reveal stagger-1" style="--accent:#fabc0f;">
+                <div class="phil-number">01</div>
+                <h3>Teaches Nuclear Concepts</h3>
+                <p>Providing members with tangible, hands-on experience with nuclear physics and engineering principles.</p>
+            </div>
+            <div class="phil-card reveal stagger-2" style="--accent:#002552;">
+                <div class="phil-number">02</div>
+                <h3>Involves Multiple Disciplines</h3>
+                <p>Nuclear engineering is vastly interdisciplinary — our projects must reflect that breadth across teams.</p>
+            </div>
+            <div class="phil-card reveal stagger-3" style="--accent:#b90e32;">
+                <div class="phil-number">03</div>
+                <h3>Achievable Within Scope</h3>
+                <p>Scoped appropriately to be completed safely and effectively within timeline and resources by a student team.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 12: Materials Studies — independent Materials sub-team research -->
+    <section class="slide" id="materials">
+        <div class="project-showcase">
+            <div class="project-static">
+                <span class="section-eyebrow">Independent Studies</span>
+                <h3>Materials Studies</h3>
+                <p>Led by Materials Lead <a href="/teams#NoahMiggiani" class="inline-member-link has-tooltip" data-name="Noah Miggiani" data-role="Materials Team Lead" data-bio="Conducts radiation damage research at MAX-Nuclear. Leads the Materials sub-team's independent study tracks." data-img="teamphoto/noah.png" data-color="#32a852"><strong>Noah Miggiani</strong></a>, the Materials sub-team runs its own studies independent of QNET's flagship build. As of July 1, 2026, the team has completed preliminary research to establish three potential study tracks.</p>
+                <div class="project-specs">
+                    <strong>About the Materials Team:</strong> This specialized branch of QNET bridges the gap between mechanical design and nuclear physics. While the other sub-teams focus on project design and build, the Materials team focuses on simulations and virtual testing — modeling atomic-level interaction, evaluating material degradation, and predicting how structural materials behave under intense reactor conditions.<br><br>
+                    <strong>Students in this branch can be expected to:</strong>
+                    <ul>
+                        <li>Utilize industry-standard ion irradiation modeling software like SRIM to predict radiation depth, energy deposition, and primary material damage production in critical components.</li>
+                        <li>Research and analyze reactor materials to safely predict how they will respond to operational stresses.</li>
+                        <li>Model degradation, microstructural responses, and other mechanical properties and effects.</li>
+                    </ul>
+                    <br>
+                    <strong>Select a study track to explore →</strong>
+                </div>
+            </div>
+            <div class="project-interactive">
+                <div class="vertical-nodes">
+                    <div class="node-line"></div>
+                    <button class="team-node-btn active" data-project="matstudies" data-team="ions" data-color="#002552">
+                        <div class="node-circle" style="background-color:#002552;"></div>
+                        <span class="team-label">Ion Surrogates</span>
+                    </button>
+                    <button class="team-node-btn" data-project="matstudies" data-team="healing" data-color="#fabc0f">
+                        <div class="node-circle" style="background-color:#fabc0f;"></div>
+                        <span class="team-label">Athermal Healing</span>
+                    </button>
+                    <button class="team-node-btn" data-project="matstudies" data-team="fusion" data-color="#b90e32">
+                        <div class="node-circle" style="background-color:#b90e32;"></div>
+                        <span class="team-label">Fusion Materials</span>
+                    </button>
+                </div>
+                <div class="team-details" id="details-matstudies" style="--theme-color:#002552;">
+                    <div class="team-header-label"><span>Materials Study Track</span></div>
+                    <h4 id="title-matstudies">Ion Surrogates for Neutron Radiation Damage</h4>
+                    <div id="members-matstudies" class="team-members-container">
+                        <a href="/teams#NoahMiggiani" class="member-avatar has-tooltip" style="background-image:url('teamphoto/noah.png');border-color:#002552;" data-name="Noah Miggiani" data-role="Materials Lead" data-bio="Conducts radiation damage research at MAX-Nuclear. Leads the Materials sub-team's independent study tracks." data-img="teamphoto/noah.png" data-color="#002552"></a>
+                    </div>
+                    <div id="desc-matstudies">
+                        <p>This track compares the difference in neutron beams and ion beams in both their recoil spectra and energy deposition partitioning. By comparing which locally-available ions produce spectra and energy-partitioning profiles that most closely mimic real neutron damage, researchers can identify better surrogates for running more accurate experiments with ions rather than neutrons — which are harder to use precisely, as they carry no charge. Our team plans to utilize SRIM simulations, as it is uniquely suited for capturing the recoil spectra and doesn't require any physical experiments aside from experimental validation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<div class="fixed-footer">
+    <a href="https://www.linkedin.com/company/queensnuclear/" target="_blank" class="social-link" onclick="gtag('event','button_click',{'button_name':'Social - LinkedIn'});">
+        <svg class="social-icon" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/queensnuclear/" target="_blank" class="social-link" onclick="gtag('event','button_click',{'button_name':'Social - Instagram'});">
+        <svg class="social-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+    <a href="https://github.com/qnuclear" target="_blank" class="social-link" onclick="gtag('event','button_click',{'button_name':'Social - GitHub'});">
+        <svg class="social-icon" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.011-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+</div>
+
+<button id="back-to-top" aria-label="Back to Top" onclick="gtag('event','button_click',{'button_name':'Back to Top'});">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+    // Custom Cursor
+    try {
+        const cursorColors = [
+            { fill: '#002552', glow: '#003c82', glowOpacity: 0.85 },
+            { fill: '#fabc0f', glow: '#fabc0f', glowOpacity: 0.35 },
+            { fill: '#b90e32', glow: '#b90e32', glowOpacity: 0.35 }
+        ];
+        const cursorColor = cursorColors[Math.floor(Math.random() * cursorColors.length)];
+        const glowDefs = '<defs><radialGradient id="cg"><stop offset="40%" stop-color="' + cursorColor.glow + '" stop-opacity="' + cursorColor.glowOpacity + '"/><stop offset="100%" stop-color="' + cursorColor.glow + '" stop-opacity="0"/></radialGradient></defs>';
+        const svg1 = '<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' + glowDefs + '<circle cx="12" cy="12" r="11" fill="url(#cg)"/><circle cx="12" cy="12" r="5" fill="' + cursorColor.fill + '"/></svg>';
+        const svg2 = '<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' + glowDefs + '<circle cx="12" cy="12" r="11" fill="url(#cg)"/><circle cx="12" cy="12" r="7" fill="' + cursorColor.fill + '" opacity="0.4"/><circle cx="12" cy="12" r="4" fill="' + cursorColor.fill + '"/></svg>';
+
+        const cursorStyle = document.createElement('style');
+        cursorStyle.innerHTML = `
+            * { cursor: url('data:image/svg+xml;base64,${btoa(svg1)}') 12 12, auto !important; }
+            a, button, .btn, .team-node-btn, .timeline-node, .member-avatar, .down-indicator, .inline-member-link { cursor: url('data:image/svg+xml;base64,${btoa(svg2)}') 12 12, pointer !important; }
+        `;
+        document.head.appendChild(cursorStyle);
+    } catch (e) {
+        console.error("Custom cursor failed.", e);
+    }
+
+    // Scroll + Back to Top
+    const slideshow = document.querySelector('.vertical-slideshow');
+    const backToTop = document.getElementById('back-to-top');
+    slideshow.addEventListener('scroll', () => {
+        backToTop.classList.toggle('show', slideshow.scrollTop > window.innerHeight * 0.5);
+    });
+    backToTop.addEventListener('click', () => slideshow.scrollTo({ top: 0, behavior: 'smooth' }));
+    document.getElementById('next-slide-btn').addEventListener('click', () => {
+        slideshow.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+    });
+
+    // Scroll Reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); revealObserver.unobserve(e.target); } });
+    }, { threshold: 0.01 });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // Scroll-reactive atom: "impulse and settle" - each slide change is an energy pulse.
+    // The two ring layers counter-rotate with spring physics (gold = light body, big kick
+    // with one gentle overshoot; split = heavy body, tighter settle) and pick up a
+    // subtle clamped 3D tilt. The electrons keep a constant, ambient orbital drift.
+    const qloWrap = document.querySelector('.logo-orbits');
+    const bgSlides = Array.from(document.querySelectorAll('.vertical-slideshow > .slide'));
+    const qloHashSlide = location.hash.length > 1 ? (bgSlides.find(s => s.id === location.hash.slice(1)) || null) : null;
+    if (qloWrap && bgSlides.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        // Underdamped spring integrator (semi-implicit Euler); targets are cumulative, never reset.
+        const qloSpring = (k, c) => ({ x: 0, v: 0, t: 0, k: k, c: c });
+        const qloLayers = [
+            { el: qloWrap.querySelector('.qlo-layer-gold'),  kick:  80, spin: qloSpring(10, 3.5),  tiltX: qloSpring(17.5, 5.5), tiltY: qloSpring(17.5, 5.5) },
+            { el: qloWrap.querySelector('.qlo-layer-split'), kick: -40, spin: qloSpring(30, 8.5),  tiltX: qloSpring(22.5, 7),   tiltY: qloSpring(22.5, 7) }
+        ];
+        let qloRaf = 0;
+        let qloPrev = 0;
+        const qloApply = (l) => {
+            l.el.style.transform = `rotateX(${l.tiltX.x.toFixed(3)}deg) rotateY(${l.tiltY.x.toFixed(3)}deg) rotateZ(${l.spin.x.toFixed(3)}deg)`;
+        };
+        const qloFrame = (now) => {
+            const dt = Math.min(Math.max((now - qloPrev) / 1000, 0), 1 / 30); // clamp dt to survive tab-switch gaps
+            qloPrev = now;
+            let settled = true;
+            qloLayers.forEach(l => {
+                [l.spin, l.tiltX, l.tiltY].forEach(s => {
+                    s.v += (-s.k * (s.x - s.t) - s.c * s.v) * dt;
+                    s.x += s.v * dt;
+                    if (Math.abs(s.x - s.t) >= 0.01 || Math.abs(s.v) >= 0.01) settled = false;
+                });
+                qloApply(l);
+            });
+            if (settled) { // write the exact resting pose once, then idle - zero per-frame work at rest
+                qloLayers.forEach(l => {
+                    [l.spin, l.tiltX, l.tiltY].forEach(s => { s.x = s.t; s.v = 0; });
+                    qloApply(l);
+                });
+                qloRaf = 0;
+                return;
+            }
+            qloRaf = requestAnimationFrame(qloFrame);
+        };
+        // Tilt targets follow the spin heading (deterministic, incommensurate periods
+        // so the pose keeps evolving), clamped to +-8deg - rings never go edge-on.
+        const qloRetilt = () => qloLayers.forEach((l, li) => {
+            const h = (l.spin.t + li * 90) * Math.PI / 180;
+            l.tiltX.t = Math.max(-8, Math.min(8, Math.sin(h * 0.7) * 8));
+            l.tiltY.t = Math.max(-8, Math.min(8, Math.cos(h * 0.4) * 8));
+        });
+        // Ring separation: the ring planes must settle at least 40deg apart or the atom
+        // reads as a single ellipse. Plane orientation = base ellipse rotation (gold 53.4,
+        // split -10) + cumulative spin target, compared mod 180 and folded into [0,90].
+        // Enforced on the gold TARGET before the springs run, so a too-parallel impulse
+        // just becomes one slightly larger swing - never a visible late correction.
+        const qloFold = (a) => { a = Math.abs(a) % 180; return a > 90 ? 180 - a : a; };
+        const qloSep = () => qloFold((53.4 + qloLayers[0].spin.t) - (-10 + qloLayers[1].spin.t));
+        const qloSeparate = (dir) => {
+            const sep = qloSep();
+            if (sep >= 40) return;
+            const sgn = dir < 0 ? -1 : 1;
+            qloLayers[0].spin.t += sgn * (40 - sep); // exact deficit when moving away from alignment
+            if (qloSep() < 40) qloLayers[0].spin.t += sgn * 2 * sep; // crossed the fold - total push becomes 40 + sep
+        };
+        let qloLastSlide = 0;
+        const swapObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const slideIdx = bgSlides.indexOf(entry.target);
+                if (slideIdx === qloLastSlide) return;
+                const dir = slideIdx - qloLastSlide; // signed: scrolling up mirrors, multi-slide jumps scale
+                qloLastSlide = slideIdx;
+                qloLayers.forEach(l => { l.spin.t += dir * l.kick; }); // cumulative headings
+                qloSeparate(dir);
+                qloRetilt();
+                if (!qloRaf) { qloPrev = performance.now(); qloRaf = requestAnimationFrame(qloFrame); }
+            });
+        }, { threshold: 0.55 });
+        bgSlides.forEach(s => swapObserver.observe(s));
+        // Hash deep-link: pose the atom as if the user had already scrolled to the target
+        // slide - the same cumulative impulses, separation guard and tilt headings, but with
+        // every spring set AT its target (zero velocity) and applied in one style write. The
+        // observer's same-slide early-return then keeps everything quiet until real scrolling.
+        const qloHashIdx = qloHashSlide ? bgSlides.indexOf(qloHashSlide) : 0;
+        if (qloHashIdx > 0) {
+            qloLastSlide = qloHashIdx;
+            qloLayers.forEach(l => { l.spin.t += qloHashIdx * l.kick; });
+            qloSeparate(qloHashIdx);
+            qloRetilt();
+            qloLayers.forEach(l => {
+                [l.spin, l.tiltX, l.tiltY].forEach(s => { s.x = s.t; s.v = 0; });
+                qloApply(l);
+            });
+        }
+    }
+
+    // Hash deep-link: the slideshow container scrolls, not the window, so native hash
+    // navigation can land half-scrolled or not fire at all. Snap the target slide into
+    // view instantly (navigation, not decoration - it also runs under reduced motion),
+    // and re-square at load unless the user has already scrolled somewhere else.
+    if (qloHashSlide) {
+        qloHashSlide.scrollIntoView({ behavior: 'instant' });
+        window.addEventListener('load', () => {
+            const off = qloHashSlide.getBoundingClientRect().top;
+            if (off !== 0 && Math.abs(off) < window.innerHeight / 2) qloHashSlide.scrollIntoView({ behavior: 'instant' });
+        });
+    }
+
+    // Logo orbitals: pause SMIL animations for reduced motion (both layer SVGs)
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('.logo-orbits .qlo-layer').forEach(qloSvg => qloSvg.pauseAnimations());
+    }
+
+    // Staff Data
+    const staffData = {
+        mech: [
+            { name: "Tochukwu Odiwa", role: "Team Lead", img: "teamphoto/Tochi.jpeg", bio: "Co-conceptualized the Gamma Ray Imaging project. Oversees physical architecture.", anchor: "TochukwuOdiwa" },
+            { name: "Aidan Woods", role: "Team Lead", img: "teamphoto/Aidan.png", bio: "Co-conceptualized the SMR Cooling System project. Oversees hardware housing.", anchor: "AidanWoods" }
+        ],
+        elec: [
+            { name: "Arsalan Vahidi", role: "Team Lead", img: "teamphoto/arsalan.jpg", bio: "Co-conceptualized the Gamma Ray Imaging project. Oversees circuitry development.", anchor: "ArsalanVahidi" },
+            { name: "Boden Parent", role: "Team Lead", img: "teamphoto/boden.jpg", bio: "Oversees internal power, sensing, and circuitry development.", anchor: "BodenParent" }
+        ],
+        software: [
+            { name: "Gabriel Brannon", role: "Team Lead", img: "teamphoto/Gabe.png", bio: "Co-conceptualized the Nuclear Cleanup Rover. Oversees the code stack.", anchor: "GabrielBrannon" },
+            { name: "Tejas Marwaha", role: "Team Lead", img: "teamphoto/TJ.JPG", bio: "Co-conceptualized the Nuclear Cleanup Rover. Oversees device communication.", anchor: "TejasMarwaha" }
+        ],
+        research: [
+            { name: "Justin Hooey", role: "Team Lead", img: "teamphoto/justin.jpg", bio: "Co-conceptualized the SMR Cooling System project. Establishes the scientific framework.", anchor: "JustinHooey" },
+            { name: "Ella Adair", role: "Team Lead", img: "teamphoto/ella.jpg", bio: "Establishing the scientific and theoretical framework for QNET projects.", anchor: "EllaAdair" }
+        ],
+        materials: [
+            { name: "Noah Miggiani", role: "Team Lead", img: "teamphoto/noah.png", bio: "Working on the research of nuclear materials and structural degradation profiles.", anchor: "NoahMiggiani" }
+        ],
+        ions: [
+            { name: "Noah Miggiani", role: "Materials Lead", img: "teamphoto/noah.png", bio: "Conducts radiation damage research at MAX-Nuclear. Leads the Materials sub-team's independent study tracks.", anchor: "NoahMiggiani" }
+        ],
+        healing: [
+            { name: "Noah Miggiani", role: "Materials Lead", img: "teamphoto/noah.png", bio: "Conducts radiation damage research at MAX-Nuclear. Leads the Materials sub-team's independent study tracks.", anchor: "NoahMiggiani" }
+        ],
+        fusion: [
+            { name: "Noah Miggiani", role: "Materials Lead", img: "teamphoto/noah.png", bio: "Conducts radiation damage research at MAX-Nuclear. Leads the Materials sub-team's independent study tracks.", anchor: "NoahMiggiani" }
+        ]
+    };
+
+    function getMembersHTML(teamKey, color) {
+        const members = staffData[teamKey];
+        if (!members) return '';
+        return members.map(m => `<a href="/teams#${m.anchor}" class="member-avatar has-tooltip" style="background-image:url('${m.img}');border-color:${color};" data-name="${m.name}" data-role="${m.role}" data-bio="${m.bio}" data-img="${m.img}" data-color="${color}"></a>`).join('');
+    }
+
+    const teamContent = {
+        smr: {
+            mech: { title: "Mechanical", desc: "<ul><li>CAD of the loop and frame in Onshape.</li><li>Fabricate and assemble piping, reservoir and heat-transfer surfaces.</li><li>Thermal-hydraulic CFD with Software.</li></ul>" },
+            elec: { title: "Electrical", desc: "<ul><li>Heater and backup-pump circuits with SSR control.</li><li>Hardware safety: E-stop, fuses, thermal cutoff.</li><li>Keep all electronics isolated from water.</li></ul>" },
+            software: { title: "Software & Comp", desc: "<ul><li>Raspberry Pi data acquisition in Python.</li><li>Read temperature, flow and pressure sensors together.</li><li>Logic that starts the backup pump and trips the heater.</li></ul>" },
+            research: { title: "Research", desc: "<ul><li>Scale real reactor behaviour down to the loop.</li><li>Calculate target heater power.</li><li>Model fuel-bundle heating (CANDU / reprocessed).</li></ul>" },
+            materials: { title: "Materials", desc: "<ul><li>Tubing and fittings rated to at least 80 °C (no standard PVC).</li><li>Heater choice that keeps surface heat flux low.</li><li>Set max temperature limits.</li></ul>" }
+        },
+        matstudies: {
+            ions: { title: "Ion Surrogates for Neutron Radiation Damage", desc: "<p>This track compares the difference in neutron beams and ion beams in both their recoil spectra and energy deposition partitioning. By comparing which locally-available ions produce spectra and energy-partitioning profiles that most closely mimic real neutron damage, researchers can identify better surrogates for running more accurate experiments with ions rather than neutrons — which are harder to use precisely, as they carry no charge. Our team plans to utilize SRIM simulations, as it is uniquely suited for capturing the recoil spectra and doesn't require any physical experiments aside from experimental validation.</p>" },
+            healing: { title: "Athermal Healing of Irradiation Damage", desc: "<p>This track looks into the mechanisms behind athermal processes due to high electronic energy deposition in irradiation by swift ions. Our team aims to run a literature review to determine electronic stopping power thresholds for irradiation-induced annealing and amorphization. By running SRIM simulations of common reactor wall materials against various ions, this track identifies the most efficient ion-target combinations for inducing healing effects without amorphizing (causing further damage to) the material, and could extend the service life of reactor components.</p>" },
+            fusion: { title: "Candidate Materials for Near-Future Fusion Reactors", desc: "<p>This track evaluates the damage incurred by candidate fusion reactor wall materials, such as single-phase concentrated solution alloys (SP-CSAs), copper alloys, and tungsten alloys, when exposed to ions like hydrogen and helium found in fusion plasma environments. By combining SRIM simulations with a literature review, we gather insight on current research centered on selecting durable, plasma-facing inner wall materials for near-future energy systems.</p>" }
+        }
+    };
+
+    document.querySelectorAll('.team-node-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const project = this.dataset.project;
+            const team = this.dataset.team;
+            const color = this.dataset.color;
+            this.closest('.vertical-nodes').querySelectorAll('.team-node-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const detailsBox = document.getElementById(`details-${project}`);
+            const titleEl = document.getElementById(`title-${project}`);
+            const membersEl = document.getElementById(`members-${project}`);
+            const descEl = document.getElementById(`desc-${project}`);
+            const content = teamContent[project][team];
+            titleEl.innerHTML = content.title;
+            membersEl.innerHTML = getMembersHTML(team, color);
+            descEl.innerHTML = content.desc;
+            detailsBox.style.setProperty('--theme-color', color);
+            titleEl.style.color = color;
+        });
+    });
+
+    // Timeline (tentative build plan)
+    const timelineData = {
+        onboarding: {
+            title: "Onboarding &amp; Component Selection", subtitle: "October",
+            goal: "Semester 1: design",
+            tasks: ["Crash courses", "Readings", "Pick core hardware"],
+            color: "#002552"
+        },
+        design: {
+            title: "Calcs, CAD &amp; Simulation", subtitle: "October – November",
+            goal: "Semester 1: design",
+            tasks: ["Calculations", "Loop CAD", "CFD setup", "Tolerances"],
+            color: "#fabc0f"
+        },
+        freeze: {
+            title: "Design Freeze &amp; Ordering", subtitle: "November",
+            goal: "Semester 1: design",
+            tasks: ["Lock CAD and interfaces", "Order parts"],
+            color: "#b90e32"
+        },
+        fabrication: {
+            title: "Fabrication", subtitle: "January",
+            goal: "Semester 2: build &amp; test",
+            tasks: ["3D print and machine parts", "Build frame"],
+            color: "#002552"
+        },
+        assembly: {
+            title: "Assembly &amp; Leak Testing", subtitle: "February",
+            goal: "Semester 2: build &amp; test",
+            tasks: ["Assemble loop", "Leak test", "First passive-flow shakedown"],
+            color: "#fabc0f"
+        },
+        integration: {
+            title: "Integration, Testing &amp; Reports", subtitle: "March",
+            goal: "Semester 2: build &amp; test",
+            tasks: ["Passive-flow and pump-failover tests", "Then the 3 reports"],
+            color: "#b90e32"
+        }
+    };
+
+    const timelineBox = document.getElementById('timeline-content');
+    const timelineNodes = document.querySelectorAll('.timeline-node');
+
+    function updateTimeline(targetId, track) {
+        const data = timelineData[targetId];
+        const tasksHtml = data.tasks.map(t => `<li>${t}</li>`).join('');
+        timelineBox.style.setProperty('--box-color', data.color);
+        timelineBox.innerHTML = '';
+        setTimeout(() => {
+            timelineBox.innerHTML = `<div class="fade-content"><h3>${data.title} <span>${data.subtitle}</span></h3><p class="goal">${data.goal}</p><ul>${tasksHtml}</ul></div>`;
+        }, 10);
+        if (track) gtag('event','button_click',{'button_name':'Projects Timeline - ' + targetId});
+    }
+
+    timelineNodes.forEach(node => {
+        node.addEventListener('click', function() {
+            timelineNodes.forEach(n => n.classList.remove('active'));
+            this.classList.add('active');
+            updateTimeline(this.dataset.target, true);
+        });
+    });
+    updateTimeline('onboarding', false);
+
+    // Tooltip
+    const tooltip = document.getElementById('global-tooltip');
+    document.addEventListener('mouseover', (e) => {
+        const target = e.target.closest('.has-tooltip');
+        if (target) {
+            const color = target.dataset.color || '#fabc0f';
+            const labelColor = color === '#ffffff' ? '#aaa' : color;
+            tooltip.innerHTML = `<div class="tooltip-header"><div class="tooltip-img" style="background-image:url('${target.dataset.img}');border-color:${color}"></div><div class="tooltip-info"><strong>${target.dataset.name}</strong><em style="color:${labelColor}">${target.dataset.role}</em></div></div><div class="tooltip-bio">${target.dataset.bio}</div>`;
+            tooltip.classList.add('visible');
+        }
+    });
+    document.addEventListener('mousemove', (e) => {
+        if (!tooltip.classList.contains('visible')) return;
+        let x = e.clientX + 15, y = e.clientY + 15;
+        const rect = tooltip.getBoundingClientRect();
+        if (x + rect.width > window.innerWidth) x = e.clientX - rect.width - 15;
+        if (y + rect.height > window.innerHeight) y = e.clientY - rect.height - 15;
+        tooltip.style.left = x + 'px';
+        tooltip.style.top = y + 'px';
+    });
+    document.addEventListener('mouseout', (e) => {
+        if (e.target.closest('.has-tooltip')) tooltip.classList.remove('visible');
+    });
+
+    // Mobile menu
+    const hamburger = document.querySelector('.hamburger-btn');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+    });
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('open');
+            mobileMenu.classList.remove('open');
+        });
+    });
+</script>
+</body>
+</html>
