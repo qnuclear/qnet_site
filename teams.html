@@ -485,6 +485,10 @@
             color: rgba(185, 14, 50, 0.85); font-size: 3.5rem; font-weight: 300;
         }
         .vacant-card { border-color: rgba(185, 14, 50, 0.35); }
+        .initials-photo {
+            display: flex; align-items: center; justify-content: center;
+            color: rgba(255,255,255,0.55); font-size: 3rem; font-weight: 300; letter-spacing: 0.05em;
+        }
         @media (min-width: 1025px) { .directors-grid { gap: 1.5rem; } .directors-grid .staff-card { width: 300px; } }
         .vacant-card .staff-name { text-transform: uppercase; letter-spacing: 0.12em; }
         .staff-apply-btn {
@@ -1170,7 +1174,7 @@
         <div class="slide-content">
             <span class="section-eyebrow" style="color: #b90e32;">Operations</span>
             <h2>Our Directors</h2>
-            <p class="subtitle">The organizational backbone managing our runway, industry presence, and logistics.</p>
+            <p class="subtitle">The organizational backbone managing our technical direction, runway, industry presence, and logistics.</p>
             <div class="staff-grid directors-grid">
                 <div class="staff-card ops-card reveal stagger-1" id="AlexHayes">
                     <div class="staff-top">
@@ -1239,6 +1243,17 @@
                     <div class="staff-badge-slot"></div>
                 </div>
 
+                <div class="staff-card ops-card reveal stagger-4" id="OwenMortensen">
+                    <div class="staff-top">
+                        <!-- TODO: replace initials with a teamphoto/ headshot; add LinkedIn + degree info when available -->
+                        <div class="staff-photo initials-photo" aria-hidden="true">OM</div>
+                        <h3 class="staff-name">Owen Mortensen</h3>
+                        <span class="staff-role">Technical Director</span>
+                    </div>
+                    <div class="staff-academic"></div>
+                    <div class="staff-badge-slot"></div>
+                </div>
+
                 <div class="staff-card ops-card vacant-card reveal stagger-4" id="DirectorOfSponsorship">
                     <div class="staff-top">
                         <div class="staff-photo vacant-photo" aria-hidden="true">?</div>
@@ -1296,7 +1311,39 @@
         </div>
     </section>
 
-    <!-- SLIDE 9: FACULTY ADVISOR -->
+    <!-- SLIDE 9: ADVISORS -->
+    <section class="slide">
+        <div class="slide-content">
+            <span class="section-eyebrow">Guidance</span>
+            <h2>Advisors</h2>
+            <p class="subtitle">Supporting QNET's research direction and the QNET School curriculum.</p>
+            <div class="staff-grid">
+                <div class="staff-card exec-card reveal stagger-1" id="KaiBonser">
+                    <div class="staff-top">
+                        <!-- TODO: replace initials with a teamphoto/ headshot; add LinkedIn + degree info when available -->
+                        <div class="staff-photo initials-photo" aria-hidden="true">KB</div>
+                        <h3 class="staff-name">Kai Bonser</h3>
+                        <span class="staff-role">QNET Research Team Advisor</span>
+                    </div>
+                    <div class="staff-academic"></div>
+                    <div class="staff-badge-slot"></div>
+                </div>
+
+                <div class="staff-card exec-card reveal stagger-2" id="ColinSindrey">
+                    <div class="staff-top">
+                        <!-- TODO: replace initials with a teamphoto/ headshot; add LinkedIn + degree info when available -->
+                        <div class="staff-photo initials-photo" aria-hidden="true">CS</div>
+                        <h3 class="staff-name">Colin Sindrey</h3>
+                        <span class="staff-role">QNET School Advisor</span>
+                    </div>
+                    <div class="staff-academic"></div>
+                    <div class="staff-badge-slot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 10: FACULTY ADVISOR -->
     <section class="slide">
         <div class="slide-content">
             <span class="section-eyebrow">Academic Guidance</span>

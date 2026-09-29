@@ -495,7 +495,7 @@
             <div class="mission-text">
                 <span class="section-eyebrow reveal">Queen's Nuclear Engineering Team</span>
                 <h1 class="hero-title reveal stagger-1">Our <span>Mission</span></h1>
-                <p class="hero-sub reveal stagger-2">We strive to bring nuclear engineering to Queen's University, bridging the gap between theoretical physics and practical engineering. We plan on starting builds in Fall 2026. Joining us now means you can help shape the direction of our projects from the very beginning.</p>
+                <p class="hero-sub reveal stagger-2">We strive to bring nuclear engineering to Queen's University, bridging the gap between theoretical physics and practical engineering. Now officially ratified by EngSoc Council, QNET is working toward our first flagship build, the SMR Cooling System. Joining us now means you can help shape the direction of our projects from the very beginning.</p>
                 <a href="/join" class="btn reveal stagger-3" onclick="gtag('event','button_click',{'button_name':'About - Join CTA'});">Join QNET</a>
             </div>
             <!-- IMAGE PLACEHOLDER: supply a team/mission photo here (16:10) -->
@@ -549,14 +549,14 @@
             <h2 class="hero-title reveal stagger-1" style="margin-bottom:0;">The <span>Roadmap</span></h2>
 
             <div class="timeline-track">
-                <div class="timeline-node active" data-target="foundation" style="--node-color:#002552;">
-                    <span class="node-label top">Foundation<br><small>Present – April 2026</small></span>
+                <div class="timeline-node" data-target="foundation" style="--node-color:#002552;">
+                    <span class="node-label top">Foundation<br><small>Up to April 2026</small></span>
                 </div>
                 <div class="timeline-node" data-target="buildup" style="--node-color:#fabc0f;">
                     <span class="node-label bottom">Build-Up<br><small>Summer 2026</small></span>
                 </div>
-                <div class="timeline-node" data-target="launch" style="--node-color:#b90e32;">
-                    <span class="node-label top">Launch<br><small>Fall 2026</small></span>
+                <div class="timeline-node active" data-target="launch" style="--node-color:#b90e32;">
+                    <span class="node-label top">Launch<br><small>Fall 2026 · Now</small></span>
                 </div>
                 <div class="timeline-node" data-target="future" style="--node-color:#002552;">
                     <span class="node-label bottom">The Future<br><small>2027 and beyond</small></span>
@@ -764,9 +764,9 @@
     // Timeline Data
     const timelineData = {
         foundation: {
-            title: "Foundation", subtitle: "Present – April 2026",
+            title: "Foundation", subtitle: "Up to April 2026",
             goal: "Establish QNET and set the stage for our first project.",
-            tasks: ["Build executive team", "Determine Inaugural Pilot Project", "Finalize Framework", "Get ratified", "<strong>Executive Applications:</strong> Closed on March 12th, check out our team <a href='/teams'>here</a>!", "<strong>General Members:</strong> Voted the <a href='/projects'>SMR Cooling System</a> in as our inaugural project at our first General Members Meeting on Sept 24."],
+            tasks: ["Build executive team", "Determine Inaugural Pilot Project", "Finalize Framework", "<strong>Executive Applications:</strong> Closed on March 12th, check out our team <a href='/teams'>here</a>!"],
             color: "#002552"
         },
         buildup: {
@@ -776,9 +776,9 @@
             color: "#fabc0f"
         },
         launch: {
-            title: "Launch", subtitle: "Fall 2026",
+            title: "Launch", subtitle: "Fall 2026 · Where we are now",
             goal: "Goal: Officially operate as an active engineering design club.",
-            tasks: ["Recruit general members", "Begin full development of inaugural project", "Weekly sub-team meetings and integration reviews", "Continue fundraising and sponsorship outreach", "Build team culture and leadership structure", "Create social media content showcasing progress (documentation)"],
+            tasks: ["<strong>Ratified:</strong> EngSoc Council voted to ratify QNET as an official design club. Find the agenda <a href='https://www.engsoc.queensu.ca/governance/council/' target='_blank' rel='noopener'>here</a>", "<strong>General Members:</strong> Voted the <a href='/projects'>SMR Cooling System</a> in as our inaugural project at our first General Members Meeting on Sept 24.", "Recruit general members", "Begin full development of the SMR Cooling System", "Weekly sub-team meetings and integration reviews", "Continue fundraising and sponsorship outreach", "Build team culture and leadership structure", "Create social media content showcasing progress (documentation)"],
             color: "#b90e32"
         },
         future: {
@@ -810,7 +810,7 @@
             updateTimeline(this.dataset.target);
         });
     });
-    updateTimeline('foundation');
+    updateTimeline('launch');
 
     // Mobile menu
     const hamburger = document.querySelector('.hamburger-btn');
