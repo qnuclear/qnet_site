@@ -12,7 +12,7 @@ QNET (Queen's Nuclear Engineering Team) is a student design team at Queen's Univ
 - [QNET School](https://queensnuclear.ca/school): Nuclear education program launching September 2026 with two pillars — General School (interactive activities for all members) and Sub-Team Training (project-specific skills); curriculum covers radiation & detection (cloud chamber, Geiger counters), reactor basics & physics (reactor types, MCNP intro), and experiential assets (SLOWPOKE-2 tour, RMTL tour, Port Hope legacy waste); capstone design contest with up to $500 prize; Coursera & IAEA certification resources
 - [SMR Cooling System](https://queensnuclear.ca/smr-cooling-system): 2026–2027 flagship build, selected by general member vote on September 24, 2026 — the SMR Cooling System, a bench-scale reactor primary loop with a mock fuel bundle that is cooled passively by natural circulation, with a backup pump on a bypass line (tentative plan: design October–November, build and test January–March, three technical reports) — plus the Materials sub-team's independent study tracks
 - [Join](https://queensnuclear.ca/join): Recruitment — general member positions open now; step 1: join the Microsoft Teams workspace, step 2: formal recruitment Fall 2026
-- [Sponsors](https://queensnuclear.ca/sponsors): Sponsorship tiers — Kinetic ($50–$199), Thermal ($200–$499), Fission ($500–$1,499), Fusion ($1,500+, "Inaugural Partner"); contact qnet@engsoc.queensu.ca
+- [Sponsors](https://queensnuclear.ca/sponsors): Sponsorship tiers — Kinetic ($50–$199), Thermal ($200–$499), Fission ($500–$1,499), Fusion ($1,500+, "Inaugural Partner"); contact qnet.sponsorship@engsoc.queensu.ca
 
 ## Key facts
 
