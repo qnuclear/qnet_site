@@ -14,7 +14,7 @@ QNET (Queen's Nuclear Engineering Team) is a student design team at Queen's Univ
 - [Join](https://queensnuclear.ca/join): Recruitment — general member positions open now; step 1: join the Microsoft Teams workspace, step 2: formal recruitment Fall 2026
 - [Sponsors](https://queensnuclear.ca/sponsors): Sponsorship tiers — Kinetic ($50–$199), Thermal ($200–$499), Fission ($500–$1,499), Fusion ($1,500+, "Inaugural Partner"); contact qnet.sponsorship@engsoc.queensu.ca
 
-## Key facts
+## Key facts 
 
 - Five sub-teams: Mechanical (CAD, 3D printing, structural design); Electrical (PCB design, power, sensing); Software (control logic, firmware, UI, IoT); Research (technical reports, reviews, case studies); Materials (material selection, degradation modeling, safety analysis)
 - End-of-year demonstration in front of sponsors and nuclear industry professionals
