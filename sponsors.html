@@ -108,14 +108,14 @@
         }
 
         .notch-container {
-            width: 810px; height: 56px; max-width: calc(100vw - 32px);
+            width: 900px; height: 56px; max-width: calc(100vw - 32px);
             background: rgba(15,15,15,0.85); backdrop-filter: blur(20px);
             border: 1px solid rgba(255,255,255,0.1); border-radius: 35px;
             display: flex; align-items: center; justify-content: center; gap: 2rem;
             padding: 0 2rem; pointer-events: auto;
             transition: width 0.65s cubic-bezier(0.16,1,0.3,1), height 0.65s cubic-bezier(0.16,1,0.3,1);
         }
-        .notch-wrapper:hover .notch-container { width: 990px; height: 72px; }
+        .notch-wrapper:hover .notch-container { width: 1080px; height: 72px; }
         .nav-logo-link { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
         .nav-logo-wrap {
             position: relative; overflow: hidden; flex-shrink: 0;
@@ -141,6 +141,12 @@
             white-space: nowrap;
         }
         .notch-container a:not(.nav-logo-link):hover { color: rgba(255,255,255,0.9); }
+        /* Narrow laptops: tighten nav spacing so all links fit inside the notch */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .notch-container { gap: 1.25rem; padding: 0 1rem; }
+            .notch-links { gap: 0.75rem; }
+            .notch-container a:not(.nav-logo-link) { letter-spacing: 0.02em; }
+        }
         .notch-links a { position: relative; }
         .notch-links a::after {
             content: ''; position: absolute; bottom: -5px; left: 50%;
@@ -598,6 +604,187 @@
             white-space: nowrap;
         }
 
+        /* --- SPONSOR SPOTLIGHT --- */
+        .spotlight-card {
+            display: grid;
+            grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+            gap: 3.5rem;
+            align-items: center;
+            width: 100%;
+            max-width: 1100px;
+            background: rgba(18,18,18,0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-left: 4px solid #fabc0f;
+            border-radius: 22px;
+            padding: 3rem;
+            text-align: left;
+        }
+
+        .spotlight-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.75rem;
+        }
+
+        .spotlight-logo-link {
+            display: block;
+            width: 100%;
+            transition: opacity 0.3s ease, translate 0.3s ease;
+        }
+        .spotlight-logo-link:hover { opacity: 0.8; translate: 0 -3px; }
+
+        .spotlight-logo {
+            display: block;
+            width: 100%;
+            max-width: 380px;
+            height: auto;
+            /* Logo file is dark navy on transparent; render it white for the dark background */
+            filter: brightness(0) invert(1);
+        }
+
+        .spotlight-tier {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 0.75rem;
+            border: 2px solid #b90e32;
+            background: rgba(185, 14, 50, 0.08);
+            border-radius: 14px;
+            padding: 0.6rem 1.25rem;
+        }
+        .spotlight-tier-label {
+            color: #aaa;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+        .spotlight-tier-name {
+            color: #fff;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .spotlight-body h2 {
+            font-size: clamp(1.75rem, 2.5vw, 2.4rem);
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            color: #fff;
+            margin-bottom: 1.25rem;
+        }
+
+        .spotlight-body p {
+            color: #bbb;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .spotlight-body .spotlight-thanks {
+            margin: 1.5rem 0 0;
+            padding-left: 1.25rem;
+            border-left: 2px solid #fabc0f;
+            color: #f0f0f0;
+            font-style: italic;
+        }
+
+        .spotlight-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.75rem;
+            color: #fabc0f;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: gap 0.45s ease;
+        }
+        .spotlight-cta:hover { gap: 0.9rem; }
+
+        /* --- FISSION SPONSORS --- */
+        .fission-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .fission-card {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            background: rgba(18,18,18,0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-left: 4px solid #fabc0f;
+            border-radius: 22px;
+            padding: 2.25rem 2.5rem;
+            text-align: left;
+        }
+
+        .fission-logo-link {
+            display: flex;
+            align-items: center;
+            height: 70px;
+            margin-bottom: 1.25rem;
+            transition: opacity 0.3s ease, translate 0.3s ease;
+        }
+        .fission-logo-link:hover { opacity: 0.8; translate: 0 -3px; }
+
+        .fission-logo {
+            display: block;
+            max-height: 70px;
+            max-width: 100%;
+            width: auto;
+            height: auto;
+            /* Logo files are dark on transparent; render them white for the dark background */
+            filter: brightness(0) invert(1);
+        }
+
+        .spotlight-tier.fission {
+            border-color: #fabc0f;
+            background: rgba(250,188,15,0.08);
+            margin-bottom: 1.25rem;
+        }
+
+        .fission-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.85rem;
+        }
+
+        .fission-card p {
+            color: #bbb;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .fission-card .spotlight-thanks {
+            margin-top: 1.25rem;
+            padding-left: 1.25rem;
+            border-left: 2px solid #fabc0f;
+            color: #f0f0f0;
+            font-style: italic;
+        }
+
+        /* --- THERMAL SPONSORS --- */
+        .thermal-grid { max-width: 560px; grid-template-columns: minmax(0, 1fr); }
+        .spotlight-tier.thermal {
+            border-color: #6f9fd8;
+            background: rgba(0,37,82,0.35);
+            margin-bottom: 1.25rem;
+        }
+        .fission-logo.thermal-logo { max-height: 48px; }
+
         /* --- SCROLL REVEAL ANIMATIONS --- */
         .reveal { opacity: 0; transform: translateY(40px); }
         .reveal.active { animation: revealUp 1.2s cubic-bezier(0.16,1,0.3,1) both; }
@@ -617,6 +804,8 @@
             .pitch-grid { grid-template-columns: 1fr; }
             .impact-container { flex-direction: column; padding: 3rem; }
             .tiers-grid { grid-template-columns: repeat(2, 1fr); }
+            .spotlight-card { grid-template-columns: 1fr; gap: 2.5rem; }
+            .fission-grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
@@ -636,6 +825,11 @@
             .section-header h2 { font-size: 2.8rem; }
             .tiers-grid { grid-template-columns: 1fr; }
             .impact-container { padding: 2rem 1.5rem; }
+            .spotlight-card { padding: 2rem 1.5rem; }
+            .spotlight-logo { max-width: 280px; }
+            .fission-card { padding: 2rem 1.5rem; }
+            .fission-logo-link { height: 64px; }
+            .fission-logo { max-height: 64px; }
         }
 
         /* --- FIXED FOOTER & BACK TO TOP --- */
@@ -810,6 +1004,7 @@
             <a href="/school">QNET School</a>
             <a href="/smr-cooling-system">SMR Cooling System</a>
             <a href="/sponsors" style="color:#fff;">Sponsors</a>
+            <a href="/atkinsrealis">AtkinsRéalis</a>
             <a href="/join">Join</a>
         </div>
     </nav>
@@ -830,15 +1025,102 @@
     <a href="/school" class="mobile-nav-link">QNET School</a>
     <a href="/smr-cooling-system" class="mobile-nav-link">SMR Cooling System</a>
     <a href="/sponsors" class="mobile-nav-link" style="color: #fff;">Sponsors</a>
+    <a href="/atkinsrealis" class="mobile-nav-link">AtkinsRéalis</a>
     <a href="/join" class="mobile-nav-link">Join</a>
 </div>
 
 <main class="vertical-slideshow">
 
+    <section class="slide">
+        <div class="slide-content-wrapper">
+            <h1 class="hero-title" style="margin-bottom: 2.5rem;">Meet Our Sponsors</h1>
+
+            <div class="spotlight-card reveal stagger-1">
+                <div class="spotlight-brand">
+                    <a href="https://www.atkinsrealis.com/" class="spotlight-logo-link" target="_blank" rel="noopener" aria-label="AtkinsRéalis website (opens in a new tab)" onclick="gtag('event', 'button_click', {'button_name': 'Sponsors - AtkinsRealis Logo'});">
+                        <img src="assets/AtkinsRealisLogo1.png" alt="AtkinsRéalis logo" class="spotlight-logo">
+                    </a>
+                    <div class="spotlight-tier">
+                        <span class="spotlight-tier-label">Tier</span>
+                        <span class="spotlight-tier-name">Fusion</span>
+                    </div>
+                </div>
+                <div class="spotlight-body">
+                    <h2>Our Inaugural Partner</h2>
+                    <p>AtkinsRéalis is QNET's first sponsor. Their support is helping lay the foundation for everything the team builds: our design projects, our members' growth as engineers, and the long-term future of nuclear engineering at Queen's.</p>
+                    <p>AtkinsRéalis is a world-class engineering services and nuclear organization headquartered in Montréal. It is the steward of CANDU reactor technology and a global leader in nuclear power, from new build and life extension to small modular reactors and decommissioning. AtkinsRéalis connects people, data and technology to transform the world's infrastructure and energy systems.</p>
+                    <p class="spotlight-thanks">Thank you, AtkinsRéalis, for believing in QNET from day one. Your partnership turns our ambitions into real projects, and we're proud to build the next generation of nuclear talent with you.</p>
+                    <a href="/atkinsrealis" class="spotlight-cta" onclick="gtag('event', 'button_click', {'button_name': 'Sponsors - AtkinsRealis Partner Page'});">Learn more about our partnership →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide" id="fission-sponsors">
+        <div class="slide-content-wrapper">
+            <div class="section-header reveal" style="margin-bottom: 2rem;">
+                <h2>Our Fission Sponsors</h2>
+                <p>Thank you to our Fission-tier sponsors for investing in QNET.</p>
+            </div>
+
+            <div class="fission-grid">
+                <div class="fission-card reveal stagger-1">
+                    <a href="https://www.calian.com/" class="fission-logo-link" target="_blank" rel="noopener" aria-label="Calian website (opens in a new tab)" onclick="gtag('event', 'button_click', {'button_name': 'Sponsors - Calian Logo'});">
+                        <img src="assets/CalianLogo.png" alt="Calian logo" class="fission-logo">
+                    </a>
+                    <div class="spotlight-tier fission">
+                        <span class="spotlight-tier-label">Tier</span>
+                        <span class="spotlight-tier-name">Fission</span>
+                    </div>
+                    <h3>Calian Nuclear</h3>
+                    <p>Calian is a Canadian company headquartered in Ottawa that delivers engineering, training, and technology services across defence, health, and critical infrastructure. Through Calian Nuclear, it supports the nuclear industry with engineering, project delivery, and operational support across the full life cycle of nuclear facilities.</p>
+                    <p class="spotlight-thanks">Thank you, Calian Nuclear, for supporting QNET and helping our members gain real-world nuclear experience.</p>
+                </div>
+
+                <div class="fission-card reveal stagger-2">
+                    <a href="https://www.cameco.com/" class="fission-logo-link" target="_blank" rel="noopener" aria-label="Cameco website (opens in a new tab)" onclick="gtag('event', 'button_click', {'button_name': 'Sponsors - Cameco Logo'});">
+                        <img src="assets/CamecoLogo.png" alt="Cameco logo" class="fission-logo">
+                    </a>
+                    <div class="spotlight-tier fission">
+                        <span class="spotlight-tier-label">Tier</span>
+                        <span class="spotlight-tier-name">Fission</span>
+                    </div>
+                    <h3>Cameco</h3>
+                    <p>Cameco is one of the world's largest providers of uranium fuel, headquartered in Saskatoon, Saskatchewan. With uranium mining operations in northern Saskatchewan and fuel services facilities in Ontario, including Port Hope, Cameco helps power clean, reliable nuclear energy around the world.</p>
+                    <p class="spotlight-thanks">Thank you, Cameco, for fuelling QNET's growth and investing in the future of Canadian nuclear engineering.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide" id="thermal-sponsors">
+        <div class="slide-content-wrapper">
+            <div class="section-header reveal" style="margin-bottom: 2rem;">
+                <h2>Our Thermal Sponsors</h2>
+                <p>Thank you to our Thermal-tier sponsors for investing in QNET.</p>
+            </div>
+
+            <div class="fission-grid thermal-grid">
+                <div class="fission-card reveal stagger-1">
+                    <a href="https://easyeda.com/" class="fission-logo-link" target="_blank" rel="noopener" aria-label="EasyEDA website (opens in a new tab)" onclick="gtag('event', 'button_click', {'button_name': 'Sponsors - EasyEDA Logo'});">
+                        <img src="assets/EasyEDA_logo.svg" alt="EasyEDA logo" class="fission-logo thermal-logo">
+                    </a>
+                    <div class="spotlight-tier thermal">
+                        <span class="spotlight-tier-label">Tier</span>
+                        <span class="spotlight-tier-name">Thermal</span>
+                    </div>
+                    <h3>EasyEDA</h3>
+                    <p>EasyEDA is a free, browser-based electronic design automation (EDA) platform for schematic capture, circuit simulation, and PCB layout. With a large built-in component library and integrated PCB fabrication services, it lets engineers take a circuit from first sketch to manufactured board in one place.</p>
+                    <p class="spotlight-thanks">Thank you, EasyEDA, for supporting QNET and helping our members bring their circuit designs to life.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="slide hero-slide">
         <div class="hero-bg"></div>
         <div class="slide-content-wrapper">
-            <h1 class="hero-title">Fuel Our Future.</h1>
+            <h2 class="hero-title">Fuel Our Future.</h2>
             <p class="hero-subtitle">As a newly ratified EngSoc design club, QNET relies on industry partners to fund our projects, educate our members, and build the next generation of nuclear engineers.</p>
             
             <div class="hero-actions">

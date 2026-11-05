@@ -1,0 +1,1545 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QNET | AtkinsRéalis – Our Inaugural Partner</title>
+    <meta name="description" content="AtkinsRéalis is QNET's inaugural partner and Fusion-tier sponsor. Learn about the company, what the partnership means, and AtkinsRéalis internship programs.">
+    <meta property="og:title" content="AtkinsRéalis, Our Inaugural Partner | Queen's Nuclear Engineering Team">
+    <meta property="og:description" content="AtkinsRéalis is QNET's first sponsor and Fusion-tier partner, helping build the foundation for the team's projects, student development, and future growth.">
+    <meta property="og:image" content="https://queensnuclear.ca/assets/White%20NET%20Full%20Logo.png">
+    <meta property="og:url" content="https://queensnuclear.ca/atkinsrealis">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://queensnuclear.ca/assets/White%20NET%20Full%20Logo.png">
+    <link rel="canonical" href="https://queensnuclear.ca/atkinsrealis">
+    <link rel="icon" type="image/svg+xml" href="assets/outlinefavicon.svg">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8J80X6N4DV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-8J80X6N4DV');
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        /* ── Responsive root scaling: laptop-width screens (769–1536px) get a
+           proportionally smaller root font-size so the desktop-tuned layout
+           (authored for large monitors) doesn't render oversized / "zoomed in".
+           rem-based sizing scales with this. Desktop (≥1537px) and mobile
+           (≤768px) are intentionally left untouched. ── */
+        @media (min-width: 769px) and (max-width: 1536px) {
+            html { font-size: clamp(13px, 0.84vw + 3.1px, 16px); }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body, html {
+            background-color: #050505;
+            color: #f0f0f0;
+            overflow: hidden;
+        }
+
+        .global-bg {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: #050505; overflow: hidden; z-index: 0; pointer-events: none;
+        }
+        .nebula-blob { position: absolute; border-radius: 50%; filter: blur(110px); pointer-events: none; }
+        .nebula-1 { width: 700px; height: 700px; background: radial-gradient(circle, rgba(0,37,82,0.45), transparent 70%); top: -180px; left: -180px; animation: nebulaDrift 18s ease-in-out infinite alternate; }
+        .nebula-2 { width: 550px; height: 550px; background: radial-gradient(circle, rgba(250,188,15,0.1), transparent 70%); bottom: -100px; right: 5%; animation: nebulaDrift 22s ease-in-out infinite alternate-reverse; }
+        .nebula-3 { width: 600px; height: 350px; background: radial-gradient(circle, rgba(185,14,50,0.12), transparent 70%); top: 25%; right: -120px; animation: nebulaDrift 26s ease-in-out infinite alternate; }
+        .nebula-4 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,37,82,0.2), transparent 70%); bottom: 10%; left: 10%; animation: nebulaDrift 20s ease-in-out infinite alternate-reverse; }
+        @keyframes nebulaDrift { 0% { opacity: 0.5; transform: scale(0.9) translate(0,0); } 100% { opacity: 1; transform: scale(1.2) translate(30px,-20px); } }
+
+        /* ── Atomic orbital background ── */
+        .nucleus-glow {
+            position: absolute; width: 340px; height: 340px; border-radius: 50%;
+            background: radial-gradient(circle, var(--nc, rgba(250,188,15,0.5)), transparent 70%);
+            filter: blur(70px); opacity: 0.12; pointer-events: none;
+            top: 12%; right: 10%; left: auto;
+        }
+        .logo-orbits {
+            position: fixed;
+            inset: 0;
+            margin: auto;
+            width: 85vmin;
+            height: 85vmin;
+            z-index: 0;
+            pointer-events: none;
+            isolation: isolate;
+            perspective: 1200px;
+        }
+        .logo-orbits .qlo-layer {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            mix-blend-mode: screen;
+            will-change: transform;
+        }
+        .logo-orbits .qlo-blue { filter: drop-shadow(0 0 8px rgba(0, 37, 82, 0.55)); }
+        .logo-orbits .qlo-ring { mix-blend-mode: screen; }
+        .global-bg .logo-orbits { transition: opacity 0.6s ease; }
+        .global-bg.orbitals-off .logo-orbits { opacity: 0; }
+        @media (prefers-reduced-motion: reduce) {
+            .nebula-blob { animation: none; }
+            .logo-orbits, .logo-orbits .qlo-layer { transition: none; transform: none; }
+        }
+
+        /* --- DYNAMIC NOTCH NAVIGATION (matches QNET School page) --- */
+        .notch-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 90px;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 15px;
+            pointer-events: none; 
+        }
+
+        .notch-container {
+            width: 900px; height: 56px; max-width: calc(100vw - 32px);
+            background: rgba(15,15,15,0.85); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 35px;
+            display: flex; align-items: center; justify-content: center; gap: 2rem;
+            padding: 0 2rem; pointer-events: auto;
+            transition: width 0.65s cubic-bezier(0.16,1,0.3,1), height 0.65s cubic-bezier(0.16,1,0.3,1);
+        }
+        .notch-wrapper:hover .notch-container { width: 1080px; height: 72px; }
+        .nav-logo-link { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+        .nav-logo-wrap {
+            position: relative; overflow: hidden; flex-shrink: 0;
+            width: 32px; height: 32px;
+            transition: width 0.65s cubic-bezier(0.16,1,0.3,1), height 0.65s cubic-bezier(0.16,1,0.3,1);
+        }
+        .notch-wrapper:hover .nav-logo-wrap { width: 145px; height: 40px; }
+        .nav-logo-atom, .nav-logo-full {
+            position: absolute; top: 50%; left: 0; transform: translateY(-50%);
+            height: 32px; width: auto; transition: opacity 0.25s ease;
+        }
+        .notch-wrapper:hover .nav-logo-atom, .notch-wrapper:hover .nav-logo-full { height: 40px; }
+        .nav-logo-atom { opacity: 1; }
+        .nav-logo-full { opacity: 0; }
+        .notch-wrapper:hover .nav-logo-atom { opacity: 0; }
+        .notch-wrapper:hover .nav-logo-full { opacity: 1; }
+        .notch-links { display: flex; align-items: center; gap: 1.15rem; }
+        .notch-container a:not(.nav-logo-link) {
+            text-decoration: none; color: rgba(255,255,255,0.5);
+            font-size: 0.78rem; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.08em;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+        .notch-container a:not(.nav-logo-link):hover { color: rgba(255,255,255,0.9); }
+        /* Narrow laptops: tighten nav spacing so all links fit inside the notch */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .notch-container { gap: 1.25rem; padding: 0 1rem; }
+            .notch-links { gap: 0.75rem; }
+            .notch-container a:not(.nav-logo-link) { letter-spacing: 0.02em; }
+        }
+        .notch-links a { position: relative; }
+        .notch-links a::after {
+            content: ''; position: absolute; bottom: -5px; left: 50%;
+            width: 0; height: 1px; background: #fabc0f;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+        .notch-links a:hover::after { width: 100%; left: 0; }
+
+        /* --- VERTICAL SLIDESHOW (SNAP SCROLL) --- */
+        .vertical-slideshow {
+            height: 100vh;
+            width: 100vw;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .vertical-slideshow::-webkit-scrollbar { display: none; }
+
+        .slide {
+            height: 100vh; 
+            width: 100vw;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .slide.hero-slide {
+            overflow: hidden;
+        }
+
+        .slide-content-wrapper {
+            max-width: 1400px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        /* --- HERO SECTION WITH GEOMETRIC GRID --- */
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: center center;
+            z-index: -2;
+            transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+            animation: gridMove 30s linear infinite;
+            -webkit-mask-image: radial-gradient(ellipse at 50% 35%, black 20%, transparent 72%);
+            mask-image: radial-gradient(ellipse at 50% 35%, black 20%, transparent 72%);
+        }
+
+        @keyframes gridMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 50px; }
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 600;
+            letter-spacing: -0.04em;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #aaa;
+            max-width: 700px;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+        }
+
+        /* Hero Action Buttons */
+        .hero-actions {
+            display: flex;
+            gap: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+        }
+
+        .package-note {
+            max-width: 620px;
+            margin-top: 2rem;
+            font-size: 0.92rem;
+            color: #888;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) 1.1s forwards;
+        }
+
+        .package-note strong { color: #fabc0f; font-weight: 600; }
+
+        .btn-download {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.45s ease;
+            position: relative;
+            overflow: hidden;
+            min-width: 280px;
+        }
+
+        .btn-download span.title {
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            transition: color 0.45s ease;
+        }
+
+        .btn-download span.sub {
+            color: #fabc0f;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+        }
+
+        .btn-download:hover {
+            border-color: #002552;
+            color: #fff;
+            background: rgba(0,37,82,0.3);
+            translate: 0 -3px;
+            box-shadow: 0 8px 24px rgba(0,37,82,0.5), 0 0 0 1px rgba(0,37,82,0.7);
+        }
+        .btn-download.primary { border-color: rgba(250,188,15,0.55); background: rgba(250,188,15,0.08); box-shadow: 0 10px 30px rgba(250,188,15,0.12); }
+        .btn-download.primary:hover { border-color: #fabc0f; background: rgba(250,188,15,0.16); box-shadow: 0 15px 35px rgba(250,188,15,0.25); }
+        .btn-download.primary.red { border-color: rgba(185,14,50,0.55); background: rgba(185,14,50,0.08); box-shadow: 0 10px 30px rgba(185,14,50,0.12); }
+        .btn-download.primary.red:hover { border-color: #b90e32; background: rgba(185,14,50,0.16); box-shadow: 0 15px 35px rgba(185,14,50,0.3); }
+
+        /* --- EOY DEMONSTRATION PHOTO LAYER --- */
+        .eoy-photo-layer {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('assets/mitchell_hall.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        /* --- EOY DRIFTING ELECTRONS --- */
+        .eoy-drift-layer { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+        .eoy-drift-layer .particle { position: absolute; width: 6px; height: 6px; border-radius: 50%; opacity: 0.6; }
+        .eoy-drift-layer .p1 { top: 20%; left: 15%; background: #fabc0f; box-shadow: 0 0 10px 2px rgba(250,188,15,0.6); animation: eoyDriftA 22s ease-in-out infinite alternate; }
+        .eoy-drift-layer .p2 { top: 65%; left: 30%; background: #b90e32; box-shadow: 0 0 10px 2px rgba(185,14,50,0.6); animation: eoyDriftB 26s ease-in-out infinite alternate; animation-delay: -4s; }
+        .eoy-drift-layer .p3 { top: 35%; left: 70%; background: #002552; box-shadow: 0 0 12px 2px rgba(0,37,82,0.8); animation: eoyDriftC 30s ease-in-out infinite alternate; animation-delay: -8s; }
+        .eoy-drift-layer .p4 { top: 75%; left: 80%; background: #fabc0f; box-shadow: 0 0 10px 2px rgba(250,188,15,0.5); animation: eoyDriftA 24s ease-in-out infinite alternate; animation-delay: -12s; }
+        .eoy-drift-layer .p5 { top: 50%; left: 50%; background: #b90e32; box-shadow: 0 0 10px 2px rgba(185,14,50,0.5); animation: eoyDriftB 28s ease-in-out infinite alternate; animation-delay: -18s; }
+        .eoy-drift-layer .p6 { top: 10%; left: 55%; background: #002552; box-shadow: 0 0 10px 2px rgba(0,37,82,0.7); animation: eoyDriftC 20s ease-in-out infinite alternate; animation-delay: -6s; }
+        @keyframes eoyDriftA { 0% { transform: translate(0,0); } 33% { transform: translate(30px,-25px); } 66% { transform: translate(-20px,20px); } 100% { transform: translate(15px,-10px); } }
+        @keyframes eoyDriftB { 0% { transform: translate(0,0); } 33% { transform: translate(-35px,15px); } 66% { transform: translate(25px,-20px); } 100% { transform: translate(-15px,25px); } }
+        @keyframes eoyDriftC { 0% { transform: translate(0,0); } 33% { transform: translate(20px,30px); } 66% { transform: translate(-30px,-15px); } 100% { transform: translate(10px,-25px); } }
+        @media (prefers-reduced-motion: reduce) {
+            .eoy-drift-layer .particle { animation: none; }
+        }
+
+        /* --- SECTION HEADERS --- */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+        
+        .section-header h2 {
+            font-size: clamp(2.25rem, 3.5vw, 3.5rem);
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: #aaa;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* --- WHY SPONSOR GRID --- */
+        .pitch-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
+            max-width: 1300px;
+        }
+
+        .pitch-card {
+            background: #111;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 3rem 2.5rem;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .pitch-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--card-color, #444);
+            transition: height 0.4s ease;
+        }
+
+        .pitch-card:hover {
+            translate: 0 -8px;
+            background: #151515;
+            border-color: var(--card-color, #fabc0f);
+            box-shadow: 0 20px 50px rgba(250,188,15,0.2);
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--card-color, #fabc0f) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--card-color, #fabc0f) 30%, transparent);
+        }
+
+        .pitch-card:hover::before {
+            height: 6px;
+        }
+
+        .pitch-card h3 {
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .pitch-card p {
+            color: #bbb;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        /* --- EXPERIENTIAL IMPACT SECTION --- */
+        .impact-container {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            width: 100%;
+            max-width: 1300px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 24px;
+            padding: 4rem;
+            text-align: left;
+        }
+
+        .impact-left {
+            flex: 1;
+        }
+
+        .impact-eyebrow {
+            display: inline-block;
+            color: #fabc0f;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            margin-bottom: 1rem;
+        }
+
+        .impact-left h3 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .impact-left p {
+            font-size: 1.15rem;
+            color: #aaa;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .impact-left .impact-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #fabc0f;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: gap 0.45s ease;
+        }
+
+        .impact-left .impact-cta:hover {
+            gap: 0.9rem;
+        }
+
+        .impact-right {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .impact-bullet {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            background: #111;
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.4s ease;
+        }
+
+        .impact-bullet:hover {
+            border-color: #fabc0f;
+            background: rgba(250, 188, 15, 0.05);
+            transform: translateX(10px);
+        }
+
+        .impact-bullet svg {
+            width: 24px;
+            height: 24px;
+            fill: #fabc0f;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .impact-bullet p {
+            font-size: 1.05rem;
+            color: #ddd;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* --- SPONSORSHIP TIERS --- */
+        .tiers-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 1400px;
+        }
+
+        .tier-card {
+            background: #0f0f0f;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: left;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s ease;
+        }
+
+        .tier-card:hover {
+            translate: 0 -8px;
+            border-color: var(--tier-color, #fabc0f);
+            box-shadow: 0 20px 50px rgba(250,188,15,0.2);
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--tier-color, #fabc0f) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--tier-color, #fabc0f) 30%, transparent);
+        }
+
+        .tier-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .tier-name {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--tier-color);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tier-price {
+            font-size: 1.25rem;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .tier-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            flex-grow: 1;
+        }
+
+        .tier-features li {
+            font-size: 0.95rem;
+            color: #bbb;
+            line-height: 1.4;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .tier-features li::before {
+            content: '✓';
+            color: var(--tier-color);
+            font-weight: bold;
+        }
+
+        .tier-card.kinetic { --tier-color: #888888; }
+        .tier-card.thermal { --tier-color: #002552; }
+        .tier-card.fission { --tier-color: #fabc0f; }
+        .tier-card.fusion { --tier-color: #b90e32; border: 2px solid #b90e32; background: rgba(185, 14, 50, 0.05); }
+
+        .fusion-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #b90e32;
+            color: #fff;
+            padding: 0.25rem 0.85rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            white-space: nowrap;
+        }
+
+        /* --- SPONSOR SPOTLIGHT --- */
+        .spotlight-card {
+            display: grid;
+            grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+            gap: 3.5rem;
+            align-items: center;
+            width: 100%;
+            max-width: 1100px;
+            background: rgba(18,18,18,0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-left: 4px solid #fabc0f;
+            border-radius: 22px;
+            padding: 3rem;
+            text-align: left;
+        }
+
+        .spotlight-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.75rem;
+        }
+
+        .spotlight-logo-link {
+            display: block;
+            width: 100%;
+            transition: opacity 0.3s ease, translate 0.3s ease;
+        }
+        .spotlight-logo-link:hover { opacity: 0.8; translate: 0 -3px; }
+
+        .spotlight-logo {
+            display: block;
+            width: 100%;
+            max-width: 380px;
+            height: auto;
+            /* Logo file is dark navy on transparent; render it white for the dark background */
+            filter: brightness(0) invert(1);
+        }
+
+        .spotlight-tier {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 0.75rem;
+            border: 2px solid #b90e32;
+            background: rgba(185, 14, 50, 0.08);
+            border-radius: 14px;
+            padding: 0.6rem 1.25rem;
+        }
+        .spotlight-tier-label {
+            color: #aaa;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+        .spotlight-tier-name {
+            color: #fff;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .spotlight-body h2 {
+            font-size: clamp(1.75rem, 2.5vw, 2.4rem);
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            color: #fff;
+            margin-bottom: 1.25rem;
+        }
+
+        .spotlight-body p {
+            color: #bbb;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .spotlight-body .spotlight-thanks {
+            margin: 1.5rem 0 0;
+            padding-left: 1.25rem;
+            border-left: 2px solid #fabc0f;
+            color: #f0f0f0;
+            font-style: italic;
+        }
+
+        .spotlight-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.75rem;
+            color: #fabc0f;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: gap 0.45s ease;
+        }
+        .spotlight-cta:hover { gap: 0.9rem; }
+
+        /* --- SCROLL REVEAL ANIMATIONS --- */
+        .reveal { opacity: 0; transform: translateY(40px); }
+        .reveal.active { animation: revealUp 1.2s cubic-bezier(0.16,1,0.3,1) both; }
+        .stagger-1.reveal.active { animation-delay: 0.15s; }
+        .stagger-2.reveal.active { animation-delay: 0.3s; }
+        .stagger-3.reveal.active { animation-delay: 0.45s; }
+        .stagger-4.reveal.active { animation-delay: 0.6s; }
+        @keyframes revealUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .pitch-grid { grid-template-columns: 1fr; }
+            .impact-container { flex-direction: column; padding: 3rem; }
+            .tiers-grid { grid-template-columns: repeat(2, 1fr); }
+            .spotlight-card { grid-template-columns: 1fr; gap: 2.5rem; }
+        }
+
+        @media (max-width: 768px) {
+            html, body { overflow: auto; height: auto; }
+            .vertical-slideshow { scroll-snap-type: none; height: auto; overflow-y: visible; }
+            .slide {
+                height: auto;
+                min-height: 100svh;
+                padding: 120px 1.5rem 140px 1.5rem;
+                scroll-snap-align: none;
+            }
+            .notch-wrapper { display: none; }
+            .mobile-header { display: flex !important; }
+            .hero-title { font-size: 3.5rem; }
+            .hero-actions { flex-direction: column; width: 100%; }
+            .btn-download { width: 100%; }
+            .section-header h2 { font-size: 2.8rem; }
+            .tiers-grid { grid-template-columns: 1fr; }
+            .impact-container { padding: 2rem 1.5rem; }
+            .spotlight-card { padding: 2rem 1.5rem; }
+            .spotlight-logo { max-width: 280px; }
+        }
+
+        /* --- FIXED FOOTER & BACK TO TOP --- */
+        .site-footer {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            display: flex;
+            gap: 1.25rem;
+            z-index: 100;
+        }
+
+        .social-link { display: flex; align-items: center; justify-content: center; pointer-events: auto; }
+        .social-icon { width: 20px; height: 20px; fill: #ffffff; transition: all 0.45s ease; }
+        .social-link:nth-child(1):hover .social-icon { fill: #002552; translate: 0 -3px; }
+        .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; translate: 0 -3px; }
+        .social-link:nth-child(3):hover .social-icon { fill: #b90e32; translate: 0 -3px; }
+
+        #back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 50%;
+            color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px);
+            transition: all 0.45s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        #back-to-top svg { width: 24px; height: 24px; }
+        #back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+        #back-to-top:hover { border-color: #fabc0f; color: #fabc0f; translate: 0 -3px; }
+
+        @media (max-width: 768px) {
+            .site-footer { display: none; }
+            #back-to-top { display: none; }
+        }
+
+        /* ── Mobile Header ── */
+        .mobile-header {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 70px;
+            background: rgba(5,5,5,0.9); backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            align-items: center; justify-content: center; z-index: 1000;
+        }
+        .mobile-logo-link { display: flex; align-items: center; text-decoration: none; }
+        .mobile-logo { height: 36px; width: auto; }
+        .hamburger-btn {
+            display: flex; position: absolute; right: 1.25rem;
+            background: none; border: none; cursor: pointer;
+            flex-direction: column; gap: 6px; padding: 8px; z-index: 1001;
+        }
+        .hamburger-btn .line { width: 24px; height: 2px; background: #f0f0f0; border-radius: 2px; transition: all 0.3s ease; }
+        .hamburger-btn.open .line:nth-child(1) { transform: translateY(4px) rotate(45deg); }
+        .hamburger-btn.open .line:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(15px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.45s ease;
+            z-index: 101;
+        }
+
+        .mobile-menu.open { opacity: 1; pointer-events: auto; }
+
+        .mobile-nav-link {
+            color: #a0a0a0;
+            font-size: 1.5rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 500;
+            transition: color 0.45s ease;
+        }
+
+        .mobile-nav-link:hover, .mobile-nav-link:active { color: #ffffff; }
+
+        /* ══════════ ATKINSRÉALIS PARTNER PAGE ══════════ */
+        .partner-eyebrow {
+            display: inline-block;
+            color: #fabc0f;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+        }
+
+        .partner-hero-logo-link {
+            display: block;
+            width: 100%;
+            max-width: 620px;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+            transition: opacity 0.3s ease;
+        }
+        .partner-hero-logo-link:hover { opacity: 0.8; }
+
+        .partner-hero-logo {
+            display: block;
+            width: 100%;
+            height: auto;
+            /* Logo file is dark navy on transparent; render it white for the dark background */
+            filter: brightness(0) invert(1);
+        }
+
+        .partner-hero-meta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+        }
+
+        .spotlight-tier {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 0.75rem;
+            border: 2px solid #b90e32;
+            background: rgba(185, 14, 50, 0.08);
+            border-radius: 14px;
+            padding: 0.6rem 1.25rem;
+        }
+        .spotlight-tier-label {
+            color: #aaa;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+        .spotlight-tier-name {
+            color: #fff;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .partner-pill {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid rgba(250,188,15,0.55);
+            background: rgba(250,188,15,0.08);
+            color: #fabc0f;
+            border-radius: 14px;
+            padding: 0.85rem 1.25rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .partner-jump {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+        }
+
+        .partner-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #fabc0f;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: gap 0.45s ease;
+        }
+        .partner-link:hover { gap: 0.9rem; }
+        .partner-link.muted { color: #aaa; }
+        .partner-link.muted:hover { color: #fff; }
+
+        /* Dark glass card with Queen's accent left border */
+        .glass-card {
+            width: 100%;
+            background: rgba(18,18,18,0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-left: 4px solid var(--accent, #fabc0f);
+            border-radius: 22px;
+            text-align: left;
+        }
+
+        .about-card {
+            max-width: 1100px;
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+            gap: 3rem;
+            align-items: start;
+        }
+        .about-card p {
+            color: #bbb;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.1rem;
+        }
+        .about-card p:last-child { margin-bottom: 0; }
+
+        .about-facts { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+        .about-facts li {
+            padding: 1rem 1.25rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 14px;
+        }
+        .about-facts .fact-label {
+            display: block;
+            color: #fabc0f;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.35rem;
+        }
+        .about-facts .fact-value { color: #f0f0f0; font-size: 1rem; line-height: 1.5; }
+
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 1300px;
+        }
+        .benefit-card { padding: 1.75rem 1.75rem; }
+        .benefit-card h3 { font-size: 1.2rem; color: #fff; font-weight: 600; margin-bottom: 0.6rem; }
+        .benefit-card p { color: #bbb; font-size: 0.98rem; line-height: 1.6; }
+
+        .resource-groups {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+        .resource-group h3 {
+            font-size: 1.35rem;
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            text-align: left;
+        }
+        .resource-list { display: flex; flex-direction: column; gap: 1rem; }
+
+        .resource-card {
+            display: block;
+            padding: 1.5rem 1.75rem;
+            text-decoration: none;
+            transition: all 0.4s ease;
+        }
+        a.resource-card:hover {
+            translate: 0 -4px;
+            border-color: var(--accent, #fabc0f);
+            box-shadow: 0 15px 35px color-mix(in srgb, var(--accent, #fabc0f) 20%, transparent);
+        }
+        .resource-card h4 { color: #fff; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .resource-card p { color: #bbb; font-size: 0.95rem; line-height: 1.55; }
+        .resource-card .resource-go {
+            display: inline-block;
+            margin-top: 0.75rem;
+            color: var(--accent, #fabc0f);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .resource-card.placeholder {
+            border-style: dashed;
+            border-left-style: solid;
+            background: rgba(18,18,18,0.6);
+        }
+        .resource-card.placeholder .resource-go { color: #777; }
+
+        .thanks-quote {
+            max-width: 850px;
+            font-size: clamp(1.4rem, 2.2vw, 2rem);
+            line-height: 1.5;
+            color: #f0f0f0;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            margin-bottom: 3rem;
+        }
+        .thanks-quote span { color: #fabc0f; }
+
+        @media (max-width: 1024px) {
+            .about-card { grid-template-columns: 1fr; gap: 2rem; }
+            .benefit-grid { grid-template-columns: repeat(2, 1fr); }
+            .resource-groups { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .about-card { padding: 2rem 1.5rem; }
+            .benefit-grid { grid-template-columns: 1fr; }
+            .partner-hero-logo-link { max-width: 320px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="global-bg">
+    <div class="nebula-blob nebula-1"></div>
+    <div class="nebula-blob nebula-2"></div>
+    <div class="nebula-blob nebula-3"></div>
+    <div class="nebula-blob nebula-4"></div>
+    <div class="nucleus-glow"></div>
+    <div class="logo-orbits" aria-hidden="true">
+        <svg class="qlo-layer qlo-layer-gold" viewBox="0 0 459 459" focusable="false">
+            <defs>
+                <filter id="qlo-glow-g" x="-150%" y="-150%" width="400%" height="400%">
+                    <feGaussianBlur stdDeviation="3.75" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+                <path id="qlo-track-gold" d="M 169.8 271.7 A 223 80 53.4 0 1 298.2 176.3 A 223 80 53.4 0 1 169.8 271.7" fill="none"/>
+            </defs>
+            <!-- gold ring: two halves, uniform stroke -->
+            <path class="qlo-ring" d="M 101.1 44.9 A 223 80 53.4 0 1 366.9 403.1" fill="none" stroke="#fabc0f" stroke-width="12" stroke-linecap="round" opacity="0.3"/>
+            <path class="qlo-ring" d="M 101.1 44.9 A 223 80 53.4 0 0 366.9 403.1" fill="none" stroke="#fabc0f" stroke-width="12" stroke-linecap="round" opacity="0.3"/>
+            <!-- gold electrons, depth-synced size/brightness -->
+            <circle r="3.45" fill="#fabc0f" filter="url(#qlo-glow-g)">
+                <animateMotion dur="40s" begin="0s" repeatCount="indefinite"><mpath href="#qlo-track-gold"/></animateMotion>
+                <animate attributeName="r" values="3.45;2.7;2.1;2.7;3.45" keyTimes="0;0.25;0.5;0.75;1" dur="40s" begin="0s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.65;0.5;0.35;0.5;0.65" keyTimes="0;0.25;0.5;0.75;1" dur="40s" begin="0s" repeatCount="indefinite"/>
+            </circle>
+            <circle r="3.45" fill="#fabc0f" filter="url(#qlo-glow-g)">
+                <animateMotion dur="40s" begin="-20s" repeatCount="indefinite"><mpath href="#qlo-track-gold"/></animateMotion>
+                <animate attributeName="r" values="3.45;2.7;2.1;2.7;3.45" keyTimes="0;0.25;0.5;0.75;1" dur="40s" begin="-20s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.65;0.5;0.35;0.5;0.65" keyTimes="0;0.25;0.5;0.75;1" dur="40s" begin="-20s" repeatCount="indefinite"/>
+            </circle>
+        </svg>
+        <svg class="qlo-layer qlo-layer-split" viewBox="0 0 459 459" focusable="false">
+            <defs>
+                <filter id="qlo-glow-s" x="-150%" y="-150%" width="400%" height="400%">
+                    <feGaussianBlur stdDeviation="3.75" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+                <path id="qlo-track-split" d="M 434.5 188.6 A 210 105 -10 0 1 20.9 261.6 A 210 105 -10 0 1 434.5 188.6" fill="none"/>
+            </defs>
+            <!-- split ring: blue top half (back, glow via CSS) + red bottom half (front) -->
+            <path class="qlo-blue qlo-ring" d="M 20.9 261.6 A 210 105 -10 0 1 434.5 188.6" fill="none" stroke="#002552" stroke-width="10" stroke-linecap="round" opacity="0.4"/>
+            <path class="qlo-ring" d="M 434.5 188.6 A 210 105 -10 0 1 20.9 261.6" fill="none" stroke="#b90e32" stroke-width="13" stroke-linecap="round" opacity="0.34"/>
+            <!-- split-ring electrons: red + blue, depth-synced size/brightness -->
+            <circle r="3" fill="#b90e32" filter="url(#qlo-glow-s)">
+                <animateMotion dur="52s" begin="0s" repeatCount="indefinite"><mpath href="#qlo-track-split"/></animateMotion>
+                <animate attributeName="r" values="3;3.45;3;2.1;3" keyTimes="0;0.25;0.5;0.75;1" dur="52s" begin="0s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.55;0.65;0.55;0.35;0.55" keyTimes="0;0.25;0.5;0.75;1" dur="52s" begin="0s" repeatCount="indefinite"/>
+            </circle>
+            <circle r="3" fill="#002552" filter="url(#qlo-glow-s)">
+                <animateMotion dur="52s" begin="-26s" repeatCount="indefinite"><mpath href="#qlo-track-split"/></animateMotion>
+                <animate attributeName="r" values="3;3.45;3;2.1;3" keyTimes="0;0.25;0.5;0.75;1" dur="52s" begin="-26s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.55;0.65;0.55;0.35;0.55" keyTimes="0;0.25;0.5;0.75;1" dur="52s" begin="-26s" repeatCount="indefinite"/>
+            </circle>
+        </svg>
+    </div>
+</div>
+
+<!-- Dynamic Island Mini-Header Notch (matches QNET School page) -->
+<div class="notch-wrapper">
+    <nav class="notch-container">
+        <a href="/" class="nav-logo-link">
+            <div class="nav-logo-wrap">
+                <img src="assets/Atom Logo.png" alt="QNET" class="nav-logo-atom">
+                <img src="assets/White NET Full Logo.svg" alt="QNET" class="nav-logo-full">
+            </div>
+        </a>
+        <div class="notch-links">
+            <a href="/about">About</a>
+            <a href="/teams">Meet the Teams</a>
+            <a href="/school">QNET School</a>
+            <a href="/smr-cooling-system">SMR Cooling System</a>
+            <a href="/sponsors">Sponsors</a>
+            <a href="/atkinsrealis" style="color:#fff;">AtkinsRéalis</a>
+            <a href="/join">Join</a>
+        </div>
+    </nav>
+</div>
+
+<div class="mobile-header">
+    <a href="/" class="mobile-logo-link">
+        <img src="assets/White NET Full Logo.svg" alt="QNET" class="mobile-logo">
+    </a>
+    <button class="hamburger-btn" aria-label="Toggle Mobile Menu">
+        <span class="line"></span>
+        <span class="line"></span>
+    </button>
+</div>
+<div class="mobile-menu">
+    <a href="/about" class="mobile-nav-link">About</a>
+    <a href="/teams" class="mobile-nav-link">Meet the Teams</a>
+    <a href="/school" class="mobile-nav-link">QNET School</a>
+    <a href="/smr-cooling-system" class="mobile-nav-link">SMR Cooling System</a>
+    <a href="/sponsors" class="mobile-nav-link">Sponsors</a>
+    <a href="/atkinsrealis" class="mobile-nav-link" style="color: #fff;">AtkinsRéalis</a>
+    <a href="/join" class="mobile-nav-link">Join</a>
+</div>
+
+<main class="vertical-slideshow">
+
+    <section class="slide hero-slide">
+        <div class="hero-bg"></div>
+        <div class="slide-content-wrapper">
+            <span class="partner-eyebrow">Our Inaugural Partner</span>
+            <h1 style="width: 100%; display: flex; justify-content: center;">
+                <a href="https://www.atkinsrealis.com/" class="partner-hero-logo-link" target="_blank" rel="noopener" aria-label="AtkinsRéalis website (opens in a new tab)" onclick="gtag('event', 'button_click', {'button_name': 'AtkinsRealis - Hero Logo'});">
+                    <img src="assets/AtkinsRealisLogo1.png" alt="AtkinsRéalis" class="partner-hero-logo">
+                </a>
+            </h1>
+            <div class="partner-hero-meta">
+                <div class="spotlight-tier">
+                    <span class="spotlight-tier-label">Tier</span>
+                    <span class="spotlight-tier-name">Fusion</span>
+                </div>
+                <span class="partner-pill">QNET's First Sponsor</span>
+            </div>
+            <p class="hero-subtitle" style="margin-bottom: 2.5rem;">AtkinsRéalis is helping build the foundation for QNET's projects, our members' development, and the team's future growth.</p>
+            <div class="partner-jump">
+                <a href="#about" class="partner-link">About AtkinsRéalis ↓</a>
+                <a href="#partnership" class="partner-link">The Partnership ↓</a>
+                <a href="#internships" class="partner-link">Internship Programs ↓</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide" id="about">
+        <div class="slide-content-wrapper">
+            <div class="section-header reveal">
+                <h2>About AtkinsRéalis</h2>
+            </div>
+
+            <div class="glass-card about-card reveal stagger-1" style="--accent: #fabc0f;">
+                <div>
+                    <p>AtkinsRéalis is a world-class engineering services and nuclear organization headquartered in Montréal. It is the steward of CANDU reactor technology and a global leader in nuclear power, from new build and life extension to small modular reactors and decommissioning.</p>
+                    <p>AtkinsRéalis connects people, data and technology to transform the world's infrastructure and energy systems.</p>
+                    <a href="https://www.atkinsrealis.com/" class="partner-link" target="_blank" rel="noopener" style="margin-top: 1rem;" onclick="gtag('event', 'button_click', {'button_name': 'AtkinsRealis - About Website'});">Visit atkinsrealis.com →</a>
+                </div>
+                <ul class="about-facts">
+                    <li>
+                        <span class="fact-label">Headquarters</span>
+                        <span class="fact-value">Montréal, Québec</span>
+                    </li>
+                    <li>
+                        <span class="fact-label">Nuclear</span>
+                        <span class="fact-value">Steward of CANDU reactor technology</span>
+                    </li>
+                    <li>
+                        <span class="fact-label">Focus Areas</span>
+                        <span class="fact-value">New build, life extension, small modular reactors, decommissioning</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide" id="partnership">
+        <div class="slide-content-wrapper">
+            <div class="section-header reveal">
+                <h2>What Being Our Inaugural Partner Means</h2>
+                <p>AtkinsRéalis is the first organization to invest in QNET. As our Fusion-tier partner, they hold our highest level of sponsorship and help shape the team from its very first year.</p>
+            </div>
+
+            <div class="benefit-grid">
+                <div class="glass-card benefit-card reveal stagger-1" style="--accent: #fabc0f;">
+                    <h3>First to Back QNET</h3>
+                    <p>As our first sponsor, AtkinsRéalis has a unique, early opportunity to help shape the club's direction while its foundations are being built.</p>
+                </div>
+                <div class="glass-card benefit-card reveal stagger-2" style="--accent: #b90e32;">
+                    <h3>QNET School Title Sponsor</h3>
+                    <p>Title sponsor of a QNET School onboarding project: choosing the project and acting as its simulated stakeholder for new members.</p>
+                </div>
+                <div class="glass-card benefit-card reveal stagger-3" style="--accent: #002552;">
+                    <h3>Flagship Build Co-Sponsor</h3>
+                    <p>Named co-sponsor of a QNET flagship build, with their logo on the build itself and in its project documentation and presentations.</p>
+                </div>
+                <div class="glass-card benefit-card reveal stagger-1" style="--accent: #002552;">
+                    <h3>Direct Line to the Team</h3>
+                    <p>A direct pipeline with the QNET executive team, plus opportunities to host recruiting events and give a guest lecture or workshop in QNET School.</p>
+                </div>
+                <div class="glass-card benefit-card reveal stagger-2" style="--accent: #fabc0f;">
+                    <h3>Early Access to Talent</h3>
+                    <p>Access to our member resume book, connecting AtkinsRéalis with motivated nuclear engineering students before they reach the open job market.</p>
+                </div>
+                <div class="glass-card benefit-card reveal stagger-3" style="--accent: #b90e32;">
+                    <h3>Research &amp; Recognition</h3>
+                    <p>Priority access to QNET project research and reports, and featured placement on our website, social media, and team apparel.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide" id="internships">
+        <div class="slide-content-wrapper">
+            <div class="section-header reveal">
+                <h2>Learn More About Internship Programs</h2>
+                <p>Opportunities and information shared with QNET by AtkinsRéalis. Check back here for internship programs and other resources for students.</p>
+            </div>
+
+            <div class="resource-groups">
+                <div class="resource-group reveal stagger-1">
+                    <h3>Internship Programs</h3>
+                    <div class="resource-list">
+                        <!--
+                            TO ADD AN INTERNSHIP PROGRAM: copy this block, remove the comment markers,
+                            and fill in the link, title and description. Delete the "coming soon"
+                            placeholder card below once at least one real program is listed.
+
+                        <a href="PASTE-LINK-HERE" class="glass-card resource-card" style="--accent: #fabc0f;" target="_blank" rel="noopener" onclick="gtag('event', 'button_click', {'button_name': 'AtkinsRealis - Internship: PROGRAM NAME'});">
+                            <h4>Program Name</h4>
+                            <p>One or two sentences on who it's for, timing, and how to apply.</p>
+                            <span class="resource-go">View program →</span>
+                        </a>
+                        -->
+                        <div class="glass-card resource-card placeholder" style="--accent: #fabc0f;">
+                            <h4>Internship programs coming soon</h4>
+                            <p>Links to AtkinsRéalis internship and co-op programs will be posted here as they're shared with QNET.</p>
+                            <span class="resource-go">Coming soon</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resource-group reveal stagger-2">
+                    <h3>More from AtkinsRéalis</h3>
+                    <div class="resource-list">
+                        <!--
+                            TO ADD A RESOURCE (events, info sessions, documents, etc.): copy this block,
+                            remove the comment markers, and fill in the link, title and description.
+                            Delete the "coming soon" placeholder card below once a real resource is listed.
+
+                        <a href="PASTE-LINK-HERE" class="glass-card resource-card" style="--accent: #b90e32;" target="_blank" rel="noopener" onclick="gtag('event', 'button_click', {'button_name': 'AtkinsRealis - Resource: RESOURCE NAME'});">
+                            <h4>Resource Title</h4>
+                            <p>A short description of what this is.</p>
+                            <span class="resource-go">Learn more →</span>
+                        </a>
+                        -->
+                        <div class="glass-card resource-card placeholder" style="--accent: #b90e32;">
+                            <h4>Resources coming soon</h4>
+                            <p>Information sessions, events, and other materials from AtkinsRéalis will be added here.</p>
+                            <span class="resource-go">Coming soon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content-wrapper">
+            <p class="thanks-quote reveal">Thank you, <span>AtkinsRéalis</span>, for believing in QNET from day one. Your partnership turns our ambitions into real projects, and we're proud to build the next generation of nuclear talent with you.</p>
+            <div class="partner-jump">
+                <a href="/sponsors" class="partner-link muted" onclick="gtag('event', 'button_click', {'button_name': 'AtkinsRealis - Back to Sponsors'});">← Back to Sponsors</a>
+                <a href="https://www.atkinsrealis.com/" class="partner-link" target="_blank" rel="noopener" onclick="gtag('event', 'button_click', {'button_name': 'AtkinsRealis - Closing Website'});">Visit atkinsrealis.com →</a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <a href="https://www.linkedin.com/company/queensnuclear/" target="_blank" class="social-link" onclick="gtag('event', 'button_click', {'button_name': 'Social - LinkedIn'});">
+        <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/queensnuclear/" target="_blank" class="social-link" onclick="gtag('event', 'button_click', {'button_name': 'Social - Instagram'});">
+        <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+    <a href="https://github.com/qnuclear" target="_blank" class="social-link" onclick="gtag('event', 'button_click', {'button_name': 'Social - GitHub'});">
+        <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.011-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg>
+    </a>
+</footer>
+
+<button id="back-to-top" aria-label="Back to Top" onclick="gtag('event', 'button_click', {'button_name': 'Back to Top'});">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+</button>
+
+<script>
+    // Custom Cursor
+    try {
+        const cursorColors = [
+            { fill: '#002552', glow: '#003c82', glowOpacity: 0.85 },
+            { fill: '#fabc0f', glow: '#fabc0f', glowOpacity: 0.35 },
+            { fill: '#b90e32', glow: '#b90e32', glowOpacity: 0.35 }
+        ];
+        const cursorColor = cursorColors[Math.floor(Math.random() * cursorColors.length)];
+        const glowDefs = '<defs><radialGradient id="cg"><stop offset="40%" stop-color="' + cursorColor.glow + '" stop-opacity="' + cursorColor.glowOpacity + '"/><stop offset="100%" stop-color="' + cursorColor.glow + '" stop-opacity="0"/></radialGradient></defs>';
+        const svg1 = '<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' + glowDefs + '<circle cx="12" cy="12" r="11" fill="url(#cg)"/><circle cx="12" cy="12" r="5" fill="' + cursorColor.fill + '"/></svg>';
+        const svg2 = '<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' + glowDefs + '<circle cx="12" cy="12" r="11" fill="url(#cg)"/><circle cx="12" cy="12" r="7" fill="' + cursorColor.fill + '" opacity="0.4"/><circle cx="12" cy="12" r="4" fill="' + cursorColor.fill + '"/></svg>';
+
+        const cursorStyle = document.createElement('style');
+        cursorStyle.innerHTML = `
+            * { cursor: url('data:image/svg+xml;base64,${btoa(svg1)}') 12 12, auto !important; }
+            a, button, .notch-hitbox, .notch-container, .btn-download { cursor: url('data:image/svg+xml;base64,${btoa(svg2)}') 12 12, pointer !important; }
+        `;
+        document.head.appendChild(cursorStyle);
+    } catch (e) {
+        console.error("Custom cursor failed.", e);
+    }
+
+    // Scroll Reveal Animation
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealOptions = { threshold: 0.01, rootMargin: "0px" };
+
+    const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+        });
+    }, revealOptions);
+
+    revealElements.forEach(el => revealOnScroll.observe(el));
+
+    // Scroll-reactive atom: "impulse and settle" - each slide change is an energy pulse.
+    // The two ring layers counter-rotate with spring physics (gold = light body, big kick
+    // with one gentle overshoot; split = heavy body, tighter settle) and pick up a
+    // subtle clamped 3D tilt. The electrons keep a constant, ambient orbital drift.
+    const qloWrap = document.querySelector('.logo-orbits');
+    const bgSlides = Array.from(document.querySelectorAll('.vertical-slideshow > .slide'));
+    const qloHashSlide = location.hash.length > 1 ? (bgSlides.find(s => s.id === location.hash.slice(1)) || null) : null;
+    if (qloWrap && bgSlides.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        // Underdamped spring integrator (semi-implicit Euler); targets are cumulative, never reset.
+        const qloSpring = (k, c) => ({ x: 0, v: 0, t: 0, k: k, c: c });
+        const qloLayers = [
+            { el: qloWrap.querySelector('.qlo-layer-gold'),  kick:  80, spin: qloSpring(10, 3.5),  tiltX: qloSpring(17.5, 5.5), tiltY: qloSpring(17.5, 5.5) },
+            { el: qloWrap.querySelector('.qlo-layer-split'), kick: -40, spin: qloSpring(30, 8.5),  tiltX: qloSpring(22.5, 7),   tiltY: qloSpring(22.5, 7) }
+        ];
+        let qloRaf = 0;
+        let qloPrev = 0;
+        const qloApply = (l) => {
+            l.el.style.transform = `rotateX(${l.tiltX.x.toFixed(3)}deg) rotateY(${l.tiltY.x.toFixed(3)}deg) rotateZ(${l.spin.x.toFixed(3)}deg)`;
+        };
+        const qloFrame = (now) => {
+            const dt = Math.min(Math.max((now - qloPrev) / 1000, 0), 1 / 30); // clamp dt to survive tab-switch gaps
+            qloPrev = now;
+            let settled = true;
+            qloLayers.forEach(l => {
+                [l.spin, l.tiltX, l.tiltY].forEach(s => {
+                    s.v += (-s.k * (s.x - s.t) - s.c * s.v) * dt;
+                    s.x += s.v * dt;
+                    if (Math.abs(s.x - s.t) >= 0.01 || Math.abs(s.v) >= 0.01) settled = false;
+                });
+                qloApply(l);
+            });
+            if (settled) { // write the exact resting pose once, then idle - zero per-frame work at rest
+                qloLayers.forEach(l => {
+                    [l.spin, l.tiltX, l.tiltY].forEach(s => { s.x = s.t; s.v = 0; });
+                    qloApply(l);
+                });
+                qloRaf = 0;
+                return;
+            }
+            qloRaf = requestAnimationFrame(qloFrame);
+        };
+        // Tilt targets follow the spin heading (deterministic, incommensurate periods
+        // so the pose keeps evolving), clamped to +-8deg - rings never go edge-on.
+        const qloRetilt = () => qloLayers.forEach((l, li) => {
+            const h = (l.spin.t + li * 90) * Math.PI / 180;
+            l.tiltX.t = Math.max(-8, Math.min(8, Math.sin(h * 0.7) * 8));
+            l.tiltY.t = Math.max(-8, Math.min(8, Math.cos(h * 0.4) * 8));
+        });
+        // Ring separation: the ring planes must settle at least 40deg apart or the atom
+        // reads as a single ellipse. Plane orientation = base ellipse rotation (gold 53.4,
+        // split -10) + cumulative spin target, compared mod 180 and folded into [0,90].
+        // Enforced on the gold TARGET before the springs run, so a too-parallel impulse
+        // just becomes one slightly larger swing - never a visible late correction.
+        const qloFold = (a) => { a = Math.abs(a) % 180; return a > 90 ? 180 - a : a; };
+        const qloSep = () => qloFold((53.4 + qloLayers[0].spin.t) - (-10 + qloLayers[1].spin.t));
+        const qloSeparate = (dir) => {
+            const sep = qloSep();
+            if (sep >= 40) return;
+            const sgn = dir < 0 ? -1 : 1;
+            qloLayers[0].spin.t += sgn * (40 - sep); // exact deficit when moving away from alignment
+            if (qloSep() < 40) qloLayers[0].spin.t += sgn * 2 * sep; // crossed the fold - total push becomes 40 + sep
+        };
+        let qloLastSlide = 0;
+        const swapObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const slideIdx = bgSlides.indexOf(entry.target);
+                document.querySelector('.global-bg').classList.toggle('orbitals-off', slideIdx === bgSlides.length - 1);
+                if (slideIdx === qloLastSlide) return;
+                const dir = slideIdx - qloLastSlide; // signed: scrolling up mirrors, multi-slide jumps scale
+                qloLastSlide = slideIdx;
+                qloLayers.forEach(l => { l.spin.t += dir * l.kick; }); // cumulative headings
+                qloSeparate(dir);
+                qloRetilt();
+                if (!qloRaf) { qloPrev = performance.now(); qloRaf = requestAnimationFrame(qloFrame); }
+            });
+        }, { threshold: 0.55 });
+        bgSlides.forEach(s => swapObserver.observe(s));
+        // Hash deep-link: pose the atom as if the user had already scrolled to the target
+        // slide - the same cumulative impulses, separation guard and tilt headings, but with
+        // every spring set AT its target (zero velocity) and applied in one style write. The
+        // observer's same-slide early-return then keeps everything quiet until real scrolling.
+        const qloHashIdx = qloHashSlide ? bgSlides.indexOf(qloHashSlide) : 0;
+        if (qloHashIdx > 0) {
+            qloLastSlide = qloHashIdx;
+            qloLayers.forEach(l => { l.spin.t += qloHashIdx * l.kick; });
+            qloSeparate(qloHashIdx);
+            qloRetilt();
+            qloLayers.forEach(l => {
+                [l.spin, l.tiltX, l.tiltY].forEach(s => { s.x = s.t; s.v = 0; });
+                qloApply(l);
+            });
+        }
+    }
+
+    // Hash deep-link: the slideshow container scrolls, not the window, so native hash
+    // navigation can land half-scrolled or not fire at all. Snap the target slide into
+    // view instantly (navigation, not decoration - it also runs under reduced motion),
+    // and re-square at load unless the user has already scrolled somewhere else.
+    if (qloHashSlide) {
+        qloHashSlide.scrollIntoView({ behavior: 'instant' });
+        window.addEventListener('load', () => {
+            const off = qloHashSlide.getBoundingClientRect().top;
+            if (off !== 0 && Math.abs(off) < window.innerHeight / 2) qloHashSlide.scrollIntoView({ behavior: 'instant' });
+        });
+    }
+
+    // Logo orbitals: pause SMIL animations for reduced motion (both layer SVGs)
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('.logo-orbits .qlo-layer').forEach(qloSvg => qloSvg.pauseAnimations());
+    }
+
+    // Scroll-to-Top Button
+    const slideshowContainer = document.querySelector('.vertical-slideshow');
+    const backToTopBtn = document.getElementById('back-to-top');
+
+    slideshowContainer.addEventListener('scroll', () => {
+        if (slideshowContainer.scrollTop > window.innerHeight * 0.5) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+        slideshowContainer.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Mobile Hamburger
+    const hamburgerBtn = document.querySelector('.hamburger-btn');
+    const mobileMenu = document.querySelector('.mobile-menu');
+
+    hamburgerBtn.addEventListener('click', (evt) => {
+        evt.preventDefault();
+        hamburgerBtn.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+    });
+
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburgerBtn.classList.remove('open');
+            mobileMenu.classList.remove('open');
+        });
+    });
+</script>
+</body>
+</html>
