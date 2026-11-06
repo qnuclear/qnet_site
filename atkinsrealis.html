@@ -969,12 +969,8 @@
         }
 
         .about-card {
-            max-width: 1100px;
+            max-width: 900px;
             padding: 3rem;
-            display: grid;
-            grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-            gap: 3rem;
-            align-items: start;
         }
         .about-card p {
             color: #bbb;
@@ -984,23 +980,6 @@
         }
         .about-card p:last-child { margin-bottom: 0; }
 
-        .about-facts { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
-        .about-facts li {
-            padding: 1rem 1.25rem;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 14px;
-        }
-        .about-facts .fact-label {
-            display: block;
-            color: #fabc0f;
-            font-size: 0.72rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: 0.35rem;
-        }
-        .about-facts .fact-value { color: #f0f0f0; font-size: 1rem; line-height: 1.5; }
 
         .benefit-grid {
             display: grid;
@@ -1070,7 +1049,6 @@
         .thanks-quote span { color: #fabc0f; }
 
         @media (max-width: 1024px) {
-            .about-card { grid-template-columns: 1fr; gap: 2rem; }
             .benefit-grid { grid-template-columns: repeat(2, 1fr); }
             .resource-groups { grid-template-columns: 1fr; }
         }
@@ -1216,23 +1194,9 @@
             <div class="glass-card about-card reveal stagger-1" style="--accent: #fabc0f;">
                 <div>
                     <p>AtkinsRéalis is a world-class engineering services and nuclear organization headquartered in Montréal. It is the steward of CANDU reactor technology and a global leader in nuclear power, from new build and life extension to small modular reactors and decommissioning.</p>
-                    <p>AtkinsRéalis connects people, data and technology to transform the world's infrastructure and energy systems.</p>
-                    <a href="https://communications.atkinsrealis.com/p/1JXO-1QI8/nuclear-lp-candu-canadas-nuclear-powerhouse" class="partner-link" target="_blank" rel="noopener" style="margin-top: 1rem;" onclick="gtag('event', 'button_click', {'button_name': 'AtkinsRealis - About Website'});">Visit atkinsrealis.com →</a>
+                    <p>As demand for electricity across Canada is expected to soar by 2050, CANDU® is the only Canadian nuclear technology to meet those needs. Proven technology. Operational excellence. Energy independence. Medical isotopes.</p>
+                    <a href="https://communications.atkinsrealis.com/p/1JXO-1QI8/nuclear-lp-candu-canadas-nuclear-powerhouse" class="partner-link" target="_blank" rel="noopener" style="margin-top: 1rem;" onclick="gtag('event', 'button_click', {'button_name': 'AtkinsRealis - About CANDU Technology'});">Learn more about CANDU® technology →</a>
                 </div>
-                <ul class="about-facts">
-                    <li>
-                        <span class="fact-label">Headquarters</span>
-                        <span class="fact-value">Montréal, Québec</span>
-                    </li>
-                    <li>
-                        <span class="fact-label">Nuclear</span>
-                        <span class="fact-value">Steward of CANDU reactor technology</span>
-                    </li>
-                    <li>
-                        <span class="fact-label">Focus Areas</span>
-                        <span class="fact-value">New build, life extension, small modular reactors, decommissioning</span>
-                    </li>
-                </ul>
             </div>
         </div>
     </section>
