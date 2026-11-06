@@ -86,7 +86,7 @@
             padding-top: 15px; pointer-events: none;
         }
         .notch-container {
-            width: 900px; height: 56px; max-width: calc(100vw - 32px);
+            width: 930px; height: 56px; max-width: calc(100vw - 32px);
             background: rgba(15,15,15,0.85); backdrop-filter: blur(20px);
             border: 1px solid rgba(255,255,255,0.1); border-radius: 35px;
             display: flex; align-items: center; justify-content: center; gap: 2rem;
@@ -129,8 +129,8 @@
         /* Narrow laptops: tighten nav spacing so all links fit inside the notch */
         @media (min-width: 769px) and (max-width: 1024px) {
             .notch-container { gap: 1.25rem; padding: 0 1rem; }
-            .notch-links { gap: 0.75rem; }
-            .notch-container a:not(.nav-logo-link) { letter-spacing: 0.02em; }
+            .notch-links { gap: 0.6rem; }
+            .notch-container a:not(.nav-logo-link) { letter-spacing: 0; }
         }
         @media (max-width: 768px) { .notch-wrapper { display: none; } }
 
@@ -467,7 +467,7 @@
             <a href="/about" style="color:#fff;">About</a>
             <a href="/teams">Meet the Teams</a>
             <a href="/school">QNET School</a>
-            <a href="/smr-cooling-system">SMR Cooling System</a>
+            <a href="/candu-cooling-system">CANDU® Cooling System</a>
             <a href="/sponsors">Sponsors</a>
             <a href="/atkinsrealis">AtkinsRéalis</a>
             <a href="/join">Join</a>
@@ -489,7 +489,7 @@
     <a href="/about" class="mobile-nav-link" style="color:#fff;">About</a>
     <a href="/teams" class="mobile-nav-link">Meet the Teams</a>
     <a href="/school" class="mobile-nav-link">QNET School</a>
-    <a href="/smr-cooling-system" class="mobile-nav-link">SMR Cooling System</a>
+    <a href="/candu-cooling-system" class="mobile-nav-link">CANDU® Cooling System</a>
     <a href="/sponsors" class="mobile-nav-link">Sponsors</a>
     <a href="/atkinsrealis" class="mobile-nav-link">AtkinsRéalis</a>
     <a href="/join" class="mobile-nav-link">Join</a>
@@ -503,7 +503,7 @@
             <div class="mission-text">
                 <span class="section-eyebrow reveal">Queen's Nuclear Engineering Team</span>
                 <h1 class="hero-title reveal stagger-1">Our <span>Mission</span></h1>
-                <p class="hero-sub reveal stagger-2">We strive to bring nuclear engineering to Queen's University, bridging the gap between theoretical physics and practical engineering. Now officially ratified by EngSoc Council, QNET is working toward our first flagship build, the SMR Cooling System. Joining us now means you can help shape the direction of our projects from the very beginning.</p>
+                <p class="hero-sub reveal stagger-2">We strive to bring nuclear engineering to Queen's University, bridging the gap between theoretical physics and practical engineering. Now officially ratified by EngSoc Council, QNET is working toward our first flagship build, the CANDU® Cooling System. Joining us now means you can help shape the direction of our projects from the very beginning.</p>
                 <a href="/join" class="btn reveal stagger-3" onclick="gtag('event','button_click',{'button_name':'About - Join CTA'});">Join QNET</a>
             </div>
             <!-- IMAGE PLACEHOLDER: supply a team/mission photo here (16:10) -->
@@ -786,7 +786,7 @@
         launch: {
             title: "Launch", subtitle: "Fall 2026 · Where we are now",
             goal: "Goal: Officially operate as an active engineering design club.",
-            tasks: ["<strong>Ratified:</strong> EngSoc Council voted to ratify QNET as an official design club. Find the agenda <a href='https://www.engsoc.queensu.ca/governance/council/' target='_blank' rel='noopener'>here</a>", "<strong>General Members:</strong> Voted the <a href='/smr-cooling-system'>SMR Cooling System</a> in as our inaugural project at our first General Members Meeting on Sept 24.", "Recruit general members", "Begin full development of the SMR Cooling System", "Weekly sub-team meetings and integration reviews", "Continue fundraising and sponsorship outreach", "Build team culture and leadership structure", "Create social media content showcasing progress (documentation)"],
+            tasks: ["<strong>Ratified:</strong> EngSoc Council voted to ratify QNET as an official design club. Find the agenda <a href='https://www.engsoc.queensu.ca/governance/council/' target='_blank' rel='noopener'>here</a>", "<strong>General Members:</strong> Voted the <a href='/candu-cooling-system'>CANDU® Cooling System</a> in as our inaugural project at our first General Members Meeting on Sept 24.", "Recruit general members", "Begin full development of the CANDU® Cooling System", "Weekly sub-team meetings and integration reviews", "Continue fundraising and sponsorship outreach", "Build team culture and leadership structure", "Create social media content showcasing progress (documentation)"],
             color: "#b90e32"
         },
         future: {
