@@ -1048,15 +1048,120 @@
         }
         .thanks-quote span { color: #fabc0f; }
 
+        /* ══════════ CANDU TECHNOLOGY ══════════ */
+        .candu-eyebrow {
+            display: block;
+            color: #fabc0f;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            margin-bottom: 1rem;
+        }
+        .video-frame {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 18px;
+            overflow: hidden;
+            background: #000;
+            border: 1px solid rgba(255,255,255,0.07);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+        }
+        .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+        .video-lead { width: min(100%, 780px, calc((100vh - 360px) * 16 / 9)); }
+        .video-caption { margin-top: 1rem; color: #888; font-size: 0.9rem; text-align: center; }
+
+        .candu-feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 1300px;
+        }
+        .candu-feature-grid .benefit-card { flex: 0 1 calc((100% - 3rem) / 3); }
+
+        .candu-split {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+            gap: 2.5rem;
+            align-items: center;
+            width: 100%;
+            max-width: 1300px;
+            text-align: left;
+        }
+        .candu-stack { display: flex; flex-direction: column; gap: 1.25rem; }
+        .candu-stack .glass-card { padding: 1.75rem 2rem; }
+        .candu-stack h3 { font-size: 1.3rem; color: #fff; font-weight: 600; margin-bottom: 0.6rem; }
+        .candu-stack p { color: #bbb; font-size: 1rem; line-height: 1.6; }
+        .candu-stack .partner-link { margin-top: 0.9rem; font-size: 0.85rem; }
+
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 1.25rem;
+            width: 100%;
+            max-width: 1300px;
+        }
+        .doc-card {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            padding: 1.5rem 1.4rem;
+            text-decoration: none;
+            transition: all 0.4s ease;
+        }
+        .doc-card:hover {
+            translate: 0 -4px;
+            border-color: var(--accent, #fabc0f);
+            box-shadow: 0 15px 35px color-mix(in srgb, var(--accent, #fabc0f) 20%, transparent);
+        }
+        .doc-type {
+            align-self: flex-start;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: #050505;
+            background: var(--accent, #fabc0f);
+            border-radius: 6px;
+            padding: 0.2rem 0.5rem;
+        }
+        .doc-card h3 { color: #fff; font-size: 1.05rem; font-weight: 600; line-height: 1.35; flex: 1; }
+        .doc-card .resource-go {
+            color: var(--accent, #fabc0f);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .candu-cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem 2.5rem;
+            margin-top: 2.5rem;
+        }
+        .candu-source { margin-top: 1.75rem; color: #777; font-size: 0.82rem; }
+        .candu-source a { color: #aaa; }
+
         @media (max-width: 1024px) {
             .benefit-grid { grid-template-columns: repeat(2, 1fr); }
             .resource-groups { grid-template-columns: 1fr; }
+            .candu-feature-grid .benefit-card { flex-basis: calc((100% - 1.5rem) / 2); }
+            .candu-split { grid-template-columns: 1fr; }
+            .doc-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
         }
 
         @media (max-width: 768px) {
             .about-card { padding: 2rem 1.5rem; }
             .benefit-grid { grid-template-columns: 1fr; }
             .partner-hero-logo-link { max-width: 320px; }
+            .candu-feature-grid .benefit-card { flex-basis: 100%; }
+            .doc-grid { grid-template-columns: 1fr; }
+            .video-lead { width: 100%; }
         }
     </style>
 </head>
@@ -1180,6 +1285,7 @@
             <div class="partner-jump">
                 <a href="#about" class="partner-link">About AtkinsRéalis ↓</a>
                 <a href="#partnership" class="partner-link">The Partnership ↓</a>
+                <a href="#candu" class="partner-link">CANDU® Technology ↓</a>
                 <a href="#internships" class="partner-link">Internship Programs ↓</a>
             </div>
         </div>
@@ -1222,6 +1328,113 @@
                     <p>Their partnership helps turn designs into hardware, including our 2026–2027 flagship CANDU® Cooling System. Members gain real experience designing, building, and testing, along with the skills that prepare them for careers in the Canadian nuclear industry.</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="slide" id="candu">
+        <div class="slide-content-wrapper">
+            <div class="section-header reveal" style="margin-bottom: 2rem;">
+                <span class="candu-eyebrow">CANDU® Technology</span>
+                <h2>Canada’s Next Power Move</h2>
+                <p>Canadian Nuclear Technology: Powered by CANDU®</p>
+            </div>
+            <div class="video-lead reveal stagger-1">
+                <div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/Uw2YSkWzM0U" title="AtkinsRéalis: Ready now, CANDU® Canadian nuclear technology" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                <p class="video-caption">Ready now</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content-wrapper">
+            <div class="section-header reveal" style="margin-bottom: 2.5rem;">
+                <span class="candu-eyebrow">CANDU® Technology</span>
+                <h2>CANDU: Canadian Tech. Canadian Power.</h2>
+            </div>
+            <div class="candu-feature-grid">
+                <div class="glass-card benefit-card reveal stagger-1" style="--accent: #fabc0f;">
+                    <h3>Sustainable Operations</h3>
+                    <p>Online refueling and over 900 reactor years of maintenance experience helps CANDU reactors achieve up to a 95% capacity factor.</p>
+                </div>
+                <div class="glass-card benefit-card reveal stagger-2" style="--accent: #b90e32;">
+                    <h3>Fuel Flexibility</h3>
+                    <p>The only technology that uses natural uranium and can adapt to other fuel types like recycled uranium, thorium, and mixed oxide fuels with minimal adjustments.</p>
+                </div>
+                <div class="glass-card benefit-card reveal stagger-3" style="--accent: #002552;">
+                    <h3>Supply Chain</h3>
+                    <p>The domestic CANDU supply chain allows Canada to generate billions of dollars of economic growth. Each CANDU unit sold creates thousands of Canadian jobs, tapping into the highly experienced Canadian supply chain of over 250 companies.</p>
+                </div>
+                <div class="glass-card benefit-card reveal stagger-1" style="--accent: #002552;">
+                    <h3>Medical Isotopes</h3>
+                    <p>CANDU reactors are unique in their ability to co-produce a wide variety of medical isotopes for diagnostic imaging, cancer treatment and sterilization of medical supplies.</p>
+                </div>
+                <div class="glass-card benefit-card reveal stagger-2" style="--accent: #fabc0f;">
+                    <h3>Net Zero Integration</h3>
+                    <p>Can eliminate millions of tonnes of CO₂ emissions annually when replacing coal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content-wrapper">
+            <div class="candu-split">
+                <div class="candu-stack">
+                    <span class="candu-eyebrow reveal">CANDU® Technology</span>
+                    <div class="glass-card reveal stagger-1" style="--accent: #fabc0f;">
+                        <h3>A Canadian legacy</h3>
+                        <p>CANDU technology represents a monumental opportunity. By investing in this powerful solution, we are securing our energy future. We are also creating thousands of jobs, generating billions in economic activity, and positioning Canada as a global leader in nuclear innovation.</p>
+                    </div>
+                    <div class="glass-card reveal stagger-2" style="--accent: #002552;">
+                        <h3>A track record of global success</h3>
+                        <p>With over 900 years of operations, CANDU reactors have been used to generate electricity for more than 60 years with operations in Canada, Romania, Argentina, China and South Korea. It is the only commercial power reactor technology currently licensed and operating in Canada.</p>
+                    </div>
+                </div>
+                <div class="reveal stagger-3">
+                    <div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/9kZvq5E8O6Y" title="CANDU®: A Track Record of Global Success" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="slide-content-wrapper">
+            <div class="section-header reveal" style="margin-bottom: 2.5rem;">
+                <span class="candu-eyebrow">CANDU® Technology</span>
+                <h2>Discover More About CANDU Technology</h2>
+            </div>
+            <div class="doc-grid">
+                <a href="https://www.atkinsrealis.com/~/media/Files/A/atkinsrealis/download-centre/en/brochure/candu-brochure.pdf" class="glass-card doc-card reveal" style="--accent: #fabc0f;" target="_blank" rel="noopener" onclick="gtag('event', 'button_click', {'button_name': 'AtkinsRealis - CANDU Brochure'});">
+                    <span class="doc-type">PDF</span>
+                    <h3>CANDU brochure</h3>
+                    <span class="resource-go">Read More →</span>
+                </a>
+                <a href="https://i.emlfiles4.com/cmpdoc/2/9/4/2/7/files/1499989_monark-candu-brochure.pdf" class="glass-card doc-card reveal" style="--accent: #b90e32;" target="_blank" rel="noopener" onclick="gtag('event', 'button_click', {'button_name': 'AtkinsRealis - MONARK Brochure'});">
+                    <span class="doc-type">PDF</span>
+                    <h3>CANDU MONARK brochure</h3>
+                    <span class="resource-go">Read More →</span>
+                </a>
+                <a href="https://i.emlfiles4.com/cmpdoc/2/9/4/2/7/files/1499987_enhanced-candu-6-en.pdf" class="glass-card doc-card reveal" style="--accent: #6f9fd8;" target="_blank" rel="noopener" onclick="gtag('event', 'button_click', {'button_name': 'AtkinsRealis - EC6 Brochure'});">
+                    <span class="doc-type">PDF</span>
+                    <h3>CANDU EC6 brochure</h3>
+                    <span class="resource-go">Read More →</span>
+                </a>
+                <a href="https://i.emlfiles4.com/cmpdoc/2/9/4/2/7/files/1499991_enhanced-candu-6-technical-summary-en.pdf" class="glass-card doc-card reveal" style="--accent: #fabc0f;" target="_blank" rel="noopener" onclick="gtag('event', 'button_click', {'button_name': 'AtkinsRealis - EC6 Technical Summary'});">
+                    <span class="doc-type">PDF</span>
+                    <h3>CANDU EC6 tech. summary</h3>
+                    <span class="resource-go">Read More →</span>
+                </a>
+                <a href="https://i.emlfiles4.com/cmpdoc/2/9/4/2/7/files/1499992_nuclear-market-brochure.pdf" class="glass-card doc-card reveal" style="--accent: #b90e32;" target="_blank" rel="noopener" onclick="gtag('event', 'button_click', {'button_name': 'AtkinsRealis - Nuclear Market Brochure'});">
+                    <span class="doc-type">PDF</span>
+                    <h3>Nuclear market brochure</h3>
+                    <span class="resource-go">Read More →</span>
+                </a>
+            </div>
+            <div class="candu-cta-row reveal">
+                <a href="https://www.atkinsrealis.com/en/markets-and-services/markets/nuclear#candu-technology" class="partner-link" target="_blank" rel="noopener" onclick="gtag('event', 'button_click', {'button_name': 'AtkinsRealis - CANDU Learn More Website'});">Learn more on the AtkinsRéalis website →</a>
+                <a href="https://careers.atkinsrealis.com/en/jobs?sector=Nuclear" class="partner-link" target="_blank" rel="noopener" onclick="gtag('event', 'button_click', {'button_name': 'AtkinsRealis - Explore Nuclear Careers'});">Explore nuclear careers →</a>
+            </div>
+            <p class="candu-source reveal">Content and videos courtesy of AtkinsRéalis. Source: <a href="https://communications.atkinsrealis.com/p/1JXO-1QI8/nuclear-lp-candu-canadas-nuclear-powerhouse" target="_blank" rel="noopener">CANDU: Canada’s Nuclear Powerhouse</a>.</p>
         </div>
     </section>
 
