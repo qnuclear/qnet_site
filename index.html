@@ -873,6 +873,47 @@
                 transition-duration: 0.01ms !important;
             }
         }
+        /* --- BUILD TIMELINE --- */
+        .build-timeline {
+            list-style: none; display: grid; grid-template-columns: repeat(6, 1fr);
+            width: 100%; max-width: 1200px; margin: 0 auto; padding: 0; position: relative;
+        }
+        .build-timeline::before {
+            content: ''; position: absolute; top: 9px; left: 8.33%; right: 8.33%; height: 2px;
+            background: linear-gradient(90deg, #fabc0f 0%, #fabc0f 10%, rgba(255,255,255,0.14) 10%);
+        }
+        .build-timeline li { position: relative; padding: 2.4rem 0.75rem 0; text-align: center; }
+        .build-timeline li::before {
+            content: ''; position: absolute; top: 0; left: 50%; translate: -50% 0;
+            width: 20px; height: 20px; border-radius: 50%; box-sizing: border-box;
+            background: #050505; border: 2px solid rgba(255,255,255,0.35);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .build-timeline li:hover::before { border-color: #fabc0f; }
+        .build-timeline li.is-now::before {
+            background: #fabc0f; border-color: #fabc0f;
+            box-shadow: 0 0 0 6px rgba(250,188,15,0.16), 0 0 24px rgba(250,188,15,0.45);
+        }
+        .tl-when {
+            display: block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
+            text-transform: uppercase; color: #fabc0f; margin-bottom: 0.4rem;
+        }
+        .tl-what { display: block; font-size: 1.05rem; font-weight: 600; color: #fff; line-height: 1.3; }
+        .tl-note { display: block; font-size: 0.88rem; color: #aaa; line-height: 1.45; margin-top: 0.35rem; }
+        @media (max-width: 768px) {
+            .build-timeline { grid-template-columns: 1fr; gap: 1.5rem; }
+            .build-timeline::before {
+                top: 10px; bottom: 10px; left: 9px; right: auto; width: 2px; height: auto;
+                background: linear-gradient(180deg, #fabc0f 0%, #fabc0f 10%, rgba(255,255,255,0.14) 10%);
+            }
+            .build-timeline li { padding: 0 0 0 2.75rem; text-align: left; }
+            .build-timeline li::before { left: 0; translate: none; }
+        }
+
+        .news-grid.two-up { grid-template-columns: repeat(2, 1fr); }
+        .news-grid.two-up .news-card { padding: 1.75rem 2rem; }
+        @media (max-width: 1024px) { .news-grid.two-up { grid-template-columns: 1fr; } }
+
     </style>
 </head>
 <body>
@@ -988,7 +1029,7 @@
             <div class="hero-logo-wrapper">
                 <img src="assets/QNET outline white.svg" alt="QNET — Queen's Nuclear Engineering Team" class="hero-logo">
                 <h1 class="hero-team-name">Queen's Nuclear Engineering Team</h1>
-                <div class="hero-caption">Queen's University &nbsp;·&nbsp; Founded 2026</div>
+                <div class="hero-caption">Queen's University &nbsp;·&nbsp; Founded 2026 &nbsp;·&nbsp; 100+ Members</div>
             </div>
             <div class="hero-divider"></div>
             <p class="hero-tagline">
@@ -1016,20 +1057,52 @@
                 <div class="news-card reveal stagger-1" style="--accent: #fabc0f;">
                     <span class="news-tag">Milestone</span>
                     <h3>QNET Is Officially Ratified</h3>
-                    <p>EngSoc Council has voted to ratify QNET as an official design club at Queen's. Council agendas and records are public on the EngSoc site.</p>
+                    <p>In September 2026, EngSoc Council voted to ratify QNET as an official design club at Queen's. Council agendas and records are public on the EngSoc site.</p>
                     <a href="https://www.engsoc.queensu.ca/governance/council/" target="_blank" rel="noopener" class="news-link" onclick="gtag('event', 'button_click', {'button_name': 'Home - News - Council Agenda'});">View the Council Agenda →</a>
                 </div>
                 <div class="news-card reveal stagger-2" style="--accent: #002552;">
                     <span class="news-tag">Education</span>
                     <h3>First Reactor Tour Complete</h3>
-                    <p>QNET School members completed our first reactor tour, getting an up-close look at the SLOWPOKE-2 reactor on October 23.</p>
-                    <a href="/school#reactor-tour" class="news-link" onclick="gtag('event', 'button_click', {'button_name': 'Home - News - Reactor Tour'});">See the Tour Photos →</a>
+                    <p>On October 23, QNET School members toured the SLOWPOKE-2 reactor at the Royal Military College, looking straight down into the reactor pool.</p>
+                    <a href="/school#reactor-tour" class="news-link" onclick="gtag('event', 'button_click', {'button_name': 'Home - News - Reactor Tour'});">Read About the Tour →</a>
                 </div>
                 <div class="news-card reveal stagger-3" style="--accent: #b90e32;">
                     <span class="news-tag">Builds</span>
                     <h3>2026–2027 Project Voted On</h3>
-                    <p>Our general members have chosen our first flagship build: the CANDU® Cooling System, a bench-scale model of passive reactor cooling.</p>
+                    <p>Our general members chose our first flagship build: the CANDU® Cooling System, a bench-scale natural-circulation cooling loop. It won with 38 votes, ahead of gamma-ray imaging (23) and the cleanup rover (12).</p>
                     <a href="/candu-cooling-system" class="news-link">See the Project →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE: WHAT'S NEXT -->
+    <section class="slide" id="whats-next">
+        <div class="slide-content-wrapper">
+            <div class="section-header reveal">
+                <span class="section-eyebrow">What's Next</span>
+                <h2>The road to a working loop.</h2>
+                <p>Our 2026–27 schedule for the CANDU® Cooling System, from design to test day.</p>
+            </div>
+            <ol class="build-timeline reveal stagger-1" aria-label="CANDU Cooling System build schedule for 2026 to 2027">
+                <li class="is-now"><span class="tl-when">Fall 2026</span><span class="tl-what">Design</span><span class="tl-note">Every sub-team designs its part of the loop.</span></li>
+                <li><span class="tl-when">Nov 29</span><span class="tl-what">Design freeze</span><span class="tl-note">The design is locked.</span></li>
+                <li><span class="tl-when">December</span><span class="tl-what">Parts ordered</span><span class="tl-note">Orders go in before exams.</span></li>
+                <li><span class="tl-when">January</span><span class="tl-what">Building</span><span class="tl-note">The build starts.</span></li>
+                <li><span class="tl-when">February</span><span class="tl-what">Assembly &amp; leak testing</span><span class="tl-note">The loop comes together.</span></li>
+                <li><span class="tl-when">March</span><span class="tl-what">Testing &amp; reports</span><span class="tl-note">We run it and write it up.</span></li>
+            </ol>
+            <div class="news-grid two-up" style="margin-top: 3rem;">
+                <div class="news-card reveal stagger-2" style="--accent: #fabc0f;">
+                    <span class="news-tag">Event · Friday, December 11</span>
+                    <h3>MECH 485 Seminar</h3>
+                    <p>8:30 AM, Mitchell Hall. QNET will have a booth.</p>
+                </div>
+                <div class="news-card reveal stagger-3" style="--accent: #b90e32;">
+                    <span class="news-tag">QNET School</span>
+                    <h3>Capstone in the Works</h3>
+                    <p>AtkinsRéalis is creating this year's QNET School capstone project right now.</p>
+                    <a href="/school" class="news-link">Explore QNET School →</a>
                 </div>
             </div>
         </div>
