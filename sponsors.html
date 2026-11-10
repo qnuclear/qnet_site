@@ -22,6 +22,20 @@
         gtag('config', 'G-8J80X6N4DV');
     </script>
     <style>
+        /* --- BRAND TOKENS (shared on every page) --- */
+        :root {
+            --bg: #050505;
+            --gold: #fabc0f;
+            --blue: #002552;
+            --red: #b90e32;
+            --glass: rgba(18, 18, 18, 0.85);
+            --line: rgba(255, 255, 255, 0.07);
+            --radius: 22px;
+        }
+        ::selection { background: var(--gold); color: var(--bg); }
+        :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+        h1, h2, h3 { text-wrap: balance; }
+        p, li { text-wrap: pretty; }
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
         /* ── Responsive root scaling: laptop-width screens (769–1536px) get a
@@ -41,14 +55,14 @@
         }
 
         body, html {
-            background-color: #050505;
+            background-color: var(--bg);
             color: #f0f0f0;
             overflow: hidden;
         }
 
         .global-bg {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background-color: #050505; overflow: hidden; z-index: 0; pointer-events: none;
+            background-color: var(--bg); overflow: hidden; z-index: 0; pointer-events: none;
         }
         .nebula-blob { position: absolute; border-radius: 50%; filter: blur(110px); pointer-events: none; }
         .nebula-1 { width: 700px; height: 700px; background: radial-gradient(circle, rgba(0,37,82,0.45), transparent 70%); top: -180px; left: -180px; animation: nebulaDrift 18s ease-in-out infinite alternate; }
@@ -150,7 +164,7 @@
         .notch-links a { position: relative; }
         .notch-links a::after {
             content: ''; position: absolute; bottom: -5px; left: 50%;
-            width: 0; height: 1px; background: #fabc0f;
+            width: 0; height: 1px; background: var(--gold);
             transition: width 0.3s ease, left 0.3s ease;
         }
         .notch-links a:hover::after { width: 100%; left: 0; }
@@ -262,7 +276,7 @@
             animation: fadeUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) 1.1s forwards;
         }
 
-        .package-note strong { color: #fabc0f; font-weight: 600; }
+        .package-note strong { color: var(--gold); font-weight: 600; }
 
         .btn-download {
             display: inline-flex;
@@ -289,7 +303,7 @@
         }
 
         .btn-download span.sub {
-            color: #fabc0f;
+            color: var(--gold);
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
@@ -297,16 +311,16 @@
         }
 
         .btn-download:hover {
-            border-color: #002552;
+            border-color: var(--blue);
             color: #fff;
             background: rgba(0,37,82,0.3);
             translate: 0 -3px;
             box-shadow: 0 8px 24px rgba(0,37,82,0.5), 0 0 0 1px rgba(0,37,82,0.7);
         }
         .btn-download.primary { border-color: rgba(250,188,15,0.55); background: rgba(250,188,15,0.08); box-shadow: 0 10px 30px rgba(250,188,15,0.12); }
-        .btn-download.primary:hover { border-color: #fabc0f; background: rgba(250,188,15,0.16); box-shadow: 0 15px 35px rgba(250,188,15,0.25); }
+        .btn-download.primary:hover { border-color: var(--gold); background: rgba(250,188,15,0.16); box-shadow: 0 15px 35px rgba(250,188,15,0.25); }
         .btn-download.primary.red { border-color: rgba(185,14,50,0.55); background: rgba(185,14,50,0.08); box-shadow: 0 10px 30px rgba(185,14,50,0.12); }
-        .btn-download.primary.red:hover { border-color: #b90e32; background: rgba(185,14,50,0.16); box-shadow: 0 15px 35px rgba(185,14,50,0.3); }
+        .btn-download.primary.red:hover { border-color: var(--red); background: rgba(185,14,50,0.16); box-shadow: 0 15px 35px rgba(185,14,50,0.3); }
 
         /* --- EOY DEMONSTRATION PHOTO LAYER --- */
         .eoy-photo-layer {
@@ -322,12 +336,12 @@
         /* --- EOY DRIFTING ELECTRONS --- */
         .eoy-drift-layer { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
         .eoy-drift-layer .particle { position: absolute; width: 6px; height: 6px; border-radius: 50%; opacity: 0.6; }
-        .eoy-drift-layer .p1 { top: 20%; left: 15%; background: #fabc0f; box-shadow: 0 0 10px 2px rgba(250,188,15,0.6); animation: eoyDriftA 22s ease-in-out infinite alternate; }
-        .eoy-drift-layer .p2 { top: 65%; left: 30%; background: #b90e32; box-shadow: 0 0 10px 2px rgba(185,14,50,0.6); animation: eoyDriftB 26s ease-in-out infinite alternate; animation-delay: -4s; }
-        .eoy-drift-layer .p3 { top: 35%; left: 70%; background: #002552; box-shadow: 0 0 12px 2px rgba(0,37,82,0.8); animation: eoyDriftC 30s ease-in-out infinite alternate; animation-delay: -8s; }
-        .eoy-drift-layer .p4 { top: 75%; left: 80%; background: #fabc0f; box-shadow: 0 0 10px 2px rgba(250,188,15,0.5); animation: eoyDriftA 24s ease-in-out infinite alternate; animation-delay: -12s; }
-        .eoy-drift-layer .p5 { top: 50%; left: 50%; background: #b90e32; box-shadow: 0 0 10px 2px rgba(185,14,50,0.5); animation: eoyDriftB 28s ease-in-out infinite alternate; animation-delay: -18s; }
-        .eoy-drift-layer .p6 { top: 10%; left: 55%; background: #002552; box-shadow: 0 0 10px 2px rgba(0,37,82,0.7); animation: eoyDriftC 20s ease-in-out infinite alternate; animation-delay: -6s; }
+        .eoy-drift-layer .p1 { top: 20%; left: 15%; background: var(--gold); box-shadow: 0 0 10px 2px rgba(250,188,15,0.6); animation: eoyDriftA 22s ease-in-out infinite alternate; }
+        .eoy-drift-layer .p2 { top: 65%; left: 30%; background: var(--red); box-shadow: 0 0 10px 2px rgba(185,14,50,0.6); animation: eoyDriftB 26s ease-in-out infinite alternate; animation-delay: -4s; }
+        .eoy-drift-layer .p3 { top: 35%; left: 70%; background: var(--blue); box-shadow: 0 0 12px 2px rgba(0,37,82,0.8); animation: eoyDriftC 30s ease-in-out infinite alternate; animation-delay: -8s; }
+        .eoy-drift-layer .p4 { top: 75%; left: 80%; background: var(--gold); box-shadow: 0 0 10px 2px rgba(250,188,15,0.5); animation: eoyDriftA 24s ease-in-out infinite alternate; animation-delay: -12s; }
+        .eoy-drift-layer .p5 { top: 50%; left: 50%; background: var(--red); box-shadow: 0 0 10px 2px rgba(185,14,50,0.5); animation: eoyDriftB 28s ease-in-out infinite alternate; animation-delay: -18s; }
+        .eoy-drift-layer .p6 { top: 10%; left: 55%; background: var(--blue); box-shadow: 0 0 10px 2px rgba(0,37,82,0.7); animation: eoyDriftC 20s ease-in-out infinite alternate; animation-delay: -6s; }
         @keyframes eoyDriftA { 0% { transform: translate(0,0); } 33% { transform: translate(30px,-25px); } 66% { transform: translate(-20px,20px); } 100% { transform: translate(15px,-10px); } }
         @keyframes eoyDriftB { 0% { transform: translate(0,0); } 33% { transform: translate(-35px,15px); } 66% { transform: translate(25px,-20px); } 100% { transform: translate(-15px,25px); } }
         @keyframes eoyDriftC { 0% { transform: translate(0,0); } 33% { transform: translate(20px,30px); } 66% { transform: translate(-30px,-15px); } 100% { transform: translate(10px,-25px); } }
@@ -388,9 +402,9 @@
         .pitch-card:hover {
             translate: 0 -8px;
             background: #151515;
-            border-color: var(--card-color, #fabc0f);
+            border-color: var(--card-color, var(--gold));
             box-shadow: 0 20px 50px rgba(250,188,15,0.2);
-            box-shadow: 0 0 0 1px color-mix(in srgb, var(--card-color, #fabc0f) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--card-color, #fabc0f) 30%, transparent);
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--card-color, var(--gold)) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--card-color, var(--gold)) 30%, transparent);
         }
 
         .pitch-card:hover::before {
@@ -430,7 +444,7 @@
 
         .impact-eyebrow {
             display: inline-block;
-            color: #fabc0f;
+            color: var(--gold);
             font-size: 0.8rem;
             font-weight: 700;
             text-transform: uppercase;
@@ -457,7 +471,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            color: #fabc0f;
+            color: var(--gold);
             text-decoration: none;
             font-weight: 600;
             font-size: 0.95rem;
@@ -489,7 +503,7 @@
         }
 
         .impact-bullet:hover {
-            border-color: #fabc0f;
+            border-color: var(--gold);
             background: rgba(250, 188, 15, 0.05);
             transform: translateX(10px);
         }
@@ -497,7 +511,7 @@
         .impact-bullet svg {
             width: 24px;
             height: 24px;
-            fill: #fabc0f;
+            fill: var(--gold);
             flex-shrink: 0;
             margin-top: 3px;
         }
@@ -532,9 +546,9 @@
 
         .tier-card:hover {
             translate: 0 -8px;
-            border-color: var(--tier-color, #fabc0f);
+            border-color: var(--tier-color, var(--gold));
             box-shadow: 0 20px 50px rgba(250,188,15,0.2);
-            box-shadow: 0 0 0 1px color-mix(in srgb, var(--tier-color, #fabc0f) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--tier-color, #fabc0f) 30%, transparent);
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--tier-color, var(--gold)) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--tier-color, var(--gold)) 30%, transparent);
         }
 
         .tier-header {
@@ -584,16 +598,16 @@
         }
 
         .tier-card.kinetic { --tier-color: #888888; }
-        .tier-card.thermal { --tier-color: #002552; }
-        .tier-card.fission { --tier-color: #fabc0f; }
-        .tier-card.fusion { --tier-color: #b90e32; border: 2px solid #b90e32; background: rgba(185, 14, 50, 0.05); }
+        .tier-card.thermal { --tier-color: var(--blue); }
+        .tier-card.fission { --tier-color: var(--gold); }
+        .tier-card.fusion { --tier-color: var(--red); border: 2px solid var(--red); background: rgba(185, 14, 50, 0.05); }
 
         .fusion-badge {
             position: absolute;
             top: -12px;
             left: 50%;
             transform: translateX(-50%);
-            background: #b90e32;
+            background: var(--red);
             color: #fff;
             padding: 0.25rem 0.85rem;
             border-radius: 20px;
@@ -616,7 +630,7 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255,255,255,0.07);
-            border-left: 4px solid #fabc0f;
+            border-left: 4px solid var(--gold);
             border-radius: 22px;
             padding: 3rem;
             text-align: left;
@@ -649,7 +663,7 @@
             display: inline-flex;
             align-items: baseline;
             gap: 0.75rem;
-            border: 2px solid #b90e32;
+            border: 2px solid var(--red);
             background: rgba(185, 14, 50, 0.08);
             border-radius: 14px;
             padding: 0.6rem 1.25rem;
@@ -686,7 +700,7 @@
         .spotlight-body .spotlight-thanks {
             margin: 1.5rem 0 0;
             padding-left: 1.25rem;
-            border-left: 2px solid #fabc0f;
+            border-left: 2px solid var(--gold);
             color: #f0f0f0;
             font-style: italic;
         }
@@ -696,7 +710,7 @@
             align-items: center;
             gap: 0.5rem;
             margin-top: 1.75rem;
-            color: #fabc0f;
+            color: var(--gold);
             text-decoration: none;
             font-weight: 600;
             font-size: 0.95rem;
@@ -723,7 +737,7 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255,255,255,0.07);
-            border-left: 4px solid #fabc0f;
+            border-left: 4px solid var(--gold);
             border-radius: 22px;
             padding: 2.25rem 2.5rem;
             text-align: left;
@@ -749,7 +763,7 @@
         }
 
         .spotlight-tier.fission {
-            border-color: #fabc0f;
+            border-color: var(--gold);
             background: rgba(250,188,15,0.08);
             margin-bottom: 1.25rem;
         }
@@ -771,7 +785,7 @@
         .fission-card .spotlight-thanks {
             margin-top: 1.25rem;
             padding-left: 1.25rem;
-            border-left: 2px solid #fabc0f;
+            border-left: 2px solid var(--gold);
             color: #f0f0f0;
             font-style: italic;
         }
@@ -844,9 +858,9 @@
 
         .social-link { display: flex; align-items: center; justify-content: center; pointer-events: auto; }
         .social-icon { width: 20px; height: 20px; fill: #ffffff; transition: all 0.45s ease; }
-        .social-link:nth-child(1):hover .social-icon { fill: #002552; translate: 0 -3px; }
-        .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; translate: 0 -3px; }
-        .social-link:nth-child(3):hover .social-icon { fill: #b90e32; translate: 0 -3px; }
+        .social-link:nth-child(1):hover .social-icon { fill: var(--blue); translate: 0 -3px; }
+        .social-link:nth-child(2):hover .social-icon { fill: var(--gold); translate: 0 -3px; }
+        .social-link:nth-child(3):hover .social-icon { fill: var(--red); translate: 0 -3px; }
 
         #back-to-top {
             position: fixed;
@@ -872,7 +886,7 @@
 
         #back-to-top svg { width: 24px; height: 24px; }
         #back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
-        #back-to-top:hover { border-color: #fabc0f; color: #fabc0f; translate: 0 -3px; }
+        #back-to-top:hover { border-color: var(--gold); color: var(--gold); translate: 0 -3px; }
 
         @media (max-width: 768px) {
             .site-footer { display: none; }
@@ -995,7 +1009,7 @@
         <a href="/" class="nav-logo-link">
             <div class="nav-logo-wrap">
                 <img src="assets/Atom Logo.png" alt="QNET" class="nav-logo-atom">
-                <img src="assets/White NET Full Logo.svg" alt="QNET" class="nav-logo-full">
+                <img src="assets/QNET outline white.svg" alt="QNET" class="nav-logo-full">
             </div>
         </a>
         <div class="notch-links">
@@ -1012,7 +1026,7 @@
 
 <div class="mobile-header">
     <a href="/" class="mobile-logo-link">
-        <img src="assets/White NET Full Logo.svg" alt="QNET" class="mobile-logo">
+        <img src="assets/QNET outline white.svg" alt="QNET" class="mobile-logo">
     </a>
     <button class="hamburger-btn" aria-label="Toggle Mobile Menu">
         <span class="line"></span>
@@ -1207,24 +1221,21 @@
             <div class="section-header reveal">
                 <span class="impact-eyebrow" style="display:block; margin-bottom:1rem;">Where Your Sponsorship Goes · Builds</span>
                 <h2>And part of it builds our projects.</h2>
-                <p>The rest of your sponsorship goes straight into our flagship project builds: the reactors, rovers, and detectors our members design and assemble by hand. Every project is costed under a minimum budget for technical success and an ideal budget to bring our ideas fully to life.</p>
+                <p>The rest of your sponsorship goes straight into our flagship build, designed and assembled by our members. For 2026–27, members chose the CANDU® Cooling System from three proposals developed over the summer.</p>
             </div>
 
             <div class="pitch-grid">
                 <div class="pitch-card reveal stagger-1" style="--card-color: #002552;">
                     <h3>Nuclear Cleanup Rover</h3>
                     <p>A remote-control handling platform designed to replace human intervention during hazardous nuclear operations.</p>
-                    <p style="margin-top: 1.25rem; color: #fabc0f; font-weight: 600; font-size: 1.1rem;">Est. $1,060 – $1,385</p>
                 </div>
                 <div class="pitch-card reveal stagger-2" style="--card-color: #fabc0f;">
                     <h3>CANDU® Cooling System</h3>
-                    <p>A working cooling system modeled after CANDU® reactor cooling, complete with a cooling tower.</p>
-                    <p style="margin-top: 1.25rem; color: #fabc0f; font-weight: 600; font-size: 1.1rem;">Est. $800 – $1,000</p>
+                    <p>Our 2026–27 flagship build, chosen by member vote: a bench-scale natural-circulation reactor cooling loop.</p>
                 </div>
                 <div class="pitch-card reveal stagger-3" style="--card-color: #b90e32;">
                     <h3>Gamma Ray Imaging</h3>
                     <p>A scaled-down, low-cost medical imaging prototype based on the mechanisms of a PET scan.</p>
-                    <p style="margin-top: 1.25rem; color: #fabc0f; font-weight: 600; font-size: 1.1rem;">Est. $822 – $1,242</p>
                 </div>
             </div>
 
@@ -1341,8 +1352,8 @@
             <div class="pitch-grid">
                 <div class="pitch-card reveal stagger-1" style="--card-color: #fabc0f;">
                     <h3>Project Builds</h3>
-                    <p style="color: #fabc0f; font-weight: 600; font-size: 1.1rem; margin-bottom: 1rem;">$800 – $1,385 / build</p>
-                    <p>The majority of funding covers the material cost of builds like the Rover, CANDU® Cooling System, and Gamma Ray Imaging projects. Any surplus expands project scope and capabilities.</p>
+                    <p style="color: #fabc0f; font-weight: 600; font-size: 1.1rem; margin-bottom: 1rem;">The largest share</p>
+                    <p>The majority of funding covers the material cost of our flagship build, the CANDU® Cooling System. Any surplus expands project scope and capabilities.</p>
                 </div>
                 <div class="pitch-card reveal stagger-2" style="--card-color: #b90e32;">
                     <h3>QNET School</h3>

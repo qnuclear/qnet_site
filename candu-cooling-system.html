@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QNET | CANDU® Cooling System</title>
-    <meta name="description" content="QNET's 2026–2027 flagship build: the CANDU® Cooling System, a bench-scale reactor primary loop with a mock fuel bundle, cooled passively by natural circulation.">
+    <meta name="description" content="QNET's 2026–2027 flagship build: the CANDU® Cooling System, a bench-scale natural-circulation reactor cooling loop, designed and built by five student sub-teams.">
     <meta property="og:title" content="CANDU® Cooling System | QNET, Queen's Nuclear Engineering Team">
     <meta property="og:description" content="QNET's 2026–2027 flagship build: a bench-scale CANDU® cooling loop designed, simulated and built by Queen's University students.">
     <meta property="og:image" content="https://queensnuclear.ca/assets/White%20NET%20Full%20Logo.png">
@@ -22,6 +22,20 @@
         gtag('config', 'G-8J80X6N4DV');
     </script>
     <style>
+        /* --- BRAND TOKENS (shared on every page) --- */
+        :root {
+            --bg: #050505;
+            --gold: #fabc0f;
+            --blue: #002552;
+            --red: #b90e32;
+            --glass: rgba(18, 18, 18, 0.85);
+            --line: rgba(255, 255, 255, 0.07);
+            --radius: 22px;
+        }
+        ::selection { background: var(--gold); color: var(--bg); }
+        :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+        h1, h2, h3 { text-wrap: balance; }
+        p, li { text-wrap: pretty; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
 
         /* ── Responsive root scaling: laptop-width screens (769–1536px) get a
@@ -33,12 +47,12 @@
             html { font-size: clamp(13px, 0.84vw + 3.1px, 16px); }
         }
 
-        body { background-color: #050505; color: #f0f0f0; overflow: hidden; }
+        body { background-color: var(--bg); color: #f0f0f0; overflow: hidden; }
 
         /* ── Global Background ── */
         .global-bg {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background-color: #050505; z-index: 0; pointer-events: none; overflow: hidden;
+            background-color: var(--bg); z-index: 0; pointer-events: none; overflow: hidden;
         }
         .nebula-blob { position: absolute; border-radius: 50%; filter: blur(110px); }
         .nebula-1 { width: 700px; height: 700px; background: radial-gradient(circle, rgba(0,37,82,0.45), transparent 70%); top: -180px; left: -180px; animation: nebulaDrift 18s ease-in-out infinite alternate; }
@@ -129,7 +143,7 @@
         .notch-links a { position: relative; }
         .notch-links a::after {
             content: ''; position: absolute; bottom: -5px; left: 50%;
-            width: 0; height: 1px; background: #fabc0f;
+            width: 0; height: 1px; background: var(--gold);
             transition: width 0.3s ease, left 0.3s ease;
         }
         .notch-links a:hover::after { width: 100%; left: 0; }
@@ -194,14 +208,14 @@
             display: inline-block;
             font-size: 0.8rem; font-weight: 700;
             text-transform: uppercase; letter-spacing: 0.22em;
-            color: #fabc0f; margin-bottom: 1rem;
+            color: var(--gold); margin-bottom: 1rem;
         }
         .hero-title {
             font-size: clamp(3rem, 7vw, 5.5rem);
             font-weight: 300; letter-spacing: -0.03em;
             color: #fff; line-height: 1.05; margin-bottom: 1.5rem;
         }
-        .hero-title span { color: #fabc0f; }
+        .hero-title span { color: var(--gold); }
         .hero-title sup.reg { font-size: 0.35em; font-weight: 500; vertical-align: super; line-height: 0; margin-left: 0.04em; }
         .hero-sub {
             font-size: 1.1rem; color: rgba(255,255,255,0.55);
@@ -218,7 +232,7 @@
             border: 1px solid rgba(255,255,255,0.25); border-radius: 50px;
             transition: all 0.6s ease;
         }
-        .btn:hover { border-color: #fabc0f; color: #fabc0f; background: rgba(250,188,15,0.08); }
+        .btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(250,188,15,0.08); }
 
         /* ── Philosophy Cards ── */
         .philosophy-grid {
@@ -233,9 +247,9 @@
         }
         .phil-card:hover {
             translate: 0 -8px;
-            border-color: var(--accent, #fabc0f);
+            border-color: var(--accent, var(--gold));
             box-shadow: 0 20px 50px rgba(250,188,15,0.2);
-            box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent, #fabc0f) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--accent, #fabc0f) 30%, transparent);
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent, var(--gold)) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--accent, var(--gold)) 30%, transparent);
         }
         .phil-number {
             font-size: 2.5rem; font-weight: 700; color: rgba(250,188,15,0.2);
@@ -271,7 +285,7 @@
             transition: color 0.6s ease, border-bottom-color 0.6s ease; cursor: pointer;
             border-bottom: 1px dotted rgba(255,255,255,0.4);
         }
-        .inline-member-link:hover { color: #fabc0f; border-bottom-color: #fabc0f; }
+        .inline-member-link:hover { color: var(--gold); border-bottom-color: var(--gold); }
 
         /* ── Team Interactive Panel ── */
         .project-interactive { flex: 1.6; display: flex; gap: 2rem; align-items: stretch; }
@@ -291,7 +305,7 @@
         .team-node-btn.active, .team-node-btn:hover { opacity: 1; }
         .node-circle {
             width: 36px; height: 36px; border-radius: 50%;
-            border: 5px solid #050505; box-shadow: 0 0 0 2px rgba(255,255,255,0.3);
+            border: 5px solid var(--bg); box-shadow: 0 0 0 2px rgba(255,255,255,0.3);
             transition: all 0.3s ease; flex-shrink: 0;
         }
         .team-node-btn.active .node-circle { transform: scale(1.2); box-shadow: 0 0 0 3px #fff; }
@@ -301,7 +315,7 @@
             flex: 1; background: rgba(10,10,10,0.8); backdrop-filter: blur(16px);
             padding: 2rem 2.5rem; border-radius: 16px;
             border: 1px solid rgba(255,255,255,0.07);
-            border-left: 4px solid var(--theme-color, #002552);
+            border-left: 4px solid var(--theme-color, var(--blue));
             transition: border-color 0.3s ease; text-align: left;
             overflow-y: auto; position: relative;
         }
@@ -312,12 +326,12 @@
             color: rgba(255,255,255,0.35); margin-bottom: 1rem;
             border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem;
         }
-        .team-details h4 { font-size: 1.6rem; color: var(--theme-color, #002552); margin-bottom: 1.25rem; font-weight: 600; }
+        .team-details h4 { font-size: 1.6rem; color: color-mix(in srgb, var(--theme-color, var(--blue)) 45%, #fff); margin-bottom: 1.25rem; font-weight: 600; }
         .team-members-container { display: flex; gap: 0.75rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
         .member-avatar {
             width: 50px; height: 50px; border-radius: 50%;
             background-size: cover; background-position: center;
-            border: 2px solid var(--theme-color, #002552); cursor: pointer;
+            border: 2px solid var(--theme-color, var(--blue)); cursor: pointer;
             transition: transform 0.3s ease; display: block;
         }
         .member-avatar:hover { transform: scale(1.12); }
@@ -368,9 +382,9 @@
         }
         .social-link { display: flex; align-items: center; justify-content: center; }
         .social-icon { width: 20px; height: 20px; fill: rgba(255,255,255,0.5); transition: all 0.6s ease; }
-        .social-link:nth-child(1):hover .social-icon { fill: #002552; translate: 0 -3px; }
-        .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; translate: 0 -3px; }
-        .social-link:nth-child(3):hover .social-icon { fill: #b90e32; translate: 0 -3px; }
+        .social-link:nth-child(1):hover .social-icon { fill: var(--blue); translate: 0 -3px; }
+        .social-link:nth-child(2):hover .social-icon { fill: var(--gold); translate: 0 -3px; }
+        .social-link:nth-child(3):hover .social-icon { fill: var(--red); translate: 0 -3px; }
 
         /* ── Back to Top ── */
         #back-to-top {
@@ -385,14 +399,14 @@
         #back-to-top svg { width: 22px; height: 22px; }
         #back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
         #back-to-top { transition: all 0.6s ease; }
-        #back-to-top:hover { border-color: #fabc0f; color: #fabc0f; translate: 0 -3px; }
+        #back-to-top:hover { border-color: var(--gold); color: var(--gold); translate: 0 -3px; }
 
         /* ── CANDU Cooling System Project ── */
         .hero-note { font-size: 0.95rem; color: rgba(255,255,255,0.5); line-height: 1.6; max-width: 640px; margin-top: 1.75rem; }
         .hero-note strong { color: rgba(255,255,255,0.8); font-weight: 600; }
         .tentative-tag {
             display: inline-block; font-size: 0.72rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.15em; color: #fabc0f;
+            text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold);
             border: 1px solid rgba(250,188,15,0.4); border-radius: 50px;
             padding: 0.35rem 0.9rem; margin-bottom: 1.25rem;
         }
@@ -407,7 +421,7 @@
         .glass-card {
             background: rgba(18,18,18,0.85); backdrop-filter: blur(16px);
             border: 1px solid rgba(255,255,255,0.07);
-            border-left: 4px solid var(--accent, #fabc0f);
+            border-left: 4px solid var(--accent, var(--gold));
             border-radius: 22px; padding: 1.75rem 2rem; text-align: left;
         }
         .glass-card h3 { font-size: 1.15rem; font-weight: 600; color: #fff; margin-bottom: 0.9rem; }
@@ -418,7 +432,7 @@
             color: rgba(255,255,255,0.7); font-size: 0.95rem; line-height: 1.55;
         }
         .glass-card li:last-child, .phil-card li:last-child { margin-bottom: 0; }
-        .glass-card li::before, .phil-card li::before { content: "•"; position: absolute; left: 0; color: var(--dot, var(--accent, #fabc0f)); }
+        .glass-card li::before, .phil-card li::before { content: "•"; position: absolute; left: 0; color: var(--dot, var(--accent, var(--gold))); }
         .glass-card li strong { color: #fff; font-weight: 600; }
         .diagram-card { padding: 1.5rem; border-left: 1px solid rgba(255,255,255,0.07); }
         .loop-diagram { width: 100%; height: auto; display: block; }
@@ -428,7 +442,7 @@
         .step-tools { display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.35); margin: -0.4rem 0 0.9rem; }
         .spec-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; width: 100%; max-width: 1200px; margin-bottom: 1.5rem; }
         .spec-card { padding: 1.5rem 1.75rem; }
-        .spec-value { font-size: 2.2rem; font-weight: 700; color: #fabc0f; letter-spacing: -0.03em; line-height: 1; margin-bottom: 0.5rem; }
+        .spec-value { font-size: 2.2rem; font-weight: 700; color: var(--gold); letter-spacing: -0.03em; line-height: 1; margin-bottom: 0.5rem; }
         .spec-label { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.4; }
         .card-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; width: 100%; max-width: 1200px; }
         .fine-print { font-size: 0.88rem; color: rgba(255,255,255,0.45); line-height: 1.6; margin-top: 1.5rem; max-width: 820px; }
@@ -452,10 +466,10 @@
             width: 30px; height: 30px; border-radius: 50%;
             background-color: var(--node-color); z-index: 2; cursor: pointer;
             position: relative; transition: all 0.3s ease;
-            box-shadow: 0 0 0 4px #050505;
+            box-shadow: 0 0 0 4px var(--bg);
         }
         .timeline-node:hover { transform: scale(1.2); }
-        .timeline-node.active { transform: scale(1.3); box-shadow: 0 0 0 6px rgba(255,255,255,0.15), 0 0 0 4px #050505; }
+        .timeline-node.active { transform: scale(1.3); box-shadow: 0 0 0 6px rgba(255,255,255,0.15), 0 0 0 4px var(--bg); }
         .node-label {
             position: absolute; white-space: nowrap; color: rgba(255,255,255,0.55);
             font-size: 0.92rem; pointer-events: none; text-align: center;
@@ -468,13 +482,13 @@
         .timeline-content-box {
             background: rgba(18,18,18,0.85); backdrop-filter: blur(16px);
             border: 1px solid rgba(255,255,255,0.07);
-            border-left: 4px solid var(--box-color, #002552);
+            border-left: 4px solid var(--box-color, var(--blue));
             border-radius: 20px; padding: 3rem 4rem;
             text-align: left; transition: border-color 0.4s ease; min-height: 260px;
         }
         .timeline-content-box h3 { font-size: 2rem; color: #fff; margin-bottom: 0.5rem; font-weight: 500; }
         .timeline-content-box h3 span { font-size: 1rem; color: rgba(255,255,255,0.35); font-weight: 300; margin-left: 10px; }
-        .timeline-content-box p.goal { font-size: 1.1rem; color: #fabc0f; margin-bottom: 2rem; font-style: italic; }
+        .timeline-content-box p.goal { font-size: 1.1rem; color: var(--gold); margin-bottom: 2rem; font-style: italic; }
         .timeline-content-box ul {
             list-style: none; padding-left: 0;
             display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem 3rem;
@@ -485,7 +499,7 @@
         }
         .timeline-content-box li::before {
             content: "•"; position: absolute; left: 0;
-            color: var(--box-color, #002552); font-size: 1.5rem; line-height: 1;
+            color: var(--box-color, var(--blue)); font-size: 1.5rem; line-height: 1;
         }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .fade-content { animation: fadeIn 0.4s ease forwards; }
@@ -594,7 +608,7 @@
         <a href="/" class="nav-logo-link">
             <div class="nav-logo-wrap">
                 <img src="assets/Atom Logo.png" alt="QNET" class="nav-logo-atom">
-                <img src="assets/White NET Full Logo.svg" alt="QNET" class="nav-logo-full">
+                <img src="assets/QNET outline white.svg" alt="QNET" class="nav-logo-full">
             </div>
         </a>
         <div class="notch-links">
@@ -611,7 +625,7 @@
 
 <div class="mobile-header">
     <a href="/" class="mobile-logo-link">
-        <img src="assets/White NET Full Logo.svg" alt="QNET" class="mobile-logo">
+        <img src="assets/QNET outline white.svg" alt="QNET" class="mobile-logo">
     </a>
     <button class="hamburger-btn" aria-label="Toggle Mobile Menu">
         <span class="line"></span>
@@ -635,10 +649,10 @@
     <section class="slide">
         <span class="section-eyebrow reveal">2026–2027 Flagship Build</span>
         <h1 class="hero-title reveal stagger-1">CANDU<sup class="reg">®</sup> <span>Cooling System</span></h1>
-        <span class="tentative-tag reveal stagger-1">Tentative Plan</span>
-        <p class="hero-sub reveal stagger-2">A scaled-down reactor primary loop with a mock fuel bundle: passive reactor cooling, at bench scale. Led by build team leads <a href="/teams#AidanWoods" class="inline-member-link has-tooltip" data-name="Aidan Woods" data-role="Mechanical Team Lead" data-bio="Co-conceptualized the CANDU® Cooling System project. Oversees hardware housing." data-img="teamphoto/Aidan.png" data-color="#002552"><strong>Aidan Woods</strong></a>, <a href="/teams#JustinHooey" class="inline-member-link has-tooltip" data-name="Justin Hooey" data-role="Research Team Lead" data-bio="Co-conceptualized the CANDU® Cooling System project. Establishes the scientific framework." data-img="teamphoto/justin.jpg" data-color="#ffffff"><strong>Justin Hooey</strong></a> and <a href="/teams#EllaAdair" class="inline-member-link has-tooltip" data-name="Ella Adair" data-role="Research Team Lead" data-bio="Establishing the scientific and theoretical framework for QNET projects." data-img="teamphoto/ella.jpg" data-color="#ffffff"><strong>Ella Adair</strong></a>, with a role for every sub-team.</p>
+        <span class="tentative-tag reveal stagger-1">In Design · Freeze Nov 29</span>
+        <p class="hero-sub reveal stagger-2">A natural-circulation reactor cooling loop at bench scale: hot water rises, cools and sinks back down, with no pump needed. Led by build team leads <a href="/teams#AidanWoods" class="inline-member-link has-tooltip" data-name="Aidan Woods" data-role="Mechanical Team Lead" data-bio="Co-conceptualized the CANDU® Cooling System project. Oversees hardware housing." data-img="teamphoto/Aidan.png" data-color="#002552"><strong>Aidan Woods</strong></a>, <a href="/teams#JustinHooey" class="inline-member-link has-tooltip" data-name="Justin Hooey" data-role="Research Team Lead" data-bio="Co-conceptualized the CANDU® Cooling System project. Establishes the scientific framework." data-img="teamphoto/justin.jpg" data-color="#ffffff"><strong>Justin Hooey</strong></a> and <a href="/teams#EllaAdair" class="inline-member-link has-tooltip" data-name="Ella Adair" data-role="Research Team Lead" data-bio="Establishing the scientific and theoretical framework for QNET projects." data-img="teamphoto/ella.jpg" data-color="#ffffff"><strong>Ella Adair</strong></a>, with a role for every sub-team.</p>
         <a href="/join" class="btn reveal stagger-3" onclick="gtag('event','button_click',{'button_name':'Projects - Join the Build'});">Join the Build</a>
-        <p class="hero-note reveal stagger-4">Chosen by our general members at the first General Members Meeting on September 24, 2026, with <strong>38 votes</strong>, ahead of Gamma-Ray Imaging (23) and the Nuclear Cleanup Rover (12). Everything on this page is the build team's tentative plan and may change as the design matures.</p>
+        <p class="hero-note reveal stagger-4">Chosen by our general members at the first General Members Meeting on September 24, 2026, with <strong>38 votes</strong>, ahead of Gamma-Ray Imaging (23) and the Nuclear Cleanup Rover (12). This page follows the build team's current plan. Exact dimensions and parts are being finalized ahead of the November 29 design freeze.</p>
         <div id="next-slide-btn" class="down-indicator">Why This Project <span>↓</span></div>
     </section>
 
@@ -671,7 +685,7 @@
     </section>
 
     <!-- Slide 3: What We're Building -->
-    <section class="slide">
+    <section class="slide" id="the-build">
         <div class="split-layout">
             <div>
                 <span class="section-eyebrow reveal">The Build</span>
@@ -679,18 +693,19 @@
                 <div class="card-stack">
                     <div class="glass-card reveal stagger-2" style="--accent:#fabc0f;">
                         <ul>
-                            <li><strong>A scaled-down reactor primary loop</strong> with a mock fuel bundle.</li>
-                            <li><strong>Primary mode: passive (no pump).</strong> Hot water rises, cools, and sinks back down (natural circulation), and that alone keeps the "fuel" cool.</li>
-                            <li><strong>Backup:</strong> a pump sits on a bypass line with a check valve and only starts if the loop overheats or flow stalls.</li>
-                            <li><strong>Sensors along the loop</strong> measure temperature, flow and heater power, so we can compare test data with our calculations and simulations.</li>
+                            <li><strong>A natural-circulation primary loop.</strong> Water heated at the bottom rises, cools, and sinks back down. That flow alone carries the heat away, with no pump.</li>
+                            <li><strong>A backup pump</strong> stands by, and is also used to prime the loop.</li>
+                            <li><strong>A secondary loop.</strong> Heat passes through a heat exchanger into a separate glycol loop.</li>
+                            <li><strong>Clear polymer piping,</strong> so dye can be used to see the flow.</li>
+                            <li><strong>Sensors along the loop</strong> measure temperature, flow and pressure, so we can compare test data with our calculations and simulations.</li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="glass-card diagram-card reveal stagger-3">
-                <svg class="loop-diagram" viewBox="0 0 432 362" role="img" aria-label="Loop diagram: a heated section (mock fuel) at the bottom left sends hot water up to an elevated reservoir and across to a cooling section on the right, 1 to 3 metres above the heater. Cooled water flows down through a low-flow meter and back along the bottom to the heater. A backup pump sits on a dashed bypass line under the bottom leg. Four thermocouples are spaced around the loop.">
+                <svg class="loop-diagram" viewBox="0 0 432 362" role="img" aria-label="Loop diagram: a heated section at the bottom left sends hot water up and across to a heat exchanger on the right, which passes the heat to a secondary glycol loop. Cooled water flows down through a flow sensor and back along the bottom to the heater. A backup pump sits on a dashed line under the bottom leg. Temperature sensors are spaced around the loop.">
                     <!-- hot leg (red) -->
-                    <path d="M72 188 V53 H106 M207 53 H370 V101" fill="none" stroke="#b90e32" stroke-width="5" stroke-linejoin="round"/>
+                    <path d="M72 188 V53 H370 V101" fill="none" stroke="#b90e32" stroke-width="5" stroke-linejoin="round"/>
                     <!-- cold leg (blue) -->
                     <path d="M370 168 V202 M370 242 V274 H72 V265" fill="none" stroke="#6f9fd8" stroke-width="5" stroke-linejoin="round"/>
                     <!-- backup bypass (dashed) -->
@@ -701,27 +716,21 @@
                     <path d="M362 252 L370 266 L378 252 Z" fill="#6f9fd8"/>
                     <path d="M330 266 L316 274 L330 282 Z" fill="#6f9fd8"/>
                     <path d="M120 266 L106 274 L120 282 Z" fill="#6f9fd8"/>
-                    <!-- elevation marker -->
-                    <path d="M170 98 V172" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" stroke-dasharray="4 4"/>
-                    <path d="M164 106 L170 96 L176 106 M164 164 L170 174 L176 164" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
-                    <text x="182" y="132" fill="rgba(255,255,255,0.6)" font-size="12" font-weight="600">1–3 m</text>
-                    <text x="182" y="148" fill="rgba(255,255,255,0.45)" font-size="11">elevation</text>
+                    <!-- natural circulation label -->
+                    <text x="216" y="150" fill="rgba(255,255,255,0.6)" font-size="12" font-weight="600" text-anchor="middle">Natural circulation</text>
+                    <text x="216" y="167" fill="rgba(255,255,255,0.45)" font-size="11" text-anchor="middle">hot water rises, cool water sinks</text>
                     <!-- heated section -->
                     <rect x="29" y="188" width="86" height="77" rx="10" fill="#b90e32"/>
                     <text x="72" y="222" fill="#fff" font-size="12" font-weight="600" text-anchor="middle">Heated</text>
                     <text x="72" y="237" fill="#fff" font-size="12" font-weight="600" text-anchor="middle">section</text>
-                    <text x="72" y="253" fill="rgba(255,255,255,0.8)" font-size="10" text-anchor="middle">(mock fuel)</text>
-                    <!-- reservoir -->
-                    <rect x="106" y="24" width="101" height="58" rx="10" fill="#0b0b0e" stroke="#fabc0f" stroke-width="2"/>
-                    <text x="156.5" y="50" fill="#fabc0f" font-size="12" font-weight="600" text-anchor="middle">Reservoir</text>
-                    <text x="156.5" y="66" fill="rgba(250,188,15,0.75)" font-size="10" text-anchor="middle">(elevated)</text>
+                    <text x="72" y="253" fill="rgba(255,255,255,0.8)" font-size="10" text-anchor="middle">(heater)</text>
                     <!-- cooling section -->
                     <rect x="322" y="101" width="96" height="67" rx="10" fill="#002552" stroke="#6f9fd8" stroke-width="2"/>
-                    <text x="370" y="131" fill="#fff" font-size="12" font-weight="600" text-anchor="middle">Cooling</text>
-                    <text x="370" y="147" fill="#fff" font-size="12" font-weight="600" text-anchor="middle">section</text>
+                    <text x="370" y="131" fill="#fff" font-size="11" font-weight="600" text-anchor="middle">Heat exchanger</text>
+                    <text x="370" y="147" fill="rgba(255,255,255,0.8)" font-size="10" text-anchor="middle">to glycol loop</text>
                     <!-- low-flow meter -->
                     <rect x="322" y="202" width="96" height="40" rx="10" fill="#0b1a2e" stroke="#6f9fd8" stroke-width="1.5"/>
-                    <text x="370" y="226" fill="#fff" font-size="11" text-anchor="middle">Low-flow meter</text>
+                    <text x="370" y="226" fill="#fff" font-size="11" text-anchor="middle">Flow sensor</text>
                     <!-- backup pump -->
                     <rect x="178" y="294" width="86" height="33" rx="9" fill="#2a2a30" stroke="#8a8a96" stroke-width="1.5"/>
                     <text x="221" y="315" fill="#fff" font-size="11" text-anchor="middle">Backup pump</text>
@@ -733,7 +742,7 @@
                         <circle cx="220.5" cy="274" r="12" fill="#fff"/><text x="220.5" y="278" fill="#0b0b0e">T</text>
                     </g>
                     <!-- legend -->
-                    <text x="216" y="354" fill="rgba(255,255,255,0.5)" font-size="11" text-anchor="middle">T = thermocouple · Red = hot · Blue = cold · Dashed = backup</text>
+                    <text x="216" y="354" fill="rgba(255,255,255,0.5)" font-size="11" text-anchor="middle">T = temperature sensor · Red = hot · Blue = cold · Dashed = backup</text>
                 </svg>
             </div>
         </div>
@@ -748,14 +757,13 @@
                 <div class="glass-card reveal stagger-1" style="--accent:#6f9fd8;">
                     <h3>In Scope</h3>
                     <ul>
-                        <li>Mock fuel bundle / heated section</li>
-                        <li>Elevated reservoir</li>
-                        <li>Cooling (heat-rejection) section</li>
-                        <li>Backup pump on a bypass line</li>
-                        <li>Temperature, flow and power sensing</li>
-                        <li>Data logging and heater control</li>
-                        <li>E-stop, pump auto-start, heater trip</li>
-                        <li>Hand calcs, CFD and 3 reports</li>
+                        <li>Heating section at the bottom of the loop</li>
+                        <li>Heat exchanger and a secondary glycol loop</li>
+                        <li>Backup pump, also used to prime the loop</li>
+                        <li>Temperature, flow and pressure sensing</li>
+                        <li>Data logging and control on a Raspberry Pi</li>
+                        <li>Hardwired E-stop and engineered temperature limits</li>
+                        <li>Calculations, CFD, testing and reports</li>
                     </ul>
                 </div>
                 <div class="glass-card reveal stagger-2" style="--accent:#b90e32;">
@@ -764,8 +772,8 @@
                         <li>Steam generator and secondary steam cycle</li>
                         <li>Turbine and power generation</li>
                         <li>Real nuclear fuel or radiation</li>
-                        <li>High pressure: we stay near atmospheric</li>
-                        <li>Water above 75 °C, or any boiling</li>
+                        <li>High pressure: the loop runs at atmospheric pressure</li>
+                        <li>Boiling or steam</li>
                     </ul>
                 </div>
             </div>
@@ -815,66 +823,66 @@
     </section>
 
     <!-- Slide 6: The Physical Build -->
-    <section class="slide">
-        <span class="section-eyebrow reveal">Approximate Design Specifications</span>
+    <section class="slide" id="design">
+        <span class="section-eyebrow reveal">The Design Right Now</span>
         <h2 class="hero-title reveal stagger-1">The Physical <span>Build</span></h2>
         <div class="spec-grid">
             <div class="glass-card spec-card reveal stagger-1" style="--accent:#fabc0f;">
-                <div class="spec-value">1–3 m</div>
-                <div class="spec-label">Loop elevation</div>
+                <div class="spec-value">Atmospheric</div>
+                <div class="spec-label">Operating pressure</div>
             </div>
             <div class="glass-card spec-card reveal stagger-2" style="--accent:#b90e32;">
-                <div class="spec-value">≤ 75 °C</div>
-                <div class="spec-label">Water hard cap</div>
+                <div class="spec-value">100 °C</div>
+                <div class="spec-label">Design temperature, with engineered limits</div>
             </div>
             <div class="glass-card spec-card reveal stagger-3" style="--accent:#002552;">
-                <div class="spec-value">250–500 W</div>
-                <div class="spec-label">Heater, wall outlet</div>
+                <div class="spec-value">Polymer</div>
+                <div class="spec-label">Clear, non-metal piping</div>
             </div>
             <div class="glass-card spec-card reveal stagger-4" style="--accent:#fabc0f;">
-                <div class="spec-value">~$1,315</div>
-                <div class="spec-label">Current BOM estimate</div>
+                <div class="spec-value">Raspberry Pi</div>
+                <div class="spec-label">Control and data logging</div>
             </div>
         </div>
         <div class="card-grid-3">
             <div class="glass-card reveal stagger-1" style="--accent:#fabc0f;">
-                <h3>Frame</h3>
-                <p>Aluminum extrusion clamped to a workbench (no drilling into the bench). The cooler sits well above the heater.</p>
+                <h3>Heat Exchanger &amp; Secondary Loop</h3>
+                <p>We are buying the heat exchanger, not building one. It passes heat into a secondary loop: flexible tubing carrying glycol, with a small pump, routed away from the hot leg.</p>
             </div>
             <div class="glass-card reveal stagger-2" style="--accent:#002552;">
                 <h3>Piping</h3>
-                <p>3/4" modular copper, CPVC or silicone rated to at least 80 °C (not standard PVC). Wide, smooth pipe keeps friction low for passive flow.</p>
+                <p>Polymer (non-metal) pipe, chosen by our Materials team. It will be as clear as possible, so dye can be used to see the flow.</p>
             </div>
             <div class="glass-card reveal stagger-3" style="--accent:#b90e32;">
-                <h3>Heater</h3>
-                <p>Resistive wire spread along the heated section, switched by a solid-state relay. Small cartridge heaters concentrate too much heat and would boil water at their surface.</p>
+                <h3>Control &amp; Safety</h3>
+                <p>A Raspberry Pi reads the sensors through our own ADC board, designed in EasyEDA. A hardwired emergency stop sits outside the software.</p>
             </div>
         </div>
-        <p class="fine-print reveal stagger-4">Expect roughly +$100–200 on the BOM for a low-flow meter and a check valve. The working range is $1.5k–$3k with a better flow meter and pressure sensors. CAD, CFD and software are free. Empty weight and lab space are still to be determined.</p>
+        <p class="fine-print reveal stagger-4">Exact dimensions, pipe size and component models are being finalized ahead of the November 29 design freeze.</p>
     </section>
 
     <!-- Slide 7: Deliverables & Sub-Teams -->
-    <section class="slide">
+    <section class="slide" id="sub-teams">
         <div class="project-showcase">
             <div class="project-static">
                 <span class="section-eyebrow">What We'll Deliver</span>
                 <h3>Deliverables</h3>
-                <p>Three technical reports, each owned by two sub-teams, backed by a working loop.</p>
+                <p>A working loop, tested against our own model, with all five sub-teams building it together.</p>
                 <div class="project-specs">
-                    <strong>Thermal-hydraulics report</strong> (Mech + Software)
+                    <strong>A working test loop</strong>
                     <ul>
-                        <li>Passive flow rate, pressure drop and heat transfer, with CFD checked against test data. Also covers passive vs. pumped operation.</li>
+                        <li>Built, sealed and leak-tested by Mechanical and Materials, wired by Electrical.</li>
                     </ul>
-                    <strong>Reactor physics report</strong> (Research + Mech)
+                    <strong>Test results</strong>
                     <ul>
-                        <li>Heat generated in the fuel bundle, including traditional CANDU fuel and reprocessed fuel mixes, and how that maps to our heater power.</li>
+                        <li>Research writes and runs the test plan, then compares the results with the model and CFD.</li>
                     </ul>
-                    <strong>Safety &amp; control systems report</strong> (Elec + Software)
+                    <strong>Reports</strong>
                     <ul>
-                        <li>Temperature limits, backup-pump auto-start, heater trip and emergency stop.</li>
+                        <li>Written from the test data, with plots from Software.</li>
                     </ul>
                     <br>
-                    <strong>Plus:</strong> full CAD model, working test loop, and a data acquisition system.<br><br>
+                    <strong>Plus:</strong> a full CAD model and a data logging and control system.<br><br>
                     <strong>Select a sub-team to see its role →</strong>
                 </div>
             </div>
@@ -910,11 +918,7 @@
                         <a href="/teams#AidanWoods" class="member-avatar has-tooltip" style="background-image:url('teamphoto/Aidan.png');border-color:#002552;" data-name="Aidan Woods" data-role="Team Lead" data-bio="Co-conceptualized the CANDU® Cooling System project. Oversees hardware housing." data-img="teamphoto/Aidan.png" data-color="#002552"></a>
                     </div>
                     <div id="desc-candu">
-                        <ul>
-                            <li>CAD of the loop and frame in Onshape.</li>
-                            <li>Fabricate and assemble piping, reservoir and heat-transfer surfaces.</li>
-                            <li>Thermal-hydraulic CFD with Software.</li>
-                        </ul>
+                        <ul><li>Groups for cooling, heating, CAD, components and CFD.</li><li>This fall: the loop model, CAD of the full system and frame, and the pumps, valves and fittings.</li><li>In the build: builds the frame, assembles the loop with Materials, installs the heat exchanger, pumps and valves, and runs the flow tests with Research.</li></ul>
                     </div>
                 </div>
             </div>
@@ -922,56 +926,56 @@
     </section>
 
     <!-- Slide 8: Safety & Success Conditions -->
-    <section class="slide">
+    <section class="slide" id="safety">
         <span class="section-eyebrow reveal">Yes, We Care About You</span>
         <h2 class="hero-title reveal stagger-1">Safety <span>&amp; Success</span></h2>
         <div class="card-grid-2">
             <div class="glass-card reveal stagger-1" style="--accent:#b90e32;">
                 <h3>Safety</h3>
                 <ul>
-                    <li><strong>Layered temperature limits.</strong> Run at 60 °C or below. Backup pump starts at 65 °C, heater trips at 75 °C. Avoid creating steam.</li>
-                    <li><strong>Heater surface.</strong> Heat spread out so the surface stays under 95 °C, with a hardware thermal cutoff.</li>
-                    <li><strong>Near-atmospheric pressure.</strong> A vented reservoir absorbs the ~2.5% thermal expansion. Tubing is rated to at least 80 °C.</li>
-                    <li><strong>Emergency stop.</strong> A physical E-stop cuts the heater. Passive flow keeps cooling it with no power needed.</li>
-                    <li><strong>Electrical.</strong> SSR-switched heater and pump, fused circuits, and electronics enclosed away from water.</li>
-                    <li><strong>Burns &amp; procedures.</strong> Hot sections marked, gloves on, and a written safety plan used at every test.</li>
+                    <li><strong>Atmospheric pressure.</strong> The loop is not pressurized.</li>
+                    <li><strong>Engineered temperature limits.</strong> The loop is designed for 100 °C, with a temperature sensor and automatic shutoff on the operating temperature.</li>
+                    <li><strong>Hardwired emergency stop.</strong> A physical, non-digital E-stop shuts everything off.</li>
+                    <li><strong>Pressure relief.</strong> The design includes a pressure relief valve.</li>
+                    <li><strong>Backup pump.</strong> A pump backs up natural circulation and primes the loop.</li>
+                    <li><strong>Electrical safety.</strong> The Electrical team handles electrical safety during every test.</li>
                 </ul>
             </div>
             <div class="glass-card reveal stagger-2" style="--accent:#fabc0f;">
                 <h3>Success Conditions</h3>
                 <ul>
-                    <li><strong>Passive circulation.</strong> Removes full heater power with no pump. This is the normal mode.</li>
-                    <li><strong>Backup pump failover.</strong> Pump starts automatically when the 65 °C limit is hit.</li>
-                    <li><strong>Within limits.</strong> Hot leg at or below 60 °C, heater surface below 95 °C, no boiling.</li>
-                    <li><strong>100% leak-free.</strong> No leaks at operating temperature.</li>
-                    <li><strong>1 reading / second.</strong> Temperature, pressure and flow logged continuously.</li>
-                    <li><strong>Safety plan in use.</strong> Reports and procedures used during every test.</li>
+                    <li><strong>Natural circulation.</strong> The loop carries the heater's power away with no pump. This is the normal mode.</li>
+                    <li><strong>Within limits.</strong> Temperatures stay inside the engineered limits, with no boiling.</li>
+                    <li><strong>Leak-free.</strong> No leaks at operating temperature.</li>
+                    <li><strong>Logged.</strong> Temperature, pressure and flow recorded throughout every test.</li>
+                    <li><strong>Matches the model.</strong> Test results are compared with our calculations and CFD.</li>
+                    <li><strong>Safety plan in use.</strong> Procedures followed during every test.</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <!-- Slide 9: Timeline -->
-    <section class="slide">
+    <section class="slide" id="timeline">
         <div class="timeline-section">
-            <span class="section-eyebrow reveal">Tentative · October to March</span>
+            <span class="section-eyebrow reveal">Fall 2026 to March 2027</span>
             <h2 class="hero-title reveal stagger-1" style="margin-bottom:0;">The <span>Timeline</span></h2>
 
             <div class="timeline-track">
                 <div class="timeline-node active" data-target="onboarding" style="--node-color:#002552;">
-                    <span class="node-label top">Onboarding<br><small>Oct</small></span>
+                    <span class="node-label top">Design<br><small>Fall</small></span>
                 </div>
                 <div class="timeline-node" data-target="design" style="--node-color:#fabc0f;">
-                    <span class="node-label bottom">Calcs &amp; CAD<br><small>Oct – Nov</small></span>
+                    <span class="node-label bottom">Design Freeze<br><small>Nov 29</small></span>
                 </div>
                 <div class="timeline-node" data-target="freeze" style="--node-color:#b90e32;">
-                    <span class="node-label top">Design Freeze<br><small>Nov</small></span>
+                    <span class="node-label top">Parts Ordered<br><small>Dec</small></span>
                 </div>
                 <div class="timeline-node" data-target="fabrication" style="--node-color:#002552;">
-                    <span class="node-label bottom">Fabrication<br><small>Jan</small></span>
+                    <span class="node-label bottom">Building<br><small>Jan</small></span>
                 </div>
                 <div class="timeline-node" data-target="assembly" style="--node-color:#fabc0f;">
-                    <span class="node-label top">Assembly<br><small>Feb</small></span>
+                    <span class="node-label top">Assembly &amp; Leak Testing<br><small>Feb</small></span>
                 </div>
                 <div class="timeline-node" data-target="integration" style="--node-color:#b90e32;">
                     <span class="node-label bottom">Testing &amp; Reports<br><small>Mar</small></span>
@@ -994,19 +998,18 @@
                     <li>Fluid mechanics: natural circulation, head loss, pumps</li>
                     <li>Heat transfer and heat exchanger basics</li>
                     <li>Scaling a real system down to lab size, and why that's hard</li>
-                    <li>CFD with OpenFOAM and ParaView</li>
+                    <li>CFD simulation, checked against real test data</li>
                     <li>Python data acquisition on a Raspberry Pi</li>
-                    <li>Control and safety circuits: SSRs, fuses, LTspice</li>
+                    <li>Control and safety circuits, and PCB design in EasyEDA</li>
                 </ul>
             </div>
             <div class="glass-card reveal stagger-2" style="--accent:#002552; --dot:#6f9fd8;">
-                <h3>Scaling Up If We Have the Budget</h3>
+                <h3>How the Build Is Organized</h3>
                 <ul>
-                    <li>More and better sensors, including pressure</li>
-                    <li>Simulate loss-of-power accidents</li>
-                    <li>Emergency core cooling injection</li>
-                    <li>A second, actively cooled loop</li>
-                    <li>Test different fuel-mix heat profiles</li>
+                    <li>Five sub-teams: Mechanical, Research, Materials, Electrical and Software</li>
+                    <li>Each sub-team splits into small groups that own one part of the loop</li>
+                    <li>Groups across sub-teams work together on shared parts, like the heater and the sensors</li>
+                    <li>Open to every member: no application and no interview</li>
                 </ul>
             </div>
         </div>
@@ -1295,11 +1298,11 @@
 
     const teamContent = {
         candu: {
-            mech: { title: "Mechanical", desc: "<ul><li>CAD of the loop and frame in Onshape.</li><li>Fabricate and assemble piping, reservoir and heat-transfer surfaces.</li><li>Thermal-hydraulic CFD with Software.</li></ul>" },
-            elec: { title: "Electrical", desc: "<ul><li>Heater and backup-pump circuits with SSR control.</li><li>Hardware safety: E-stop, fuses, thermal cutoff.</li><li>Keep all electronics isolated from water.</li></ul>" },
-            software: { title: "Software & Comp", desc: "<ul><li>Raspberry Pi data acquisition in Python.</li><li>Read temperature, flow and pressure sensors together.</li><li>Logic that starts the backup pump and trips the heater.</li></ul>" },
-            research: { title: "Research", desc: "<ul><li>Scale real reactor behaviour down to the loop.</li><li>Calculate target heater power.</li><li>Model fuel-bundle heating (CANDU / reprocessed).</li></ul>" },
-            materials: { title: "Materials", desc: "<ul><li>Tubing and fittings rated to at least 80 °C (no standard PVC).</li><li>Heater choice that keeps surface heat flux low.</li><li>Set max temperature limits.</li></ul>" }
+            mech: { title: "Mechanical", desc: "<ul><li>Groups for cooling, heating, CAD, components and CFD.</li><li>This fall: the loop model, CAD of the full system and frame, and the pumps, valves and fittings.</li><li>In the build: builds the frame, assembles the loop with Materials, installs the heat exchanger, pumps and valves, and runs the flow tests with Research.</li></ul>" },
+            elec: { title: "Electrical", desc: "<ul><li>Picks the heater and designs the power distribution.</li><li>Designs our own ADC board in EasyEDA, plus the hardwired E-stop and high-voltage safety.</li><li>In the build: wires the power, heater control and E-stop, builds the ADC board, and handles electrical safety during every test.</li></ul>" },
+            software: { title: "Software & Comp", desc: "<ul><li>Data logging, control and safety logic on the Raspberry Pi.</li><li>Sensor drivers, test scripts and plots.</li><li>In the build: runs data logging and control, builds the control panel, and makes the plots for the reports.</li></ul>" },
+            research: { title: "Research", desc: "<ul><li>Groups for sensors, the heater and heat exchanger, CFD and the parameter model.</li><li>Chooses the temperature, pressure and flow sensors, and helps pick the heat exchanger.</li><li>In the build: writes and runs the test plan, compares results with the model and CFD, and writes the reports.</li></ul>" },
+            materials: { title: "Materials", desc: "<ul><li>Chose polymer (non-metal) piping for the loop.</li><li>Designs the sensor housings.</li><li>In the build: makes the sensor housings, joins and seals the loop, and leak-tests it with Mechanical.</li></ul>" }
         },
         matstudies: {
             ions: { title: "Ion Surrogates for Neutron Radiation Damage", desc: "<p>This track compares the difference in neutron beams and ion beams in both their recoil spectra and energy deposition partitioning. By comparing which locally-available ions produce spectra and energy-partitioning profiles that most closely mimic real neutron damage, researchers can identify better surrogates for running more accurate experiments with ions rather than neutrons — which are harder to use precisely, as they carry no charge. Our team plans to utilize SRIM simulations, as it is uniquely suited for capturing the recoil spectra and doesn't require any physical experiments aside from experimental validation.</p>" },
@@ -1331,39 +1334,39 @@
     // Timeline (tentative build plan)
     const timelineData = {
         onboarding: {
-            title: "Onboarding &amp; Component Selection", subtitle: "October",
+            title: "Design", subtitle: "Fall 2026",
             goal: "Semester 1: design",
-            tasks: ["Crash courses", "Readings", "Pick core hardware"],
+            tasks: ["Loop model and calculations", "CAD of the full system", "Choosing sensors, heater and heat exchanger"],
             color: "#002552"
         },
         design: {
-            title: "Calcs, CAD &amp; Simulation", subtitle: "October – November",
+            title: "Design Freeze", subtitle: "November 29",
             goal: "Semester 1: design",
-            tasks: ["Calculations", "Loop CAD", "CFD setup", "Tolerances"],
+            tasks: ["Every part we buy is chosen", "First full CAD model done"],
             color: "#fabc0f"
         },
         freeze: {
-            title: "Design Freeze &amp; Ordering", subtitle: "November",
+            title: "Parts Ordered", subtitle: "December",
             goal: "Semester 1: design",
-            tasks: ["Lock CAD and interfaces", "Order parts"],
+            tasks: ["Final parts list", "Orders placed"],
             color: "#b90e32"
         },
         fabrication: {
-            title: "Fabrication", subtitle: "January",
+            title: "Building", subtitle: "January",
             goal: "Semester 2: build &amp; test",
-            tasks: ["3D print and machine parts", "Build frame"],
+            tasks: ["Build the frame", "Make the sensor housings", "Build the ADC board"],
             color: "#002552"
         },
         assembly: {
             title: "Assembly &amp; Leak Testing", subtitle: "February",
             goal: "Semester 2: build &amp; test",
-            tasks: ["Assemble loop", "Leak test", "First passive-flow shakedown"],
+            tasks: ["Assemble and seal the loop", "Leak test"],
             color: "#fabc0f"
         },
         integration: {
-            title: "Integration, Testing &amp; Reports", subtitle: "March",
+            title: "Testing &amp; Reports", subtitle: "March",
             goal: "Semester 2: build &amp; test",
-            tasks: ["Passive-flow and pump-failover tests", "Then the 3 reports"],
+            tasks: ["Run the test plan", "Compare results with the model and CFD", "Write the reports"],
             color: "#b90e32"
         }
     };
