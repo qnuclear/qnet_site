@@ -553,6 +553,22 @@
 
         .tour-photo.span-2-col.span-2-row { grid-column: span 2; grid-row: span 2; }
 
+        .tour-note { margin-top: 1.25rem; font-size: 0.85rem; color: #999; text-align: center; }
+
+        .guest-note {
+            margin-top: 2rem; padding: 1rem 1.5rem; max-width: 1200px; width: 100%;
+            background: rgba(18, 18, 18, 0.85); border: 1px solid rgba(255,255,255,0.07);
+            border-left: 3px solid #fabc0f; border-radius: 22px;
+            color: #bbb; font-size: 1.05rem; text-align: left;
+        }
+        .guest-note strong { color: #fff; }
+
+        .lesson-tag {
+            display: inline-block; margin-bottom: 0.5rem;
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+            color: #fabc0f;
+        }
+
         /* --- GUEST SPEAKERS --- */
         .speakers-grid {
             display: flex;
@@ -965,7 +981,7 @@
                     <div class="bento-content" style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
                         <div class="prize-text">Up to $500</div>
                         <h3 style="font-size: 2.2rem; margin-bottom: 1rem;">Capstone Design Contest</h3>
-                        <p style="font-size: 1.15rem; color: #bbb; margin-bottom: 1.5rem;">At the end of their studies, students will join groups of 3-5 to conceptualize and defend a real-world nuclear facility project of their choosing.</p>
+                        <p style="font-size: 1.15rem; color: #bbb; margin-bottom: 1.5rem;">At the end of their studies, students will join groups of 3-5 to take on and defend a real-world nuclear design challenge. <strong style="color:#fff;">AtkinsRéalis is creating this year's capstone project right now.</strong></p>
                         <p style="font-size: 1.05rem; color: #aaa;">The groups will present their pitch to a panel of judges for potential incentives and cash prizes. The winning pitch will be featured on our website and pitched to relevant companies.</p>
                     </div>
                 </div>
@@ -975,11 +991,12 @@
                     <div class="bento-bg-image" style="background-image: url('assets/cc.png');"></div>
                     <div class="bento-gradient"></div>
                     <div class="bento-content">
-                        <h3>Radiation & Detection</h3>
+                        <span class="lesson-tag">Lesson 1</span>
+                        <h3>Radiation Basics, Protection &amp; Detection</h3>
                         <ul>
-                            <li>Build your own Cloud Chamber.</li>
-                            <li>Demonstrate mapping with Geiger counters.</li>
-                            <li>Nuclear myths trivia night at Clark Hall.</li>
+                            <li>Radioactivity and decay modes.</li>
+                            <li>How radiation is detected.</li>
+                            <li>Dose and biological effects.</li>
                         </ul>
                     </div>
                 </div>
@@ -1025,11 +1042,12 @@
                     </div>
                     <div class="bento-gradient"></div>
                     <div class="bento-content">
-                        <h3>Reactor Basics & Physics</h3>
+                        <span class="lesson-tag">Lessons 2 &amp; 3</span>
+                        <h3>Reactor Basics &amp; Reactor Physics</h3>
                         <ul>
-                            <li>Broad overview of reactor types in Canada.</li>
-                            <li>Neutron physics, critical states, and thermal dynamics.</li>
-                            <li>Introduction to MCNP simulation software.</li>
+                            <li>Nuclear reactions, fission and reactor types.</li>
+                            <li>The four- and six-factor formulas, and SLOWPOKE.</li>
+                            <li>Neutron transport, diffusion and slowing down.</li>
                         </ul>
                     </div>
                 </div>
@@ -1038,9 +1056,9 @@
                 <div class="bento-item span-2-col experiential-card" style="--accent:#fabc0f;">
                     <div class="bento-content">
                         <h3 style="color: #fabc0f;">Experiential Assets</h3>
-                        <p style="margin-bottom: 0.75rem;">QNET School prioritizes high-impact experiential education over traditional lectures. Members will participate in hands-on tours and real-world exposure:</p>
+                        <p style="margin-bottom: 0.75rem;">Lessons draw on ENPH/PHYS 491 course material, and QNET School pairs them with hands-on, real-world exposure. Our first reactor tour is done, and more ideas are on the list:</p>
                         <ul class="asset-list">
-                            <li>Tour the SLOWPOKE-2 Reactor.</li>
+                            <li><a href="#reactor-tour" style="color:#fabc0f;">SLOWPOKE-2 reactor tour: done, October 23.</a></li>
                             <li>Tour the Reactor Materials Testing Lab (RMTL).</li>
                             <li>Port Hope legacy waste trips.</li>
                             <li>Escape-room style disaster simulators.</li>
@@ -1052,37 +1070,62 @@
         </div>
     </section>
 
-    <!-- Reactor Tour Gallery -->
+    <!-- Reactor Tour: the story -->
     <section class="slide" id="reactor-tour">
         <div class="slide-content-wrapper">
             <div class="section-header">
-                <span class="tour-date">October 23, 2026</span>
+                <span class="tour-date">October 23, 2026 · Royal Military College of Canada</span>
                 <h2>Our First Reactor Tour</h2>
-                <p style="color: #aaa; max-width: 700px; margin: 1rem auto 0; font-size: 1.15rem;">QNET School members completed our first reactor tour, getting an up-close look at the SLOWPOKE-2 reactor.</p>
+                <p style="color: #aaa; max-width: 760px; margin: 1rem auto; font-size: 1.15rem;">QNET School members visited the SLOWPOKE-2 reactor at RMC, right here in Kingston. It was QNET's first reactor tour, and the first time many of our members had stood beside a working reactor.</p>
+            </div>
+            <div class="resources-grid">
+                <div class="resource-card" style="--accent:#fabc0f;">
+                    <h3>The Reactor</h3>
+                    <p>SLOWPOKE-2 is a small pool-type research reactor. The core sits at the bottom of a pool of water, which cools it and shields the room above. It is the same reactor our Reactor Basics lesson uses as its worked example.</p>
+                </div>
+                <div class="resource-card" style="--accent:#002552;">
+                    <h3>What We Saw</h3>
+                    <p>The reactor is open, so members could look straight down into the pool. The tour also covered the operator console, the equipment mounted over the pool, and a cutaway of the core that shows how it all fits together.</p>
+                </div>
+                <div class="resource-card" style="--accent:#b90e32;">
+                    <h3>Why It Matters</h3>
+                    <p>QNET School lessons cover radiation, fission and reactor physics in the classroom. Standing over the pool turns those slides into something real, and it is the kind of exposure we want every member to get.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reactor Tour Gallery -->
+    <section class="slide" id="reactor-tour-photos">
+        <div class="slide-content-wrapper">
+            <div class="section-header">
+                <span class="tour-date">Tour Photos</span>
+                <h2>Inside the SLOWPOKE-2 Facility</h2>
             </div>
             <div class="tour-grid">
                 <figure class="tour-photo span-2-col span-2-row" style="--accent:#fabc0f;">
-                    <img src="assets/reactor-tour/slowpoke-tour-01.jpg" alt="QNET members listening to a guide inside the SLOWPOKE-2 reactor facility" width="1600" height="1200" loading="lazy">
+                    <img src="assets/reactor-tour/slowpoke-tour-09.jpg" alt="The SLOWPOKE-2 reactor pool with an equipment frame mounted over the opening" width="1600" height="1538" loading="lazy">
                 </figure>
                 <figure class="tour-photo" style="--accent:#002552;">
-                    <img src="assets/reactor-tour/slowpoke-tour-02.jpg" alt="SLOWPOKE-2 reactor control console display" width="1600" height="1200" loading="lazy">
+                    <img src="assets/reactor-tour/slowpoke-tour-12.jpg" alt="SLOWPOKE-2 operator console, with the screen blurred" width="1600" height="1200" loading="lazy">
                 </figure>
                 <figure class="tour-photo" style="--accent:#b90e32;">
                     <img src="assets/reactor-tour/slowpoke-tour-03.jpg" alt="Equipment frame mounted over the SLOWPOKE-2 reactor pool" width="1600" height="1200" loading="lazy">
                 </figure>
                 <figure class="tour-photo" style="--accent:#fabc0f;">
-                    <img src="assets/reactor-tour/slowpoke-tour-05.jpg" alt="Guide demonstrating equipment beside the reactor pool as QNET members look on" width="1600" height="1200" loading="lazy">
+                    <img src="assets/reactor-tour/slowpoke-tour-08.jpg" alt="Cutaway illustration of the SLOWPOKE-2 reactor core on the facility wall" width="1200" height="1600" loading="lazy">
                 </figure>
                 <figure class="tour-photo" style="--accent:#002552;">
                     <img src="assets/reactor-tour/slowpoke-tour-06.jpg" alt="Looking down into the water of the SLOWPOKE-2 reactor pool" width="1200" height="1600" loading="lazy">
                 </figure>
                 <figure class="tour-photo" style="--accent:#b90e32;">
-                    <img src="assets/reactor-tour/slowpoke-tour-04.jpg" alt="QNET members gathered around the SLOWPOKE-2 reactor pool" width="1600" height="1200" loading="lazy">
+                    <img src="assets/reactor-tour/slowpoke-tour-10.jpg" alt="View past the aluminium frame into the blue water of the reactor pool" width="1200" height="1600" loading="lazy">
                 </figure>
                 <figure class="tour-photo" style="--accent:#fabc0f;">
-                    <img src="assets/reactor-tour/slowpoke-tour-07.jpg" alt="Guide holding up a component during the reactor tour" width="1200" height="1600" loading="lazy">
+                    <img src="assets/reactor-tour/slowpoke-tour-11.jpg" alt="Wall diagram of the SLOWPOKE-2 reactor and its components" width="1200" height="1600" loading="lazy">
                 </figure>
             </div>
+            <p class="tour-note">Some items have been blurred for confidentiality.</p>
         </div>
     </section>
 
@@ -1119,37 +1162,7 @@
                     <p>We leverage the vast information available through the CNSC website and set up dedicated, organized study sessions for interested members to collaborate and complete their modules together.</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Section 4: Potential Guest Speakers -->
-    <section class="slide">
-        <div class="slide-content-wrapper">
-            <div class="section-header">
-                <h2>Potential Guest Speakers</h2>
-                <p style="color: #aaa; max-width: 600px; margin: 1rem auto; font-size: 1.1rem;">Facilitating hosting logistics to bring in active nuclear professionals and Queen's Alumni from the CNSC, OPG, and CNL.</p>
-            </div>
-            
-            <div class="speakers-grid">
-                <div class="speaker-node" style="--accent:#002552;">
-                    <div class="speaker-avatar" style="background-image: url('teamphoto/john.jpg'); border: none;"></div>
-                    <h4>John Thelen</h4>
-                    <span>Acting WDD Director</span>
-                    <p>CNSC | Queen's Alum</p>
-                </div>
-                <div class="speaker-node" style="--accent:#002552;">
-                    <div class="speaker-avatar" style="background-image: url('teamphoto/pavel.jpg'); border: none;"></div>
-                    <h4>Pavel Samuleev</h4>
-                    <span>SLOWPOKE-2 Director</span>
-                    <p>RMC / RCMP</p>
-                </div>
-                <div class="speaker-node" style="--accent:#002552;">
-                    <div class="speaker-avatar" style="background-image: url('teamphoto/dean.jpg'); border: none;"></div>
-                    <h4>Dean Haslip</h4>
-                    <span>VP & CSO</span>
-                    <p>CNSC | Queen's Alum</p>
-                </div>
-            </div>
+            <p class="guest-note"><strong>Guest lectures:</strong> our sponsors are scheduling guest lectures with us.</p>
         </div>
     </section>
 
