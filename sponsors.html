@@ -598,17 +598,17 @@
         }
 
         .tier-card.kinetic { --tier-color: #888888; }
-        .tier-card.thermal { --tier-color: var(--blue); }
-        .tier-card.fission { --tier-color: var(--gold); }
-        .tier-card.fusion { --tier-color: var(--red); border: 2px solid var(--red); background: rgba(185, 14, 50, 0.05); }
+        .tier-card.thermal { --tier-color: #6f9fd8; }
+        .tier-card.fission { --tier-color: var(--red); }
+        .tier-card.fusion { --tier-color: var(--gold); border: 2px solid var(--gold); background: rgba(250, 188, 15, 0.05); box-shadow: 0 0 40px rgba(250, 188, 15, 0.12); }
 
         .fusion-badge {
             position: absolute;
             top: -12px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--red);
-            color: #fff;
+            background: var(--gold);
+            color: #050505;
             padding: 0.25rem 0.85rem;
             border-radius: 20px;
             font-size: 0.7rem;
@@ -629,11 +629,21 @@
             background: rgba(18,18,18,0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.07);
+            border: 1px solid rgba(250,188,15,0.3);
             border-left: 4px solid var(--gold);
             border-radius: 22px;
             padding: 3rem;
             text-align: left;
+            position: relative;
+            background: radial-gradient(circle at 0% 0%, rgba(250,188,15,0.12), transparent 55%), rgba(18,18,18,0.85);
+            box-shadow: 0 0 0 1px rgba(250,188,15,0.08), 0 30px 80px rgba(250,188,15,0.12);
+        }
+
+        .spotlight-card .fusion-badge {
+            top: -14px;
+            padding: 0.35rem 1.1rem;
+            font-size: 0.8rem;
+            box-shadow: 0 0 24px rgba(250,188,15,0.45);
         }
 
         .spotlight-brand {
@@ -663,10 +673,22 @@
             display: inline-flex;
             align-items: baseline;
             gap: 0.75rem;
-            border: 2px solid var(--red);
-            background: rgba(185, 14, 50, 0.08);
+            border: 2px solid var(--gold);
+            background: rgba(250, 188, 15, 0.08);
             border-radius: 14px;
             padding: 0.6rem 1.25rem;
+        }
+        .spotlight-tier.fusion {
+            padding: 0.8rem 1.6rem;
+            box-shadow: 0 0 30px rgba(250,188,15,0.25);
+        }
+        .spotlight-tier.fusion .spotlight-tier-name { font-size: 2rem; color: var(--gold); }
+        @media (prefers-reduced-motion: no-preference) {
+            .spotlight-tier.fusion { animation: fusionGlow 3s ease-in-out infinite alternate; }
+        }
+        @keyframes fusionGlow {
+            from { box-shadow: 0 0 18px rgba(250,188,15,0.18); }
+            to { box-shadow: 0 0 40px rgba(250,188,15,0.4); }
         }
         .spotlight-tier-label {
             color: #aaa;
@@ -737,7 +759,7 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255,255,255,0.07);
-            border-left: 4px solid var(--gold);
+            border-left: 4px solid var(--red);
             border-radius: 22px;
             padding: 2.25rem 2.5rem;
             text-align: left;
@@ -763,8 +785,8 @@
         }
 
         .spotlight-tier.fission {
-            border-color: var(--gold);
-            background: rgba(250,188,15,0.08);
+            border-color: var(--red);
+            background: rgba(185,14,50,0.08);
             margin-bottom: 1.25rem;
         }
 
@@ -785,7 +807,7 @@
         .fission-card .spotlight-thanks {
             margin-top: 1.25rem;
             padding-left: 1.25rem;
-            border-left: 2px solid var(--gold);
+            border-left: 2px solid var(--red);
             color: #f0f0f0;
             font-style: italic;
         }
@@ -797,6 +819,8 @@
             background: rgba(0,37,82,0.35);
             margin-bottom: 1.25rem;
         }
+        .thermal-grid .fission-card,
+        .thermal-grid .fission-card .spotlight-thanks { border-left-color: #6f9fd8; }
         .fission-logo.thermal-logo { max-height: 48px; }
 
         /* --- SCROLL REVEAL ANIMATIONS --- */
@@ -1050,11 +1074,12 @@
             <h1 class="hero-title" style="margin-bottom: 2.5rem;">Meet Our Sponsors</h1>
 
             <div class="spotlight-card reveal stagger-1">
+                <div class="fusion-badge">Exclusive Inaugural Partner</div>
                 <div class="spotlight-brand">
                     <a href="https://communications.atkinsrealis.com/p/1JXO-1QI8/nuclear-lp-candu-canadas-nuclear-powerhouse" class="spotlight-logo-link" target="_blank" rel="noopener" aria-label="AtkinsRéalis website (opens in a new tab)" onclick="gtag('event', 'button_click', {'button_name': 'Sponsors - AtkinsRealis Logo'});">
                         <img src="assets/AtkinsRealisLogo1.png" alt="AtkinsRéalis logo" class="spotlight-logo">
                     </a>
-                    <div class="spotlight-tier">
+                    <div class="spotlight-tier fusion">
                         <span class="spotlight-tier-label">Tier</span>
                         <span class="spotlight-tier-name">Fusion</span>
                     </div>
@@ -1298,7 +1323,7 @@
                     <div class="tier-header">
                         <div class="tier-name">Fusion</div>
                         <div class="tier-price">Reserved</div>
-                        <p style="color: #b90e32; font-size: 0.85rem; font-weight: 600; margin-top: 0.75rem; letter-spacing: 0.02em;">Secured by a confidential inaugural partner. Not currently open for new sponsorship.</p>
+                        <p style="color: #fabc0f; font-size: 0.85rem; font-weight: 600; margin-top: 0.75rem; letter-spacing: 0.02em;">Secured by AtkinsRéalis, our inaugural partner. Not currently open for new sponsorship.</p>
                     </div>
                     <ul class="tier-features">
                         <li>All Fission benefits, with Large+ apparel logo placement</li>
