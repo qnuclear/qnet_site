@@ -22,6 +22,20 @@
         gtag('config', 'G-8J80X6N4DV');
     </script>
     <style>
+        /* --- BRAND TOKENS (shared on every page) --- */
+        :root {
+            --bg: #050505;
+            --gold: #fabc0f;
+            --blue: #002552;
+            --red: #b90e32;
+            --glass: rgba(18, 18, 18, 0.85);
+            --line: rgba(255, 255, 255, 0.07);
+            --radius: 22px;
+        }
+        ::selection { background: var(--gold); color: var(--bg); }
+        :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+        h1, h2, h3 { text-wrap: balance; }
+        p, li { text-wrap: pretty; }
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
         /* ── Responsive root scaling: laptop-width screens (769–1536px) get a
@@ -52,7 +66,7 @@
         }
 
         body, html {
-            background-color: #050505; 
+            background-color: var(--bg); 
             color: #f0f0f0; 
             overflow: hidden; 
         }
@@ -61,7 +75,7 @@
         .global-bg {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            background-color: #050505;
+            background-color: var(--bg);
             overflow: hidden;
             z-index: 0;
             pointer-events: none;
@@ -110,7 +124,7 @@
         .hero-vignette {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, transparent 10%, #050505 90%);
+            background: radial-gradient(circle at 50% 50%, transparent 10%, var(--bg) 90%);
             z-index: 1;
             pointer-events: none;
         }
@@ -176,7 +190,7 @@
         .notch-links a { position: relative; }
         .notch-links a::after {
             content: ''; position: absolute; bottom: -5px; left: 50%;
-            width: 0; height: 1px; background: #fabc0f;
+            width: 0; height: 1px; background: var(--gold);
             transition: width 0.3s ease, left 0.3s ease;
         }
         .notch-links a:hover::after { width: 100%; left: 0; }
@@ -242,7 +256,7 @@
             font-size: clamp(1.15rem, 1.8vw, 1.6rem);
             font-weight: 500;
             letter-spacing: 0.25em;
-            color: #fabc0f;
+            color: var(--gold);
             text-transform: uppercase;
             opacity: 0;
             transform: translateY(20px);
@@ -300,9 +314,9 @@
 
         .pillar-card:hover {
             translate: 0 -8px;
-            border-color: var(--accent, #fabc0f);
+            border-color: var(--accent, var(--gold));
             box-shadow: 0 20px 50px rgba(250,188,15,0.2);
-            box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent, #fabc0f) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--accent, #fabc0f) 30%, transparent);
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent, var(--gold)) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--accent, var(--gold)) 30%, transparent);
             background: rgba(30, 30, 30, 0.8);
         }
 
@@ -375,9 +389,9 @@
 
         .bento-item:hover {
             translate: 0 -8px;
-            border-color: var(--accent, #fabc0f);
+            border-color: var(--accent, var(--gold));
             box-shadow: 0 20px 50px rgba(250,188,15,0.2);
-            box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent, #fabc0f) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--accent, #fabc0f) 30%, transparent);
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent, var(--gold)) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--accent, var(--gold)) 30%, transparent);
         }
 
         .bento-bg-image {
@@ -440,7 +454,7 @@
         .prize-text {
             font-size: 4rem;
             font-weight: 700;
-            color: #fabc0f;
+            color: var(--gold);
             line-height: 1;
             margin-bottom: 0.5rem;
             text-shadow: 0 0 30px rgba(250, 188, 15, 0.4);
@@ -470,8 +484,8 @@
 
         .resource-card:hover {
             translate: 0 -8px;
-            border-color: var(--accent, #fabc0f);
-            box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent, #fabc0f) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--accent, #fabc0f) 30%, transparent);
+            border-color: var(--accent, var(--gold));
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent, var(--gold)) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--accent, var(--gold)) 30%, transparent);
             background: rgba(30, 30, 30, 0.8);
             transition: all 0.4s ease;
         }
@@ -479,7 +493,7 @@
         .resource-icon {
             width: 50px;
             height: 50px;
-            background: color-mix(in srgb, var(--accent, #fabc0f) 20%, transparent);
+            background: color-mix(in srgb, var(--accent, var(--gold)) 20%, transparent);
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -490,7 +504,7 @@
         .resource-icon svg {
             width: 24px;
             height: 24px;
-            fill: var(--accent, #fabc0f);
+            fill: var(--accent, var(--gold));
         }
 
         .resource-card h3 {
@@ -512,7 +526,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            color: #fabc0f;
+            color: var(--gold);
             margin-bottom: 1rem;
         }
 
@@ -545,8 +559,8 @@
 
         .tour-photo:hover {
             translate: 0 -8px;
-            border-color: var(--accent, #fabc0f);
-            box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent, #fabc0f) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--accent, #fabc0f) 30%, transparent);
+            border-color: var(--accent, var(--gold));
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent, var(--gold)) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--accent, var(--gold)) 30%, transparent);
         }
 
         .tour-photo:hover img { transform: scale(1.05); }
@@ -558,7 +572,7 @@
         .guest-note {
             margin-top: 2rem; padding: 1rem 1.5rem; max-width: 1200px; width: 100%;
             background: rgba(18, 18, 18, 0.85); border: 1px solid rgba(255,255,255,0.07);
-            border-left: 3px solid #fabc0f; border-radius: 22px;
+            border-left: 3px solid var(--gold); border-radius: 22px;
             color: #bbb; font-size: 1.05rem; text-align: left;
         }
         .guest-note strong { color: #fff; }
@@ -566,7 +580,7 @@
         .lesson-tag {
             display: inline-block; margin-bottom: 0.5rem;
             font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
-            color: #fabc0f;
+            color: var(--gold);
         }
 
         /* --- GUEST SPEAKERS --- */
@@ -596,7 +610,7 @@
         .speaker-node:hover {
             background: rgba(30, 30, 30, 0.8);
             translate: 0 -8px;
-            border-color: #fabc0f;
+            border-color: var(--gold);
             box-shadow: 0 0 0 1px rgba(250,188,15,0.5), 0 20px 50px rgba(250,188,15,0.3);
         }
 
@@ -614,7 +628,7 @@
         .speaker-node h4 { font-size: 1.5rem; color: #fff; margin-bottom: 0.35rem; }
         
         .speaker-node span { 
-            color: #fabc0f; 
+            color: var(--gold); 
             font-weight: 600; 
             font-size: 0.9rem; 
             text-transform: uppercase; 
@@ -656,14 +670,14 @@
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            background-color: #fabc0f;
+            background-color: var(--gold);
             border-radius: 50px; 
             transition: all 0.6s ease;
             box-shadow: 0 10px 30px rgba(250, 188, 15, 0.3);
         }
 
         .btn-large:hover {
-            background-color: #002552;
+            background-color: var(--blue);
             color: #fff;
             translate: 0 -3px;
             box-shadow: 0 15px 40px rgba(0,37,82,0.6);
@@ -681,7 +695,7 @@
         }
 
         .disclaimer-link {
-            color: #fabc0f;
+            color: var(--gold);
             text-decoration: underline;
             text-decoration-thickness: 1px;
             text-underline-offset: 3px;
@@ -747,9 +761,9 @@
 
         .social-link { display: flex; align-items: center; justify-content: center; }
         .social-icon { width: 20px; height: 20px; fill: #ffffff; transition: all 0.6s ease; }
-        .social-link:nth-child(1):hover .social-icon { fill: #002552; translate: 0 -3px; }
-        .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; translate: 0 -3px; }
-        .social-link:nth-child(3):hover .social-icon { fill: #b90e32; translate: 0 -3px; }
+        .social-link:nth-child(1):hover .social-icon { fill: var(--blue); translate: 0 -3px; }
+        .social-link:nth-child(2):hover .social-icon { fill: var(--gold); translate: 0 -3px; }
+        .social-link:nth-child(3):hover .social-icon { fill: var(--red); translate: 0 -3px; }
 
         #back-to-top {
             position: fixed;
@@ -775,7 +789,7 @@
 
         #back-to-top svg { width: 24px; height: 24px; }
         #back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
-        #back-to-top:hover { border-color: #fabc0f; color: #fabc0f; translate: 0 -3px; }
+        #back-to-top:hover { border-color: var(--gold); color: var(--gold); translate: 0 -3px; }
 
         @media (max-width: 768px) {
             .site-footer { display: none; }
@@ -943,7 +957,7 @@
         <div class="hero-logo-wrapper">
             <h1 class="sr-only">QNET School</h1>
             <img src="assets/vectorized qnet school white.svg" alt="QNET School Logo" class="hero-logo">
-            <div class="hero-subtitle">Coming September 2026</div>
+            <div class="hero-subtitle">Lessons Underway · 2026–27</div>
         </div>
     </section>
 

@@ -22,6 +22,20 @@
         gtag('config', 'G-8J80X6N4DV');
     </script>
     <style>
+        /* --- BRAND TOKENS (shared on every page) --- */
+        :root {
+            --bg: #050505;
+            --gold: #fabc0f;
+            --blue: #002552;
+            --red: #b90e32;
+            --glass: rgba(18, 18, 18, 0.85);
+            --line: rgba(255, 255, 255, 0.07);
+            --radius: 22px;
+        }
+        ::selection { background: var(--gold); color: var(--bg); }
+        :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+        h1, h2, h3 { text-wrap: balance; }
+        p, li { text-wrap: pretty; }
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
         /* ── Responsive root scaling: laptop-width screens (769–1536px) get a
@@ -41,7 +55,7 @@
         }
 
         body, html {
-            background-color: #050505;
+            background-color: var(--bg);
             color: #f0f0f0;
             overflow: hidden;
         }
@@ -50,7 +64,7 @@
         .global-bg {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            background-color: #050505;
+            background-color: var(--bg);
             overflow: hidden;
             z-index: 0;
             pointer-events: none;
@@ -190,7 +204,7 @@
         .notch-links a { position: relative; }
         .notch-links a::after {
             content: ''; position: absolute; bottom: -5px; left: 50%;
-            width: 0; height: 1px; background: #fabc0f;
+            width: 0; height: 1px; background: var(--gold);
             transition: width 0.3s ease, left 0.3s ease;
         }
         .notch-links a:hover::after { width: 100%; left: 0; }
@@ -293,7 +307,7 @@
             font-weight: 700;
             letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: #fabc0f;
+            color: var(--gold);
             margin-bottom: 0.75rem;
             opacity: 0.9;
         }
@@ -322,7 +336,7 @@
             gap: 0.5rem;
             margin-top: 3rem;
             padding: 0.95rem 2.4rem;
-            background-color: #fabc0f;
+            background-color: var(--gold);
             color: #111;
             font-size: 0.85rem;
             font-weight: 600;
@@ -334,7 +348,7 @@
             box-shadow: 0 10px 30px rgba(250, 188, 15, 0.25);
         }
         .team-projects-cta:hover {
-            background-color: #b90e32;
+            background-color: var(--red);
             color: #fff;
             translate: 0 -3px;
             box-shadow: 0 15px 35px rgba(185,14,50,0.4);
@@ -353,7 +367,7 @@
             font-weight: 700;
             letter-spacing: 0.3em;
             text-transform: uppercase;
-            color: #fabc0f;
+            color: var(--gold);
             opacity: 0;
             animation: fadeUp 2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
             margin-bottom: 1.5rem;
@@ -511,12 +525,12 @@
             padding: 0.8rem 2rem; margin-bottom: 1.5rem;
             font-size: 0.85rem; font-weight: 700; color: #fff; text-decoration: none;
             text-transform: uppercase; letter-spacing: 0.12em;
-            background: #b90e32; border: 1px solid #b90e32; border-radius: 50px;
+            background: var(--red); border: 1px solid var(--red); border-radius: 50px;
             box-shadow: 0 10px 30px rgba(185, 14, 50, 0.3);
             transition: all 0.3s ease;
         }
-        .staff-apply-btn:hover { background: transparent; color: #fabc0f; border-color: #fabc0f; translate: 0 -2px; }
-        .apply-deadline { color: #fabc0f; font-weight: 600; font-size: 0.95rem; }
+        .staff-apply-btn:hover { background: transparent; color: var(--gold); border-color: var(--gold); translate: 0 -2px; }
+        .apply-deadline { color: var(--gold); font-weight: 600; font-size: 0.95rem; }
 
         .staff-role {
             font-size: 0.85rem;
@@ -606,7 +620,7 @@
         .extra-badge {
             margin-top: 0.25rem;
             font-size: 0.75rem;
-            background: linear-gradient(45deg, #fabc0f, #e6a500);
+            background: linear-gradient(45deg, var(--gold), #e6a500);
             color: #111;
             padding: 0.3rem 0.8rem;
             border-radius: 12px;
@@ -617,7 +631,7 @@
         }
 
         .ops-card .extra-badge {
-            background: linear-gradient(45deg, #b90e32, #8b0a25);
+            background: linear-gradient(45deg, var(--red), #8b0a25);
             color: #ffffff;
             box-shadow: 0 4px 10px rgba(185, 14, 50, 0.2);
         }
@@ -632,36 +646,36 @@
         /* Card hover lift */
         .staff-card:hover {
             translate: 0 -8px;
-            border-color: var(--accent, #fabc0f);
+            border-color: var(--accent, var(--gold));
             box-shadow: 0 20px 50px rgba(250,188,15,0.2);
-            box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent, #fabc0f) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--accent, #fabc0f) 30%, transparent);
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent, var(--gold)) 50%, transparent), 0 20px 50px color-mix(in srgb, var(--accent, var(--gold)) 30%, transparent);
         }
 
         /* STEM — gold full-outline hover */
-        .stem-card { --accent: #fabc0f; }
-        .stem-card .staff-role { color: #fabc0f; }
-        .stem-card .degree-badge { color: #fabc0f; background: rgba(250, 188, 15, 0.1); }
+        .stem-card { --accent: var(--gold); }
+        .stem-card .staff-role { color: var(--gold); }
+        .stem-card .degree-badge { color: var(--gold); background: rgba(250, 188, 15, 0.1); }
         .stem-card:hover .staff-photo { border-color: rgba(250, 188, 15, 0.6); }
         .stem-card:hover .staff-academic { border-top-color: rgba(250, 188, 15, 0.25); }
 
         /* OPS — red full-outline hover */
-        .ops-card { --accent: #b90e32; }
-        .ops-card .staff-role { color: #b90e32; }
-        .ops-card .degree-badge { color: #b90e32; background: rgba(185, 14, 50, 0.1); }
+        .ops-card { --accent: var(--red); }
+        .ops-card .staff-role { color: var(--red); }
+        .ops-card .degree-badge { color: var(--red); background: rgba(185, 14, 50, 0.1); }
         .ops-card:hover .staff-photo { border-color: rgba(185, 14, 50, 0.6); }
         .ops-card:hover .staff-academic { border-top-color: rgba(185, 14, 50, 0.25); }
 
-        /* EXEC — Queen's blue #002552 */
-        .exec-card { --accent: #002552; }
+        /* EXEC — Queen's blue var(--blue) */
+        .exec-card { --accent: var(--blue); }
         .exec-card .staff-role { color: #6699cc; }
         .exec-card .degree-badge { color: #6699cc; background: rgba(0, 37, 82, 0.25); }
         .exec-card:hover .staff-photo { border-color: rgba(0, 37, 82, 0.8); }
         .exec-card:hover .staff-academic { border-top-color: rgba(0, 37, 82, 0.3); }
 
         /* FACULTY — gold full-outline hover */
-        .faculty-card { border-color: rgba(250, 188, 15, 0.12); --accent: #fabc0f; }
+        .faculty-card { border-color: rgba(250, 188, 15, 0.12); --accent: var(--gold); }
         .faculty-card .staff-photo { border-color: rgba(250, 188, 15, 0.4); }
-        .faculty-card .staff-role { color: #fabc0f; font-size: 0.95rem; }
+        .faculty-card .staff-role { color: var(--gold); font-size: 0.95rem; }
         .faculty-card:hover .staff-photo { border-color: rgba(250, 188, 15, 0.7); }
         .faculty-card:hover .staff-academic { border-top-color: rgba(250, 188, 15, 0.2); }
 
@@ -681,7 +695,7 @@
             border-radius: 20px;
             background-color: rgba(15,15,15,0.8);
             border: 1px solid rgba(250, 188, 15, 0.25);
-            color: #fabc0f;
+            color: var(--gold);
         }
 
         /* --- LARGE HORIZONTAL CARDS --- */
@@ -753,9 +767,9 @@
 
         .social-link { display: flex; align-items: center; justify-content: center; pointer-events: auto; }
         .social-icon { width: 20px; height: 20px; fill: #ffffff; transition: all 0.45s ease; }
-        .social-link:nth-child(1):hover .social-icon { fill: #002552; translate: 0 -3px; }
-        .social-link:nth-child(2):hover .social-icon { fill: #fabc0f; translate: 0 -3px; }
-        .social-link:nth-child(3):hover .social-icon { fill: #b90e32; translate: 0 -3px; }
+        .social-link:nth-child(1):hover .social-icon { fill: var(--blue); translate: 0 -3px; }
+        .social-link:nth-child(2):hover .social-icon { fill: var(--gold); translate: 0 -3px; }
+        .social-link:nth-child(3):hover .social-icon { fill: var(--red); translate: 0 -3px; }
 
         #back-to-top {
             position: fixed;
@@ -781,7 +795,7 @@
 
         #back-to-top svg { width: 24px; height: 24px; }
         #back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
-        #back-to-top:hover { border-color: #fabc0f; color: #fabc0f; translate: 0 -3px; }
+        #back-to-top:hover { border-color: var(--gold); color: var(--gold); translate: 0 -3px; }
 
         /* --- SECTION NAVIGATOR ---
            Desktop (mouse, >1100px): a quiet tick rail on the right edge that opens into
@@ -850,10 +864,10 @@
             -webkit-tap-highlight-color: transparent;
             transition: border-color 0.4s ease;
         }
-        .section-pill-wrap.open .section-pill { border-color: color-mix(in srgb, var(--c, #fabc0f) 45%, transparent); }
+        .section-pill-wrap.open .section-pill { border-color: color-mix(in srgb, var(--c, var(--gold)) 45%, transparent); }
         .pill-dot {
             width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
-            background: var(--c, #fabc0f); box-shadow: 0 0 10px var(--c, #fabc0f);
+            background: var(--c, var(--gold)); box-shadow: 0 0 10px var(--c, var(--gold));
             transition: background-color 0.4s ease, box-shadow 0.4s ease;
         }
         .pill-label { display: inline-block; transition: opacity 0.18s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
