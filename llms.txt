@@ -17,7 +17,7 @@ QNET (Queen's Nuclear Engineering Team) is a student design team at Queen's Univ
 ## Key facts 
 
 - Ratified by EngSoc Council in September 2026; 100+ members
-- Upcoming: MECH 485 seminar, Friday, December 11, 2026, 8:30 AM, Mitchell Hall — QNET will have a booth
+- Upcoming: Nuclear Science and Technology Showcase (NSTS), Friday, December 11, 2026, 8:30 AM, Mitchell Hall — the one-day final conference for MECH 485 (nuclear reactor engineering, taught by QNET faculty advisor Francesco Ambrogi, Ph.D.); QNET will have a booth
 - Five sub-teams: Mechanical (CAD, 3D printing, structural design); Electrical (PCB design, power, sensing); Software (control logic, firmware, UI, IoT); Research (technical reports, reviews, case studies); Materials (material selection, degradation modeling, safety analysis)
 - End-of-year demonstration in front of sponsors and nuclear industry professionals
 - Socials: [LinkedIn](https://www.linkedin.com/company/queensnuclear/), [Instagram](https://www.instagram.com/queensnuclear/), [GitHub](https://github.com/qnuclear)
